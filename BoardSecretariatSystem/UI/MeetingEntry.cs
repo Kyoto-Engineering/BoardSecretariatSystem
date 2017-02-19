@@ -21,143 +21,173 @@ namespace BoardSecretariatSystem
         private SqlCommand cmd;
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
-        
 
-        public int memberId;
+        public string user_id;
+        public int company_id;
+        public int board_id;
         public MeetingEntry()
         {
-           
+            user_id = frmLogin.uId.ToString();
             InitializeComponent();
         }
         private void MeetingEntry_Load(object sender, EventArgs e)
         {
-
+            CompanyNameLoad();
         }
-
-       // public 
-        public void SelectMemberId()
+        public void CompanyNameLoad()
         {
-            //if (!string.IsNullOrEmpty(memberNameTextBox.Text))
-            //{
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query = "SELECT CompanyName FROM t_company ";
 
-            //    con = new SqlConnection(cs.DBConn);
-            //    con.Open();
-            //    cmd = con.CreateCommand();
-
-            //    cmd.CommandText = "select MemberId from t_member WHERE MemberName= '" + memberNameTextBox.Text + "'";
-
-            //    rdr = cmd.ExecuteReader();
-            //    if (rdr.Read())
-            //    {
-            //        memberId = rdr.GetInt32(0);
-
-            //    }
-            //    if ((rdr != null))
-            //    {
-            //        rdr.Close();
-            //    }
-            //    if (con.State == ConnectionState.Open)
-            //    {
-            //        con.Close();
-            //    }
-            //}
+            cmd = new SqlCommand(query, con);
+            rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                companyNameComboBox.Items.Add(rdr[0]);
+            }
+            con.Close();
         }
+
+        // public 
+        public void SelectBoardId()
+        {
+           
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                cmd = con.CreateCommand();
+
+                cmd.CommandText = "select BoardId from t_board WHERE CompanyId= '" + company_id + "'";
+
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    board_id = rdr.GetInt32(0);
+
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+        
         private void saveButton_Click(object sender, EventArgs e)
-        {
-            //if (!string.IsNullOrEmpty(memberNameTextBox.Text))
-            //{
-            //    con = new SqlConnection(cs.DBConn);
-            //    con.Open();
-            //    string ct3 = "select MemberName from t_member where MemberName='" + memberNameTextBox.Text + "'";
-            //    cmd = new SqlCommand(ct3, con);
-            //    rdr = cmd.ExecuteReader();
-            //    if (rdr.Read() && !rdr.IsDBNull(0))
-            //    {
-            //        MessageBox.Show("This Member Name Already Exists,Please Input another one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        memberNameTextBox.ResetText();
-            //        memberNameTextBox.Focus();
-            //        con.Close();
+        {           
+                try
+                {
+                    SelectBoardId();
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string query2 = "insert into t_meeting (MeetingName,MeetingLocation,MeetingDate,MeetingTime,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" +
+                                    "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                    cmd = new SqlCommand(query2, con);
+                    cmd.Parameters.AddWithValue("@d1", meetingNameTextBox.Text);
+                    cmd.Parameters.AddWithValue("@d2", locationTextBox.Text);
+                    cmd.Parameters.AddWithValue("@d3", meetingDatePicker.Value.Date);                  
+                    cmd.Parameters.AddWithValue("@d4", meetingTimePicker.Value);
+                    cmd.Parameters.AddWithValue("@d5", board_id);
+                    cmd.Parameters.AddWithValue("@d6", user_id);
+                    cmd.Parameters.AddWithValue("@d7", DateTime.UtcNow.ToLocalTime());
+                    cmd.ExecuteNonQuery();
+                    con.Close();
 
-            //    }
-            //}
-
-        //    else
-        //    {
-        //        try
-        //        {
-        //            con = new SqlConnection(cs.DBConn);
-        //            con.Open();
-        //            string query1 = "insert into t_member (MemberName) values (@memberName)" +
-        //                            "SELECT CONVERT(int, SCOPE_IDENTITY())";
-        //            cmd = new SqlCommand(query1, con);
-        //            cmd.Parameters.AddWithValue("@memberName", memberNameTextBox.Text);
-        //            //cmd.Parameters.AddWithValue("@d2", user_id);
-        //            //cmd.Parameters.AddWithValue("@d3", DateTime.UtcNow.ToLocalTime());
-        //            cmd.ExecuteNonQuery();
-        //            con.Close();
-
-
-        //            SelectMemberId();
-
-
-        //            con = new SqlConnection(cs.DBConn);
-        //            con.Open();
-        //            string query2 = "insert into t_boradinfo (Topics,Discussion,Dicission,Date,Time,Place,ContactNo,MemberId) values (@topics,@discussion,@dicission,@date,@time,@place,@contactNo,@memberId)" +
-        //                            "SELECT CONVERT(int, SCOPE_IDENTITY())";
-        //            cmd = new SqlCommand(query2, con);
-        //            cmd.Parameters.AddWithValue("@topics", topicsTextBox.Text);
-        //            cmd.Parameters.AddWithValue("@discussion", discussionTextBox.Text);
-        //            cmd.Parameters.AddWithValue("@dicission", decissionTextBox.Text);
-        //            cmd.Parameters.AddWithValue("@date", datePicker.Value);
-        //            cmd.Parameters.AddWithValue("@time", timePicker.Value);
-        //            cmd.Parameters.AddWithValue("@place", placeTextBox.Text);
-        //            cmd.Parameters.AddWithValue("@contactNo", contactNoTextBox.Text);
-        //            cmd.Parameters.AddWithValue("@memberId", memberId);
-
-        //            //cmd.Parameters.AddWithValue("@d2", user_id);
-        //            //cmd.Parameters.AddWithValue("@d3", DateTime.UtcNow.ToLocalTime());
-        //            cmd.ExecuteNonQuery();
-        //            con.Close();
-
-        //            MessageBox.Show("Saved Sucessfully", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        }
-        //    }
-
-        //    //var message = new MailMessage();
-        //    //message.From = new MailAddress("sender@foo.bar.com");
-
-        //    //message.To.Add(new MailAddress("01719363181@txt.att.net"));//See carrier destinations below
-        //    ////message.To.Add(new MailAddress("5551234568@txt.att.net"));
-
-        //    ////message.CC.Add(new MailAddress("carboncopy@foo.bar.com"));
-        //    //message.Subject = "This is my subject";
-        //    //message.Body = "This is the content";
-
-        //    //var client = new SmtpClient();
-        //    //client.Send(message);
-
-        //    MailMessage mail = new MailMessage("engr.runju@gmail.com", "engr.runju@gmail.com");
-        //    SmtpClient client = new SmtpClient();
-        //    client.Port = 25;
-        //    client.DeliveryMethod = SmtpDeliveryMethod.Network;
-        //    client.UseDefaultCredentials = false;
-        //    client.Host = "smtp.google.com";
-        //    mail.Subject = "this is a test email.";
-        //    mail.Body = "this is my test email body";
-        //    client.Send(mail);
-        }
+                    MessageBox.Show("Saved Sucessfully", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        
 
         private void MeetingEntry_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Dispose();
-            MainUI mainUI=new MainUI();
+            MainUI mainUI = new MainUI();
             mainUI.Show();
         }
 
+        private void companyNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetAllBoardByCompanyId();
+        }
+
+        public void GetAllBoardByCompanyId()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                cmd = con.CreateCommand();
+
+                cmd.CommandText = "select CompanyId from t_company WHERE CompanyName= '" + companyNameComboBox.Text + "'";
+
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    company_id = rdr.GetInt32(0);
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            if (!string.IsNullOrWhiteSpace(companyNameComboBox.Text))
+            {
+
+                boardNameComboBox.Items.Clear();
+                boardNameComboBox.ResetText();
+                boardNameComboBox.SelectedIndex = -1;
+                try
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    cmd = con.CreateCommand();
+                    string query = "SELECT BoardName from t_board where CompanyId= '" + company_id + "'";
+
+                    cmd = new SqlCommand(query, con);
+                    rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        boardNameComboBox.Items.Add(rdr.GetValue(0).ToString());
+                    }
+
+                    if ((rdr != null))
+                    {
+                        rdr.Close();
+                    }
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
         
+
+
+
+
     }
 }

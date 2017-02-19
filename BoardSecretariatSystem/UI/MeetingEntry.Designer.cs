@@ -32,14 +32,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.placeTextBox = new System.Windows.Forms.TextBox();
-            this.datePicker = new System.Windows.Forms.DateTimePicker();
-            this.timePicker = new System.Windows.Forms.DateTimePicker();
+            this.locationTextBox = new System.Windows.Forms.TextBox();
+            this.meetingDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.meetingTimePicker = new System.Windows.Forms.DateTimePicker();
             this.saveButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.companyNameComboBox = new System.Windows.Forms.ComboBox();
+            this.boardNameComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.meetingNameTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -84,31 +84,31 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "Location  :";
             // 
-            // placeTextBox
+            // locationTextBox
             // 
-            this.placeTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.placeTextBox.Location = new System.Drawing.Point(327, 206);
-            this.placeTextBox.Name = "placeTextBox";
-            this.placeTextBox.Size = new System.Drawing.Size(153, 26);
-            this.placeTextBox.TabIndex = 13;
+            this.locationTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.locationTextBox.Location = new System.Drawing.Point(327, 206);
+            this.locationTextBox.Name = "locationTextBox";
+            this.locationTextBox.Size = new System.Drawing.Size(153, 26);
+            this.locationTextBox.TabIndex = 13;
             // 
-            // datePicker
+            // meetingDatePicker
             // 
-            this.datePicker.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datePicker.Location = new System.Drawing.Point(327, 255);
-            this.datePicker.Name = "datePicker";
-            this.datePicker.Size = new System.Drawing.Size(153, 26);
-            this.datePicker.TabIndex = 16;
+            this.meetingDatePicker.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.meetingDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.meetingDatePicker.Location = new System.Drawing.Point(327, 255);
+            this.meetingDatePicker.Name = "meetingDatePicker";
+            this.meetingDatePicker.Size = new System.Drawing.Size(153, 26);
+            this.meetingDatePicker.TabIndex = 16;
             // 
-            // timePicker
+            // meetingTimePicker
             // 
-            this.timePicker.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.timePicker.Location = new System.Drawing.Point(327, 299);
-            this.timePicker.Name = "timePicker";
-            this.timePicker.Size = new System.Drawing.Size(153, 26);
-            this.timePicker.TabIndex = 17;
+            this.meetingTimePicker.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.meetingTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.meetingTimePicker.Location = new System.Drawing.Point(327, 299);
+            this.meetingTimePicker.Name = "meetingTimePicker";
+            this.meetingTimePicker.Size = new System.Drawing.Size(153, 26);
+            this.meetingTimePicker.TabIndex = 17;
             // 
             // saveButton
             // 
@@ -142,23 +142,24 @@
             this.label2.TabIndex = 20;
             this.label2.Text = "Board Name :";
             // 
-            // comboBox1
+            // companyNameComboBox
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(327, 72);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(153, 27);
-            this.comboBox1.TabIndex = 22;
+            this.companyNameComboBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.companyNameComboBox.FormattingEnabled = true;
+            this.companyNameComboBox.Location = new System.Drawing.Point(327, 72);
+            this.companyNameComboBox.Name = "companyNameComboBox";
+            this.companyNameComboBox.Size = new System.Drawing.Size(153, 27);
+            this.companyNameComboBox.TabIndex = 22;
+            this.companyNameComboBox.SelectedIndexChanged += new System.EventHandler(this.companyNameComboBox_SelectedIndexChanged);
             // 
-            // comboBox2
+            // boardNameComboBox
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(327, 117);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(153, 27);
-            this.comboBox2.TabIndex = 23;
+            this.boardNameComboBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boardNameComboBox.FormattingEnabled = true;
+            this.boardNameComboBox.Location = new System.Drawing.Point(327, 117);
+            this.boardNameComboBox.Name = "boardNameComboBox";
+            this.boardNameComboBox.Size = new System.Drawing.Size(153, 27);
+            this.boardNameComboBox.TabIndex = 23;
             // 
             // label3
             // 
@@ -186,14 +187,14 @@
             this.ClientSize = new System.Drawing.Size(776, 445);
             this.Controls.Add(this.meetingNameTextBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.boardNameComboBox);
+            this.Controls.Add(this.companyNameComboBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.timePicker);
-            this.Controls.Add(this.datePicker);
-            this.Controls.Add(this.placeTextBox);
+            this.Controls.Add(this.meetingTimePicker);
+            this.Controls.Add(this.meetingDatePicker);
+            this.Controls.Add(this.locationTextBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -215,14 +216,14 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox placeTextBox;
-        private System.Windows.Forms.DateTimePicker datePicker;
-        private System.Windows.Forms.DateTimePicker timePicker;
+        private System.Windows.Forms.TextBox locationTextBox;
+        private System.Windows.Forms.DateTimePicker meetingDatePicker;
+        private System.Windows.Forms.DateTimePicker meetingTimePicker;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox companyNameComboBox;
+        private System.Windows.Forms.ComboBox boardNameComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox meetingNameTextBox;
     }
