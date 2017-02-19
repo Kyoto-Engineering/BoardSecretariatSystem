@@ -40,7 +40,7 @@
             // companyCreateButton
             // 
             this.companyCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.companyCreateButton.Location = new System.Drawing.Point(28, 12);
+            this.companyCreateButton.Location = new System.Drawing.Point(33, 24);
             this.companyCreateButton.Name = "companyCreateButton";
             this.companyCreateButton.Size = new System.Drawing.Size(123, 57);
             this.companyCreateButton.TabIndex = 0;
@@ -51,7 +51,7 @@
             // boardCreateButton
             // 
             this.boardCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boardCreateButton.Location = new System.Drawing.Point(28, 81);
+            this.boardCreateButton.Location = new System.Drawing.Point(33, 93);
             this.boardCreateButton.Name = "boardCreateButton";
             this.boardCreateButton.Size = new System.Drawing.Size(123, 56);
             this.boardCreateButton.TabIndex = 1;
@@ -61,7 +61,7 @@
             // agendaCreateButton
             // 
             this.agendaCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agendaCreateButton.Location = new System.Drawing.Point(28, 226);
+            this.agendaCreateButton.Location = new System.Drawing.Point(33, 238);
             this.agendaCreateButton.Name = "agendaCreateButton";
             this.agendaCreateButton.Size = new System.Drawing.Size(123, 60);
             this.agendaCreateButton.TabIndex = 3;
@@ -71,7 +71,7 @@
             // meetingCreateButton
             // 
             this.meetingCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.meetingCreateButton.Location = new System.Drawing.Point(28, 149);
+            this.meetingCreateButton.Location = new System.Drawing.Point(33, 161);
             this.meetingCreateButton.Name = "meetingCreateButton";
             this.meetingCreateButton.Size = new System.Drawing.Size(123, 65);
             this.meetingCreateButton.TabIndex = 2;
@@ -81,7 +81,7 @@
             // meetingExecutionButton
             // 
             this.meetingExecutionButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.meetingExecutionButton.Location = new System.Drawing.Point(28, 369);
+            this.meetingExecutionButton.Location = new System.Drawing.Point(33, 381);
             this.meetingExecutionButton.Name = "meetingExecutionButton";
             this.meetingExecutionButton.Size = new System.Drawing.Size(123, 60);
             this.meetingExecutionButton.TabIndex = 5;
@@ -91,7 +91,7 @@
             // participantCreateButton
             // 
             this.participantCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.participantCreateButton.Location = new System.Drawing.Point(28, 298);
+            this.participantCreateButton.Location = new System.Drawing.Point(33, 310);
             this.participantCreateButton.Name = "participantCreateButton";
             this.participantCreateButton.Size = new System.Drawing.Size(123, 59);
             this.participantCreateButton.TabIndex = 4;
@@ -122,6 +122,7 @@
             this.Controls.Add(this.meetingCreateButton);
             this.Controls.Add(this.boardCreateButton);
             this.Controls.Add(this.companyCreateButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "MainUI";
             this.Text = "MainUI";
             this.ResumeLayout(false);

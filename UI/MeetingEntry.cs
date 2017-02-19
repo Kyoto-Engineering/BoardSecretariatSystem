@@ -29,7 +29,12 @@ namespace BoardSecretariatSystem
            
             InitializeComponent();
         }
+        private void MeetingEntry_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        public 
         public void SelectMemberId()
         {
             if (!string.IsNullOrEmpty(memberNameTextBox.Text))
@@ -145,5 +150,7 @@ namespace BoardSecretariatSystem
             mail.Body = "this is my test email body";
             client.Send(mail);
         }
+
+        
     }
 }
