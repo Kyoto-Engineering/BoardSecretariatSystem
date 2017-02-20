@@ -65,13 +65,22 @@ namespace BoardSecretariatSystem
 
             participantEntry.Show();
         }
+        private void meetingExecutionButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
 
+            MeetingExecutionUI meetingExecution = new MeetingExecutionUI();
+
+            meetingExecution.Show();
+        }
         private void MainUI_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Dispose();
             frmLogin frmLogin=new frmLogin();
             frmLogin.Show();
         }
+
+        
 
        
     }

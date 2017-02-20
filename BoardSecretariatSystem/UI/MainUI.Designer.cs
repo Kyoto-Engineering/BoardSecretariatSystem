@@ -90,6 +90,7 @@
             this.meetingExecutionButton.TabIndex = 5;
             this.meetingExecutionButton.Text = "Meeting Execution";
             this.meetingExecutionButton.UseVisualStyleBackColor = true;
+            this.meetingExecutionButton.Click += new System.EventHandler(this.meetingExecutionButton_Click);
             // 
             // participantCreateButton
             // 

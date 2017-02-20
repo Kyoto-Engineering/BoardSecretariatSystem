@@ -154,7 +154,7 @@ namespace BoardSecretariatSystem
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string ct2 = "select BoardId from t_board where CompanyId ='" + company_id + "'";
+                    string ct2 = "select BoardId from t_board where CompanyId ='" + company_id + "' AND BoardName='"+boardNameComboBox.Text+"'";
                     cmd = new SqlCommand(ct2, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))

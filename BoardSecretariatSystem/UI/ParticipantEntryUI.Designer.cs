@@ -28,34 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.boardNameComboBox = new System.Windows.Forms.ComboBox();
             this.companyNameComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.participantNameTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.participantDesignationTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.participantEmailTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.participantContactNoTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // SaveButton
             // 
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(453, 342);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 33);
-            this.button1.TabIndex = 37;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.SaveButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveButton.Location = new System.Drawing.Point(453, 342);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 33);
+            this.SaveButton.TabIndex = 37;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // label3
             // 
@@ -69,21 +70,28 @@
             // 
             // boardNameComboBox
             // 
+            this.boardNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.boardNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.boardNameComboBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boardNameComboBox.FormattingEnabled = true;
             this.boardNameComboBox.Location = new System.Drawing.Point(291, 121);
             this.boardNameComboBox.Name = "boardNameComboBox";
             this.boardNameComboBox.Size = new System.Drawing.Size(238, 27);
             this.boardNameComboBox.TabIndex = 34;
+            this.boardNameComboBox.Leave += new System.EventHandler(this.boardNameComboBox_Leave);
             // 
             // companyNameComboBox
             // 
+            this.companyNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.companyNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.companyNameComboBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.companyNameComboBox.FormattingEnabled = true;
             this.companyNameComboBox.Location = new System.Drawing.Point(291, 73);
             this.companyNameComboBox.Name = "companyNameComboBox";
             this.companyNameComboBox.Size = new System.Drawing.Size(238, 27);
             this.companyNameComboBox.TabIndex = 33;
+            this.companyNameComboBox.SelectedIndexChanged += new System.EventHandler(this.companyNameComboBox_SelectedIndexChanged);
+            this.companyNameComboBox.Leave += new System.EventHandler(this.companyNameComboBox_Leave);
             // 
             // label2
             // 
@@ -105,13 +113,13 @@
             this.label1.TabIndex = 31;
             this.label1.Text = "Company Name :";
             // 
-            // textBox1
+            // participantNameTextBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(291, 169);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(237, 26);
-            this.textBox1.TabIndex = 38;
+            this.participantNameTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.participantNameTextBox.Location = new System.Drawing.Point(291, 169);
+            this.participantNameTextBox.Name = "participantNameTextBox";
+            this.participantNameTextBox.Size = new System.Drawing.Size(237, 26);
+            this.participantNameTextBox.TabIndex = 38;
             // 
             // label4
             // 
@@ -123,13 +131,13 @@
             this.label4.TabIndex = 39;
             this.label4.Text = "Participant Designation :";
             // 
-            // textBox2
+            // participantDesignationTextBox
             // 
-            this.textBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(291, 210);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(237, 26);
-            this.textBox2.TabIndex = 40;
+            this.participantDesignationTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.participantDesignationTextBox.Location = new System.Drawing.Point(291, 210);
+            this.participantDesignationTextBox.Name = "participantDesignationTextBox";
+            this.participantDesignationTextBox.Size = new System.Drawing.Size(237, 26);
+            this.participantDesignationTextBox.TabIndex = 40;
             // 
             // label5
             // 
@@ -157,13 +165,13 @@
             this.label7.Size = new System.Drawing.Size(0, 13);
             this.label7.TabIndex = 45;
             // 
-            // textBox3
+            // participantEmailTextBox
             // 
-            this.textBox3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(291, 254);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(237, 26);
-            this.textBox3.TabIndex = 44;
+            this.participantEmailTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.participantEmailTextBox.Location = new System.Drawing.Point(291, 254);
+            this.participantEmailTextBox.Name = "participantEmailTextBox";
+            this.participantEmailTextBox.Size = new System.Drawing.Size(237, 26);
+            this.participantEmailTextBox.TabIndex = 44;
             // 
             // label8
             // 
@@ -183,13 +191,13 @@
             this.label9.Size = new System.Drawing.Size(0, 13);
             this.label9.TabIndex = 48;
             // 
-            // textBox4
+            // participantContactNoTextBox
             // 
-            this.textBox4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(291, 298);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(237, 26);
-            this.textBox4.TabIndex = 47;
+            this.participantContactNoTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.participantContactNoTextBox.Location = new System.Drawing.Point(291, 298);
+            this.participantContactNoTextBox.Name = "participantContactNoTextBox";
+            this.participantContactNoTextBox.Size = new System.Drawing.Size(237, 26);
+            this.participantContactNoTextBox.TabIndex = 47;
             // 
             // label10
             // 
@@ -208,17 +216,17 @@
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(704, 444);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.participantContactNoTextBox);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.participantEmailTextBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.participantDesignationTextBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.participantNameTextBox);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.boardNameComboBox);
             this.Controls.Add(this.companyNameComboBox);
@@ -229,6 +237,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ParticipantEntryUI";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ParticipantEntryUI_FormClosed);
+            this.Load += new System.EventHandler(this.ParticipantEntryUI_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,22 +245,22 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox boardNameComboBox;
         private System.Windows.Forms.ComboBox companyNameComboBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox participantNameTextBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox participantDesignationTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox participantEmailTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox participantContactNoTextBox;
         private System.Windows.Forms.Label label10;
     }
 }

@@ -76,8 +76,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string ct2 = "select CompanyId from t_company where CompanyName='" +
-                                 companyNameComboBox.Text + "'";
+                    string ct2 = "select CompanyId from t_company where CompanyName='" +companyNameComboBox.Text + "'";
                     cmd = new SqlCommand(ct2, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
