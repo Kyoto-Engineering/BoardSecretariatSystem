@@ -33,28 +33,35 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.topicsTextBox = new System.Windows.Forms.TextBox();
+            this.agendaSaveButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // boardNameComboBox
             // 
+            this.boardNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.boardNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.boardNameComboBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boardNameComboBox.FormattingEnabled = true;
             this.boardNameComboBox.Location = new System.Drawing.Point(236, 114);
             this.boardNameComboBox.Name = "boardNameComboBox";
             this.boardNameComboBox.Size = new System.Drawing.Size(238, 27);
             this.boardNameComboBox.TabIndex = 27;
+            this.boardNameComboBox.Leave += new System.EventHandler(this.boardNameComboBox_Leave);
             // 
             // companyNameComboBox
             // 
+            this.companyNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.companyNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.companyNameComboBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.companyNameComboBox.FormattingEnabled = true;
             this.companyNameComboBox.Location = new System.Drawing.Point(236, 69);
             this.companyNameComboBox.Name = "companyNameComboBox";
             this.companyNameComboBox.Size = new System.Drawing.Size(238, 27);
             this.companyNameComboBox.TabIndex = 26;
+            this.companyNameComboBox.SelectedIndexChanged += new System.EventHandler(this.companyNameComboBox_SelectedIndexChanged);
+            this.companyNameComboBox.Leave += new System.EventHandler(this.companyNameComboBox_Leave);
             // 
             // label2
             // 
@@ -86,24 +93,25 @@
             this.label3.TabIndex = 28;
             this.label3.Text = "Topics :";
             // 
-            // textBox1
+            // topicsTextBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(236, 160);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(238, 113);
-            this.textBox1.TabIndex = 29;
+            this.topicsTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.topicsTextBox.Location = new System.Drawing.Point(236, 160);
+            this.topicsTextBox.Multiline = true;
+            this.topicsTextBox.Name = "topicsTextBox";
+            this.topicsTextBox.Size = new System.Drawing.Size(238, 113);
+            this.topicsTextBox.TabIndex = 29;
             // 
-            // button1
+            // agendaSaveButton
             // 
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(399, 291);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 33);
-            this.button1.TabIndex = 30;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.agendaSaveButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.agendaSaveButton.Location = new System.Drawing.Point(399, 291);
+            this.agendaSaveButton.Name = "agendaSaveButton";
+            this.agendaSaveButton.Size = new System.Drawing.Size(75, 33);
+            this.agendaSaveButton.TabIndex = 30;
+            this.agendaSaveButton.Text = "Save";
+            this.agendaSaveButton.UseVisualStyleBackColor = true;
+            this.agendaSaveButton.Click += new System.EventHandler(this.agendaSaveButton_Click);
             // 
             // label4
             // 
@@ -124,8 +132,8 @@
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(657, 399);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.agendaSaveButton);
+            this.Controls.Add(this.topicsTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.boardNameComboBox);
             this.Controls.Add(this.companyNameComboBox);
@@ -136,6 +144,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AgendaEntryUI";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AgendaEntryUI_FormClosed);
+            this.Load += new System.EventHandler(this.AgendaEntryUI_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,8 +157,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox topicsTextBox;
+        private System.Windows.Forms.Button agendaSaveButton;
         private System.Windows.Forms.Label label4;
     }
 }
