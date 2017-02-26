@@ -20,7 +20,7 @@ namespace BoardSecretariatSystem
         private ConnectionString cs = new ConnectionString();
         private delegate void ChangeFocusDelegate(Control ctl);
 
-        public int company_id, board_id;
+        public int company_id, board_id, meeting_id;
         public string user_id;
         public ParticipantEntryUI()
         {
@@ -34,12 +34,40 @@ namespace BoardSecretariatSystem
         private void ParticipantEntryUI_Load(object sender, EventArgs e)
         {
             CompanyNameLoad();
+            GetAllParticipant();
         }
         private void ParticipantEntryUI_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Dispose();
             MainUI mainUI = new MainUI();
             mainUI.Show();
+        }
+        public void GetAllParticipant()
+        {
+
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT dbo.t_participant.ParticipantName, dbo.t_company.CompanyName, dbo.t_board.BoardName, dbo.t_meeting.MeetingName, dbo.t_participant.Email, dbo.t_participant.ContactNumber FROM dbo.t_participant INNER JOIN dbo.t_meeting ON dbo.t_participant.MeetingId = dbo.t_meeting.MeetingId INNER JOIN dbo.t_board ON dbo.t_meeting.BoardId = dbo.t_board.BoardId INNER JOIN dbo.t_company ON dbo.t_board.CompanyId = dbo.t_company.CompanyId", con);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                participantListDataGridView.Rows.Clear();
+                foreach (DataRow item in dt.Rows)
+                {
+                    int n = participantListDataGridView.Rows.Add();
+                    participantListDataGridView.Rows[n].Cells[0].Value = item[0].ToString();
+                    participantListDataGridView.Rows[n].Cells[1].Value = item[1].ToString();
+                    participantListDataGridView.Rows[n].Cells[2].Value = item[2].ToString();
+                    participantListDataGridView.Rows[n].Cells[3].Value = item[3].ToString();
+                    participantListDataGridView.Rows[n].Cells[4].Value = item[4].ToString();
+                    participantListDataGridView.Rows[n].Cells[5].Value = item[5].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
         public void CompanyNameLoad()
         {
@@ -155,9 +183,34 @@ namespace BoardSecretariatSystem
                 con.Close();
             }
         }
+        public void SelectMeetingId()
+        {
+
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            cmd = con.CreateCommand();
+
+            cmd.CommandText = "select MeetingId from t_meeting WHERE BoardId= '" + board_id + "'";
+
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                meeting_id = rdr.GetInt32(0);
+
+            }
+            if ((rdr != null))
+            {
+                rdr.Close();
+            }
+            if (con.State == ConnectionState.Open)
+            {
+                con.Close();
+            }
+        }
         private void SaveButton_Click(object sender, EventArgs e)
         {
             SelectBoardId();
+            SelectMeetingId();
 
             if (string.IsNullOrEmpty(companyNameComboBox.Text))
             {
@@ -197,7 +250,7 @@ namespace BoardSecretariatSystem
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
                             string query1 =
-                                "insert into t_participant (ParticipantName,ContactNumber,Designation,Email,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" +
+                                "insert into t_participant (ParticipantName,ContactNumber,Designation,Email,BoardId,MeetingId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" +
                                 "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1",participantNameTextBox.Text);
@@ -205,8 +258,9 @@ namespace BoardSecretariatSystem
                             cmd.Parameters.AddWithValue("@d3", participantDesignationTextBox.Text);
                             cmd.Parameters.AddWithValue("@d4", participantEmailTextBox.Text);
                             cmd.Parameters.AddWithValue("@d5", board_id);
-                            cmd.Parameters.AddWithValue("@d6", user_id);
-                            cmd.Parameters.AddWithValue("@d7", DateTime.UtcNow.ToLocalTime());
+                            cmd.Parameters.AddWithValue("@d6", meeting_id);
+                            cmd.Parameters.AddWithValue("@d7", user_id);
+                            cmd.Parameters.AddWithValue("@d8", DateTime.UtcNow.ToLocalTime());
                             cmd.ExecuteNonQuery();
                             con.Close();
                             MessageBox.Show("Saved Sucessfully", "", MessageBoxButtons.OK, MessageBoxIcon.None);
@@ -216,6 +270,7 @@ namespace BoardSecretariatSystem
                         {
                             MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                        GetAllParticipant();
                     }
 
                 }

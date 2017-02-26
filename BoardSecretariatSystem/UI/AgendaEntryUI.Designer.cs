@@ -33,9 +33,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.topicsTextBox = new System.Windows.Forms.TextBox();
             this.agendaSaveButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.topicsComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // boardNameComboBox
@@ -79,9 +79,9 @@
             this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(79, 74);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 22);
+            this.label1.Size = new System.Drawing.Size(140, 22);
             this.label1.TabIndex = 24;
-            this.label1.Text = "Company Name :";
+            this.label1.Text = "Meeting Name :";
             // 
             // label3
             // 
@@ -93,19 +93,10 @@
             this.label3.TabIndex = 28;
             this.label3.Text = "Topics :";
             // 
-            // topicsTextBox
-            // 
-            this.topicsTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.topicsTextBox.Location = new System.Drawing.Point(236, 160);
-            this.topicsTextBox.Multiline = true;
-            this.topicsTextBox.Name = "topicsTextBox";
-            this.topicsTextBox.Size = new System.Drawing.Size(238, 113);
-            this.topicsTextBox.TabIndex = 29;
-            // 
             // agendaSaveButton
             // 
             this.agendaSaveButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agendaSaveButton.Location = new System.Drawing.Point(399, 291);
+            this.agendaSaveButton.Location = new System.Drawing.Point(399, 218);
             this.agendaSaveButton.Name = "agendaSaveButton";
             this.agendaSaveButton.Size = new System.Drawing.Size(75, 33);
             this.agendaSaveButton.TabIndex = 30;
@@ -118,11 +109,20 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label4.Location = new System.Drawing.Point(240, 9);
+            this.label4.Location = new System.Drawing.Point(440, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(138, 28);
             this.label4.TabIndex = 31;
             this.label4.Text = "Topics Entry";
+            // 
+            // topicsComboBox
+            // 
+            this.topicsComboBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.topicsComboBox.FormattingEnabled = true;
+            this.topicsComboBox.Location = new System.Drawing.Point(236, 161);
+            this.topicsComboBox.Name = "topicsComboBox";
+            this.topicsComboBox.Size = new System.Drawing.Size(238, 27);
+            this.topicsComboBox.TabIndex = 32;
             // 
             // AgendaEntryUI
             // 
@@ -130,10 +130,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(657, 399);
+            this.ClientSize = new System.Drawing.Size(1106, 492);
+            this.Controls.Add(this.topicsComboBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.agendaSaveButton);
-            this.Controls.Add(this.topicsTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.boardNameComboBox);
             this.Controls.Add(this.companyNameComboBox);
@@ -157,8 +157,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox topicsTextBox;
         private System.Windows.Forms.Button agendaSaveButton;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox topicsComboBox;
     }
 }

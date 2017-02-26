@@ -48,7 +48,7 @@
             this.discussionSmryTextBox.Location = new System.Drawing.Point(246, 148);
             this.discussionSmryTextBox.Multiline = true;
             this.discussionSmryTextBox.Name = "discussionSmryTextBox";
-            this.discussionSmryTextBox.Size = new System.Drawing.Size(450, 85);
+            this.discussionSmryTextBox.Size = new System.Drawing.Size(273, 66);
             this.discussionSmryTextBox.TabIndex = 1;
             // 
             // label1
@@ -65,7 +65,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(120, 251);
+            this.label2.Location = new System.Drawing.Point(120, 238);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 22);
             this.label2.TabIndex = 4;
@@ -74,17 +74,17 @@
             // resolutionTextBox
             // 
             this.resolutionTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resolutionTextBox.Location = new System.Drawing.Point(246, 250);
+            this.resolutionTextBox.Location = new System.Drawing.Point(246, 237);
             this.resolutionTextBox.Multiline = true;
             this.resolutionTextBox.Name = "resolutionTextBox";
-            this.resolutionTextBox.Size = new System.Drawing.Size(450, 79);
+            this.resolutionTextBox.Size = new System.Drawing.Size(273, 63);
             this.resolutionTextBox.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(137, 348);
+            this.label3.Location = new System.Drawing.Point(137, 324);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 22);
             this.label3.TabIndex = 6;
@@ -93,10 +93,10 @@
             // decisionTextBox
             // 
             this.decisionTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.decisionTextBox.Location = new System.Drawing.Point(246, 347);
+            this.decisionTextBox.Location = new System.Drawing.Point(246, 323);
             this.decisionTextBox.Multiline = true;
             this.decisionTextBox.Name = "decisionTextBox";
-            this.decisionTextBox.Size = new System.Drawing.Size(450, 78);
+            this.decisionTextBox.Size = new System.Drawing.Size(273, 61);
             this.decisionTextBox.TabIndex = 5;
             // 
             // label4
@@ -156,7 +156,7 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(608, 441);
+            this.saveButton.Location = new System.Drawing.Point(431, 408);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(88, 28);
             this.saveButton.TabIndex = 12;
@@ -169,7 +169,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(804, 495);
+            this.ClientSize = new System.Drawing.Size(1098, 495);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.boardNameComboBox);
@@ -185,6 +185,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "MeetingExecutionUI";
             this.Text = "MeetingExecutionUI";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MeetingExecutionUI_FormClosed);
             this.Load += new System.EventHandler(this.MeetingExecutionUI_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

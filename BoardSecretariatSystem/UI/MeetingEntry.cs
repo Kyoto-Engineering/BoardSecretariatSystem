@@ -33,6 +33,7 @@ namespace BoardSecretariatSystem
         private void MeetingEntry_Load(object sender, EventArgs e)
         {
             CompanyNameLoad();
+            GetAllMeetingList();
         }
         public void CompanyNameLoad()
         {
@@ -49,7 +50,35 @@ namespace BoardSecretariatSystem
             con.Close();
         }
 
-        // public 
+        public void GetAllMeetingList()
+        {
+
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT t_company.CompanyName, t_board.BoardName, t_meeting.MeetingName, t_meeting.MeetingLocation, t_meeting.MeetingDate FROM t_company INNER JOIN t_board ON t_company.CompanyId = t_board.CompanyId INNER JOIN t_meeting ON t_board.BoardId = t_meeting.BoardId", con);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                meetingListdataGridView.Rows.Clear();
+                foreach (DataRow item in dt.Rows)
+                {
+                    int n = meetingListdataGridView.Rows.Add();
+                    meetingListdataGridView.Rows[n].Cells[0].Value = item[0].ToString();
+                    meetingListdataGridView.Rows[n].Cells[1].Value = item[1].ToString();
+                    meetingListdataGridView.Rows[n].Cells[2].Value = item[2].ToString();
+                    meetingListdataGridView.Rows[n].Cells[3].Value = item[3].ToString();
+                    meetingListdataGridView.Rows[n].Cells[4].Value = item[4].ToString();
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
         public void SelectBoardId()
         {
            
@@ -82,16 +111,15 @@ namespace BoardSecretariatSystem
                     SelectBoardId();
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string query2 = "insert into t_meeting (MeetingName,MeetingLocation,MeetingDate,MeetingTime,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" +
+                    string query2 = "insert into t_meeting (MeetingName,MeetingLocation,MeetingDate,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6)" +
                                     "SELECT CONVERT(int, SCOPE_IDENTITY())";
                     cmd = new SqlCommand(query2, con);
                     cmd.Parameters.AddWithValue("@d1", meetingNameTextBox.Text);
                     cmd.Parameters.AddWithValue("@d2", locationTextBox.Text);
-                    cmd.Parameters.AddWithValue("@d3", meetingDatePicker.Value.Date);                  
-                    cmd.Parameters.AddWithValue("@d4", meetingTimePicker.Value);
-                    cmd.Parameters.AddWithValue("@d5", board_id);
-                    cmd.Parameters.AddWithValue("@d6", user_id);
-                    cmd.Parameters.AddWithValue("@d7", DateTime.UtcNow.ToLocalTime());
+                    cmd.Parameters.AddWithValue("@d3", meetingDatePicker.Value.Date);                                  
+                    cmd.Parameters.AddWithValue("@d4", board_id);
+                    cmd.Parameters.AddWithValue("@d5", user_id);
+                    cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
                     cmd.ExecuteNonQuery();
                     con.Close();
 
@@ -101,7 +129,8 @@ namespace BoardSecretariatSystem
                 {
                     MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
+            GetAllMeetingList();
+        }
         
 
         private void MeetingEntry_FormClosed(object sender, FormClosedEventArgs e)
@@ -184,6 +213,25 @@ namespace BoardSecretariatSystem
             }
 
         }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT t_company.CompanyName, t_board.BoardName, t_meeting.MeetingName, t_meeting.MeetingLocation, t_meeting.MeetingDate FROM t_company INNER JOIN t_board ON t_company.CompanyId = t_board.CompanyId INNER JOIN t_meeting ON t_board.BoardId = t_meeting.BoardId WHERE (t_company.CompanyName LIKE '" + searchTextBox.Text + "%') or(t_board.BoardName LIKE '" + searchTextBox.Text + "%') or (t_meeting.MeetingName LIKE '" + searchTextBox.Text + "%')", con);
+            DataTable dataTable = new DataTable();
+            sda.Fill(dataTable);
+            meetingListdataGridView.Rows.Clear();
+            foreach (DataRow item in dataTable.Rows)
+            {
+                int n = meetingListdataGridView.Rows.Add();
+                meetingListdataGridView.Rows[n].Cells[0].Value = item[0].ToString();
+                meetingListdataGridView.Rows[n].Cells[1].Value = item[1].ToString();
+                meetingListdataGridView.Rows[n].Cells[2].Value = item[2].ToString();
+                meetingListdataGridView.Rows[n].Cells[3].Value = item[3].ToString();
+                meetingListdataGridView.Rows[n].Cells[4].Value = item[4].ToString();
+            }
+        }
+
+       
         
 
 

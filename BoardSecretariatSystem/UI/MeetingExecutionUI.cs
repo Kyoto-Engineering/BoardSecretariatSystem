@@ -222,6 +222,13 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
+        private void MeetingExecutionUI_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+            MainUI mainUi=new MainUI();
+            mainUi.Show();
+        }
+
         
     }
 }

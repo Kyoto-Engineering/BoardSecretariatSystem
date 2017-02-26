@@ -31,12 +31,46 @@ namespace BoardSecretariatSystem
             MainUI mainUI = new MainUI();
             mainUI.Show();
         }
+        private void CompanyEntryUI_Load(object sender, EventArgs e)
+        {
+            GetAllCompany();
+        }
 
+        public void GetAllCompany()
+        {
+         
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT CompanyId,CompanyName,CompanyAddress,RegiNumber,DateTime FROM t_company", con);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                allCompanyListDataGridView.Rows.Clear();
+                foreach (DataRow item in dt.Rows)
+                {
+                    int n = allCompanyListDataGridView.Rows.Add();
+                    allCompanyListDataGridView.Rows[n].Cells[0].Value = item[0].ToString();
+                    allCompanyListDataGridView.Rows[n].Cells[1].Value = item[1].ToString();
+                    allCompanyListDataGridView.Rows[n].Cells[2].Value = item[2].ToString();
+                    allCompanyListDataGridView.Rows[n].Cells[3].Value = item[3].ToString();
+                    allCompanyListDataGridView.Rows[n].Cells[4].Value = item[4].ToString();
+                    
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        
         public void CompanyEntryUIClear()
         {
             companyNameTextBox.Clear();
             companyAddTextBox.Clear();
-            contactNoTextBox.Clear();
+            regNoTextBox.Clear();
         }
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -77,14 +111,14 @@ namespace BoardSecretariatSystem
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
                             string query1 =
-                                "insert into t_company (CompanyName,CompanyAddress,ContactNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5)" +
+                                "insert into t_company (CompanyName,CompanyAddress,RegiNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5)" +
                                 "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);
                             cmd.Parameters.AddWithValue("@d2", companyAddTextBox.Text);
-                            cmd.Parameters.AddWithValue("@d3", contactNoTextBox.Text);
+                            cmd.Parameters.AddWithValue("@d3", regNoTextBox.Text);
                             cmd.Parameters.AddWithValue("@d4", user_id);
-                            cmd.Parameters.AddWithValue("@d5", DateTime.UtcNow.ToLocalTime());
+                            cmd.Parameters.AddWithValue("@d5", creatinDateTimePicker.Value);
                             cmd.ExecuteNonQuery();
                             con.Close();
                             MessageBox.Show("Saved Sucessfully", "", MessageBoxButtons.OK, MessageBoxIcon.None);
@@ -94,6 +128,7 @@ namespace BoardSecretariatSystem
                         {
                             MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                        GetAllCompany();
                     }
 
                 } 
@@ -103,16 +138,44 @@ namespace BoardSecretariatSystem
 
         private void contactNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char ch = e.KeyChar;
-            decimal x;
-            if (ch == (char)Keys.Back)
+            //char ch = e.KeyChar;
+            //decimal x;
+            //if (ch == (char)Keys.Back)
+            //{
+            //    e.Handled = false;
+            //}
+            //else if (!char.IsDigit(ch) && ch != '.' || !Decimal.TryParse(regNoTextBox.Text + ch, out x))
+            //{
+            //    e.Handled = true;
+            //}
+        }
+
+        private void creatinDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (creatinDateTimePicker.Value>DateTime.UtcNow.ToLocalTime())
             {
-                e.Handled = false;
+                MessageBox.Show("Creation Date Time should not excced from current date time", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                creatinDateTimePicker.ResetText(); 
             }
-            else if (!char.IsDigit(ch) && ch != '.' || !Decimal.TryParse(contactNoTextBox.Text + ch, out x))
+        }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT CompanyId,CompanyName,CompanyAddress,RegiNumber,DateTime FROM t_company WHERE (CompanyName LIKE '" + searchTextBox.Text + "%')", con);
+            DataTable dataTable = new DataTable();
+            sda.Fill(dataTable);
+            allCompanyListDataGridView.Rows.Clear();
+            foreach (DataRow item in dataTable.Rows)
             {
-                e.Handled = true;
+                int n = allCompanyListDataGridView.Rows.Add();
+                allCompanyListDataGridView.Rows[n].Cells[0].Value = item[0].ToString();
+                allCompanyListDataGridView.Rows[n].Cells[1].Value = item[1].ToString();
+                allCompanyListDataGridView.Rows[n].Cells[2].Value = item[2].ToString();
+                allCompanyListDataGridView.Rows[n].Cells[3].Value = item[3].ToString();
+                allCompanyListDataGridView.Rows[n].Cells[4].Value = item[4].ToString();
             }
-        }    
+        }
+
+          
     }
 }
