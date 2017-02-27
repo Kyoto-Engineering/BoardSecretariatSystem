@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,6 +26,8 @@ namespace BoardSecretariatSystem
         public string user_id;
         public int company_id;
         public int board_id;
+        public string v;
+
         public MeetingEntry()
         {
             user_id = frmLogin.uId.ToString();
@@ -34,6 +37,10 @@ namespace BoardSecretariatSystem
         {
             CompanyNameLoad();
             GetAllMeetingList();
+            LoadCombo();
+            GetAllParticipant();
+
+           
         }
         public void CompanyNameLoad()
         {
@@ -48,6 +55,79 @@ namespace BoardSecretariatSystem
                 companyNameComboBox.Items.Add(rdr[0]);
             }
             con.Close();
+        }
+
+        private void LoadCombo()
+        {
+            // DataTable dt = new DataTable(); // I use DataTable here because I only want to grab data in ONE Table.. If using mutilple tables then use DataSet instead
+            //con = new SqlConnection(cs.DBConn);
+            //SqlDataAdapter sda = new SqlDataAdapter("Select ParticipantName from t_participant ", con);
+            //DataTable dt = new DataTable();
+            //sda.Fill(dt);
+            //DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
+            //combo.HeaderText = "Participants";
+            //combo.Name = "Combo";
+            //ArrayList row = new ArrayList();
+            //foreach (DataRow items in dt.Rows)
+            //{
+            //    row.Add(items["Name"]).ToString();
+            //}
+
+            //combo.Items.AddRange(row.ToArray());
+            //meetingListdataGridView.Columns.Add(combo);
+
+            con = new SqlConnection(cs.DBConn);
+            ArrayList row1 = new ArrayList();
+            const string query = "Select ParticipantName from t_participant";
+            //const string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=PSeminar;Integrated Security=true;Trusted_Connection=Yes;MultipleActiveResultSets=true";
+            using (SqlConnection cn = new SqlConnection(cs.DBConn))
+            {
+                using (SqlCommand cm = new SqlCommand(query, cn))
+                {
+                    cn.Open();
+                    SqlDataReader reader = cm.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        row1.Add(reader.GetString(0));
+                    }
+                }
+            }
+
+            DataTable dt = new DataTable();
+            DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
+            combo.HeaderText = "Participants";
+            combo.Name = "Combo";
+            ArrayList row = new ArrayList();
+            foreach (DataRow items in dt.Rows)
+            {
+                row.Add(items["Name"]).ToString();
+            }
+
+            combo.Items.AddRange(row.ToArray());
+            meetingListdataGridView.Columns.Add(combo);
+
+
+            
+        }
+
+        private void GetAllParticipant()
+        {
+            //con = new SqlConnection(cs.DBConn);
+            //ArrayList row = new ArrayList();
+            //const string query = "Select ParticipantName from t_participant";
+            ////const string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=PSeminar;Integrated Security=true;Trusted_Connection=Yes;MultipleActiveResultSets=true";
+            //using (SqlConnection cn = new SqlConnection(cs.DBConn))
+            //{
+            //    using (SqlCommand cm = new SqlCommand(query, cn))
+            //    {
+            //        cn.Open();
+            //        SqlDataReader reader = cm.ExecuteReader();
+            //        while (reader.Read())
+            //        {
+            //           row.Add(reader.GetString(0));
+            //        }
+            //    }
+            //}
         }
 
         public void GetAllMeetingList()
@@ -68,6 +148,7 @@ namespace BoardSecretariatSystem
                     meetingListdataGridView.Rows[n].Cells[2].Value = item[2].ToString();
                     meetingListdataGridView.Rows[n].Cells[3].Value = item[3].ToString();
                     meetingListdataGridView.Rows[n].Cells[4].Value = item[4].ToString();
+                    
 
                 }
 
