@@ -203,9 +203,9 @@ namespace BoardSecretariatSystem.UI
                     "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", agenda_id);
-                cmd.Parameters.AddWithValue("@d2", discussionSmryTextBox.Text);
-                cmd.Parameters.AddWithValue("@d3", resolutionTextBox.Text);
-                cmd.Parameters.AddWithValue("@d4", decisionTextBox.Text);
+                cmd.Parameters.AddWithValue("@d2", discussionRichTextBox.Text);
+                cmd.Parameters.AddWithValue("@d3", resulationRichTextBox.Text);
+                cmd.Parameters.AddWithValue("@d4", decisionRichTextBox.Text);
                 cmd.Parameters.AddWithValue("@d5", meeting_id); 
                 cmd.Parameters.AddWithValue("@d6", user_id);
                 cmd.Parameters.AddWithValue("@d7", DateTime.UtcNow.ToLocalTime());

@@ -64,18 +64,18 @@ namespace BoardSecretariatSystem
 
         private void TopicsLoad()
         {
-            con = new SqlConnection(cs.DBConn);
-            con.Open();
-            string ctt = "select AgendaTopics from t_agenda";
-            cmd = new SqlCommand(ctt);
-            cmd.Connection = con;
-            rdr = cmd.ExecuteReader();
-            while (rdr.Read())
-            {
-                topicsComboBox.Items.Add(rdr.GetValue(0).ToString());
-            }
+            //con = new SqlConnection(cs.DBConn);
+            //con.Open();
+            //string ctt = "select AgendaTopics from t_agenda";
+            //cmd = new SqlCommand(ctt);
+            //cmd.Connection = con;
+            //rdr = cmd.ExecuteReader();
+            //while (rdr.Read())
+            //{
+            //    topicsRichTextBox.Items.Add(rdr.GetValue(0).ToString());
+            //}
 
-            topicsComboBox.Items.Add("Not In The List");
+            //topicsRichTextBox.Items.Add("Not In The List");
         }
         private void companyNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -225,7 +225,7 @@ namespace BoardSecretariatSystem
                         "insert into t_agenda (AgendaTopics,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4)" +
                         "SELECT CONVERT(int, SCOPE_IDENTITY())";
                     cmd = new SqlCommand(query1, con);
-                    cmd.Parameters.AddWithValue("@d1", topicsComboBox.Text);
+                    cmd.Parameters.AddWithValue("@d1", topicsRichTextBox.Text);
                     cmd.Parameters.AddWithValue("@d2", board_id);
                     cmd.Parameters.AddWithValue("@d3", user_id);
                     cmd.Parameters.AddWithValue("@d4", DateTime.UtcNow.ToLocalTime());
@@ -236,7 +236,7 @@ namespace BoardSecretariatSystem
                     companyNameComboBox.SelectedIndex = -1;
                     boardNameComboBox.ResetText();
                     boardNameComboBox.SelectedIndex = -1;
-                    topicsComboBox.ResetText();
+                    topicsRichTextBox.ResetText();
                     //CompanyNameLoad();
                 }
                 catch (Exception ex)

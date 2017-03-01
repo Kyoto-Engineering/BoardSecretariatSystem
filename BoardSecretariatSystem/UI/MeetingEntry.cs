@@ -37,7 +37,7 @@ namespace BoardSecretariatSystem
         {
             CompanyNameLoad();
             GetAllMeetingList();
-            LoadCombo();
+            //LoadCombo();
             GetAllParticipant();
 
            
@@ -76,35 +76,39 @@ namespace BoardSecretariatSystem
             //combo.Items.AddRange(row.ToArray());
             //meetingListdataGridView.Columns.Add(combo);
 
-            con = new SqlConnection(cs.DBConn);
-            ArrayList row1 = new ArrayList();
-            const string query = "Select ParticipantName from t_participant";
-            //const string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=PSeminar;Integrated Security=true;Trusted_Connection=Yes;MultipleActiveResultSets=true";
-            using (SqlConnection cn = new SqlConnection(cs.DBConn))
-            {
-                using (SqlCommand cm = new SqlCommand(query, cn))
-                {
-                    cn.Open();
-                    SqlDataReader reader = cm.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        row1.Add(reader.GetString(0));
-                    }
-                }
-            }
+            //con = new SqlConnection(cs.DBConn);
+            //ArrayList row1 = new ArrayList();
+            //const string query = "Select ParticipantName from t_participant";
+            ////const string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=PSeminar;Integrated Security=true;Trusted_Connection=Yes;MultipleActiveResultSets=true";
+            //using (SqlConnection cn = new SqlConnection(cs.DBConn))
+            //{
+            //    using (SqlCommand cm = new SqlCommand(query, cn))
+            //    {
+            //        cn.Open();
+            //        SqlDataReader reader = cm.ExecuteReader();
+            //        while (reader.Read())
+            //        {
+            //            row1.Add(reader.GetString(0));
+            //        }
+            //    }
+            //}
 
-            DataTable dt = new DataTable();
-            DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
-            combo.HeaderText = "Participants";
-            combo.Name = "Combo";
-            ArrayList row = new ArrayList();
-            foreach (DataRow items in dt.Rows)
-            {
-                row.Add(items["Name"]).ToString();
-            }
 
-            combo.Items.AddRange(row.ToArray());
-            meetingListdataGridView.Columns.Add(combo);
+            //SqlDataAdapter sda = new SqlDataAdapter("Select ParticipantName from t_participant ", con);
+            
+            //DataTable dt = new DataTable();
+            //sda.Fill(dt);
+            //DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
+            //combo.HeaderText = "Participants";
+            //combo.Name = "Combo";
+            //ArrayList row = new ArrayList();
+            //foreach (DataRow items in dt.Rows)
+            //{
+            //    row.Add(items["ParticipantName"].ToString());
+            //}
+
+            //combo.Items.AddRange(row.ToArray());
+            //meetingListdataGridView.Columns.Add(combo);
 
 
             
@@ -115,7 +119,7 @@ namespace BoardSecretariatSystem
             //con = new SqlConnection(cs.DBConn);
             //ArrayList row = new ArrayList();
             //const string query = "Select ParticipantName from t_participant";
-            ////const string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=PSeminar;Integrated Security=true;Trusted_Connection=Yes;MultipleActiveResultSets=true";
+           
             //using (SqlConnection cn = new SqlConnection(cs.DBConn))
             //{
             //    using (SqlCommand cm = new SqlCommand(query, cn))
@@ -133,31 +137,31 @@ namespace BoardSecretariatSystem
         public void GetAllMeetingList()
         {
 
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT t_company.CompanyName, t_board.BoardName, t_meeting.MeetingName, t_meeting.MeetingLocation, t_meeting.MeetingDate FROM t_company INNER JOIN t_board ON t_company.CompanyId = t_board.CompanyId INNER JOIN t_meeting ON t_board.BoardId = t_meeting.BoardId", con);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                meetingListdataGridView.Rows.Clear();
-                foreach (DataRow item in dt.Rows)
-                {
-                    int n = meetingListdataGridView.Rows.Add();
-                    meetingListdataGridView.Rows[n].Cells[0].Value = item[0].ToString();
-                    meetingListdataGridView.Rows[n].Cells[1].Value = item[1].ToString();
-                    meetingListdataGridView.Rows[n].Cells[2].Value = item[2].ToString();
-                    meetingListdataGridView.Rows[n].Cells[3].Value = item[3].ToString();
-                    meetingListdataGridView.Rows[n].Cells[4].Value = item[4].ToString();
+            //try
+            //{
+            //    con = new SqlConnection(cs.DBConn);
+            //    SqlDataAdapter sda = new SqlDataAdapter("SELECT t_company.CompanyName, t_board.BoardName, t_meeting.MeetingName, t_meeting.MeetingLocation, t_meeting.MeetingDate FROM t_company INNER JOIN t_board ON t_company.CompanyId = t_board.CompanyId INNER JOIN t_meeting ON t_board.BoardId = t_meeting.BoardId", con);
+            //    DataTable dt = new DataTable();
+            //    sda.Fill(dt);
+            //    meetingListdataGridView.Rows.Clear();
+            //    foreach (DataRow item in dt.Rows)
+            //    {
+            //        int n = meetingListdataGridView.Rows.Add();
+            //        meetingListdataGridView.Rows[n].Cells[0].Value = item[0].ToString();
+            //        meetingListdataGridView.Rows[n].Cells[1].Value = item[1].ToString();
+            //        meetingListdataGridView.Rows[n].Cells[2].Value = item[2].ToString();
+            //        meetingListdataGridView.Rows[n].Cells[3].Value = item[3].ToString();
+            //        meetingListdataGridView.Rows[n].Cells[4].Value = item[4].ToString();
                     
 
-                }
+            //    }
 
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
         }
         public void SelectBoardId()
@@ -167,7 +171,7 @@ namespace BoardSecretariatSystem
                 con.Open();
                 cmd = con.CreateCommand();
 
-                cmd.CommandText = "select BoardId from t_board WHERE CompanyId= '" + company_id + "'";
+                cmd.CommandText = "select BoardId from t_board WHERE CompanyId= '" + company_id + "' And BoardName='"+boardNameComboBox.Text+"'";
 
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
@@ -297,20 +301,23 @@ namespace BoardSecretariatSystem
 
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SqlDataAdapter sda = new SqlDataAdapter("SELECT t_company.CompanyName, t_board.BoardName, t_meeting.MeetingName, t_meeting.MeetingLocation, t_meeting.MeetingDate FROM t_company INNER JOIN t_board ON t_company.CompanyId = t_board.CompanyId INNER JOIN t_meeting ON t_board.BoardId = t_meeting.BoardId WHERE (t_company.CompanyName LIKE '" + searchTextBox.Text + "%') or(t_board.BoardName LIKE '" + searchTextBox.Text + "%') or (t_meeting.MeetingName LIKE '" + searchTextBox.Text + "%')", con);
-            DataTable dataTable = new DataTable();
-            sda.Fill(dataTable);
-            meetingListdataGridView.Rows.Clear();
-            foreach (DataRow item in dataTable.Rows)
-            {
-                int n = meetingListdataGridView.Rows.Add();
-                meetingListdataGridView.Rows[n].Cells[0].Value = item[0].ToString();
-                meetingListdataGridView.Rows[n].Cells[1].Value = item[1].ToString();
-                meetingListdataGridView.Rows[n].Cells[2].Value = item[2].ToString();
-                meetingListdataGridView.Rows[n].Cells[3].Value = item[3].ToString();
-                meetingListdataGridView.Rows[n].Cells[4].Value = item[4].ToString();
-            }
+            //SqlDataAdapter sda = new SqlDataAdapter("SELECT t_company.CompanyName, t_board.BoardName, t_meeting.MeetingName, t_meeting.MeetingLocation, t_meeting.MeetingDate FROM t_company INNER JOIN t_board ON t_company.CompanyId = t_board.CompanyId INNER JOIN t_meeting ON t_board.BoardId = t_meeting.BoardId WHERE (t_company.CompanyName LIKE '" + searchTextBox.Text + "%') or(t_board.BoardName LIKE '" + searchTextBox.Text + "%') or (t_meeting.MeetingName LIKE '" + searchTextBox.Text + "%')", con);
+            //DataTable dataTable = new DataTable();
+            //sda.Fill(dataTable);
+            //meetingListdataGridView.Rows.Clear();
+            //foreach (DataRow item in dataTable.Rows)
+            //{
+            //    int n = meetingListdataGridView.Rows.Add();
+            //    meetingListdataGridView.Rows[n].Cells[0].Value = item[0].ToString();
+            //    meetingListdataGridView.Rows[n].Cells[1].Value = item[1].ToString();
+            //    meetingListdataGridView.Rows[n].Cells[2].Value = item[2].ToString();
+            //    meetingListdataGridView.Rows[n].Cells[3].Value = item[3].ToString();
+            //    meetingListdataGridView.Rows[n].Cells[4].Value = item[4].ToString();
+            //}
         }
+
+       
+       
 
        
         

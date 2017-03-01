@@ -47,17 +47,21 @@
             this.label10 = new System.Windows.Forms.Label();
             this.participantListGroupBox = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.participantListDataGridView = new System.Windows.Forms.DataGridView();
+            this.meetingAndParticipantDataGridView = new System.Windows.Forms.DataGridView();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.meetingListdataGridView = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.participantListGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.participantListDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.meetingAndParticipantDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.meetingListdataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // SaveButton
@@ -224,13 +228,15 @@
             // 
             // participantListGroupBox
             // 
+            this.participantListGroupBox.Controls.Add(this.searchTextBox);
             this.participantListGroupBox.Controls.Add(this.label12);
-            this.participantListGroupBox.Controls.Add(this.textBox1);
+            this.participantListGroupBox.Controls.Add(this.label13);
+            this.participantListGroupBox.Controls.Add(this.meetingListdataGridView);
+            this.participantListGroupBox.Controls.Add(this.meetingAndParticipantDataGridView);
             this.participantListGroupBox.Controls.Add(this.label11);
-            this.participantListGroupBox.Controls.Add(this.participantListDataGridView);
-            this.participantListGroupBox.Location = new System.Drawing.Point(493, 20);
+            this.participantListGroupBox.Location = new System.Drawing.Point(493, 12);
             this.participantListGroupBox.Name = "participantListGroupBox";
-            this.participantListGroupBox.Size = new System.Drawing.Size(601, 425);
+            this.participantListGroupBox.Size = new System.Drawing.Size(611, 461);
             this.participantListGroupBox.TabIndex = 49;
             this.participantListGroupBox.TabStop = false;
             // 
@@ -238,83 +244,114 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(220, 16);
+            this.label11.Location = new System.Drawing.Point(206, 271);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(177, 28);
             this.label11.TabIndex = 1;
             this.label11.Text = "Participants List";
             // 
-            // participantListDataGridView
+            // meetingAndParticipantDataGridView
             // 
-            this.participantListDataGridView.AllowUserToAddRows = false;
-            this.participantListDataGridView.AllowUserToDeleteRows = false;
-            this.participantListDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.participantListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.participantListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.meetingAndParticipantDataGridView.AllowUserToAddRows = false;
+            this.meetingAndParticipantDataGridView.AllowUserToDeleteRows = false;
+            this.meetingAndParticipantDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.meetingAndParticipantDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.meetingAndParticipantDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column7,
+            this.Column8});
+            this.meetingAndParticipantDataGridView.Location = new System.Drawing.Point(17, 315);
+            this.meetingAndParticipantDataGridView.Name = "meetingAndParticipantDataGridView";
+            this.meetingAndParticipantDataGridView.ReadOnly = true;
+            this.meetingAndParticipantDataGridView.Size = new System.Drawing.Size(578, 128);
+            this.meetingAndParticipantDataGridView.TabIndex = 4;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Meeting Name";
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Paticipant Name";
+            this.Column8.Name = "Column8";
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchTextBox.Location = new System.Drawing.Point(327, 56);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(268, 26);
+            this.searchTextBox.TabIndex = 8;
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(14, 56);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(315, 19);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Search By Company / Board / Meeting Name :";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Times New Roman", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(263, 16);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(120, 24);
+            this.label13.TabIndex = 6;
+            this.label13.Text = "Meeting List";
+            // 
+            // meetingListdataGridView
+            // 
+            this.meetingListdataGridView.AllowUserToAddRows = false;
+            this.meetingListdataGridView.AllowUserToDeleteRows = false;
+            this.meetingListdataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.meetingListdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.meetingListdataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
             this.Column4,
-            this.Column5,
-            this.Column6});
-            this.participantListDataGridView.Location = new System.Drawing.Point(17, 143);
-            this.participantListDataGridView.Name = "participantListDataGridView";
-            this.participantListDataGridView.ReadOnly = true;
-            this.participantListDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.participantListDataGridView.Size = new System.Drawing.Size(578, 273);
-            this.participantListDataGridView.TabIndex = 0;
+            this.Column5});
+            this.meetingListdataGridView.Location = new System.Drawing.Point(17, 103);
+            this.meetingListdataGridView.MultiSelect = false;
+            this.meetingListdataGridView.Name = "meetingListdataGridView";
+            this.meetingListdataGridView.ReadOnly = true;
+            this.meetingListdataGridView.Size = new System.Drawing.Size(578, 162);
+            this.meetingListdataGridView.TabIndex = 5;
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "Participant Name";
+            this.Column1.HeaderText = "Company Name";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "Company Name";
+            this.Column2.HeaderText = "Board Name";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
             // Column3
             // 
-            this.Column3.HeaderText = "Board Name";
+            this.Column3.HeaderText = "Meeting Name";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             // 
             // Column4
             // 
-            this.Column4.HeaderText = "Meeting Name";
+            this.Column4.HeaderText = "Meeting Location";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
             // Column5
             // 
-            this.Column5.HeaderText = "Eamil";
+            this.Column5.HeaderText = "Meeting Date";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Cell Number";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(341, 83);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(131, 83);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(58, 13);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "Search by ";
             // 
             // ParticipantEntryUI
             // 
@@ -348,7 +385,8 @@
             this.Load += new System.EventHandler(this.ParticipantEntryUI_Load);
             this.participantListGroupBox.ResumeLayout(false);
             this.participantListGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.participantListDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.meetingAndParticipantDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.meetingListdataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,14 +413,17 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox participantListGroupBox;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.DataGridView participantListDataGridView;
+        private System.Windows.Forms.DataGridView meetingAndParticipantDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.DataGridView meetingListdataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

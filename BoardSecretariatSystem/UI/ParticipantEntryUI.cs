@@ -34,7 +34,8 @@ namespace BoardSecretariatSystem
         private void ParticipantEntryUI_Load(object sender, EventArgs e)
         {
             CompanyNameLoad();
-            GetAllParticipant();
+            GetAllMeetingList();
+            GetAllParticipantAndMeetingName();
         }
         private void ParticipantEntryUI_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -42,25 +43,56 @@ namespace BoardSecretariatSystem
             MainUI mainUI = new MainUI();
             mainUI.Show();
         }
-        public void GetAllParticipant()
+
+        public void GetAllMeetingList()
         {
 
             try
             {
                 con = new SqlConnection(cs.DBConn);
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT dbo.t_participant.ParticipantName, dbo.t_company.CompanyName, dbo.t_board.BoardName, dbo.t_meeting.MeetingName, dbo.t_participant.Email, dbo.t_participant.ContactNumber FROM dbo.t_participant INNER JOIN dbo.t_meeting ON dbo.t_participant.MeetingId = dbo.t_meeting.MeetingId INNER JOIN dbo.t_board ON dbo.t_meeting.BoardId = dbo.t_board.BoardId INNER JOIN dbo.t_company ON dbo.t_board.CompanyId = dbo.t_company.CompanyId", con);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT t_company.CompanyName, t_board.BoardName, t_meeting.MeetingName, t_meeting.MeetingLocation, t_meeting.MeetingDate FROM t_company INNER JOIN t_board ON t_company.CompanyId = t_board.CompanyId INNER JOIN t_meeting ON t_board.BoardId = t_meeting.BoardId", con);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
-                participantListDataGridView.Rows.Clear();
+                meetingListdataGridView.Rows.Clear();
                 foreach (DataRow item in dt.Rows)
                 {
-                    int n = participantListDataGridView.Rows.Add();
-                    participantListDataGridView.Rows[n].Cells[0].Value = item[0].ToString();
-                    participantListDataGridView.Rows[n].Cells[1].Value = item[1].ToString();
-                    participantListDataGridView.Rows[n].Cells[2].Value = item[2].ToString();
-                    participantListDataGridView.Rows[n].Cells[3].Value = item[3].ToString();
-                    participantListDataGridView.Rows[n].Cells[4].Value = item[4].ToString();
-                    participantListDataGridView.Rows[n].Cells[5].Value = item[5].ToString();
+                    int n = meetingListdataGridView.Rows.Add();
+                    meetingListdataGridView.Rows[n].Cells[0].Value = item[0].ToString();
+                    meetingListdataGridView.Rows[n].Cells[1].Value = item[1].ToString();
+                    meetingListdataGridView.Rows[n].Cells[2].Value = item[2].ToString();
+                    meetingListdataGridView.Rows[n].Cells[3].Value = item[3].ToString();
+                    meetingListdataGridView.Rows[n].Cells[4].Value = item[4].ToString();
+
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        public void GetAllParticipantAndMeetingName()
+        {
+            meetingAndParticipantDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
+            meetingAndParticipantDataGridView.EnableHeadersVisualStyles = false;
+
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT t_participant.ParticipantName, t_meeting.MeetingName FROM t_participant INNER JOIN t_meeting ON t_participant.MeetingId = t_meeting.MeetingId", con);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                meetingAndParticipantDataGridView.Rows.Clear();
+                foreach (DataRow item in dt.Rows)
+                {
+                    int n = meetingAndParticipantDataGridView.Rows.Add();
+                    meetingAndParticipantDataGridView.Rows[n].Cells[0].Value = item[0].ToString();
+                    meetingAndParticipantDataGridView.Rows[n].Cells[1].Value = item[1].ToString();
+                    
                 }
             }
             catch (Exception ex)
@@ -270,7 +302,7 @@ namespace BoardSecretariatSystem
                         {
                             MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                        GetAllParticipant();
+                        GetAllParticipantAndMeetingName();
                     }
 
                 }
@@ -294,6 +326,23 @@ namespace BoardSecretariatSystem
                 MessageBox.Show("Please Select A Valid borad Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 boardNameComboBox.ResetText();
                 this.BeginInvoke(new ChangeFocusDelegate(changeFocus), boardNameComboBox);
+            }
+        }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT t_company.CompanyName, t_board.BoardName, t_meeting.MeetingName, t_meeting.MeetingLocation, t_meeting.MeetingDate FROM t_company INNER JOIN t_board ON t_company.CompanyId = t_board.CompanyId INNER JOIN t_meeting ON t_board.BoardId = t_meeting.BoardId WHERE (t_company.CompanyName LIKE '" + searchTextBox.Text + "%') or(t_board.BoardName LIKE '" + searchTextBox.Text + "%') or (t_meeting.MeetingName LIKE '" + searchTextBox.Text + "%')", con);
+            DataTable dataTable = new DataTable();
+            sda.Fill(dataTable);
+            meetingListdataGridView.Rows.Clear();
+            foreach (DataRow item in dataTable.Rows)
+            {
+                int n = meetingListdataGridView.Rows.Add();
+                meetingListdataGridView.Rows[n].Cells[0].Value = item[0].ToString();
+                meetingListdataGridView.Rows[n].Cells[1].Value = item[1].ToString();
+                meetingListdataGridView.Rows[n].Cells[2].Value = item[2].ToString();
+                meetingListdataGridView.Rows[n].Cells[3].Value = item[3].ToString();
+                meetingListdataGridView.Rows[n].Cells[4].Value = item[4].ToString();
             }
         }
 

@@ -28,28 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.discussionSmryTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.resolutionTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.decisionTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.companyNameComboBox = new System.Windows.Forms.ComboBox();
             this.boardNameComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
+            this.discussionRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.resulationRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.decisionRichTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
-            // 
-            // discussionSmryTextBox
-            // 
-            this.discussionSmryTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discussionSmryTextBox.Location = new System.Drawing.Point(246, 148);
-            this.discussionSmryTextBox.Multiline = true;
-            this.discussionSmryTextBox.Name = "discussionSmryTextBox";
-            this.discussionSmryTextBox.Size = new System.Drawing.Size(273, 66);
-            this.discussionSmryTextBox.TabIndex = 1;
             // 
             // label1
             // 
@@ -71,15 +62,6 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Resolution :";
             // 
-            // resolutionTextBox
-            // 
-            this.resolutionTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resolutionTextBox.Location = new System.Drawing.Point(246, 237);
-            this.resolutionTextBox.Multiline = true;
-            this.resolutionTextBox.Name = "resolutionTextBox";
-            this.resolutionTextBox.Size = new System.Drawing.Size(273, 63);
-            this.resolutionTextBox.TabIndex = 3;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -89,15 +71,6 @@
             this.label3.Size = new System.Drawing.Size(90, 22);
             this.label3.TabIndex = 6;
             this.label3.Text = "Decision :";
-            // 
-            // decisionTextBox
-            // 
-            this.decisionTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.decisionTextBox.Location = new System.Drawing.Point(246, 323);
-            this.decisionTextBox.Multiline = true;
-            this.decisionTextBox.Name = "decisionTextBox";
-            this.decisionTextBox.Size = new System.Drawing.Size(273, 61);
-            this.decisionTextBox.TabIndex = 5;
             // 
             // label4
             // 
@@ -127,7 +100,7 @@
             this.companyNameComboBox.FormattingEnabled = true;
             this.companyNameComboBox.Location = new System.Drawing.Point(246, 54);
             this.companyNameComboBox.Name = "companyNameComboBox";
-            this.companyNameComboBox.Size = new System.Drawing.Size(171, 27);
+            this.companyNameComboBox.Size = new System.Drawing.Size(273, 27);
             this.companyNameComboBox.TabIndex = 9;
             this.companyNameComboBox.SelectedIndexChanged += new System.EventHandler(this.companyNameComboBox_SelectedIndexChanged);
             // 
@@ -139,7 +112,7 @@
             this.boardNameComboBox.FormattingEnabled = true;
             this.boardNameComboBox.Location = new System.Drawing.Point(246, 106);
             this.boardNameComboBox.Name = "boardNameComboBox";
-            this.boardNameComboBox.Size = new System.Drawing.Size(171, 27);
+            this.boardNameComboBox.Size = new System.Drawing.Size(273, 27);
             this.boardNameComboBox.TabIndex = 10;
             // 
             // label6
@@ -156,7 +129,7 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(431, 408);
+            this.saveButton.Location = new System.Drawing.Point(431, 432);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(88, 28);
             this.saveButton.TabIndex = 12;
@@ -164,12 +137,39 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
+            // discussionRichTextBox
+            // 
+            this.discussionRichTextBox.Location = new System.Drawing.Point(246, 149);
+            this.discussionRichTextBox.Name = "discussionRichTextBox";
+            this.discussionRichTextBox.Size = new System.Drawing.Size(273, 74);
+            this.discussionRichTextBox.TabIndex = 13;
+            this.discussionRichTextBox.Text = "";
+            // 
+            // resulationRichTextBox
+            // 
+            this.resulationRichTextBox.Location = new System.Drawing.Point(246, 238);
+            this.resulationRichTextBox.Name = "resulationRichTextBox";
+            this.resulationRichTextBox.Size = new System.Drawing.Size(273, 69);
+            this.resulationRichTextBox.TabIndex = 14;
+            this.resulationRichTextBox.Text = "";
+            // 
+            // decisionRichTextBox
+            // 
+            this.decisionRichTextBox.Location = new System.Drawing.Point(246, 327);
+            this.decisionRichTextBox.Name = "decisionRichTextBox";
+            this.decisionRichTextBox.Size = new System.Drawing.Size(273, 77);
+            this.decisionRichTextBox.TabIndex = 15;
+            this.decisionRichTextBox.Text = "";
+            // 
             // MeetingExecutionUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1098, 495);
+            this.Controls.Add(this.decisionRichTextBox);
+            this.Controls.Add(this.resulationRichTextBox);
+            this.Controls.Add(this.discussionRichTextBox);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.boardNameComboBox);
@@ -177,11 +177,8 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.decisionTextBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.resolutionTextBox);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.discussionSmryTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "MeetingExecutionUI";
             this.Text = "MeetingExecutionUI";
@@ -194,17 +191,17 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox discussionSmryTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox resolutionTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox decisionTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox companyNameComboBox;
         private System.Windows.Forms.ComboBox boardNameComboBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.RichTextBox discussionRichTextBox;
+        private System.Windows.Forms.RichTextBox resulationRichTextBox;
+        private System.Windows.Forms.RichTextBox decisionRichTextBox;
     }
 }
