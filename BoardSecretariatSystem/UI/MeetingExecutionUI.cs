@@ -228,7 +228,6 @@ namespace BoardSecretariatSystem.UI
             MainUI mainUi=new MainUI();
             mainUi.Show();
         }
-
         
     }
 }

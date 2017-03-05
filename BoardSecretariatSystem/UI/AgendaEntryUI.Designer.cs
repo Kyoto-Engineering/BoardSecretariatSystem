@@ -48,6 +48,7 @@
             this.boardNameComboBox.Name = "boardNameComboBox";
             this.boardNameComboBox.Size = new System.Drawing.Size(297, 27);
             this.boardNameComboBox.TabIndex = 27;
+            this.boardNameComboBox.SelectedIndexChanged += new System.EventHandler(this.boardNameComboBox_SelectedIndexChanged);
             this.boardNameComboBox.Leave += new System.EventHandler(this.boardNameComboBox_Leave);
             // 
             // companyNameComboBox
@@ -96,7 +97,7 @@
             // agendaSaveButton
             // 
             this.agendaSaveButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agendaSaveButton.Location = new System.Drawing.Point(457, 293);
+            this.agendaSaveButton.Location = new System.Drawing.Point(457, 282);
             this.agendaSaveButton.Name = "agendaSaveButton";
             this.agendaSaveButton.Size = new System.Drawing.Size(75, 33);
             this.agendaSaveButton.TabIndex = 30;
@@ -129,7 +130,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(734, 492);
+            this.ClientSize = new System.Drawing.Size(769, 492);
             this.Controls.Add(this.topicsRichTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.agendaSaveButton);

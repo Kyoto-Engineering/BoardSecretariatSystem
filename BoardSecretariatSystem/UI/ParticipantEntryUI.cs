@@ -252,7 +252,10 @@ namespace BoardSecretariatSystem
             {
                 MessageBox.Show("Please select board name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            else if (string.IsNullOrEmpty(participantNameTextBox.Text))
+            {
+                MessageBox.Show("Please input participant name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             else
             {

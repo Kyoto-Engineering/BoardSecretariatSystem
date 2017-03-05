@@ -82,7 +82,6 @@ namespace BoardSecretariatSystem
             GetAllBoardByCompanyId();
         }
 
-
         public void GetAllBoardByCompanyId()
         {
             try
@@ -113,10 +112,8 @@ namespace BoardSecretariatSystem
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-
             if (!string.IsNullOrWhiteSpace(companyNameComboBox.Text))
             {
-
                 boardNameComboBox.Items.Clear();
                 boardNameComboBox.ResetText();
                 boardNameComboBox.SelectedIndex = -1;
@@ -149,9 +146,7 @@ namespace BoardSecretariatSystem
                     MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
         }
-
         private void agendaSaveButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(companyNameComboBox.Text))
@@ -181,7 +176,6 @@ namespace BoardSecretariatSystem
                     rdr.Close();
                     con.Close();
                 }
-
                 //if (!string.IsNullOrEmpty(topicsTextBox.Text))
                 //{
                 //    con = new SqlConnection(cs.DBConn);
@@ -222,8 +216,7 @@ namespace BoardSecretariatSystem
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     string query1 =
-                        "insert into t_agenda (AgendaTopics,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4)" +
-                        "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                        "insert into t_agenda (AgendaTopics,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                     cmd = new SqlCommand(query1, con);
                     cmd.Parameters.AddWithValue("@d1", topicsRichTextBox.Text);
                     cmd.Parameters.AddWithValue("@d2", board_id);
@@ -265,6 +258,11 @@ namespace BoardSecretariatSystem
                 boardNameComboBox.ResetText();
                 this.BeginInvoke(new ChangeFocusDelegate(changeFocus), boardNameComboBox);
             }
+        }
+
+        private void boardNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

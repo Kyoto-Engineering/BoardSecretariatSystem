@@ -59,7 +59,7 @@ namespace BoardSecretariatSystem
 
         private void LoadCombo()
         {
-            // DataTable dt = new DataTable(); // I use DataTable here because I only want to grab data in ONE Table.. If using mutilple tables then use DataSet instead
+            // DataTable dt = new DataTable(); 
             //con = new SqlConnection(cs.DBConn);
             //SqlDataAdapter sda = new SqlDataAdapter("Select ParticipantName from t_participant ", con);
             //DataTable dt = new DataTable();
@@ -78,8 +78,7 @@ namespace BoardSecretariatSystem
 
             //con = new SqlConnection(cs.DBConn);
             //ArrayList row1 = new ArrayList();
-            //const string query = "Select ParticipantName from t_participant";
-            ////const string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=PSeminar;Integrated Security=true;Trusted_Connection=Yes;MultipleActiveResultSets=true";
+            //const string query = "Select ParticipantName from t_participant";           
             //using (SqlConnection cn = new SqlConnection(cs.DBConn))
             //{
             //    using (SqlCommand cm = new SqlCommand(query, cn))
@@ -94,8 +93,7 @@ namespace BoardSecretariatSystem
             //}
 
 
-            //SqlDataAdapter sda = new SqlDataAdapter("Select ParticipantName from t_participant ", con);
-            
+            //SqlDataAdapter sda = new SqlDataAdapter("Select ParticipantName from t_participant ", con);           
             //DataTable dt = new DataTable();
             //sda.Fill(dt);
             //DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
@@ -106,12 +104,8 @@ namespace BoardSecretariatSystem
             //{
             //    row.Add(items["ParticipantName"].ToString());
             //}
-
             //combo.Items.AddRange(row.ToArray());
-            //meetingListdataGridView.Columns.Add(combo);
-
-
-            
+            //meetingListdataGridView.Columns.Add(combo);          
         }
 
         private void GetAllParticipant()
@@ -151,12 +145,8 @@ namespace BoardSecretariatSystem
             //        meetingListdataGridView.Rows[n].Cells[1].Value = item[1].ToString();
             //        meetingListdataGridView.Rows[n].Cells[2].Value = item[2].ToString();
             //        meetingListdataGridView.Rows[n].Cells[3].Value = item[3].ToString();
-            //        meetingListdataGridView.Rows[n].Cells[4].Value = item[4].ToString();
-                    
-
+            //        meetingListdataGridView.Rows[n].Cells[4].Value = item[4].ToString();                 
             //    }
-
-
             //}
             //catch (Exception ex)
             //{
@@ -315,15 +305,5 @@ namespace BoardSecretariatSystem
             //    meetingListdataGridView.Rows[n].Cells[4].Value = item[4].ToString();
             //}
         }
-
-       
-       
-
-       
-        
-
-
-
-
     }
 }
