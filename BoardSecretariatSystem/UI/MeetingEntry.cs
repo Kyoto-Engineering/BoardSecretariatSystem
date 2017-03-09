@@ -25,7 +25,7 @@ namespace BoardSecretariatSystem
 
         public string user_id;
         public int company_id;
-        public int board_id;
+        public int board_id,currentId;
         public string v;
 
         public MeetingEntry()
@@ -178,7 +178,15 @@ namespace BoardSecretariatSystem
                     con.Close();
                 }
             }
-        
+
+        private void Reset()
+        {
+            companyNameComboBox.SelectedIndex = -1;
+            boardNameComboBox.SelectedIndex = -1;
+            meetingNameTextBox.Clear();
+            locationTextBox.Clear();
+            meetingDatePicker.Value=DateTime.Today;
+        }
         private void saveButton_Click(object sender, EventArgs e)
         {           
                 try
@@ -186,8 +194,7 @@ namespace BoardSecretariatSystem
                     SelectBoardId();
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string query2 = "insert into t_meeting (MeetingName,MeetingLocation,MeetingDate,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6)" +
-                                    "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                    string query2 = "insert into t_meeting (MeetingName,MeetingLocation,MeetingDate,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                     cmd = new SqlCommand(query2, con);
                     cmd.Parameters.AddWithValue("@d1", meetingNameTextBox.Text);
                     cmd.Parameters.AddWithValue("@d2", locationTextBox.Text);
@@ -195,9 +202,9 @@ namespace BoardSecretariatSystem
                     cmd.Parameters.AddWithValue("@d4", board_id);
                     cmd.Parameters.AddWithValue("@d5", user_id);
                     cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
-                    cmd.ExecuteNonQuery();
+                    currentId = (int) cmd.ExecuteScalar();
                     con.Close();
-
+                    Reset();
                     MessageBox.Show("Saved Sucessfully", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)

@@ -28,105 +28,108 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.companyNameComboBox = new System.Windows.Forms.ComboBox();
-            this.BoardNameTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.saveButton = new System.Windows.Forms.Button();
+            this.BoardNameTextBox = new System.Windows.Forms.TextBox();
+            this.companyNameComboBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // groupBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(100, 128);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 22);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Company Name :";
+            this.groupBox1.Controls.Add(this.BoardNameTextBox);
+            this.groupBox1.Controls.Add(this.companyNameComboBox);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(564, 182);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Board Creation";
             // 
-            // label2
+            // saveButton
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(127, 177);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 22);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Board Name :";
+            this.saveButton.BackColor = System.Drawing.Color.Lime;
+            this.saveButton.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveButton.ForeColor = System.Drawing.Color.Blue;
+            this.saveButton.Location = new System.Drawing.Point(420, 210);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(156, 70);
+            this.saveButton.TabIndex = 11;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click_1);
+            // 
+            // BoardNameTextBox
+            // 
+            this.BoardNameTextBox.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BoardNameTextBox.Location = new System.Drawing.Point(212, 108);
+            this.BoardNameTextBox.Name = "BoardNameTextBox";
+            this.BoardNameTextBox.Size = new System.Drawing.Size(322, 35);
+            this.BoardNameTextBox.TabIndex = 10;
             // 
             // companyNameComboBox
             // 
             this.companyNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.companyNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.companyNameComboBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.companyNameComboBox.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.companyNameComboBox.FormattingEnabled = true;
-            this.companyNameComboBox.Location = new System.Drawing.Point(257, 128);
+            this.companyNameComboBox.Location = new System.Drawing.Point(210, 52);
             this.companyNameComboBox.Name = "companyNameComboBox";
-            this.companyNameComboBox.Size = new System.Drawing.Size(156, 27);
-            this.companyNameComboBox.TabIndex = 3;
-            this.companyNameComboBox.Leave += new System.EventHandler(this.companyNameComboBox_Leave);
+            this.companyNameComboBox.Size = new System.Drawing.Size(324, 34);
+            this.companyNameComboBox.TabIndex = 9;
             // 
-            // BoardNameTextBox
+            // label2
             // 
-            this.BoardNameTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BoardNameTextBox.Location = new System.Drawing.Point(257, 177);
-            this.BoardNameTextBox.Name = "BoardNameTextBox";
-            this.BoardNameTextBox.Size = new System.Drawing.Size(156, 26);
-            this.BoardNameTextBox.TabIndex = 4;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(51, 112);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(155, 26);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Board Name :";
             // 
-            // label3
+            // label1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label3.Location = new System.Drawing.Point(247, 39);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(166, 28);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Board Creation";
-            // 
-            // saveButton
-            // 
-            this.saveButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(338, 224);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 30);
-            this.saveButton.TabIndex = 6;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(15, 59);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(189, 26);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Company Name :";
             // 
             // BoardEntryUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(603, 415);
+            this.ClientSize = new System.Drawing.Size(588, 314);
             this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.BoardNameTextBox);
-            this.Controls.Add(this.companyNameComboBox);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "BoardEntryUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BoardEntryUI";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BoardEntryUI_FormClosed);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox companyNameComboBox;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox BoardNameTextBox;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox companyNameComboBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button saveButton;
+
     }
 }

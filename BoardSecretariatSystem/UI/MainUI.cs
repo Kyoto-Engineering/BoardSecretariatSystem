@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BoardSecretariatSystem.LoginUI;
 using BoardSecretariatSystem.UI;
 
 namespace BoardSecretariatSystem
@@ -78,6 +79,20 @@ namespace BoardSecretariatSystem
             this.Dispose();
             frmLogin frmLogin=new frmLogin();
             frmLogin.Show();
+        }
+
+        private void buttonLogOut_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmLogin frm =new frmLogin();
+            frm.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+                       this.Hide();
+            UserManagementUI frm=new UserManagementUI();
+                        frm.Show();
         }
 
         

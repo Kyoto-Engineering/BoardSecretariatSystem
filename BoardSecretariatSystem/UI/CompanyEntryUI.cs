@@ -18,7 +18,8 @@ namespace BoardSecretariatSystem
         private SqlCommand cmd;
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
-        public string user_id;
+        public string user_id, postofficeId,thanaId,districtId,divisionId;
+        public int currentCompanyId, affectedRows1;
 
         public CompanyEntryUI()
         {
@@ -31,9 +32,34 @@ namespace BoardSecretariatSystem
             MainUI mainUI = new MainUI();
             mainUI.Show();
         }
+        public void FillDivisionCombo()
+        {
+            try
+            {
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(Divisions.Division) from Divisions  order by Divisions.Division_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    divisionCombo.Items.Add(rdr[0]);
+                }
+                con.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void CompanyEntryUI_Load(object sender, EventArgs e)
         {
             GetAllCompany();
+            FillDivisionCombo();
         }
 
         public void GetAllCompany()
@@ -69,8 +95,48 @@ namespace BoardSecretariatSystem
         public void CompanyEntryUIClear()
         {
             companyNameTextBox.Clear();
-            companyAddTextBox.Clear();
+           // companyAddTextBox.Clear();
             regNoTextBox.Clear();
+        }
+
+        private void SaveCompanyAddress(string tableName)
+        {
+            string tableName1 = tableName;
+           
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string insertQ = "insert into " + tableName1 + "(PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,CompanyId) Values(@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                cmd = new SqlCommand(insertQ);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
+                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(flatNoTextBox.Text) ? (object)DBNull.Value : flatNoTextBox.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(houseNoTextBox.Text) ? (object)DBNull.Value : houseNoTextBox.Text));
+                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(roadNoTextBox.Text) ? (object)DBNull.Value : roadNoTextBox.Text));
+                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(blockTextBox.Text) ? (object)DBNull.Value : blockTextBox.Text));
+                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(areaTextBox.Text) ? (object)DBNull.Value : areaTextBox.Text));
+                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(contactNoTextBox.Text) ? (object)DBNull.Value : contactNoTextBox.Text));
+                cmd.Parameters.AddWithValue("@d11", currentCompanyId);
+                affectedRows1 = (int)cmd.ExecuteScalar();
+                con.Close();
+            
+        }
+
+        private void Reset()
+        {  
+            companyNameTextBox.Clear();
+            flatNoTextBox.Clear();
+            houseNoTextBox.Clear();
+            roadNoTextBox.Clear();
+            blockTextBox.Clear();
+            areaTextBox.Clear();
+            contactNoTextBox.Clear();
+            postCodeTextBox.Clear();
+            postOfficeCombo.SelectedIndex = -1;
+            thanaCombo.SelectedIndex = -1;
+            distCombo.SelectedIndex = -1;
+            divisionCombo.SelectedIndex = -1;
+            regNoTextBox.Clear();
+            creatingDateTimePicker.Value=DateTime.Today.ToLocalTime();
         }
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -78,14 +144,8 @@ namespace BoardSecretariatSystem
             {
                 MessageBox.Show("Please enter company name", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error); 
             }
-            else if (string.IsNullOrEmpty(companyAddTextBox.Text))
-            {
-                MessageBox.Show("Please enter company address", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
-
-            else
-            {
+           
                 if (!string.IsNullOrEmpty(companyNameTextBox.Text))
                 {
                     con = new SqlConnection(cs.DBConn);
@@ -95,34 +155,30 @@ namespace BoardSecretariatSystem
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
                     {
-                        MessageBox.Show("This Company Name Already Exists,Please Input another one", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("This Company Name Already Exists,Please Input another one", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
                         companyNameTextBox.ResetText();
                         companyNameTextBox.Focus();
                         con.Close();
 
                     }
-
-
                     else
                     {
                         try
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 =
-                                "insert into t_company (CompanyName,CompanyAddress,RegiNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5)" +
-                                "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into t_company (CompanyName,RegiNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
-                            cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);
-                            cmd.Parameters.AddWithValue("@d2", companyAddTextBox.Text);
-                            cmd.Parameters.AddWithValue("@d3", regNoTextBox.Text);
-                            cmd.Parameters.AddWithValue("@d4", user_id);
-                            cmd.Parameters.AddWithValue("@d5", creatinDateTimePicker.Value);
-                            cmd.ExecuteNonQuery();
+                            cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);                          
+                            cmd.Parameters.AddWithValue("@d2", regNoTextBox.Text);
+                            cmd.Parameters.AddWithValue("@d3", user_id);
+                            cmd.Parameters.AddWithValue("@d4", creatingDateTimePicker.Value);
+                            currentCompanyId = (int) cmd.ExecuteScalar();
                             con.Close();
-                            MessageBox.Show("Saved Sucessfully", "", MessageBoxButtons.OK, MessageBoxIcon.None);
+                            SaveCompanyAddress("CompanyAddresses");
+                            MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             CompanyEntryUIClear();
+                            Reset();
                         }
                         catch (Exception ex)
                         {
@@ -132,7 +188,7 @@ namespace BoardSecretariatSystem
                     }
 
                 } 
-            }
+            
             
         }
 
@@ -152,10 +208,10 @@ namespace BoardSecretariatSystem
 
         private void creatinDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            if (creatinDateTimePicker.Value>DateTime.UtcNow.ToLocalTime())
+            if (creatingDateTimePicker.Value>DateTime.UtcNow.ToLocalTime())
             {
                 MessageBox.Show("Creation Date Time should not excced from current date time", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
-                creatinDateTimePicker.ResetText(); 
+                creatingDateTimePicker.ResetText(); 
             }
         }
 
@@ -174,6 +230,216 @@ namespace BoardSecretariatSystem
                 allCompanyListDataGridView.Rows[n].Cells[3].Value = item[3].ToString();
                 allCompanyListDataGridView.Rows[n].Cells[4].Value = item[4].ToString();
             }
+        }
+
+        private void divisionCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Divisions.Division_ID)  from Divisions WHERE Divisions.Division=@find";
+
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Division"));
+                cmd.Parameters["@find"].Value = divisionCombo.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    divisionId = (rdr.GetString(0));
+
+                }
+
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+
+
+                divisionCombo.Text = divisionCombo.Text.Trim();             
+                distCombo.SelectedIndex = -1;
+                distCombo.Items.Clear();
+                thanaCombo.SelectedIndex = -1;
+                thanaCombo.Items.Clear();
+                postOfficeCombo.SelectedIndex = -1;
+                postOfficeCombo.Items.Clear();
+                postCodeTextBox.Clear();
+                distCombo.Enabled = true;
+                distCombo.Focus();
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(Districts.District) from Districts  Where Districts.Division_ID = '" + divisionId + "' order by Districts.Division_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    distCombo.Items.Add(rdr[0]);
+                }
+                con.Close();
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void distCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Districts.D_ID)  from Districts WHERE Districts.District=@find";
+
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "District"));
+                cmd.Parameters["@find"].Value = distCombo.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    districtId= (rdr.GetString(0));
+
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                distCombo.Text = distCombo.Text.Trim();               
+                thanaCombo.SelectedIndex = -1;
+                thanaCombo.Items.Clear();
+                postOfficeCombo.SelectedIndex = -1;
+                postOfficeCombo.Items.Clear();
+                postCodeTextBox.Clear();
+                thanaCombo.Enabled = true;
+                thanaCombo.Focus();
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(Thanas.Thana) from Thanas  Where Thanas.D_ID = '" + districtId + "' order by Thanas.D_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    thanaCombo.Items.Add(rdr[0]);
+                }
+                con.Close();
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void thanaCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Thanas.T_ID)  from Thanas WHERE Thanas.Thana=@find";
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Thana"));
+                cmd.Parameters["@find"].Value = thanaCombo.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    thanaId= (rdr.GetString(0));
+
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                thanaCombo.Text = thanaCombo.Text.Trim();               
+                postOfficeCombo.SelectedIndex = -1;
+                postOfficeCombo.Items.Clear();
+                postCodeTextBox.Clear();
+                postOfficeCombo.Enabled = true;
+                postOfficeCombo.Focus();
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(PostOffice.PostOfficeName) from PostOffice  Where PostOffice.T_ID = '" + thanaId + "' order by PostOffice.T_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    postOfficeCombo.Items.Add(rdr[0]);
+                }
+                con.Close();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void postOfficeCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "PostOfficeName"));
+                cmd.Parameters["@find"].Value = postOfficeCombo.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    postofficeId = (rdr.GetString(0));
+                    postCodeTextBox.Text = (rdr.GetString(1));
+
+                }
+
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void contactNoTextBox_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
+                e.Handled = true;
         }
 
           

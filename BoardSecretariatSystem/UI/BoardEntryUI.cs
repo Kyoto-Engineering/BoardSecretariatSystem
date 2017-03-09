@@ -59,11 +59,24 @@ namespace BoardSecretariatSystem.UI
         }
 
         private void saveButton_Click(object sender, EventArgs e)
+        {           
+        }
+
+        private void companyNameComboBox_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(companyNameComboBox.Text) && !companyNameComboBox.Items.Contains(companyNameComboBox.Text))
+            {
+                MessageBox.Show("Please Select A Valid Company Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                companyNameComboBox.ResetText();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), companyNameComboBox);
+            }
+        }
+
+        private void saveButton_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(companyNameComboBox.Text))
             {
-                MessageBox.Show("Please Select company name", "Error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show("Please Select company name", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             else if (string.IsNullOrEmpty(BoardNameTextBox.Text))
             {
@@ -76,7 +89,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string ct2 = "select CompanyId from t_company where CompanyName='" +companyNameComboBox.Text + "'";
+                    string ct2 = "select CompanyId from t_company where CompanyName='" + companyNameComboBox.Text + "'";
                     cmd = new SqlCommand(ct2, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
@@ -98,8 +111,7 @@ namespace BoardSecretariatSystem.UI
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
                     {
-                        MessageBox.Show("This Board Name Already Exists,Please Input another one", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("This Board Name Already Exists,Please Input another one", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
                         BoardNameTextBox.ResetText();
                         BoardNameTextBox.Focus();
                         con.Close();
@@ -113,9 +125,7 @@ namespace BoardSecretariatSystem.UI
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 =
-                                "insert into t_board (BoardName,CompanyId,UserId,DateTime) values (@d1,@d2,@d3,@d4)" +
-                                "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 ="insert into t_board (BoardName,CompanyId,UserId,DateTime) values (@d1,@d2,@d3,@d4)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", BoardNameTextBox.Text);
                             cmd.Parameters.AddWithValue("@d2", company_id);
@@ -123,7 +133,7 @@ namespace BoardSecretariatSystem.UI
                             cmd.Parameters.AddWithValue("@d4", DateTime.UtcNow.ToLocalTime());
                             cmd.ExecuteNonQuery();
                             con.Close();
-                            MessageBox.Show("Saved Sucessfully", "", MessageBoxButtons.OK, MessageBoxIcon.None);
+                            MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             companyNameComboBox.ResetText();
                             companyNameComboBox.SelectedIndex = -1;
                             BoardNameTextBox.Clear();
@@ -135,18 +145,6 @@ namespace BoardSecretariatSystem.UI
                     }
 
                 }
-            }
-
-
-        }
-
-        private void companyNameComboBox_Leave(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(companyNameComboBox.Text) && !companyNameComboBox.Items.Contains(companyNameComboBox.Text))
-            {
-                MessageBox.Show("Please Select A Valid Company Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                companyNameComboBox.ResetText();
-                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), companyNameComboBox);
             }
         }
 
