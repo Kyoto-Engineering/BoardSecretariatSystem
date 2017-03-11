@@ -299,7 +299,7 @@ namespace BoardSecretariatSystem
                             cmd.ExecuteNonQuery();
                             con.Close();
                             MessageBox.Show("Saved Sucessfully", "", MessageBoxButtons.OK, MessageBoxIcon.None);
-                            //CompanyEntryUIClear();
+                           
                         }
                         catch (Exception ex)
                         {

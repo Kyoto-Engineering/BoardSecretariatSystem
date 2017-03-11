@@ -61,9 +61,7 @@ namespace BoardSecretariatSystem
         private void participantCreateButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-
-            ParticipantEntryUI participantEntry = new ParticipantEntryUI();
-
+            ParticipantCreation participantEntry = new ParticipantCreation();
             participantEntry.Show();
         }
         private void meetingExecutionButton_Click(object sender, EventArgs e)
