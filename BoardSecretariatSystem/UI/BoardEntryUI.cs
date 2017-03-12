@@ -100,8 +100,6 @@ namespace BoardSecretariatSystem.UI
                     rdr.Close();
                     con.Close();
                 }
-
-
                 if (!string.IsNullOrEmpty(BoardNameTextBox.Text))
                 {
                     con = new SqlConnection(cs.DBConn);
@@ -116,11 +114,7 @@ namespace BoardSecretariatSystem.UI
                         BoardNameTextBox.Focus();
                         con.Close();
 
-                    }
-
-                    else
-                    {
-
+                    }                
                         try
                         {
                             con = new SqlConnection(cs.DBConn);
@@ -142,7 +136,7 @@ namespace BoardSecretariatSystem.UI
                         {
                             MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                    }
+                  
 
                 }
             }

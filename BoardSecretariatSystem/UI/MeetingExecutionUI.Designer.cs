@@ -54,6 +54,13 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbTopics = new System.Windows.Forms.ComboBox();
+            this.cmbParticipantName = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.addButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.meetingExecListDataGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -163,6 +170,7 @@
             // 
             // discussionRichTextBox
             // 
+            this.discussionRichTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.discussionRichTextBox.Location = new System.Drawing.Point(209, 253);
             this.discussionRichTextBox.Name = "discussionRichTextBox";
             this.discussionRichTextBox.Size = new System.Drawing.Size(310, 116);
@@ -171,6 +179,7 @@
             // 
             // resulationRichTextBox
             // 
+            this.resulationRichTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resulationRichTextBox.Location = new System.Drawing.Point(209, 388);
             this.resulationRichTextBox.Name = "resulationRichTextBox";
             this.resulationRichTextBox.Size = new System.Drawing.Size(310, 80);
@@ -179,7 +188,8 @@
             // 
             // decisionRichTextBox
             // 
-            this.decisionRichTextBox.Location = new System.Drawing.Point(209, 490);
+            this.decisionRichTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.decisionRichTextBox.Location = new System.Drawing.Point(209, 489);
             this.decisionRichTextBox.Name = "decisionRichTextBox";
             this.decisionRichTextBox.Size = new System.Drawing.Size(310, 96);
             this.decisionRichTextBox.TabIndex = 15;
@@ -197,10 +207,10 @@
             this.Column3,
             this.Column4,
             this.Column5});
-            this.meetingExecListDataGridView.Location = new System.Drawing.Point(17, 104);
+            this.meetingExecListDataGridView.Location = new System.Drawing.Point(19, 93);
             this.meetingExecListDataGridView.Name = "meetingExecListDataGridView";
             this.meetingExecListDataGridView.ReadOnly = true;
-            this.meetingExecListDataGridView.Size = new System.Drawing.Size(657, 491);
+            this.meetingExecListDataGridView.Size = new System.Drawing.Size(657, 300);
             this.meetingExecListDataGridView.TabIndex = 16;
             // 
             // Column1
@@ -239,9 +249,9 @@
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.meetingExecListDataGridView);
-            this.groupBox1.Location = new System.Drawing.Point(539, 12);
+            this.groupBox1.Location = new System.Drawing.Point(539, 283);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(692, 616);
+            this.groupBox1.Size = new System.Drawing.Size(692, 398);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             // 
@@ -249,7 +259,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(35, 64);
+            this.label8.Location = new System.Drawing.Point(35, 63);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(251, 24);
             this.label8.TabIndex = 20;
@@ -258,7 +268,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(292, 63);
+            this.textBox1.Location = new System.Drawing.Point(292, 62);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(341, 29);
             this.textBox1.TabIndex = 19;
@@ -268,7 +278,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Blue;
-            this.label7.Location = new System.Drawing.Point(220, 16);
+            this.label7.Location = new System.Drawing.Point(220, 15);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(175, 28);
             this.label7.TabIndex = 18;
@@ -318,6 +328,72 @@
             this.cmbTopics.Name = "cmbTopics";
             this.cmbTopics.Size = new System.Drawing.Size(310, 32);
             this.cmbTopics.TabIndex = 21;
+            this.cmbTopics.SelectedIndexChanged += new System.EventHandler(this.cmbTopics_SelectedIndexChanged);
+            // 
+            // cmbParticipantName
+            // 
+            this.cmbParticipantName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbParticipantName.FormattingEnabled = true;
+            this.cmbParticipantName.Location = new System.Drawing.Point(578, 49);
+            this.cmbParticipantName.Name = "cmbParticipantName";
+            this.cmbParticipantName.Size = new System.Drawing.Size(337, 30);
+            this.cmbParticipantName.TabIndex = 22;
+            this.cmbParticipantName.SelectedIndexChanged += new System.EventHandler(this.cmbParticipantName_SelectedIndexChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Blue;
+            this.label11.Location = new System.Drawing.Point(921, 54);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(185, 22);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "Name Of Participant ";
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.listView1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.Location = new System.Drawing.Point(578, 85);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(337, 192);
+            this.listView1.TabIndex = 24;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "columnheader";
+            this.columnHeader1.Width = 3;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "ParticipantName";
+            this.columnHeader2.Width = 322;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "PId";
+            this.columnHeader3.Width = 76;
+            // 
+            // addButton
+            // 
+            this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.addButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addButton.ForeColor = System.Drawing.Color.Blue;
+            this.addButton.Location = new System.Drawing.Point(936, 85);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(99, 47);
+            this.addButton.TabIndex = 25;
+            this.addButton.Text = "Add";
+            this.addButton.UseVisualStyleBackColor = false;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // MeetingExecutionUI
             // 
@@ -325,6 +401,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1247, 685);
+            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.cmbParticipantName);
             this.Controls.Add(this.cmbTopics);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.meetingComboBox);
@@ -383,5 +463,12 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbTopics;
+        private System.Windows.Forms.ComboBox cmbParticipantName;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
