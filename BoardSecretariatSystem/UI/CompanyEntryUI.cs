@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BoardSecretariatSystem.DBGateway;
@@ -18,13 +19,13 @@ namespace BoardSecretariatSystem
         private SqlCommand cmd;
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
-        public string user_id, postofficeId,thanaId,districtId,divisionId;
-        public int currentCompanyId, affectedRows1;
+        public string userId, postofficeId,thanaId,districtId,divisionId;
+        public int currentCompanyId, affectedRows1, addHeaderId;
 
         public CompanyEntryUI()
         {
             InitializeComponent();
-            user_id = frmLogin.uId.ToString();
+           
         }
         private void CompanyEntryUI_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -58,6 +59,7 @@ namespace BoardSecretariatSystem
         }
         private void CompanyEntryUI_Load(object sender, EventArgs e)
         {
+            userId = frmLogin.uId.ToString();
             GetAllCompany();
             FillDivisionCombo();
         }
@@ -145,7 +147,36 @@ namespace BoardSecretariatSystem
                 MessageBox.Show("Please enter company name", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error); 
             }
 
-           
+            if (string.IsNullOrWhiteSpace(divisionCombo.Text))
+            {
+                MessageBox.Show("Please select company division", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(distCombo.Text))
+            {
+                MessageBox.Show("Please Select company district", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(thanaCombo.Text))
+            {
+                MessageBox.Show("Please select company Thana", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(postOfficeCombo.Text))
+            {
+                MessageBox.Show("Please Select company Post Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(postCodeTextBox.Text))
+            {
+                MessageBox.Show("Please select company Post Code", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(regNoTextBox.Text))
+            {
+                MessageBox.Show("Please type Registration No:", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
                 if (!string.IsNullOrEmpty(companyNameTextBox.Text))
                 {
                     con = new SqlConnection(cs.DBConn);
@@ -171,7 +202,7 @@ namespace BoardSecretariatSystem
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);                          
                             cmd.Parameters.AddWithValue("@d2", regNoTextBox.Text);
-                            cmd.Parameters.AddWithValue("@d3", user_id);
+                            cmd.Parameters.AddWithValue("@d3", userId);
                             cmd.Parameters.AddWithValue("@d4", creatingDateTimePicker.Value);
                             currentCompanyId = (int) cmd.ExecuteScalar();
                             con.Close();
@@ -440,6 +471,105 @@ namespace BoardSecretariatSystem
         {
             if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
                 e.Handled = true;
+        }
+        private void AddressHeader()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctt = "select HeaderName from AddressHeader";
+                cmd = new SqlCommand(ctt);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbAddressHeadline.Items.Add(rdr.GetValue(0).ToString());
+                }
+                cmbAddressHeadline.Items.Add("Not In The List");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void cmbAddressHeadline_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbAddressHeadline.Text == "Not In The List")
+            {
+                string input = Microsoft.VisualBasic.Interaction.InputBox("Please Input Mode Of Condtact  Here", "Input Here", "", -1, -1);
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    cmbAddressHeadline.SelectedIndex = -1;
+                }
+
+                else
+                {                  
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string ct2 = "select HeaderName from AddressHeader where HeaderName='" + input + "'";
+                    cmd = new SqlCommand(ct2, con);
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read() && !rdr.IsDBNull(0))
+                    {
+                        MessageBox.Show("This Header Name  Already Exists,Please Select From List", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        con.Close();
+                        cmbAddressHeadline.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        try
+                        {
+
+                            con = new SqlConnection(cs.DBConn);
+                            con.Open();
+                            string query1 = "insert into AddressHeader(HeaderName) values (@d1)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            cmd = new SqlCommand(query1, con);
+                            cmd.Parameters.AddWithValue("@d1", input);
+                            //cmd.Parameters.AddWithValue("@d2", userId);
+                            //cmd.Parameters.AddWithValue("@d3", DateTime.UtcNow.ToLocalTime());
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            cmbAddressHeadline.Items.Clear();
+                            AddressHeader();
+                            cmbAddressHeadline.SelectedText = input;
+                           
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "SELECT EmailBankId from EmailBank WHERE Email= '" + cmbAddressHeadline.Text + "'";
+
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        addHeaderId = rdr.GetInt32(0);
+                    }
+                    if ((rdr != null))
+                    {
+                        rdr.Close();
+                    }
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
           
