@@ -34,29 +34,28 @@
             this.sameAsRACheckBox = new System.Windows.Forms.CheckBox();
             this.unKnownCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtWABlock = new wmgCMS.WaterMarkTextBox();
-            this.cmbWAPost = new System.Windows.Forms.ComboBox();
+            this.cmbPPost = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
-            this.cmbWADivision = new System.Windows.Forms.ComboBox();
+            this.cmbPDivision = new System.Windows.Forms.ComboBox();
             this.label38 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
-            this.cmbWAThana = new System.Windows.Forms.ComboBox();
-            this.txtWAContactNo = new System.Windows.Forms.TextBox();
+            this.cmbPThana = new System.Windows.Forms.ComboBox();
+            this.txtPContactNo = new System.Windows.Forms.TextBox();
             this.label46 = new System.Windows.Forms.Label();
-            this.cmbWADistrict = new System.Windows.Forms.ComboBox();
+            this.cmbPDistrict = new System.Windows.Forms.ComboBox();
             this.label47 = new System.Windows.Forms.Label();
-            this.txtWAPostCode = new System.Windows.Forms.TextBox();
-            this.txtWAArea = new System.Windows.Forms.TextBox();
+            this.txtPPostCode = new System.Windows.Forms.TextBox();
+            this.txtPArea = new System.Windows.Forms.TextBox();
             this.label48 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
-            this.txtWARoadNo = new System.Windows.Forms.TextBox();
-            this.txtWAHouseName = new System.Windows.Forms.TextBox();
-            this.txtWAFlatName = new System.Windows.Forms.TextBox();
+            this.txtPRoadNo = new System.Windows.Forms.TextBox();
+            this.txtPHouseName = new System.Windows.Forms.TextBox();
+            this.txtPFlatName = new System.Windows.Forms.TextBox();
             this.label51 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
@@ -64,29 +63,28 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.unKnownRA = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txtRABlock = new wmgCMS.WaterMarkTextBox();
-            this.cmbRAPost = new System.Windows.Forms.ComboBox();
+            this.cmbPost = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
-            this.cmbRADivision = new System.Windows.Forms.ComboBox();
+            this.cmbDivision = new System.Windows.Forms.ComboBox();
             this.label41 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
-            this.cmbRAThana = new System.Windows.Forms.ComboBox();
-            this.txtRAContactNo = new System.Windows.Forms.TextBox();
+            this.cmbThana = new System.Windows.Forms.ComboBox();
+            this.txtContactNo = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.cmbRADistrict = new System.Windows.Forms.ComboBox();
+            this.cmbDistrict = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.txtRAPostCode = new System.Windows.Forms.TextBox();
-            this.txtRAArea = new System.Windows.Forms.TextBox();
+            this.txtPostCode = new System.Windows.Forms.TextBox();
+            this.txtArea = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.txtRARoadNo = new System.Windows.Forms.TextBox();
-            this.txtRAHouseNo = new System.Windows.Forms.TextBox();
-            this.txtRAFlatNo = new System.Windows.Forms.TextBox();
+            this.txtRoadNo = new System.Windows.Forms.TextBox();
+            this.txtHouseNo = new System.Windows.Forms.TextBox();
+            this.txtFlatNo = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -94,7 +92,6 @@
             this.participantContactNoTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.participantEmailTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.participantDesignationTextBox = new System.Windows.Forms.TextBox();
@@ -106,6 +103,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtPBlock = new wmgCMS.WaterMarkTextBox();
+            this.txtBlock = new wmgCMS.WaterMarkTextBox();
+            this.cmbEmailAddress = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -116,13 +116,13 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LimeGreen;
+            this.groupBox1.Controls.Add(this.cmbEmailAddress);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.participantContactNoTextBox);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.participantEmailTextBox);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.participantDesignationTextBox);
@@ -142,7 +142,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(894, 325);
+            this.button1.Location = new System.Drawing.Point(940, 341);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(143, 71);
             this.button1.TabIndex = 94;
@@ -174,6 +174,7 @@
             this.sameAsRACheckBox.TabIndex = 88;
             this.sameAsRACheckBox.Text = "Same As Permanant Address";
             this.sameAsRACheckBox.UseVisualStyleBackColor = true;
+            this.sameAsRACheckBox.CheckedChanged += new System.EventHandler(this.sameAsRACheckBox_CheckedChanged);
             // 
             // unKnownCheckBox
             // 
@@ -184,32 +185,33 @@
             this.unKnownCheckBox.TabIndex = 87;
             this.unKnownCheckBox.Text = "Unknown";
             this.unKnownCheckBox.UseVisualStyleBackColor = true;
+            this.unKnownCheckBox.CheckedChanged += new System.EventHandler(this.unKnownCheckBox_CheckedChanged);
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.txtWABlock);
-            this.groupBox4.Controls.Add(this.cmbWAPost);
+            this.groupBox4.Controls.Add(this.txtPBlock);
+            this.groupBox4.Controls.Add(this.cmbPPost);
             this.groupBox4.Controls.Add(this.label35);
             this.groupBox4.Controls.Add(this.label36);
             this.groupBox4.Controls.Add(this.label37);
-            this.groupBox4.Controls.Add(this.cmbWADivision);
+            this.groupBox4.Controls.Add(this.cmbPDivision);
             this.groupBox4.Controls.Add(this.label38);
             this.groupBox4.Controls.Add(this.label39);
             this.groupBox4.Controls.Add(this.label40);
             this.groupBox4.Controls.Add(this.label45);
-            this.groupBox4.Controls.Add(this.cmbWAThana);
-            this.groupBox4.Controls.Add(this.txtWAContactNo);
+            this.groupBox4.Controls.Add(this.cmbPThana);
+            this.groupBox4.Controls.Add(this.txtPContactNo);
             this.groupBox4.Controls.Add(this.label46);
-            this.groupBox4.Controls.Add(this.cmbWADistrict);
+            this.groupBox4.Controls.Add(this.cmbPDistrict);
             this.groupBox4.Controls.Add(this.label47);
-            this.groupBox4.Controls.Add(this.txtWAPostCode);
-            this.groupBox4.Controls.Add(this.txtWAArea);
+            this.groupBox4.Controls.Add(this.txtPPostCode);
+            this.groupBox4.Controls.Add(this.txtPArea);
             this.groupBox4.Controls.Add(this.label48);
             this.groupBox4.Controls.Add(this.label49);
             this.groupBox4.Controls.Add(this.label50);
-            this.groupBox4.Controls.Add(this.txtWARoadNo);
-            this.groupBox4.Controls.Add(this.txtWAHouseName);
-            this.groupBox4.Controls.Add(this.txtWAFlatName);
+            this.groupBox4.Controls.Add(this.txtPRoadNo);
+            this.groupBox4.Controls.Add(this.txtPHouseName);
+            this.groupBox4.Controls.Add(this.txtPFlatName);
             this.groupBox4.Controls.Add(this.label51);
             this.groupBox4.Controls.Add(this.label52);
             this.groupBox4.Controls.Add(this.label53);
@@ -222,25 +224,15 @@
             this.groupBox4.TabIndex = 86;
             this.groupBox4.TabStop = false;
             // 
-            // txtWABlock
+            // cmbPPost
             // 
-            this.txtWABlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWABlock.Location = new System.Drawing.Point(158, 108);
-            this.txtWABlock.Name = "txtWABlock";
-            this.txtWABlock.Size = new System.Drawing.Size(172, 26);
-            this.txtWABlock.TabIndex = 83;
-            this.txtWABlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtWABlock.WaterMarkText = "if Any";
-            // 
-            // cmbWAPost
-            // 
-            this.cmbWAPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbWAPost.FormattingEnabled = true;
-            this.cmbWAPost.Location = new System.Drawing.Point(452, 122);
-            this.cmbWAPost.Name = "cmbWAPost";
-            this.cmbWAPost.Size = new System.Drawing.Size(198, 30);
-            this.cmbWAPost.TabIndex = 82;
-            this.cmbWAPost.SelectedIndexChanged += new System.EventHandler(this.cmbWAPost_SelectedIndexChanged);
+            this.cmbPPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPPost.FormattingEnabled = true;
+            this.cmbPPost.Location = new System.Drawing.Point(452, 122);
+            this.cmbPPost.Name = "cmbPPost";
+            this.cmbPPost.Size = new System.Drawing.Size(198, 30);
+            this.cmbPPost.TabIndex = 82;
+            this.cmbPPost.SelectedIndexChanged += new System.EventHandler(this.cmbWAPost_SelectedIndexChanged);
             // 
             // label35
             // 
@@ -271,15 +263,15 @@
             this.label37.TabIndex = 79;
             this.label37.Text = "*";
             // 
-            // cmbWADivision
+            // cmbPDivision
             // 
-            this.cmbWADivision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbWADivision.FormattingEnabled = true;
-            this.cmbWADivision.Location = new System.Drawing.Point(452, 20);
-            this.cmbWADivision.Name = "cmbWADivision";
-            this.cmbWADivision.Size = new System.Drawing.Size(198, 30);
-            this.cmbWADivision.TabIndex = 78;
-            this.cmbWADivision.SelectedIndexChanged += new System.EventHandler(this.cmbWADivision_SelectedIndexChanged);
+            this.cmbPDivision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPDivision.FormattingEnabled = true;
+            this.cmbPDivision.Location = new System.Drawing.Point(452, 20);
+            this.cmbPDivision.Name = "cmbPDivision";
+            this.cmbPDivision.Size = new System.Drawing.Size(198, 30);
+            this.cmbPDivision.TabIndex = 78;
+            this.cmbPDivision.SelectedIndexChanged += new System.EventHandler(this.cmbWADivision_SelectedIndexChanged);
             // 
             // label38
             // 
@@ -320,24 +312,25 @@
             this.label45.TabIndex = 73;
             this.label45.Text = "*";
             // 
-            // cmbWAThana
+            // cmbPThana
             // 
-            this.cmbWAThana.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbWAThana.FormattingEnabled = true;
-            this.cmbWAThana.Location = new System.Drawing.Point(452, 85);
-            this.cmbWAThana.Name = "cmbWAThana";
-            this.cmbWAThana.Size = new System.Drawing.Size(198, 30);
-            this.cmbWAThana.TabIndex = 42;
-            this.cmbWAThana.SelectedIndexChanged += new System.EventHandler(this.cmbWAThana_SelectedIndexChanged);
+            this.cmbPThana.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPThana.FormattingEnabled = true;
+            this.cmbPThana.Location = new System.Drawing.Point(452, 85);
+            this.cmbPThana.Name = "cmbPThana";
+            this.cmbPThana.Size = new System.Drawing.Size(198, 30);
+            this.cmbPThana.TabIndex = 42;
+            this.cmbPThana.SelectedIndexChanged += new System.EventHandler(this.cmbWAThana_SelectedIndexChanged);
             // 
-            // txtWAContactNo
+            // txtPContactNo
             // 
-            this.txtWAContactNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWAContactNo.Location = new System.Drawing.Point(158, 167);
-            this.txtWAContactNo.MaxLength = 11;
-            this.txtWAContactNo.Name = "txtWAContactNo";
-            this.txtWAContactNo.Size = new System.Drawing.Size(171, 26);
-            this.txtWAContactNo.TabIndex = 41;
+            this.txtPContactNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPContactNo.Location = new System.Drawing.Point(158, 167);
+            this.txtPContactNo.MaxLength = 11;
+            this.txtPContactNo.Name = "txtPContactNo";
+            this.txtPContactNo.Size = new System.Drawing.Size(171, 26);
+            this.txtPContactNo.TabIndex = 41;
+            this.txtPContactNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPContactNo_KeyPress);
             // 
             // label46
             // 
@@ -349,16 +342,16 @@
             this.label46.TabIndex = 40;
             this.label46.Text = "Contact No:";
             // 
-            // cmbWADistrict
+            // cmbPDistrict
             // 
-            this.cmbWADistrict.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbWADistrict.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbWADistrict.FormattingEnabled = true;
-            this.cmbWADistrict.Location = new System.Drawing.Point(451, 54);
-            this.cmbWADistrict.Name = "cmbWADistrict";
-            this.cmbWADistrict.Size = new System.Drawing.Size(199, 27);
-            this.cmbWADistrict.TabIndex = 19;
-            this.cmbWADistrict.SelectedIndexChanged += new System.EventHandler(this.cmbWADistrict_SelectedIndexChanged);
+            this.cmbPDistrict.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPDistrict.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPDistrict.FormattingEnabled = true;
+            this.cmbPDistrict.Location = new System.Drawing.Point(451, 54);
+            this.cmbPDistrict.Name = "cmbPDistrict";
+            this.cmbPDistrict.Size = new System.Drawing.Size(199, 27);
+            this.cmbPDistrict.TabIndex = 19;
+            this.cmbPDistrict.SelectedIndexChanged += new System.EventHandler(this.cmbWADistrict_SelectedIndexChanged);
             // 
             // label47
             // 
@@ -370,22 +363,22 @@
             this.label47.TabIndex = 18;
             this.label47.Text = "District:";
             // 
-            // txtWAPostCode
+            // txtPPostCode
             // 
-            this.txtWAPostCode.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWAPostCode.Location = new System.Drawing.Point(452, 157);
-            this.txtWAPostCode.Name = "txtWAPostCode";
-            this.txtWAPostCode.ReadOnly = true;
-            this.txtWAPostCode.Size = new System.Drawing.Size(198, 29);
-            this.txtWAPostCode.TabIndex = 17;
+            this.txtPPostCode.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPPostCode.Location = new System.Drawing.Point(452, 157);
+            this.txtPPostCode.Name = "txtPPostCode";
+            this.txtPPostCode.ReadOnly = true;
+            this.txtPPostCode.Size = new System.Drawing.Size(198, 29);
+            this.txtPPostCode.TabIndex = 17;
             // 
-            // txtWAArea
+            // txtPArea
             // 
-            this.txtWAArea.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWAArea.Location = new System.Drawing.Point(158, 138);
-            this.txtWAArea.Name = "txtWAArea";
-            this.txtWAArea.Size = new System.Drawing.Size(171, 26);
-            this.txtWAArea.TabIndex = 15;
+            this.txtPArea.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPArea.Location = new System.Drawing.Point(158, 138);
+            this.txtPArea.Name = "txtPArea";
+            this.txtPArea.Size = new System.Drawing.Size(171, 26);
+            this.txtPArea.TabIndex = 15;
             // 
             // label48
             // 
@@ -417,29 +410,29 @@
             this.label50.TabIndex = 12;
             this.label50.Text = "Thana:";
             // 
-            // txtWARoadNo
+            // txtPRoadNo
             // 
-            this.txtWARoadNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWARoadNo.Location = new System.Drawing.Point(158, 78);
-            this.txtWARoadNo.Name = "txtWARoadNo";
-            this.txtWARoadNo.Size = new System.Drawing.Size(172, 26);
-            this.txtWARoadNo.TabIndex = 10;
+            this.txtPRoadNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPRoadNo.Location = new System.Drawing.Point(158, 78);
+            this.txtPRoadNo.Name = "txtPRoadNo";
+            this.txtPRoadNo.Size = new System.Drawing.Size(172, 26);
+            this.txtPRoadNo.TabIndex = 10;
             // 
-            // txtWAHouseName
+            // txtPHouseName
             // 
-            this.txtWAHouseName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWAHouseName.Location = new System.Drawing.Point(158, 49);
-            this.txtWAHouseName.Name = "txtWAHouseName";
-            this.txtWAHouseName.Size = new System.Drawing.Size(172, 26);
-            this.txtWAHouseName.TabIndex = 9;
+            this.txtPHouseName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPHouseName.Location = new System.Drawing.Point(158, 49);
+            this.txtPHouseName.Name = "txtPHouseName";
+            this.txtPHouseName.Size = new System.Drawing.Size(172, 26);
+            this.txtPHouseName.TabIndex = 9;
             // 
-            // txtWAFlatName
+            // txtPFlatName
             // 
-            this.txtWAFlatName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWAFlatName.Location = new System.Drawing.Point(158, 20);
-            this.txtWAFlatName.Name = "txtWAFlatName";
-            this.txtWAFlatName.Size = new System.Drawing.Size(172, 26);
-            this.txtWAFlatName.TabIndex = 8;
+            this.txtPFlatName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPFlatName.Location = new System.Drawing.Point(158, 20);
+            this.txtPFlatName.Name = "txtPFlatName";
+            this.txtPFlatName.Size = new System.Drawing.Size(172, 26);
+            this.txtPFlatName.TabIndex = 8;
             // 
             // label51
             // 
@@ -504,32 +497,34 @@
             this.unKnownRA.TabIndex = 86;
             this.unKnownRA.Text = "Unknown";
             this.unKnownRA.UseVisualStyleBackColor = true;
+            this.unKnownRA.CheckedChanged += new System.EventHandler(this.unKnownRA_CheckedChanged);
+            this.unKnownRA.TextChanged += new System.EventHandler(this.unKnownRA_TextChanged);
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.txtRABlock);
-            this.groupBox5.Controls.Add(this.cmbRAPost);
+            this.groupBox5.Controls.Add(this.txtBlock);
+            this.groupBox5.Controls.Add(this.cmbPost);
             this.groupBox5.Controls.Add(this.label44);
             this.groupBox5.Controls.Add(this.label43);
             this.groupBox5.Controls.Add(this.label42);
-            this.groupBox5.Controls.Add(this.cmbRADivision);
+            this.groupBox5.Controls.Add(this.cmbDivision);
             this.groupBox5.Controls.Add(this.label41);
             this.groupBox5.Controls.Add(this.label34);
             this.groupBox5.Controls.Add(this.label33);
             this.groupBox5.Controls.Add(this.label32);
-            this.groupBox5.Controls.Add(this.cmbRAThana);
-            this.groupBox5.Controls.Add(this.txtRAContactNo);
+            this.groupBox5.Controls.Add(this.cmbThana);
+            this.groupBox5.Controls.Add(this.txtContactNo);
             this.groupBox5.Controls.Add(this.label26);
-            this.groupBox5.Controls.Add(this.cmbRADistrict);
+            this.groupBox5.Controls.Add(this.cmbDistrict);
             this.groupBox5.Controls.Add(this.label21);
-            this.groupBox5.Controls.Add(this.txtRAPostCode);
-            this.groupBox5.Controls.Add(this.txtRAArea);
+            this.groupBox5.Controls.Add(this.txtPostCode);
+            this.groupBox5.Controls.Add(this.txtArea);
             this.groupBox5.Controls.Add(this.label20);
             this.groupBox5.Controls.Add(this.label19);
             this.groupBox5.Controls.Add(this.label18);
-            this.groupBox5.Controls.Add(this.txtRARoadNo);
-            this.groupBox5.Controls.Add(this.txtRAHouseNo);
-            this.groupBox5.Controls.Add(this.txtRAFlatNo);
+            this.groupBox5.Controls.Add(this.txtRoadNo);
+            this.groupBox5.Controls.Add(this.txtHouseNo);
+            this.groupBox5.Controls.Add(this.txtFlatNo);
             this.groupBox5.Controls.Add(this.label17);
             this.groupBox5.Controls.Add(this.label22);
             this.groupBox5.Controls.Add(this.label23);
@@ -542,25 +537,15 @@
             this.groupBox5.TabIndex = 85;
             this.groupBox5.TabStop = false;
             // 
-            // txtRABlock
+            // cmbPost
             // 
-            this.txtRABlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRABlock.Location = new System.Drawing.Point(158, 108);
-            this.txtRABlock.Name = "txtRABlock";
-            this.txtRABlock.Size = new System.Drawing.Size(172, 26);
-            this.txtRABlock.TabIndex = 83;
-            this.txtRABlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtRABlock.WaterMarkText = "if Any";
-            // 
-            // cmbRAPost
-            // 
-            this.cmbRAPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRAPost.FormattingEnabled = true;
-            this.cmbRAPost.Location = new System.Drawing.Point(454, 122);
-            this.cmbRAPost.Name = "cmbRAPost";
-            this.cmbRAPost.Size = new System.Drawing.Size(196, 30);
-            this.cmbRAPost.TabIndex = 82;
-            this.cmbRAPost.SelectedIndexChanged += new System.EventHandler(this.cmbRAPost_SelectedIndexChanged);
+            this.cmbPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPost.FormattingEnabled = true;
+            this.cmbPost.Location = new System.Drawing.Point(454, 122);
+            this.cmbPost.Name = "cmbPost";
+            this.cmbPost.Size = new System.Drawing.Size(196, 30);
+            this.cmbPost.TabIndex = 82;
+            this.cmbPost.SelectedIndexChanged += new System.EventHandler(this.cmbRAPost_SelectedIndexChanged);
             // 
             // label44
             // 
@@ -591,15 +576,15 @@
             this.label42.TabIndex = 79;
             this.label42.Text = "*";
             // 
-            // cmbRADivision
+            // cmbDivision
             // 
-            this.cmbRADivision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRADivision.FormattingEnabled = true;
-            this.cmbRADivision.Location = new System.Drawing.Point(452, 20);
-            this.cmbRADivision.Name = "cmbRADivision";
-            this.cmbRADivision.Size = new System.Drawing.Size(198, 30);
-            this.cmbRADivision.TabIndex = 78;
-            this.cmbRADivision.SelectedIndexChanged += new System.EventHandler(this.cmbRADivision_SelectedIndexChanged);
+            this.cmbDivision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDivision.FormattingEnabled = true;
+            this.cmbDivision.Location = new System.Drawing.Point(452, 20);
+            this.cmbDivision.Name = "cmbDivision";
+            this.cmbDivision.Size = new System.Drawing.Size(198, 30);
+            this.cmbDivision.TabIndex = 78;
+            this.cmbDivision.SelectedIndexChanged += new System.EventHandler(this.cmbRADivision_SelectedIndexChanged);
             // 
             // label41
             // 
@@ -640,24 +625,25 @@
             this.label32.TabIndex = 73;
             this.label32.Text = "*";
             // 
-            // cmbRAThana
+            // cmbThana
             // 
-            this.cmbRAThana.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRAThana.FormattingEnabled = true;
-            this.cmbRAThana.Location = new System.Drawing.Point(453, 85);
-            this.cmbRAThana.Name = "cmbRAThana";
-            this.cmbRAThana.Size = new System.Drawing.Size(197, 30);
-            this.cmbRAThana.TabIndex = 42;
-            this.cmbRAThana.SelectedIndexChanged += new System.EventHandler(this.cmbRAThana_SelectedIndexChanged);
+            this.cmbThana.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbThana.FormattingEnabled = true;
+            this.cmbThana.Location = new System.Drawing.Point(453, 85);
+            this.cmbThana.Name = "cmbThana";
+            this.cmbThana.Size = new System.Drawing.Size(197, 30);
+            this.cmbThana.TabIndex = 42;
+            this.cmbThana.SelectedIndexChanged += new System.EventHandler(this.cmbRAThana_SelectedIndexChanged);
             // 
-            // txtRAContactNo
+            // txtContactNo
             // 
-            this.txtRAContactNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRAContactNo.Location = new System.Drawing.Point(158, 167);
-            this.txtRAContactNo.MaxLength = 11;
-            this.txtRAContactNo.Name = "txtRAContactNo";
-            this.txtRAContactNo.Size = new System.Drawing.Size(171, 26);
-            this.txtRAContactNo.TabIndex = 41;
+            this.txtContactNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContactNo.Location = new System.Drawing.Point(158, 167);
+            this.txtContactNo.MaxLength = 11;
+            this.txtContactNo.Name = "txtContactNo";
+            this.txtContactNo.Size = new System.Drawing.Size(171, 26);
+            this.txtContactNo.TabIndex = 41;
+            this.txtContactNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContactNo_KeyPress);
             // 
             // label26
             // 
@@ -669,16 +655,16 @@
             this.label26.TabIndex = 40;
             this.label26.Text = "Contact No:";
             // 
-            // cmbRADistrict
+            // cmbDistrict
             // 
-            this.cmbRADistrict.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRADistrict.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbRADistrict.FormattingEnabled = true;
-            this.cmbRADistrict.Location = new System.Drawing.Point(452, 54);
-            this.cmbRADistrict.Name = "cmbRADistrict";
-            this.cmbRADistrict.Size = new System.Drawing.Size(198, 27);
-            this.cmbRADistrict.TabIndex = 19;
-            this.cmbRADistrict.SelectedIndexChanged += new System.EventHandler(this.cmbRADistrict_SelectedIndexChanged);
+            this.cmbDistrict.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDistrict.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDistrict.FormattingEnabled = true;
+            this.cmbDistrict.Location = new System.Drawing.Point(452, 54);
+            this.cmbDistrict.Name = "cmbDistrict";
+            this.cmbDistrict.Size = new System.Drawing.Size(198, 27);
+            this.cmbDistrict.TabIndex = 19;
+            this.cmbDistrict.SelectedIndexChanged += new System.EventHandler(this.cmbRADistrict_SelectedIndexChanged);
             // 
             // label21
             // 
@@ -690,22 +676,22 @@
             this.label21.TabIndex = 18;
             this.label21.Text = "District:";
             // 
-            // txtRAPostCode
+            // txtPostCode
             // 
-            this.txtRAPostCode.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRAPostCode.Location = new System.Drawing.Point(454, 157);
-            this.txtRAPostCode.Name = "txtRAPostCode";
-            this.txtRAPostCode.ReadOnly = true;
-            this.txtRAPostCode.Size = new System.Drawing.Size(196, 29);
-            this.txtRAPostCode.TabIndex = 17;
+            this.txtPostCode.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPostCode.Location = new System.Drawing.Point(454, 157);
+            this.txtPostCode.Name = "txtPostCode";
+            this.txtPostCode.ReadOnly = true;
+            this.txtPostCode.Size = new System.Drawing.Size(196, 29);
+            this.txtPostCode.TabIndex = 17;
             // 
-            // txtRAArea
+            // txtArea
             // 
-            this.txtRAArea.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRAArea.Location = new System.Drawing.Point(158, 138);
-            this.txtRAArea.Name = "txtRAArea";
-            this.txtRAArea.Size = new System.Drawing.Size(171, 26);
-            this.txtRAArea.TabIndex = 15;
+            this.txtArea.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArea.Location = new System.Drawing.Point(158, 138);
+            this.txtArea.Name = "txtArea";
+            this.txtArea.Size = new System.Drawing.Size(171, 26);
+            this.txtArea.TabIndex = 15;
             // 
             // label20
             // 
@@ -737,29 +723,29 @@
             this.label18.TabIndex = 12;
             this.label18.Text = "Thana:";
             // 
-            // txtRARoadNo
+            // txtRoadNo
             // 
-            this.txtRARoadNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRARoadNo.Location = new System.Drawing.Point(158, 78);
-            this.txtRARoadNo.Name = "txtRARoadNo";
-            this.txtRARoadNo.Size = new System.Drawing.Size(172, 26);
-            this.txtRARoadNo.TabIndex = 10;
+            this.txtRoadNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRoadNo.Location = new System.Drawing.Point(158, 78);
+            this.txtRoadNo.Name = "txtRoadNo";
+            this.txtRoadNo.Size = new System.Drawing.Size(172, 26);
+            this.txtRoadNo.TabIndex = 10;
             // 
-            // txtRAHouseNo
+            // txtHouseNo
             // 
-            this.txtRAHouseNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRAHouseNo.Location = new System.Drawing.Point(158, 49);
-            this.txtRAHouseNo.Name = "txtRAHouseNo";
-            this.txtRAHouseNo.Size = new System.Drawing.Size(172, 26);
-            this.txtRAHouseNo.TabIndex = 9;
+            this.txtHouseNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHouseNo.Location = new System.Drawing.Point(158, 49);
+            this.txtHouseNo.Name = "txtHouseNo";
+            this.txtHouseNo.Size = new System.Drawing.Size(172, 26);
+            this.txtHouseNo.TabIndex = 9;
             // 
-            // txtRAFlatNo
+            // txtFlatNo
             // 
-            this.txtRAFlatNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRAFlatNo.Location = new System.Drawing.Point(158, 20);
-            this.txtRAFlatNo.Name = "txtRAFlatNo";
-            this.txtRAFlatNo.Size = new System.Drawing.Size(172, 26);
-            this.txtRAFlatNo.TabIndex = 8;
+            this.txtFlatNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFlatNo.Location = new System.Drawing.Point(158, 20);
+            this.txtFlatNo.Name = "txtFlatNo";
+            this.txtFlatNo.Size = new System.Drawing.Size(172, 26);
+            this.txtFlatNo.TabIndex = 8;
             // 
             // label17
             // 
@@ -805,16 +791,18 @@
             // 
             this.participantContactNoTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.participantContactNoTextBox.Location = new System.Drawing.Point(242, 221);
+            this.participantContactNoTextBox.MaxLength = 11;
             this.participantContactNoTextBox.Name = "participantContactNoTextBox";
             this.participantContactNoTextBox.Size = new System.Drawing.Size(278, 29);
             this.participantContactNoTextBox.TabIndex = 61;
+            this.participantContactNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.participantContactNoTextBox_KeyPress);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Blue;
-            this.label10.Location = new System.Drawing.Point(100, 226);
+            this.label10.Location = new System.Drawing.Point(96, 226);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(124, 22);
             this.label10.TabIndex = 60;
@@ -830,20 +818,12 @@
             this.label7.Size = new System.Drawing.Size(0, 22);
             this.label7.TabIndex = 59;
             // 
-            // participantEmailTextBox
-            // 
-            this.participantEmailTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.participantEmailTextBox.Location = new System.Drawing.Point(242, 181);
-            this.participantEmailTextBox.Name = "participantEmailTextBox";
-            this.participantEmailTextBox.Size = new System.Drawing.Size(278, 29);
-            this.participantEmailTextBox.TabIndex = 58;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Blue;
-            this.label8.Location = new System.Drawing.Point(156, 185);
+            this.label8.Location = new System.Drawing.Point(148, 185);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(73, 22);
             this.label8.TabIndex = 57;
@@ -872,7 +852,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(7, 140);
+            this.label4.Location = new System.Drawing.Point(11, 140);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(213, 22);
             this.label4.TabIndex = 54;
@@ -891,7 +871,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(56, 99);
+            this.label3.Location = new System.Drawing.Point(63, 99);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(164, 22);
             this.label3.TabIndex = 52;
@@ -926,7 +906,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Blue;
-            this.label2.Location = new System.Drawing.Point(96, 61);
+            this.label2.Location = new System.Drawing.Point(105, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(124, 22);
             this.label2.TabIndex = 49;
@@ -937,7 +917,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(69, 25);
+            this.label1.Location = new System.Drawing.Point(78, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(151, 22);
             this.label1.TabIndex = 48;
@@ -953,6 +933,38 @@
             this.label5.Size = new System.Drawing.Size(299, 36);
             this.label5.TabIndex = 1;
             this.label5.Text = "Participant Creation";
+            // 
+            // txtPBlock
+            // 
+            this.txtPBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPBlock.Location = new System.Drawing.Point(158, 108);
+            this.txtPBlock.Name = "txtPBlock";
+            this.txtPBlock.Size = new System.Drawing.Size(172, 26);
+            this.txtPBlock.TabIndex = 83;
+            this.txtPBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtPBlock.WaterMarkText = "if Any";
+            // 
+            // txtBlock
+            // 
+            this.txtBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBlock.Location = new System.Drawing.Point(158, 108);
+            this.txtBlock.Name = "txtBlock";
+            this.txtBlock.Size = new System.Drawing.Size(172, 26);
+            this.txtBlock.TabIndex = 83;
+            this.txtBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtBlock.WaterMarkText = "if Any";
+            // 
+            // cmbEmailAddress
+            // 
+            this.cmbEmailAddress.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbEmailAddress.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbEmailAddress.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEmailAddress.FormattingEnabled = true;
+            this.cmbEmailAddress.Location = new System.Drawing.Point(242, 181);
+            this.cmbEmailAddress.Name = "cmbEmailAddress";
+            this.cmbEmailAddress.Size = new System.Drawing.Size(278, 30);
+            this.cmbEmailAddress.TabIndex = 95;
+            this.cmbEmailAddress.SelectedIndexChanged += new System.EventHandler(this.cmbEmailAddress_SelectedIndexChanged);
             // 
             // ParticipantCreation
             // 
@@ -988,7 +1000,6 @@
         private System.Windows.Forms.TextBox participantContactNoTextBox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox participantEmailTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox participantDesignationTextBox;
@@ -1003,29 +1014,29 @@
         private System.Windows.Forms.CheckBox sameAsRACheckBox;
         private System.Windows.Forms.CheckBox unKnownCheckBox;
         private System.Windows.Forms.GroupBox groupBox4;
-        private wmgCMS.WaterMarkTextBox txtWABlock;
-        private System.Windows.Forms.ComboBox cmbWAPost;
+        private wmgCMS.WaterMarkTextBox txtPBlock;
+        private System.Windows.Forms.ComboBox cmbPPost;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.ComboBox cmbWADivision;
+        private System.Windows.Forms.ComboBox cmbPDivision;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.ComboBox cmbWAThana;
-        private System.Windows.Forms.TextBox txtWAContactNo;
+        private System.Windows.Forms.ComboBox cmbPThana;
+        private System.Windows.Forms.TextBox txtPContactNo;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.ComboBox cmbWADistrict;
+        private System.Windows.Forms.ComboBox cmbPDistrict;
         private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.TextBox txtWAPostCode;
-        private System.Windows.Forms.TextBox txtWAArea;
+        private System.Windows.Forms.TextBox txtPPostCode;
+        private System.Windows.Forms.TextBox txtPArea;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.TextBox txtWARoadNo;
-        private System.Windows.Forms.TextBox txtWAHouseName;
-        private System.Windows.Forms.TextBox txtWAFlatName;
+        private System.Windows.Forms.TextBox txtPRoadNo;
+        private System.Windows.Forms.TextBox txtPHouseName;
+        private System.Windows.Forms.TextBox txtPFlatName;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.Label label53;
@@ -1033,34 +1044,35 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox unKnownRA;
         private System.Windows.Forms.GroupBox groupBox5;
-        private wmgCMS.WaterMarkTextBox txtRABlock;
-        private System.Windows.Forms.ComboBox cmbRAPost;
+        private wmgCMS.WaterMarkTextBox txtBlock;
+        private System.Windows.Forms.ComboBox cmbPost;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.ComboBox cmbRADivision;
+        private System.Windows.Forms.ComboBox cmbDivision;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.ComboBox cmbRAThana;
-        private System.Windows.Forms.TextBox txtRAContactNo;
+        private System.Windows.Forms.ComboBox cmbThana;
+        private System.Windows.Forms.TextBox txtContactNo;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.ComboBox cmbRADistrict;
+        private System.Windows.Forms.ComboBox cmbDistrict;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox txtRAPostCode;
-        private System.Windows.Forms.TextBox txtRAArea;
+        private System.Windows.Forms.TextBox txtPostCode;
+        private System.Windows.Forms.TextBox txtArea;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox txtRARoadNo;
-        private System.Windows.Forms.TextBox txtRAHouseNo;
-        private System.Windows.Forms.TextBox txtRAFlatNo;
+        private System.Windows.Forms.TextBox txtRoadNo;
+        private System.Windows.Forms.TextBox txtHouseNo;
+        private System.Windows.Forms.TextBox txtFlatNo;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cmbEmailAddress;
     }
 }
