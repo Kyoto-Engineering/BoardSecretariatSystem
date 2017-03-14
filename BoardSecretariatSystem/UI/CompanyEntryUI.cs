@@ -472,104 +472,10 @@ namespace BoardSecretariatSystem
             if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
                 e.Handled = true;
         }
-        private void AddressHeader()
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctt = "select HeaderName from AddressHeader";
-                cmd = new SqlCommand(ctt);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    cmbAddressHeadline.Items.Add(rdr.GetValue(0).ToString());
-                }
-                cmbAddressHeadline.Items.Add("Not In The List");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
         private void cmbAddressHeadline_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbAddressHeadline.Text == "Not In The List")
-            {
-                string input = Microsoft.VisualBasic.Interaction.InputBox("Please Input Mode Of Condtact  Here", "Input Here", "", -1, -1);
-                if (string.IsNullOrWhiteSpace(input))
-                {
-                    cmbAddressHeadline.SelectedIndex = -1;
-                }
-
-                else
-                {                  
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    string ct2 = "select HeaderName from AddressHeader where HeaderName='" + input + "'";
-                    cmd = new SqlCommand(ct2, con);
-                    rdr = cmd.ExecuteReader();
-                    if (rdr.Read() && !rdr.IsDBNull(0))
-                    {
-                        MessageBox.Show("This Header Name  Already Exists,Please Select From List", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        con.Close();
-                        cmbAddressHeadline.SelectedIndex = -1;
-                    }
-                    else
-                    {
-                        try
-                        {
-
-                            con = new SqlConnection(cs.DBConn);
-                            con.Open();
-                            string query1 = "insert into AddressHeader(HeaderName) values (@d1)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
-                            cmd = new SqlCommand(query1, con);
-                            cmd.Parameters.AddWithValue("@d1", input);
-                            //cmd.Parameters.AddWithValue("@d2", userId);
-                            //cmd.Parameters.AddWithValue("@d3", DateTime.UtcNow.ToLocalTime());
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                            cmbAddressHeadline.Items.Clear();
-                            AddressHeader();
-                            cmbAddressHeadline.SelectedText = input;
-                           
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT EmailBankId from EmailBank WHERE Email= '" + cmbAddressHeadline.Text + "'";
-
-                    rdr = cmd.ExecuteReader();
-                    if (rdr.Read())
-                    {
-                        addHeaderId = rdr.GetInt32(0);
-                    }
-                    if ((rdr != null))
-                    {
-                        rdr.Close();
-                    }
-                    if (con.State == ConnectionState.Open)
-                    {
-                        con.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+           
         }
 
           

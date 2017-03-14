@@ -214,9 +214,9 @@ namespace BoardSecretariatSystem.UI
             boardNameComboBox.SelectedIndex = -1;
             meetingComboBox.SelectedIndex = -1;
             cmbTopics.SelectedIndex = -1;
-            discussionRichTextBox.Clear();
-            resulationRichTextBox.Clear();
-            decisionRichTextBox.Clear();
+            txtDiscussion.Clear();
+            txtResulation.Clear();
+            txtDecision.Clear();
 
         }
 
@@ -242,7 +242,7 @@ namespace BoardSecretariatSystem.UI
                 }
                 catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
           
         }
@@ -271,9 +271,9 @@ namespace BoardSecretariatSystem.UI
                 string query1 ="insert into t_meetingExecution (AgendaId,Discussion,Resulation,Decision,MeetingId,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", agendaId);
-                cmd.Parameters.AddWithValue("@d2", discussionRichTextBox.Text);
-                cmd.Parameters.AddWithValue("@d3", resulationRichTextBox.Text);
-                cmd.Parameters.AddWithValue("@d4", decisionRichTextBox.Text);
+                cmd.Parameters.AddWithValue("@d2", txtDiscussion.Text);
+                cmd.Parameters.AddWithValue("@d3", txtResulation.Text);
+                cmd.Parameters.AddWithValue("@d4", txtDecision.Text);
                 cmd.Parameters.AddWithValue("@d5", meetingId);
                 cmd.Parameters.AddWithValue("@d6", boardId);
                 cmd.Parameters.AddWithValue("@d7", userId);

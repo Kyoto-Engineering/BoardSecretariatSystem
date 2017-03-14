@@ -96,8 +96,7 @@ namespace BoardSecretariatSystem.UI
                     {
                         company_id = rdr.GetInt32(0);
 
-                    }
-                    rdr.Close();
+                    }                   
                     con.Close();
                 }
                 if (!string.IsNullOrEmpty(BoardNameTextBox.Text))

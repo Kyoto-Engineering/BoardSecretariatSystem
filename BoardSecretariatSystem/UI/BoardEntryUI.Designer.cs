@@ -55,7 +55,7 @@
             // BoardNameTextBox
             // 
             this.BoardNameTextBox.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BoardNameTextBox.Location = new System.Drawing.Point(212, 111);
+            this.BoardNameTextBox.Location = new System.Drawing.Point(211, 111);
             this.BoardNameTextBox.Name = "BoardNameTextBox";
             this.BoardNameTextBox.Size = new System.Drawing.Size(322, 35);
             this.BoardNameTextBox.TabIndex = 10;

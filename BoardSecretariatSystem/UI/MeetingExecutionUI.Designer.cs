@@ -37,9 +37,9 @@
             this.boardNameComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
-            this.discussionRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.resulationRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.decisionRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.txtDiscussion = new System.Windows.Forms.RichTextBox();
+            this.txtResulation = new System.Windows.Forms.RichTextBox();
+            this.txtDecision = new System.Windows.Forms.RichTextBox();
             this.meetingExecListDataGridView = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -168,32 +168,32 @@
             this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // discussionRichTextBox
+            // txtDiscussion
             // 
-            this.discussionRichTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discussionRichTextBox.Location = new System.Drawing.Point(209, 253);
-            this.discussionRichTextBox.Name = "discussionRichTextBox";
-            this.discussionRichTextBox.Size = new System.Drawing.Size(310, 116);
-            this.discussionRichTextBox.TabIndex = 13;
-            this.discussionRichTextBox.Text = "";
+            this.txtDiscussion.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDiscussion.Location = new System.Drawing.Point(209, 253);
+            this.txtDiscussion.Name = "txtDiscussion";
+            this.txtDiscussion.Size = new System.Drawing.Size(310, 116);
+            this.txtDiscussion.TabIndex = 13;
+            this.txtDiscussion.Text = "";
             // 
-            // resulationRichTextBox
+            // txtResulation
             // 
-            this.resulationRichTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resulationRichTextBox.Location = new System.Drawing.Point(209, 388);
-            this.resulationRichTextBox.Name = "resulationRichTextBox";
-            this.resulationRichTextBox.Size = new System.Drawing.Size(310, 80);
-            this.resulationRichTextBox.TabIndex = 14;
-            this.resulationRichTextBox.Text = "";
+            this.txtResulation.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtResulation.Location = new System.Drawing.Point(209, 388);
+            this.txtResulation.Name = "txtResulation";
+            this.txtResulation.Size = new System.Drawing.Size(310, 80);
+            this.txtResulation.TabIndex = 14;
+            this.txtResulation.Text = "";
             // 
-            // decisionRichTextBox
+            // txtDecision
             // 
-            this.decisionRichTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.decisionRichTextBox.Location = new System.Drawing.Point(209, 489);
-            this.decisionRichTextBox.Name = "decisionRichTextBox";
-            this.decisionRichTextBox.Size = new System.Drawing.Size(310, 96);
-            this.decisionRichTextBox.TabIndex = 15;
-            this.decisionRichTextBox.Text = "";
+            this.txtDecision.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDecision.Location = new System.Drawing.Point(209, 489);
+            this.txtDecision.Name = "txtDecision";
+            this.txtDecision.Size = new System.Drawing.Size(310, 96);
+            this.txtDecision.TabIndex = 15;
+            this.txtDecision.Text = "";
             // 
             // meetingExecListDataGridView
             // 
@@ -259,7 +259,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(35, 63);
+            this.label8.Location = new System.Drawing.Point(35, 50);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(251, 24);
             this.label8.TabIndex = 20;
@@ -268,7 +268,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(292, 62);
+            this.textBox1.Location = new System.Drawing.Point(292, 49);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(341, 29);
             this.textBox1.TabIndex = 19;
@@ -410,9 +410,9 @@
             this.Controls.Add(this.meetingComboBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.decisionRichTextBox);
-            this.Controls.Add(this.resulationRichTextBox);
-            this.Controls.Add(this.discussionRichTextBox);
+            this.Controls.Add(this.txtDecision);
+            this.Controls.Add(this.txtResulation);
+            this.Controls.Add(this.txtDiscussion);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.boardNameComboBox);
@@ -446,9 +446,9 @@
         private System.Windows.Forms.ComboBox boardNameComboBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.RichTextBox discussionRichTextBox;
-        private System.Windows.Forms.RichTextBox resulationRichTextBox;
-        private System.Windows.Forms.RichTextBox decisionRichTextBox;
+        private System.Windows.Forms.RichTextBox txtDiscussion;
+        private System.Windows.Forms.RichTextBox txtResulation;
+        private System.Windows.Forms.RichTextBox txtDecision;
         private System.Windows.Forms.DataGridView meetingExecListDataGridView;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label7;
