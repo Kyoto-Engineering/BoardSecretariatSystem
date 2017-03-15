@@ -70,7 +70,7 @@ namespace BoardSecretariatSystem
             try
             {
                 con = new SqlConnection(cs.DBConn);
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT CompanyId,CompanyName,CompanyAddress,RegiNumber,DateTime FROM t_company", con);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT CompanyId,CompanyName,CompanyAddress,RegiNumber,DateTime FROM Company", con);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 allCompanyListDataGridView.Rows.Clear();
@@ -181,7 +181,7 @@ namespace BoardSecretariatSystem
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string ct3 = "select CompanyName from t_company where CompanyName='" + companyNameTextBox.Text + "'";
+                    string ct3 = "select CompanyName from Company where CompanyName='" + companyNameTextBox.Text + "'";
                     cmd = new SqlCommand(ct3, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
@@ -198,7 +198,7 @@ namespace BoardSecretariatSystem
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into t_company (CompanyName,RegiNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into Company(CompanyName,RegiNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);                          
                             cmd.Parameters.AddWithValue("@d2", regNoTextBox.Text);
@@ -248,7 +248,7 @@ namespace BoardSecretariatSystem
 
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SqlDataAdapter sda = new SqlDataAdapter("SELECT CompanyId,CompanyName,CompanyAddress,RegiNumber,DateTime FROM t_company WHERE (CompanyName LIKE '" + searchTextBox.Text + "%')", con);
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT CompanyId,CompanyName,CompanyAddress,RegiNumber,DateTime FROM Company WHERE (CompanyName LIKE '" + searchTextBox.Text + "%')", con);
             DataTable dataTable = new DataTable();
             sda.Fill(dataTable);
             allCompanyListDataGridView.Rows.Clear();

@@ -46,7 +46,7 @@ namespace BoardSecretariatSystem
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query = "SELECT RTRIM(t_company.CompanyName) FROM  t_company  order by t_company.CompanyId desc";
+                string query = "SELECT RTRIM(Company.CompanyName) FROM  Company  order by Company.CompanyId desc";
                 cmd = new SqlCommand(query, con);
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
@@ -93,7 +93,7 @@ namespace BoardSecretariatSystem
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query ="SELECT t_participant.ParticipantName FROM t_participant order by  t_participant.ParticipantId  desc";
+                string query = "SELECT Participant.ParticipantName FROM Participant order by  Participant.ParticipantId  desc";
                 cmd = new SqlCommand(query, con);
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
@@ -122,7 +122,7 @@ namespace BoardSecretariatSystem
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct2 = "select MeetingId from t_meeting where  t_meeting.MeetingName='" + meetingNameComboBox.Text + "'";
+                string ct2 = "select MeetingId from Meeting where  Meeting.MeetingName='" + meetingNameComboBox.Text + "'";
                 cmd = new SqlCommand(ct2, con);
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read() && !rdr.IsDBNull(0))
@@ -165,7 +165,7 @@ namespace BoardSecretariatSystem
                     {
                         con = new SqlConnection(cs.DBConn);
                         con.Open();
-                        string query1 = "insert into t_agenda (AgendaTopics,MeetingId,UserId,DateTime) values (@d1,@d2,@d3,@d4)";
+                        string query1 = "insert into Agenda (AgendaTopics,MeetingId,UserId,DateTime) values (@d1,@d2,@d3,@d4)";
                         cmd = new SqlCommand(query1, con);
                         cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[1].Text);                       
                         cmd.Parameters.AddWithValue("@d2", meetingId);
@@ -211,7 +211,7 @@ namespace BoardSecretariatSystem
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctk = "SELECT  RTRIM(t_board.BoardId)  from  t_board  WHERE t_board.BoardName=@find";
+                string ctk = "SELECT  RTRIM(Board.BoardId)  from  Board  WHERE Board.BoardName=@find";
                 cmd = new SqlCommand(ctk);
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Board"));
@@ -238,7 +238,7 @@ namespace BoardSecretariatSystem
 
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select RTRIM(t_meeting.MeetingName) from t_meeting  Where t_meeting.BoardId = '" +boardId + "' order by t_meeting.MeetingId desc";
+                string ct = "select RTRIM(Meeting.MeetingName) from Meeting  Where Meeting.BoardId = '" + boardId + "' order by Meeting.MeetingId desc";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -279,10 +279,10 @@ namespace BoardSecretariatSystem
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctk = "SELECT  RTRIM(t_company.CompanyId)  from  t_company  WHERE t_company.CompanyName=@find";
+                string ctk = "SELECT  RTRIM(Company.CompanyId)  from  Company  WHERE Company.CompanyName=@find";
                 cmd = new SqlCommand(ctk);
                 cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "t_company"));
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Company"));
                 cmd.Parameters["@find"].Value = companyNameComboBox.Text;
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
@@ -309,7 +309,7 @@ namespace BoardSecretariatSystem
 
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select RTRIM(t_board.BoardName) from t_board  Where t_board.CompanyId = '" + companyId + "' order by t_board.BoardId desc";
+                string ct = "select RTRIM(Board.BoardName) from Board  Where Board.CompanyId = '" + companyId + "' order by Board.BoardId desc";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -353,7 +353,7 @@ namespace BoardSecretariatSystem
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctk = "SELECT t_participant.ParticipantId FROM t_participant where t_participant.ParticipantName='" + cmbParticipantName.Text + "'";
+                string ctk = "SELECT Participant.ParticipantId FROM Participant where Participant.ParticipantName='" + cmbParticipantName.Text + "'";
                 cmd = new SqlCommand(ctk, con);
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())

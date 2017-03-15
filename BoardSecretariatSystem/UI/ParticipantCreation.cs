@@ -32,7 +32,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query = "SELECT CompanyName FROM t_company ";
+                string query = "SELECT CompanyName FROM Company ";
                 cmd = new SqlCommand(query, con);
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
@@ -131,10 +131,10 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctk = "SELECT  RTRIM(t_company.CompanyId)  from  t_company  WHERE t_company.CompanyName=@find";
+                string ctk = "SELECT  RTRIM(Company.CompanyId)  from  Company  WHERE Company.CompanyName=@find";
                 cmd = new SqlCommand(ctk);
                 cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "t_company"));
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Company"));
                 cmd.Parameters["@find"].Value = companyNameComboBox.Text;
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
@@ -142,7 +142,6 @@ namespace BoardSecretariatSystem.UI
                     companyId = (rdr.GetString(0));
 
                 }
-
                 if ((rdr != null))
                 {
                     rdr.Close();
@@ -151,8 +150,6 @@ namespace BoardSecretariatSystem.UI
                 {
                     con.Close();
                 }
-
-
                 companyNameComboBox.Text = companyNameComboBox.Text.Trim();
                 boardNameComboBox.Items.Clear();
                 boardNameComboBox.SelectedIndex = -1;
@@ -161,7 +158,7 @@ namespace BoardSecretariatSystem.UI
 
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select RTRIM(t_board.BoardName) from t_board  Where t_board.CompanyId = '" + companyId + "' order by t_board.BoardId desc";
+                string ct = "select RTRIM(Board.BoardName) from Board  Where Board.CompanyId = '" + companyId + "' order by Board.BoardId desc";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -292,7 +289,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 = "insert into t_participant (ParticipantName,ContactNumber,Designation,EmailBankId,CompanyId,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 = "insert into Participant (ParticipantName,ContactNumber,Designation,EmailBankId,CompanyId,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", participantNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@d2", participantContactNoTextBox.Text);
@@ -389,7 +386,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct3 = "select t_participant.ParticipantName from t_participant where  t_participant.ParticipantName='" + participantNameTextBox.Text + "'";
+                string ct3 = "select Participant.ParticipantName from Participant where  Participant.ParticipantName='" + participantNameTextBox.Text + "'";
                 cmd = new SqlCommand(ct3, con);
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read() && !rdr.IsDBNull(0))
@@ -437,7 +434,7 @@ namespace BoardSecretariatSystem.UI
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 cmd = con.CreateCommand();
-                cmd.CommandText = "select BoardId from t_board WHERE t_board.BoardName= '" + boardNameComboBox.Text+ "'";
+                cmd.CommandText = "select BoardId from Board WHERE Board.BoardName= '" + boardNameComboBox.Text+ "'";
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
@@ -1038,9 +1035,7 @@ namespace BoardSecretariatSystem.UI
                     {
                         string emailId = input.Trim();
                         Regex mRegxExpression;
-
                         mRegxExpression = new Regex(@"^([a-zA-Z0-9_\-])([a-zA-Z0-9_\-\.]*)@(\[((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}|((([a-zA-Z0-9\-]+)\.)+))([a-zA-Z]{2,}|(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\])$");
-
                         if (!mRegxExpression.IsMatch(emailId))
                         {
 

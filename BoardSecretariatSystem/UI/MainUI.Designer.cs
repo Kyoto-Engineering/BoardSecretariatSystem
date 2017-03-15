@@ -76,7 +76,7 @@
             this.agendaCreateButton.Name = "agendaCreateButton";
             this.agendaCreateButton.Size = new System.Drawing.Size(144, 52);
             this.agendaCreateButton.TabIndex = 3;
-            this.agendaCreateButton.Text = "Agenda Creation";
+            this.agendaCreateButton.Text = "Manage Meeting";
             this.agendaCreateButton.UseVisualStyleBackColor = false;
             this.agendaCreateButton.Click += new System.EventHandler(this.agendaCreateButton_Click);
             // 

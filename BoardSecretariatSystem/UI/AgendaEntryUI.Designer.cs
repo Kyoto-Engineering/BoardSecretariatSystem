@@ -117,7 +117,7 @@
             this.agendaSaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.agendaSaveButton.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agendaSaveButton.ForeColor = System.Drawing.Color.Blue;
-            this.agendaSaveButton.Location = new System.Drawing.Point(861, 523);
+            this.agendaSaveButton.Location = new System.Drawing.Point(1041, 523);
             this.agendaSaveButton.Name = "agendaSaveButton";
             this.agendaSaveButton.Size = new System.Drawing.Size(141, 76);
             this.agendaSaveButton.TabIndex = 30;
@@ -232,7 +232,7 @@
             this.add1Button.ForeColor = System.Drawing.Color.Blue;
             this.add1Button.Location = new System.Drawing.Point(484, 15);
             this.add1Button.Name = "add1Button";
-            this.add1Button.Size = new System.Drawing.Size(79, 55);
+            this.add1Button.Size = new System.Drawing.Size(79, 46);
             this.add1Button.TabIndex = 29;
             this.add1Button.Text = "Add";
             this.add1Button.UseVisualStyleBackColor = false;

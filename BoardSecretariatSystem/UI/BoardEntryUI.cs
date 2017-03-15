@@ -46,7 +46,7 @@ namespace BoardSecretariatSystem.UI
             con.Open();
 
 
-            string query = "SELECT CompanyName FROM t_company ";
+            string query = "SELECT CompanyName FROM Company ";
 
             cmd = new SqlCommand(query, con);
             rdr = cmd.ExecuteReader();
@@ -89,7 +89,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string ct2 = "select CompanyId from t_company where CompanyName='" + companyNameComboBox.Text + "'";
+                    string ct2 = "select CompanyId from Company where CompanyName='" + companyNameComboBox.Text + "'";
                     cmd = new SqlCommand(ct2, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
@@ -103,7 +103,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string ct1 = "select BoardName,CompanyId from t_board where BoardName='" + BoardNameTextBox.Text + "' AND CompanyId='" + company_id + "'";
+                    string ct1 = "select BoardName,CompanyId from Board where BoardName='" + BoardNameTextBox.Text + "' AND CompanyId='" + company_id + "'";
                     cmd = new SqlCommand(ct1, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
@@ -118,7 +118,7 @@ namespace BoardSecretariatSystem.UI
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 ="insert into t_board (BoardName,CompanyId,UserId,DateTime) values (@d1,@d2,@d3,@d4)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 ="insert into Board (BoardName,CompanyId,UserId,DateTime) values (@d1,@d2,@d3,@d4)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", BoardNameTextBox.Text);
                             cmd.Parameters.AddWithValue("@d2", company_id);

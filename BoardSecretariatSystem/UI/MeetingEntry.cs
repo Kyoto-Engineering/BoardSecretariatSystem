@@ -70,7 +70,7 @@ namespace BoardSecretariatSystem
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query = "SELECT CompanyName FROM t_company ";
+                string query = "SELECT CompanyName FROM Company ";
 
                 cmd = new SqlCommand(query, con);
                 rdr = cmd.ExecuteReader();
@@ -219,7 +219,7 @@ namespace BoardSecretariatSystem
                     SelectBoardId();
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string query2 = "insert into t_meeting (MeetingName,MeetingLocation,MeetingDate,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                    string query2 = "insert into Meeting (MeetingName,MeetingLocation,MeetingDate,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                     cmd = new SqlCommand(query2, con);
                     cmd.Parameters.AddWithValue("@d1", meetingNameTextBox.Text);
                     //cmd.Parameters.AddWithValue("@d2", locationTextBox.Text);
@@ -260,7 +260,7 @@ namespace BoardSecretariatSystem
                 con.Open();
                 cmd = con.CreateCommand();
 
-                cmd.CommandText = "select CompanyId from t_company WHERE CompanyName= '" + companyNameComboBox.Text + "'";
+                cmd.CommandText = "select CompanyId from Company WHERE CompanyName= '" + companyNameComboBox.Text + "'";
 
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
@@ -294,7 +294,7 @@ namespace BoardSecretariatSystem
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     cmd = con.CreateCommand();
-                    string query = "SELECT BoardName from t_board where CompanyId= '" + companyId + "'";
+                    string query = "SELECT BoardName from Board where CompanyId= '" + companyId + "'";
 
                     cmd = new SqlCommand(query, con);
                     rdr = cmd.ExecuteReader();
