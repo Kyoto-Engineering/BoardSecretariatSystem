@@ -141,6 +141,31 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
+        private void GetBoardList()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                cmd = new SqlCommand("SELECT Board.BoardName,Company.CompanyName FROM  Company INNER JOIN Board ON Company.CompanyId = Board.CompanyId", con);
+                rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                dataGridView1.Rows.Clear();
+                while (rdr.Read() == true)
+                {
+                    dataGridView1.Rows.Add(rdr[0],rdr[1]);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void BoardEntryUI_Load(object sender, EventArgs e)
+        {
+            GetBoardList();
+        }
+
 
     }
 }

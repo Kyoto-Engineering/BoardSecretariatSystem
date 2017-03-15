@@ -36,12 +36,12 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query = "SELECT  Participant.ParticipantName  FROM  Participant  order by  Participant.ParticipantId  desc";
+                string query = "SELECT  BoardMember.BMemberName  FROM  BoardMember  order by  BoardMember.ParticipantId  desc";
                 cmd = new SqlCommand(query, con);
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    cmbParticipantName.Items.Add(rdr[0]);
+                    cmbBoardMemberName.Items.Add(rdr[0]);
                 }
                 con.Close();
             }
@@ -247,40 +247,58 @@ namespace BoardSecretariatSystem.UI
             if (string.IsNullOrEmpty(companyNameComboBox.Text))
             {
                 MessageBox.Show("Please select company name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else if (string.IsNullOrEmpty(boardNameComboBox.Text))
+             if (string.IsNullOrEmpty(boardNameComboBox.Text))
             {
                 MessageBox.Show("Please select board name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 return;
             }
-            else if (string.IsNullOrEmpty(meetingComboBox.Text))
+             if (string.IsNullOrEmpty(meetingComboBox.Text))
             {
                 MessageBox.Show("Please select Meeting name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 return;
             }
-            else if (string.IsNullOrEmpty(cmbTopics.Text))
+             if (string.IsNullOrEmpty(cmbTopics.Text))
             {
                 MessageBox.Show("Please select Topics/Agenda", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+             if (string.IsNullOrEmpty(txtDiscussion.Text))
+            {
+                MessageBox.Show("Please type Discussion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 return;
+            }
+             if (string.IsNullOrEmpty(txtResulation.Text))
+            {
+                MessageBox.Show("Please type Resolution.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 return;
+            }
+             if (string.IsNullOrEmpty(txtDecision.Text))
+            {
+                MessageBox.Show("Please type decision", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 return;
+            }
+
             try
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 ="insert into MeetingExecution (AgendaId,Discussion,Resulation,Decision,MeetingId,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 ="insert into MeetingExecution (AgendaId,Discussion,Resulation,Decision,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", agendaId);
                 cmd.Parameters.AddWithValue("@d2", txtDiscussion.Text);
                 cmd.Parameters.AddWithValue("@d3", txtResulation.Text);
                 cmd.Parameters.AddWithValue("@d4", txtDecision.Text);
-                cmd.Parameters.AddWithValue("@d5", meetingId);
-                cmd.Parameters.AddWithValue("@d6", boardId);
+               // cmd.Parameters.AddWithValue("@d5", meetingId);
+               // cmd.Parameters.AddWithValue("@d6", boardId);
                 cmd.Parameters.AddWithValue("@d7", userId);
                 cmd.Parameters.AddWithValue("@d8", DateTime.UtcNow.ToLocalTime());
                 cmd.ExecuteNonQuery();
                 con.Close();
                 SaveMeetingParticipant();
                 MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //companyNameComboBox.ResetText();
-                //companyNameComboBox.SelectedIndex = -1;
-                //boardNameComboBox.ResetText();
+                
             }
             catch (Exception ex)
             {
@@ -440,18 +458,18 @@ namespace BoardSecretariatSystem.UI
             if (listView1.Items.Count == 0)
             {
                 ListViewItem lst = new ListViewItem();
-                lst.SubItems.Add(cmbParticipantName.Text);
+                lst.SubItems.Add(cmbBoardMemberName.Text);
                 lst.SubItems.Add(participantId.ToString());
                 listView1.Items.Add(lst);
-                cmbParticipantName.SelectedIndex = -1;
+                cmbBoardMemberName.SelectedIndex = -1;
                 return;
             }
 
             ListViewItem lst1 = new ListViewItem();
-            lst1.SubItems.Add(cmbParticipantName.Text);
+            lst1.SubItems.Add(cmbBoardMemberName.Text);
             lst1.SubItems.Add(participantId.ToString());
             listView1.Items.Add(lst1);
-            cmbParticipantName.SelectedIndex = -1;
+            cmbBoardMemberName.SelectedIndex = -1;
             return;
 
         }
@@ -462,7 +480,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctk = "SELECT Participant.ParticipantId FROM Participant where Participant.ParticipantName='" + cmbParticipantName.Text + "'";
+                string ctk = "SELECT BoardMember.ParticipantId FROM BoardMember where BoardMember.BMemberName='" + cmbBoardMemberName.Text + "'";
                 cmd = new SqlCommand(ctk,con);                             
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())

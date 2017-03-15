@@ -26,8 +26,8 @@ namespace BoardSecretariatSystem
 
         public string userId;
         public int companyId, addId;
-        public int board_id,currentId;
-        public string v;
+        public int board_id,currentMeetingId;
+        public string v,serialNo;
 
         public MeetingEntry()
         {
@@ -183,12 +183,7 @@ namespace BoardSecretariatSystem
             //}
 
         }
-        public void SelectBoardId()
-        {
-           
-               
-            }
-
+        
         private void Reset()
         {
             companyNameComboBox.SelectedIndex = -1;
@@ -196,6 +191,17 @@ namespace BoardSecretariatSystem
             meetingNameTextBox.Clear();
             cmbVenue.SelectedIndex = -1;
             meetingDatePicker.Value=DateTime.Today;
+        }
+
+        private void GenerateSerialNumberForMeeting()
+        {
+           String sDate = DateTime.Now.ToString();
+           DateTime datevalue = (Convert.ToDateTime(sDate.ToString()));
+           String dy = datevalue.Day.ToString();
+           String mn = datevalue.Month.ToString();
+           String yy = datevalue.Year.ToString();
+             //referenceNo = "OIA-" + sClientIdForRefNum + "-" + sQN + "-" + quotationId +"";
+            serialNo = yy + board_id + "" + currentMeetingId; 
         }
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -216,7 +222,7 @@ namespace BoardSecretariatSystem
             }
                 try
                 {
-                    SelectBoardId();
+                    
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     string query2 = "insert into Meeting (MeetingName,MeetingLocation,MeetingDate,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
@@ -227,7 +233,7 @@ namespace BoardSecretariatSystem
                     cmd.Parameters.AddWithValue("@d4", board_id);
                     cmd.Parameters.AddWithValue("@d5", userId);
                     cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
-                    currentId = (int) cmd.ExecuteScalar();
+                    currentMeetingId = (int)cmd.ExecuteScalar();
                     con.Close();
                     Reset();
                     MessageBox.Show("Saved Sucessfully", "", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -41,7 +41,8 @@
             this.meetingListGroupBox = new System.Windows.Forms.GroupBox();
             this.cmbVenue = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.blockTextBox = new wmgCMS.WaterMarkTextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.postOfficeCombo = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
@@ -68,8 +69,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.blockTextBox = new wmgCMS.WaterMarkTextBox();
             this.meetingListGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -117,7 +117,7 @@
             // 
             this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.saveButton.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(393, 264);
+            this.saveButton.Location = new System.Drawing.Point(513, 347);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(138, 73);
             this.saveButton.TabIndex = 18;
@@ -178,7 +178,6 @@
             this.meetingListGroupBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.meetingListGroupBox.Controls.Add(this.cmbVenue);
             this.meetingListGroupBox.Controls.Add(this.meetingNameTextBox);
-            this.meetingListGroupBox.Controls.Add(this.saveButton);
             this.meetingListGroupBox.Controls.Add(this.label1);
             this.meetingListGroupBox.Controls.Add(this.label3);
             this.meetingListGroupBox.Controls.Add(this.label5);
@@ -191,7 +190,7 @@
             this.meetingListGroupBox.ForeColor = System.Drawing.Color.Blue;
             this.meetingListGroupBox.Location = new System.Drawing.Point(10, 4);
             this.meetingListGroupBox.Name = "meetingListGroupBox";
-            this.meetingListGroupBox.Size = new System.Drawing.Size(573, 361);
+            this.meetingListGroupBox.Size = new System.Drawing.Size(573, 316);
             this.meetingListGroupBox.TabIndex = 26;
             this.meetingListGroupBox.TabStop = false;
             this.meetingListGroupBox.Text = "Meeting Entry";
@@ -242,20 +241,28 @@
             this.groupBox2.ForeColor = System.Drawing.Color.Blue;
             this.groupBox2.Location = new System.Drawing.Point(594, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(630, 359);
+            this.groupBox2.Size = new System.Drawing.Size(630, 314);
             this.groupBox2.TabIndex = 61;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Address";
             // 
-            // blockTextBox
+            // textBox1
             // 
-            this.blockTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blockTextBox.Location = new System.Drawing.Point(154, 207);
-            this.blockTextBox.Name = "blockTextBox";
-            this.blockTextBox.Size = new System.Drawing.Size(146, 26);
-            this.blockTextBox.TabIndex = 83;
-            this.blockTextBox.WaterMarkColor = System.Drawing.Color.Gray;
-            this.blockTextBox.WaterMarkText = "if any";
+            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(206, 32);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(398, 39);
+            this.textBox1.TabIndex = 85;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 37);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(194, 26);
+            this.label4.TabIndex = 84;
+            this.label4.Text = "Address Headline";
             // 
             // postOfficeCombo
             // 
@@ -516,32 +523,25 @@
             this.label17.TabIndex = 4;
             this.label17.Text = "Flat No / Name";
             // 
-            // label4
+            // blockTextBox
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(194, 26);
-            this.label4.TabIndex = 84;
-            this.label4.Text = "Address Headline";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(206, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(398, 39);
-            this.textBox1.TabIndex = 85;
+            this.blockTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blockTextBox.Location = new System.Drawing.Point(154, 207);
+            this.blockTextBox.Name = "blockTextBox";
+            this.blockTextBox.Size = new System.Drawing.Size(146, 26);
+            this.blockTextBox.TabIndex = 83;
+            this.blockTextBox.WaterMarkColor = System.Drawing.Color.Gray;
+            this.blockTextBox.WaterMarkText = "if any";
             // 
             // MeetingEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(1226, 389);
+            this.ClientSize = new System.Drawing.Size(1226, 462);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.meetingListGroupBox);
+            this.Controls.Add(this.saveButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "MeetingEntry";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -93,6 +93,14 @@ namespace BoardSecretariatSystem
                         frm.Show();
         }
 
+        private void buttonMultiCombo_Click(object sender, EventArgs e)
+        {  
+               this.Hide();
+            Form1 frm=new Form1();
+               frm.Show();
+
+        }
+
         
 
        

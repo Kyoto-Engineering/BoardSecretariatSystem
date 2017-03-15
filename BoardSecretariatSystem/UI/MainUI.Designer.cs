@@ -38,6 +38,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonLogOut = new System.Windows.Forms.Button();
+            this.buttonMultiCombo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,6 +133,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonMultiCombo);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.companyCreateButton);
             this.groupBox1.Controls.Add(this.boardCreateButton);
@@ -141,7 +143,7 @@
             this.groupBox1.Controls.Add(this.agendaCreateButton);
             this.groupBox1.Location = new System.Drawing.Point(14, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(183, 516);
+            this.groupBox1.Size = new System.Drawing.Size(183, 578);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             // 
@@ -150,7 +152,7 @@
             this.button1.BackColor = System.Drawing.Color.Teal;
             this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Yellow;
-            this.button1.Location = new System.Drawing.Point(20, 415);
+            this.button1.Location = new System.Drawing.Point(21, 502);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(136, 57);
             this.button1.TabIndex = 6;
@@ -170,6 +172,16 @@
             this.buttonLogOut.Text = "LogOut";
             this.buttonLogOut.UseVisualStyleBackColor = false;
             this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
+            // 
+            // buttonMultiCombo
+            // 
+            this.buttonMultiCombo.Location = new System.Drawing.Point(52, 426);
+            this.buttonMultiCombo.Name = "buttonMultiCombo";
+            this.buttonMultiCombo.Size = new System.Drawing.Size(91, 42);
+            this.buttonMultiCombo.TabIndex = 7;
+            this.buttonMultiCombo.Text = "MultiCombo";
+            this.buttonMultiCombo.UseVisualStyleBackColor = true;
+            this.buttonMultiCombo.Click += new System.EventHandler(this.buttonMultiCombo_Click);
             // 
             // MainUI
             // 
@@ -204,5 +216,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonLogOut;
+        private System.Windows.Forms.Button buttonMultiCombo;
     }
 }

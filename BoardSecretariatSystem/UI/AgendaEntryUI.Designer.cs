@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.boardNameComboBox = new System.Windows.Forms.ComboBox();
             this.meetingNameComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,22 +50,10 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label11 = new System.Windows.Forms.Label();
             this.cmbParticipantName = new System.Windows.Forms.ComboBox();
+            this.cmbBoardName = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // boardNameComboBox
-            // 
-            this.boardNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.boardNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.boardNameComboBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boardNameComboBox.FormattingEnabled = true;
-            this.boardNameComboBox.Location = new System.Drawing.Point(207, 74);
-            this.boardNameComboBox.Name = "boardNameComboBox";
-            this.boardNameComboBox.Size = new System.Drawing.Size(277, 32);
-            this.boardNameComboBox.TabIndex = 27;
-            this.boardNameComboBox.SelectedIndexChanged += new System.EventHandler(this.boardNameComboBox_SelectedIndexChanged);
-            this.boardNameComboBox.Leave += new System.EventHandler(this.boardNameComboBox_Leave);
             // 
             // meetingNameComboBox
             // 
@@ -74,9 +61,9 @@
             this.meetingNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.meetingNameComboBox.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meetingNameComboBox.FormattingEnabled = true;
-            this.meetingNameComboBox.Location = new System.Drawing.Point(207, 112);
+            this.meetingNameComboBox.Location = new System.Drawing.Point(205, 116);
             this.meetingNameComboBox.Name = "meetingNameComboBox";
-            this.meetingNameComboBox.Size = new System.Drawing.Size(277, 34);
+            this.meetingNameComboBox.Size = new System.Drawing.Size(279, 34);
             this.meetingNameComboBox.TabIndex = 26;
             this.meetingNameComboBox.SelectedIndexChanged += new System.EventHandler(this.companyNameComboBox_SelectedIndexChanged);
             this.meetingNameComboBox.Leave += new System.EventHandler(this.companyNameComboBox_Leave);
@@ -85,7 +72,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(47, 76);
+            this.label2.Location = new System.Drawing.Point(47, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(155, 26);
             this.label2.TabIndex = 25;
@@ -95,7 +82,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(25, 116);
+            this.label1.Location = new System.Drawing.Point(25, 119);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(176, 26);
             this.label1.TabIndex = 24;
@@ -151,7 +138,7 @@
             this.companyNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.companyNameComboBox.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.companyNameComboBox.FormattingEnabled = true;
-            this.companyNameComboBox.Location = new System.Drawing.Point(205, 34);
+            this.companyNameComboBox.Location = new System.Drawing.Point(205, 31);
             this.companyNameComboBox.Name = "companyNameComboBox";
             this.companyNameComboBox.Size = new System.Drawing.Size(279, 34);
             this.companyNameComboBox.TabIndex = 35;
@@ -161,7 +148,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(11, 37);
+            this.label5.Location = new System.Drawing.Point(14, 35);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(189, 26);
             this.label5.TabIndex = 34;
@@ -262,7 +249,7 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "ParticipantName";
-            this.columnHeader4.Width = 548;
+            this.columnHeader4.Width = 469;
             // 
             // columnHeader5
             // 
@@ -290,6 +277,16 @@
             this.cmbParticipantName.TabIndex = 26;
             this.cmbParticipantName.SelectedIndexChanged += new System.EventHandler(this.cmbParticipantName_SelectedIndexChanged);
             // 
+            // cmbBoardName
+            // 
+            this.cmbBoardName.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBoardName.FormattingEnabled = true;
+            this.cmbBoardName.Location = new System.Drawing.Point(205, 74);
+            this.cmbBoardName.Name = "cmbBoardName";
+            this.cmbBoardName.Size = new System.Drawing.Size(279, 32);
+            this.cmbBoardName.TabIndex = 39;
+            this.cmbBoardName.SelectedIndexChanged += new System.EventHandler(this.cmbBoardName_SelectedIndexChanged);
+            // 
             // AgendaEntryUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -297,6 +294,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1211, 632);
+            this.Controls.Add(this.cmbBoardName);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.addButton);
@@ -306,7 +304,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.agendaSaveButton);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.boardNameComboBox);
             this.Controls.Add(this.meetingNameComboBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -327,7 +324,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox boardNameComboBox;
         private System.Windows.Forms.ComboBox meetingNameComboBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -350,5 +346,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cmbParticipantName;
+        private System.Windows.Forms.ComboBox cmbBoardName;
     }
 }

@@ -54,7 +54,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbTopics = new System.Windows.Forms.ComboBox();
-            this.cmbParticipantName = new System.Windows.Forms.ComboBox();
+            this.cmbBoardMemberName = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -330,15 +330,15 @@
             this.cmbTopics.TabIndex = 21;
             this.cmbTopics.SelectedIndexChanged += new System.EventHandler(this.cmbTopics_SelectedIndexChanged);
             // 
-            // cmbParticipantName
+            // cmbBoardMemberName
             // 
-            this.cmbParticipantName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbParticipantName.FormattingEnabled = true;
-            this.cmbParticipantName.Location = new System.Drawing.Point(578, 49);
-            this.cmbParticipantName.Name = "cmbParticipantName";
-            this.cmbParticipantName.Size = new System.Drawing.Size(337, 30);
-            this.cmbParticipantName.TabIndex = 22;
-            this.cmbParticipantName.SelectedIndexChanged += new System.EventHandler(this.cmbParticipantName_SelectedIndexChanged);
+            this.cmbBoardMemberName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBoardMemberName.FormattingEnabled = true;
+            this.cmbBoardMemberName.Location = new System.Drawing.Point(578, 49);
+            this.cmbBoardMemberName.Name = "cmbBoardMemberName";
+            this.cmbBoardMemberName.Size = new System.Drawing.Size(337, 30);
+            this.cmbBoardMemberName.TabIndex = 22;
+            this.cmbBoardMemberName.SelectedIndexChanged += new System.EventHandler(this.cmbParticipantName_SelectedIndexChanged);
             // 
             // label11
             // 
@@ -389,7 +389,7 @@
             this.addButton.ForeColor = System.Drawing.Color.Blue;
             this.addButton.Location = new System.Drawing.Point(936, 85);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(99, 47);
+            this.addButton.Size = new System.Drawing.Size(89, 47);
             this.addButton.TabIndex = 25;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = false;
@@ -399,12 +399,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1247, 685);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.cmbParticipantName);
+            this.Controls.Add(this.cmbBoardMemberName);
             this.Controls.Add(this.cmbTopics);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.meetingComboBox);
@@ -463,7 +463,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbTopics;
-        private System.Windows.Forms.ComboBox cmbParticipantName;
+        private System.Windows.Forms.ComboBox cmbBoardMemberName;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;

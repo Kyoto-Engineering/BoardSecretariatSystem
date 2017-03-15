@@ -67,17 +67,13 @@ namespace BoardSecretariatSystem
             {
                 for (int i = 0; i <= listView2.Items.Count - 1; i++)
                 {
-
-
                     con = new SqlConnection(cs.DBConn);
+                    con.Open();
                     string cb = "insert into MeetingParticipant(MeetingId,ParticipantId) VALUES(@d1,@d2)";
-                    cmd = new SqlCommand(cb);
-                    cmd.Connection = con;
+                    cmd = new SqlCommand(cb,con);                    
                     cmd.Parameters.AddWithValue("d1", meetingId);
                     cmd.Parameters.AddWithValue("d2", listView2.Items[i].SubItems[2].Text);
-                    cmd.ExecuteNonQuery();
-                    con.Open();
-
+                    cmd.ExecuteNonQuery();                    
                     con.Close();
                 }
             }
@@ -140,9 +136,10 @@ namespace BoardSecretariatSystem
         private void Reset()
         {
             companyNameComboBox.SelectedIndex = -1;
-            boardNameComboBox.SelectedIndex = -1;
+            cmbBoardName.SelectedIndex = -1;
             meetingNameComboBox.SelectedIndex = -1;
             listView1.Items.Clear();
+            listView2.Items.Clear();
         }
         private void agendaSaveButton_Click(object sender, EventArgs e)
         {
@@ -154,7 +151,7 @@ namespace BoardSecretariatSystem
             {
                 MessageBox.Show("Please Select company name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (string.IsNullOrEmpty(boardNameComboBox.Text))
+            else if (string.IsNullOrEmpty(cmbBoardName.Text))
             {
                 MessageBox.Show("Please enter board name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }   
@@ -165,7 +162,7 @@ namespace BoardSecretariatSystem
                     {
                         con = new SqlConnection(cs.DBConn);
                         con.Open();
-                        string query1 = "insert into Agenda (AgendaTopics,MeetingId,UserId,DateTime) values (@d1,@d2,@d3,@d4)";
+                        string query1 = "insert into Agenda(AgendaTopics,MeetingId,UserId,DateTime) values (@d1,@d2,@d3,@d4)";
                         cmd = new SqlCommand(query1, con);
                         cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[1].Text);                       
                         cmd.Parameters.AddWithValue("@d2", meetingId);
@@ -197,63 +194,17 @@ namespace BoardSecretariatSystem
 
         private void boardNameComboBox_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(boardNameComboBox.Text) && !boardNameComboBox.Items.Contains(boardNameComboBox.Text))
-            {
-                MessageBox.Show("Please Select A Valid Board Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                boardNameComboBox.ResetText();
-                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), boardNameComboBox);
-            }
+            //if (!string.IsNullOrWhiteSpace(boardNameComboBox.Text) && !boardNameComboBox.Items.Contains(boardNameComboBox.Text))
+            //{
+            //    MessageBox.Show("Please Select A Valid Board Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    boardNameComboBox.ResetText();
+            //    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), boardNameComboBox);
+            //}
         }
 
         private void boardNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctk = "SELECT  RTRIM(Board.BoardId)  from  Board  WHERE Board.BoardName=@find";
-                cmd = new SqlCommand(ctk);
-                cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Board"));
-                cmd.Parameters["@find"].Value = boardNameComboBox.Text;
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    boardId = (rdr.GetString(0));
-
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-                boardNameComboBox.Text = boardNameComboBox.Text.Trim();
-                meetingNameComboBox.Items.Clear();
-                meetingNameComboBox.SelectedIndex = -1;                              
-                meetingNameComboBox.Enabled = true;
-                meetingNameComboBox.Focus();
-
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "select RTRIM(Meeting.MeetingName) from Meeting  Where Meeting.BoardId = '" + boardId + "' order by Meeting.MeetingId desc";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    meetingNameComboBox.Items.Add(rdr[0]);
-                }
-                con.Close();
-
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -288,9 +239,7 @@ namespace BoardSecretariatSystem
                 if (rdr.Read())
                 {
                     companyId = (rdr.GetString(0));
-
                 }
-
                 if ((rdr != null))
                 {
                     rdr.Close();
@@ -299,13 +248,11 @@ namespace BoardSecretariatSystem
                 {
                     con.Close();
                 }
-
-
-                companyNameComboBox.Text = companyNameComboBox.Text.Trim();
-                boardNameComboBox.Items.Clear();
-                boardNameComboBox.SelectedIndex = -1;
-                boardNameComboBox.Enabled = true;
-                boardNameComboBox.Focus();
+                companyNameComboBox.Text = companyNameComboBox.Text.Trim();               
+                cmbBoardName.SelectedIndex = -1;
+                cmbBoardName.Items.Clear();
+                cmbBoardName.Enabled = true;
+                cmbBoardName.Focus();
 
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
@@ -315,7 +262,7 @@ namespace BoardSecretariatSystem
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    boardNameComboBox.Items.Add(rdr[0]);
+                    cmbBoardName.Items.Add(rdr[0]);
                 }
                 con.Close();
 
@@ -373,6 +320,57 @@ namespace BoardSecretariatSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbBoardName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Board.BoardId)  from  Board  WHERE Board.BoardName=@find";
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Board"));
+                cmd.Parameters["@find"].Value = cmbBoardName.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    boardId = (rdr.GetString(0));
+
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                cmbBoardName.Text = cmbBoardName.Text.Trim();
+                meetingNameComboBox.Items.Clear();
+                meetingNameComboBox.SelectedIndex = -1;
+                meetingNameComboBox.Enabled = true;
+                meetingNameComboBox.Focus();
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(Meeting.MeetingName) from Meeting  Where Meeting.BoardId = '" + boardId + "' order by Meeting.MeetingId desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    meetingNameComboBox.Items.Add(rdr[0]);
+                }
+                con.Close();
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
