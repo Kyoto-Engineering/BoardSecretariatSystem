@@ -20,7 +20,7 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         ConnectionString cs=new ConnectionString();
-        public string companyId, nUserId, divisionId, divisionIdP, districtId, districtIdP, thanaId, thanaIdP, postofficeId, postofficeIdP, boardId;
+        public string companyId, nUserId, divisionId, divisionIdP, districtId, districtIdP, thanaId, thanaIdP, postofficeId, postofficeIdP, memberTypeId;
         public int affectedRows1, affectedRows2, affectedRows3, currentPerticipantId,  bankEmailId;
         public ParticipantCreation()
         {
@@ -116,10 +116,32 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public void MemberTypeLoad()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query = "SELECT BoardMemberType FROM BoardMemberTypes order by  BoardMemberTypes.BoardMemberTypeId desc ";
+                cmd = new SqlCommand(query, con);
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbMemberType.Items.Add(rdr[0]);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
         private void ParticipantCreation_Load(object sender, EventArgs e)
         {
             nUserId = frmLogin.uId.ToString();
             CompanyNameLoad();
+            MemberTypeLoad();
             EmailAddress();
             FillPresentDivisionCombo();
             FillPermanantDivisionCombo();
@@ -149,25 +171,7 @@ namespace BoardSecretariatSystem.UI
                 if (con.State == ConnectionState.Open)
                 {
                     con.Close();
-                }
-                companyNameComboBox.Text = companyNameComboBox.Text.Trim();                
-                boardNameComboBox.SelectedIndex = -1;
-                boardNameComboBox.Items.Clear();
-                boardNameComboBox.Enabled = true;
-                boardNameComboBox.Focus();
-
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "select RTRIM(Board.BoardName) from Board  Where Board.CompanyId = '" + companyId + "' order by Board.BoardId desc";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    boardNameComboBox.Items.Add(rdr[0]);
-                }
-                con.Close();
-
+                }           
             }
 
             catch (Exception ex)
@@ -243,7 +247,7 @@ namespace BoardSecretariatSystem.UI
         private void Reset()
         {
             companyNameComboBox.SelectedIndex = -1;
-            boardNameComboBox.SelectedIndex = -1;
+            cmbMemberType.SelectedIndex = -1;
             participantNameTextBox.Clear();
             participantDesignationTextBox.Clear();
             cmbEmailAddress.SelectedIndex = -1;
@@ -300,14 +304,14 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 = "insert into BoardMember(BMemberName,ContactNumber,Designation,EmailBankId,CompanyId,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 = "insert into Participant(ParticipantName,ContactNumber,Designation,EmailBankId,CompanyId,BoardMemberTypeId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", participantNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@d2", participantContactNoTextBox.Text);
                 cmd.Parameters.AddWithValue("@d3", participantDesignationTextBox.Text);
                 cmd.Parameters.AddWithValue("@d4", bankEmailId);
                 cmd.Parameters.AddWithValue("@d5", companyId);
-                cmd.Parameters.AddWithValue("@d6", boardId);
+                cmd.Parameters.AddWithValue("@d6", memberTypeId);
                 cmd.Parameters.AddWithValue("@d7", nUserId);
                 cmd.Parameters.AddWithValue("@d8", DateTime.UtcNow.ToLocalTime());
                 currentPerticipantId = (int) cmd.ExecuteScalar();
@@ -325,7 +329,7 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show("Please select company name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-           if (string.IsNullOrEmpty(boardNameComboBox.Text))
+           if (string.IsNullOrEmpty(cmbMemberType.Text))
             {
                 MessageBox.Show("Please select board name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                return;
@@ -397,12 +401,12 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct3 = "select BoardMember.BMemberName from BoardMember where  BoardMember.BMemberName='" + participantNameTextBox.Text + "'";
+                string ct3 = "select Participant.ParticipantName from Participant where  Participant.ParticipantName='" + participantNameTextBox.Text + "'";
                 cmd = new SqlCommand(ct3, con);
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read() && !rdr.IsDBNull(0))
                 {
-                    MessageBox.Show("This BoardMember Already Exists,Please Input another one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("This Participant Already Exists,Please Input another one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     con.Close();
                 }
                 //1. Both Not Applicable
@@ -444,66 +448,33 @@ namespace BoardSecretariatSystem.UI
 
         }
         private void boardNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                cmd = con.CreateCommand();
-                cmd.CommandText = "select BoardId from Board WHERE Board.BoardName= '" + boardNameComboBox.Text+ "'";
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                   boardId = (rdr.GetString(0));
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        {          
         }
 
         private void cmbRADivision_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
+        {           
         }
-
         private void cmbRADistrict_SelectedIndexChanged(object sender, EventArgs e)
         {           
         }
-
         private void cmbRAThana_SelectedIndexChanged(object sender, EventArgs e)
         {            
         }
-
         private void cmbRAPost_SelectedIndexChanged(object sender, EventArgs e)
         {           
         }
-
         private void cmbWAPost_SelectedIndexChanged(object sender, EventArgs e)
         {            
         }
-
         private void cmbWAThana_SelectedIndexChanged(object sender, EventArgs e)
         {            
         }
-
         private void cmbWADistrict_SelectedIndexChanged(object sender, EventArgs e)
         {            
         }
-
         private void cmbWADivision_SelectedIndexChanged(object sender, EventArgs e)
         {           
         }
-
         private void unKnownCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (unKnownCheckBox.Checked)
@@ -515,14 +486,14 @@ namespace BoardSecretariatSystem.UI
                     sameAsRACheckBox.Checked = false;
                     sameAsRACheckBox.CheckedChanged += sameAsRACheckBox_CheckedChanged;
                     groupBox4.Enabled = false;
-                    ResetPresentAddress();
+                    ResetPermanantAddress();
                     ResetPStar();
                 }
                 else
                 {
 
                     groupBox4.Enabled = false;
-                    ResetPresentAddress();
+                    ResetPermanantAddress();
                     ResetPStar();
                 }
 
@@ -532,14 +503,14 @@ namespace BoardSecretariatSystem.UI
                 if (sameAsRACheckBox.Checked)
                 {
                     groupBox4.Enabled = false;
-                    ResetPresentAddress();
+                    ResetPermanantAddress();
                     ResetPStar();
                 }
                 else
                 {
 
                     groupBox4.Enabled = true;
-                    ResetPresentAddress();
+                    ResetPermanantAddress();
                     FillPStar();
                 }
             }
@@ -638,6 +609,7 @@ namespace BoardSecretariatSystem.UI
                 ResetStar();
                 groupBox5.Enabled = false;
                 sameAsRACheckBox.Visible = false;
+                ResetPresentAddress();
 
             }
             else
@@ -752,15 +724,15 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctk = "SELECT  RTRIM(Board.BoardId)  from  Board  WHERE Board.BoardName=@find";
+                string ctk = "SELECT  RTRIM(BoardMemberTypes.BoardMemberTypeId)  from  BoardMemberTypes  WHERE BoardMemberTypes.BoardMemberType=@find";
                 cmd = new SqlCommand(ctk);
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Board"));
-                cmd.Parameters["@find"].Value = boardNameComboBox.Text;
+                cmd.Parameters["@find"].Value = cmbMemberType.Text;
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
-                    boardId = (rdr.GetString(0));
+                    memberTypeId = (rdr.GetString(0));
 
                 }
                 if ((rdr != null))
