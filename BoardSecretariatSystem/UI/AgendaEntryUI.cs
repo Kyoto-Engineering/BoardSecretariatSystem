@@ -61,6 +61,28 @@ namespace BoardSecretariatSystem
             }
 
         }
+        private void SaveMeetingAgenda()
+        {
+            try
+            {
+                for (int i = 0; i <= listView1.Items.Count - 1; i++)
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string cb = "insert into MeetingParticipant(MeetingId,AgendaId) VALUES(@d1,@d2)";
+                    cmd = new SqlCommand(cb, con);
+                    cmd.Parameters.AddWithValue("d1", meetingId);
+                    cmd.Parameters.AddWithValue("d2", listView2.Items[i].SubItems[1].Text);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
         private void SaveMeetingParticipant()
         {
             try
@@ -159,10 +181,10 @@ namespace BoardSecretariatSystem
                     {
                         con = new SqlConnection(cs.DBConn);
                         con.Open();
-                        string query1 = "insert into Agenda(AgendaTopics,MeetingId,UserId,DateTime) values (@d1,@d2,@d3,@d4)";
+                        string query1 = "insert into Agenda(AgendaTopics,UserId,DateTime) values (@d1,@d3,@d4)";
                         cmd = new SqlCommand(query1, con);
                         cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[1].Text);                       
-                        cmd.Parameters.AddWithValue("@d2", meetingId);
+                       // cmd.Parameters.AddWithValue("@d2", meetingId);
                         cmd.Parameters.AddWithValue("@d3", userId);
                         cmd.Parameters.AddWithValue("@d4", DateTime.UtcNow.ToLocalTime());
                         cmd.ExecuteNonQuery();

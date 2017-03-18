@@ -188,7 +188,7 @@ namespace BoardSecretariatSystem
         {
             companyNameComboBox.SelectedIndex = -1;
             boardNameComboBox.SelectedIndex = -1;
-            meetingNameTextBox.Clear();
+            //meetingNameTextBox.Clear();
             cmbVenue.SelectedIndex = -1;
             meetingDatePicker.Value=DateTime.Today;
         }
@@ -203,6 +203,9 @@ namespace BoardSecretariatSystem
              //referenceNo = "OIA-" + sClientIdForRefNum + "-" + sQN + "-" + quotationId +"";
             serialNo = yy + board_id + "" + currentMeetingId; 
         }
+
+
+
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(companyNameComboBox.Text))
@@ -215,19 +218,14 @@ namespace BoardSecretariatSystem
                 MessageBox.Show("Please select board Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (string.IsNullOrWhiteSpace(meetingNameTextBox.Text))
-            {
-                MessageBox.Show("Please Select meeting Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+           
                 try
-                {
-                    
+                {                    
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     string query2 = "insert into Meeting (MeetingName,MeetingLocation,MeetingDate,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                     cmd = new SqlCommand(query2, con);
-                    cmd.Parameters.AddWithValue("@d1", meetingNameTextBox.Text);
+                   // cmd.Parameters.AddWithValue("@d1", meetingNameTextBox.Text);
                     //cmd.Parameters.AddWithValue("@d2", locationTextBox.Text);
                     cmd.Parameters.AddWithValue("@d3", meetingDatePicker.Value.Date);                                  
                     cmd.Parameters.AddWithValue("@d4", board_id);

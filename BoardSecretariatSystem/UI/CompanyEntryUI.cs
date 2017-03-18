@@ -70,7 +70,7 @@ namespace BoardSecretariatSystem
             try
             {
                 con = new SqlConnection(cs.DBConn);
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT CompanyId,CompanyName,CompanyAddress,RegiNumber,DateTime FROM Company", con);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT Company.CompanyName,CompanyAddresses.FlatNo,CompanyAddresses.HouseNo,CompanyAddresses.RoadNo,CompanyAddresses.Block,CompanyAddresses.Area,CompanyAddresses.ContactNo,PostOffice.PostOfficeName, PostOffice.PostCode FROM  Company INNER JOIN CompanyAddresses ON Company.CompanyId = CompanyAddresses.CompanyId  INNER JOIN PostOffice ON CompanyAddresses.PostOfficeId = PostOffice.PostOfficeId INNER JOIN Thanas ON PostOffice.T_ID = Thanas.T_ID  INNER JOIN Districts ON Thanas.D_ID = Districts.D_ID  INNER JOIN Divisions ON Districts.Division_ID = Divisions.Division_ID", con);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 allCompanyListDataGridView.Rows.Clear();
@@ -82,6 +82,10 @@ namespace BoardSecretariatSystem
                     allCompanyListDataGridView.Rows[n].Cells[2].Value = item[2].ToString();
                     allCompanyListDataGridView.Rows[n].Cells[3].Value = item[3].ToString();
                     allCompanyListDataGridView.Rows[n].Cells[4].Value = item[4].ToString();
+                    allCompanyListDataGridView.Rows[n].Cells[5].Value = item[5].ToString();
+                    allCompanyListDataGridView.Rows[n].Cells[6].Value = item[6].ToString();
+                    allCompanyListDataGridView.Rows[n].Cells[7].Value = item[7].ToString();
+                    allCompanyListDataGridView.Rows[n].Cells[8].Value = item[8].ToString();
                     
                 }
 
@@ -96,8 +100,7 @@ namespace BoardSecretariatSystem
         
         public void CompanyEntryUIClear()
         {
-            companyNameTextBox.Clear();
-           // companyAddTextBox.Clear();
+            companyNameTextBox.Clear();         
             regNoTextBox.Clear();
         }
 
@@ -207,8 +210,7 @@ namespace BoardSecretariatSystem
                             currentCompanyId = (int) cmd.ExecuteScalar();
                             con.Close();
                             SaveCompanyAddress("CompanyAddresses");
-                            MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CompanyEntryUIClear();
+                            MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);                            
                             Reset();
                         }
                         catch (Exception ex)

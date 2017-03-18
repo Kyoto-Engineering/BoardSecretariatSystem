@@ -45,6 +45,9 @@
             this.cmbBoardName = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label13 = new System.Windows.Forms.Label();
             this.txtCellNumber = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -58,9 +61,6 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label11 = new System.Windows.Forms.Label();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -115,9 +115,9 @@
             this.agendaSaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.agendaSaveButton.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agendaSaveButton.ForeColor = System.Drawing.Color.Blue;
-            this.agendaSaveButton.Location = new System.Drawing.Point(683, 443);
+            this.agendaSaveButton.Location = new System.Drawing.Point(867, 443);
             this.agendaSaveButton.Name = "agendaSaveButton";
-            this.agendaSaveButton.Size = new System.Drawing.Size(141, 50);
+            this.agendaSaveButton.Size = new System.Drawing.Size(119, 60);
             this.agendaSaveButton.TabIndex = 30;
             this.agendaSaveButton.Text = "Save";
             this.agendaSaveButton.UseVisualStyleBackColor = false;
@@ -251,6 +251,23 @@
             this.dataGridView1.TabIndex = 41;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "BoardMember";
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 140;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Email";
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "ContactNo";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 110;
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -366,23 +383,6 @@
             this.label11.Size = new System.Drawing.Size(156, 19);
             this.label11.TabIndex = 33;
             this.label11.Text = "Board Member Name";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "BoardMember";
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 140;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Email";
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "ContactNo";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 110;
             // 
             // AgendaEntryUI
             // 
