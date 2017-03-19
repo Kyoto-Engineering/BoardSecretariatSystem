@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtBoardName = new System.Windows.Forms.TextBox();
             this.cmbCompanyName = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,6 +37,21 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.addButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbEmailAddress = new System.Windows.Forms.ComboBox();
@@ -111,23 +125,11 @@
             this.label24 = new System.Windows.Forms.Label();
             this.sameAsRACheckBox = new System.Windows.Forms.CheckBox();
             this.unKnownCheckBox = new System.Windows.Forms.CheckBox();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.txtBoardName = new System.Windows.Forms.TextBox();
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -147,49 +149,42 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(12, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(599, 163);
+            this.groupBox1.Size = new System.Drawing.Size(599, 113);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Board Creation";
-            // 
-            // txtBoardName
-            // 
-            this.txtBoardName.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoardName.Location = new System.Drawing.Point(211, 93);
-            this.txtBoardName.Name = "txtBoardName";
-            this.txtBoardName.Size = new System.Drawing.Size(365, 35);
-            this.txtBoardName.TabIndex = 10;
             // 
             // cmbCompanyName
             // 
             this.cmbCompanyName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbCompanyName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbCompanyName.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCompanyName.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCompanyName.FormattingEnabled = true;
-            this.cmbCompanyName.Location = new System.Drawing.Point(210, 38);
+            this.cmbCompanyName.Location = new System.Drawing.Point(240, 32);
             this.cmbCompanyName.Name = "cmbCompanyName";
-            this.cmbCompanyName.Size = new System.Drawing.Size(366, 34);
+            this.cmbCompanyName.Size = new System.Drawing.Size(308, 32);
             this.cmbCompanyName.TabIndex = 9;
+            this.cmbCompanyName.SelectedIndexChanged += new System.EventHandler(this.cmbCompanyName_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Yellow;
-            this.label2.Location = new System.Drawing.Point(69, 98);
+            this.label2.Location = new System.Drawing.Point(46, 70);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 22);
+            this.label2.Size = new System.Drawing.Size(136, 24);
             this.label2.TabIndex = 8;
             this.label2.Text = "Board Name :";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Yellow;
-            this.label1.Location = new System.Drawing.Point(43, 43);
+            this.label1.Location = new System.Drawing.Point(11, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 22);
+            this.label1.Size = new System.Drawing.Size(166, 24);
             this.label1.TabIndex = 7;
             this.label1.Text = "Company Name :";
             // 
@@ -209,9 +204,9 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.listView1);
-            this.groupBox3.Location = new System.Drawing.Point(11, 473);
+            this.groupBox3.Location = new System.Drawing.Point(11, 413);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1298, 257);
+            this.groupBox3.Size = new System.Drawing.Size(1298, 214);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             // 
@@ -234,12 +229,14 @@
             this.columnHeader14,
             this.columnHeader15,
             this.columnHeader16,
-            this.columnHeader17});
+            this.columnHeader17,
+            this.columnHeader18,
+            this.columnHeader19});
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(8, 16);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1277, 237);
+            this.listView1.Size = new System.Drawing.Size(1277, 192);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -253,6 +250,80 @@
             // 
             this.columnHeader2.Text = "Designation";
             this.columnHeader2.Width = 95;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Email";
+            this.columnHeader3.Width = 99;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "EmailId";
+            this.columnHeader4.Width = 2;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "CellNumber";
+            this.columnHeader5.Width = 100;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "PFlatNo";
+            this.columnHeader6.Width = 91;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "PHouseNo";
+            this.columnHeader7.Width = 86;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "PRoadNo";
+            this.columnHeader8.Width = 79;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "PBlock";
+            this.columnHeader9.Width = 64;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "PArea";
+            this.columnHeader10.Width = 113;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "PContactNo";
+            this.columnHeader11.Width = 100;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "PPostOfficeId";
+            this.columnHeader12.Width = 105;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "FlatNo";
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "HouseNo";
+            this.columnHeader14.Width = 78;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "RoadNo";
+            this.columnHeader15.Width = 70;
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "Block";
+            this.columnHeader16.Width = 113;
+            // 
+            // columnHeader17
+            // 
+            this.columnHeader17.Text = "Area";
+            this.columnHeader17.Width = 105;
             // 
             // addButton
             // 
@@ -280,7 +351,7 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Location = new System.Drawing.Point(617, 9);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(561, 159);
+            this.groupBox2.Size = new System.Drawing.Size(561, 142);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             // 
@@ -288,111 +359,111 @@
             // 
             this.cmbEmailAddress.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbEmailAddress.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbEmailAddress.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEmailAddress.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEmailAddress.FormattingEnabled = true;
-            this.cmbEmailAddress.Location = new System.Drawing.Point(214, 84);
+            this.cmbEmailAddress.Location = new System.Drawing.Point(214, 72);
             this.cmbEmailAddress.Name = "cmbEmailAddress";
-            this.cmbEmailAddress.Size = new System.Drawing.Size(278, 30);
+            this.cmbEmailAddress.Size = new System.Drawing.Size(278, 27);
             this.cmbEmailAddress.TabIndex = 105;
             this.cmbEmailAddress.SelectedIndexChanged += new System.EventHandler(this.cmbEmailAddress_SelectedIndexChanged);
             // 
             // txtCellNumber
             // 
-            this.txtCellNumber.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCellNumber.Location = new System.Drawing.Point(214, 119);
+            this.txtCellNumber.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCellNumber.Location = new System.Drawing.Point(214, 105);
             this.txtCellNumber.MaxLength = 11;
             this.txtCellNumber.Name = "txtCellNumber";
-            this.txtCellNumber.Size = new System.Drawing.Size(278, 29);
+            this.txtCellNumber.Size = new System.Drawing.Size(278, 26);
             this.txtCellNumber.TabIndex = 104;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Yellow;
-            this.label10.Location = new System.Drawing.Point(83, 122);
+            this.label10.Location = new System.Drawing.Point(83, 108);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(124, 22);
+            this.label10.Size = new System.Drawing.Size(103, 19);
             this.label10.TabIndex = 103;
             this.label10.Text = "Cell Number :";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Blue;
-            this.label7.Location = new System.Drawing.Point(126, 122);
+            this.label7.Location = new System.Drawing.Point(126, 108);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(0, 22);
+            this.label7.Size = new System.Drawing.Size(0, 19);
             this.label7.TabIndex = 102;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Yellow;
-            this.label8.Location = new System.Drawing.Point(135, 88);
+            this.label8.Location = new System.Drawing.Point(135, 76);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 22);
+            this.label8.Size = new System.Drawing.Size(60, 19);
             this.label8.TabIndex = 101;
             this.label8.Text = "Email  :";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Blue;
-            this.label6.Location = new System.Drawing.Point(126, 87);
+            this.label6.Location = new System.Drawing.Point(126, 75);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(0, 22);
+            this.label6.Size = new System.Drawing.Size(0, 19);
             this.label6.TabIndex = 100;
             // 
             // txtMDesignation
             // 
-            this.txtMDesignation.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMDesignation.Location = new System.Drawing.Point(214, 49);
+            this.txtMDesignation.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMDesignation.Location = new System.Drawing.Point(214, 41);
             this.txtMDesignation.Name = "txtMDesignation";
-            this.txtMDesignation.Size = new System.Drawing.Size(278, 29);
+            this.txtMDesignation.Size = new System.Drawing.Size(278, 26);
             this.txtMDesignation.TabIndex = 99;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Yellow;
-            this.label4.Location = new System.Drawing.Point(90, 51);
+            this.label4.Location = new System.Drawing.Point(90, 43);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 22);
+            this.label4.Size = new System.Drawing.Size(98, 19);
             this.label4.TabIndex = 98;
             this.label4.Text = "Designation :";
             // 
             // txtMemberName
             // 
-            this.txtMemberName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMemberName.Location = new System.Drawing.Point(214, 14);
+            this.txtMemberName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMemberName.Location = new System.Drawing.Point(214, 12);
             this.txtMemberName.Name = "txtMemberName";
-            this.txtMemberName.Size = new System.Drawing.Size(278, 29);
+            this.txtMemberName.Size = new System.Drawing.Size(278, 26);
             this.txtMemberName.TabIndex = 97;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Yellow;
-            this.label5.Location = new System.Drawing.Point(9, 17);
+            this.label5.Location = new System.Drawing.Point(9, 15);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(198, 22);
+            this.label5.Size = new System.Drawing.Size(165, 19);
             this.label5.TabIndex = 96;
             this.label5.Text = "Board Member Name :";
             // 
             // groupBox4
             // 
-            this.groupBox4.BackColor = System.Drawing.Color.Teal;
+            this.groupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.groupBox4.Controls.Add(this.groupBox5);
             this.groupBox4.Controls.Add(this.unKnownRA);
             this.groupBox4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.ForeColor = System.Drawing.Color.Yellow;
-            this.groupBox4.Location = new System.Drawing.Point(11, 172);
+            this.groupBox4.Location = new System.Drawing.Point(11, 128);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(594, 251);
             this.groupBox4.TabIndex = 93;
@@ -714,7 +785,7 @@
             this.groupBox6.Controls.Add(this.unKnownCheckBox);
             this.groupBox6.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.ForeColor = System.Drawing.Color.Yellow;
-            this.groupBox6.Location = new System.Drawing.Point(615, 172);
+            this.groupBox6.Location = new System.Drawing.Point(615, 156);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(694, 251);
             this.groupBox6.TabIndex = 94;
@@ -1039,87 +1110,12 @@
             this.unKnownCheckBox.UseVisualStyleBackColor = true;
             this.unKnownCheckBox.CheckedChanged += new System.EventHandler(this.unKnownCheckBox_CheckedChanged);
             // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Email";
-            this.columnHeader3.Width = 92;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "CellNumber";
-            this.columnHeader4.Width = 101;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "PFlatNo";
-            this.columnHeader5.Width = 75;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "PHouseNo";
-            this.columnHeader6.Width = 91;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "PRoadNo";
-            this.columnHeader7.Width = 86;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "PBlock";
-            this.columnHeader8.Width = 68;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "PArea";
-            this.columnHeader9.Width = 64;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "PContactNo";
-            this.columnHeader10.Width = 103;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "PPostCode";
-            this.columnHeader11.Width = 94;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "FlatNo";
-            this.columnHeader12.Width = 78;
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "HouseNo";
-            this.columnHeader13.Width = 87;
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.Text = "RoadNo";
-            this.columnHeader14.Width = 77;
-            // 
-            // columnHeader15
-            // 
-            this.columnHeader15.Text = "Area";
-            this.columnHeader15.Width = 79;
-            // 
-            // columnHeader16
-            // 
-            this.columnHeader16.Text = "ContactNo";
-            this.columnHeader16.Width = 113;
-            // 
-            // columnHeader17
-            // 
-            this.columnHeader17.Text = "PostCode";
-            this.columnHeader17.Width = 105;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Yellow;
-            this.label3.Location = new System.Drawing.Point(288, 443);
+            this.label3.Location = new System.Drawing.Point(147, 385);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(98, 22);
             this.label3.TabIndex = 95;
@@ -1130,18 +1126,35 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Yellow;
-            this.label9.Location = new System.Drawing.Point(400, 443);
+            this.label9.Location = new System.Drawing.Point(259, 385);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(241, 22);
             this.label9.TabIndex = 96;
             this.label9.Text = "Nothing Indicate Permanant";
+            // 
+            // txtBoardName
+            // 
+            this.txtBoardName.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoardName.Location = new System.Drawing.Point(240, 70);
+            this.txtBoardName.Name = "txtBoardName";
+            this.txtBoardName.Size = new System.Drawing.Size(308, 32);
+            this.txtBoardName.TabIndex = 10;
+            // 
+            // columnHeader18
+            // 
+            this.columnHeader18.Text = "ContactNo";
+            this.columnHeader18.Width = 114;
+            // 
+            // columnHeader19
+            // 
+            this.columnHeader19.Text = "PostOfficeId";
             // 
             // BoardEntryUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
-            this.ClientSize = new System.Drawing.Size(1321, 729);
+            this.ClientSize = new System.Drawing.Size(1321, 631);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox6);
@@ -1178,7 +1191,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtBoardName;
         private System.Windows.Forms.ComboBox cmbCompanyName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -1277,6 +1289,9 @@
         private System.Windows.Forms.CheckBox unKnownCheckBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtBoardName;
+        private System.Windows.Forms.ColumnHeader columnHeader18;
+        private System.Windows.Forms.ColumnHeader columnHeader19;
 
     }
 }

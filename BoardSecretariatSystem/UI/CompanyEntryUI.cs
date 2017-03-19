@@ -60,43 +60,43 @@ namespace BoardSecretariatSystem
         private void CompanyEntryUI_Load(object sender, EventArgs e)
         {
             userId = frmLogin.uId.ToString();
-            GetAllCompany();
+           // GetAllCompany();
             FillDivisionCombo();
         }
 
-        public void GetAllCompany()
-        {
+        //public void GetAllCompany()
+        //{
          
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT Company.CompanyName,CompanyAddresses.FlatNo,CompanyAddresses.HouseNo,CompanyAddresses.RoadNo,CompanyAddresses.Block,CompanyAddresses.Area,CompanyAddresses.ContactNo,PostOffice.PostOfficeName, PostOffice.PostCode FROM  Company INNER JOIN CompanyAddresses ON Company.CompanyId = CompanyAddresses.CompanyId  INNER JOIN PostOffice ON CompanyAddresses.PostOfficeId = PostOffice.PostOfficeId INNER JOIN Thanas ON PostOffice.T_ID = Thanas.T_ID  INNER JOIN Districts ON Thanas.D_ID = Districts.D_ID  INNER JOIN Divisions ON Districts.Division_ID = Divisions.Division_ID", con);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                allCompanyListDataGridView.Rows.Clear();
-                foreach (DataRow item in dt.Rows)
-                {
-                    int n = allCompanyListDataGridView.Rows.Add();
-                    allCompanyListDataGridView.Rows[n].Cells[0].Value = item[0].ToString();
-                    allCompanyListDataGridView.Rows[n].Cells[1].Value = item[1].ToString();
-                    allCompanyListDataGridView.Rows[n].Cells[2].Value = item[2].ToString();
-                    allCompanyListDataGridView.Rows[n].Cells[3].Value = item[3].ToString();
-                    allCompanyListDataGridView.Rows[n].Cells[4].Value = item[4].ToString();
-                    allCompanyListDataGridView.Rows[n].Cells[5].Value = item[5].ToString();
-                    allCompanyListDataGridView.Rows[n].Cells[6].Value = item[6].ToString();
-                    allCompanyListDataGridView.Rows[n].Cells[7].Value = item[7].ToString();
-                    allCompanyListDataGridView.Rows[n].Cells[8].Value = item[8].ToString();
+        //    try
+        //    {
+        //        con = new SqlConnection(cs.DBConn);
+        //        SqlDataAdapter sda = new SqlDataAdapter("SELECT Company.CompanyName,CompanyAddresses.FlatNo,CompanyAddresses.HouseNo,CompanyAddresses.RoadNo,CompanyAddresses.Block,CompanyAddresses.Area,CompanyAddresses.ContactNo,PostOffice.PostOfficeName, PostOffice.PostCode FROM  Company INNER JOIN CompanyAddresses ON Company.CompanyId = CompanyAddresses.CompanyId  INNER JOIN PostOffice ON CompanyAddresses.PostOfficeId = PostOffice.PostOfficeId INNER JOIN Thanas ON PostOffice.T_ID = Thanas.T_ID  INNER JOIN Districts ON Thanas.D_ID = Districts.D_ID  INNER JOIN Divisions ON Districts.Division_ID = Divisions.Division_ID", con);
+        //        DataTable dt = new DataTable();
+        //        sda.Fill(dt);
+        //        allCompanyListDataGridView.Rows.Clear();
+        //        foreach (DataRow item in dt.Rows)
+        //        {
+        //            int n = allCompanyListDataGridView.Rows.Add();
+        //            allCompanyListDataGridView.Rows[n].Cells[0].Value = item[0].ToString();
+        //            allCompanyListDataGridView.Rows[n].Cells[1].Value = item[1].ToString();
+        //            allCompanyListDataGridView.Rows[n].Cells[2].Value = item[2].ToString();
+        //            allCompanyListDataGridView.Rows[n].Cells[3].Value = item[3].ToString();
+        //            allCompanyListDataGridView.Rows[n].Cells[4].Value = item[4].ToString();
+        //            allCompanyListDataGridView.Rows[n].Cells[5].Value = item[5].ToString();
+        //            allCompanyListDataGridView.Rows[n].Cells[6].Value = item[6].ToString();
+        //            allCompanyListDataGridView.Rows[n].Cells[7].Value = item[7].ToString();
+        //            allCompanyListDataGridView.Rows[n].Cells[8].Value = item[8].ToString();
                     
-                }
+        //        }
 
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
 
-        }
+        //}
         
         public void CompanyEntryUIClear()
         {
@@ -104,13 +104,38 @@ namespace BoardSecretariatSystem
             regNoTextBox.Clear();
         }
 
+        private void SaveOtherAddress(string  tableName)
+        {
+            string tableName1 = tableName;
+
+            if (tableName1 == "OtherAddresses")
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string insertQ = "insert into " + tableName1 + "(PostOfficeId,OFlatNo,OHouseNo,ORoadNo,OBlock,OArea,OContactNo,CompanyId) Values(@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                cmd = new SqlCommand(insertQ);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
+                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtOFlat.Text) ? (object)DBNull.Value : txtOFlat.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtOHouse.Text) ? (object)DBNull.Value : txtOHouse.Text));
+                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtORoad.Text) ? (object)DBNull.Value : txtORoad.Text));
+                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(txtOBlock.Text) ? (object)DBNull.Value : txtOBlock.Text));
+                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtOArea.Text) ? (object)DBNull.Value : txtOArea.Text));
+                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtOContactNo.Text) ? (object)DBNull.Value : txtOContactNo.Text));
+                cmd.Parameters.AddWithValue("@d11", currentCompanyId);
+                affectedRows1 = (int)cmd.ExecuteScalar();
+                con.Close();
+            }
+        }
         private void SaveCompanyAddress(string tableName)
         {
             string tableName1 = tableName;
-           
+
+            if (tableName1 == "RegisteredAddresses")
+            {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string insertQ = "insert into " + tableName1 + "(PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,CompanyId) Values(@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string insertQ = "insert into " + tableName1 + "(PostOfficeId,RgFlatNo,RgHouseNo,RgRoadNo,RgBlock,RgArea,RgContactNo,CompanyId) Values(@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(insertQ);
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
@@ -123,6 +148,26 @@ namespace BoardSecretariatSystem
                 cmd.Parameters.AddWithValue("@d11", currentCompanyId);
                 affectedRows1 = (int)cmd.ExecuteScalar();
                 con.Close();
+            }
+            if (tableName1 == "CorporateHQAddresses")
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string insertQ = "insert into " + tableName1 + "(PostOfficeId,CHQFlatNo,CHQHouseNo,CHQRoadNo,CHQBlock,CHQArea,CHQContactNo,CompanyId) Values(@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                cmd = new SqlCommand(insertQ);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
+                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtHQFlatNo.Text) ? (object)DBNull.Value : txtHQFlatNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtHQHouseNo.Text) ? (object)DBNull.Value : txtHQHouseNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtHQRoadNo.Text) ? (object)DBNull.Value : txtHQRoadNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(txtHQBlock.Text) ? (object)DBNull.Value : txtHQBlock.Text));
+                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtHQArea.Text) ? (object)DBNull.Value : txtHQArea.Text));
+                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtHQContactNo.Text) ? (object)DBNull.Value : txtHQContactNo.Text));
+                cmd.Parameters.AddWithValue("@d11", currentCompanyId);
+                affectedRows1 = (int)cmd.ExecuteScalar();
+                con.Close();
+            }
+            
             
         }
 
@@ -201,15 +246,19 @@ namespace BoardSecretariatSystem
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into Company(CompanyName,RegiNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into Company(CompanyName,ValueofEachShare,TotalIssuedShare,TotalAuthorizedShare,RegiNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
-                            cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);                          
-                            cmd.Parameters.AddWithValue("@d2", regNoTextBox.Text);
-                            cmd.Parameters.AddWithValue("@d3", userId);
-                            cmd.Parameters.AddWithValue("@d4", creatingDateTimePicker.Value);
+                            cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);
+                            cmd.Parameters.AddWithValue("@d2", txtValueOfEachShare.Text);
+                            cmd.Parameters.AddWithValue("@d3", txtTotalIssuedShare.Text);
+                            cmd.Parameters.AddWithValue("@d4", txtTotalAuthorizedShare.Text);    
+                            cmd.Parameters.AddWithValue("@d5", regNoTextBox.Text);
+                            cmd.Parameters.AddWithValue("@d6", userId);
+                            cmd.Parameters.AddWithValue("@d7", creatingDateTimePicker.Value);
                             currentCompanyId = (int) cmd.ExecuteScalar();
                             con.Close();
                             SaveCompanyAddress("CompanyAddresses");
+                            SaveOtherAddress("OtherAddress");
                             MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);                            
                             Reset();
                         }
@@ -217,7 +266,7 @@ namespace BoardSecretariatSystem
                         {
                             MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                        GetAllCompany();
+                       // GetAllCompany();
                     }
 
                 } 
@@ -250,19 +299,19 @@ namespace BoardSecretariatSystem
 
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
-            SqlDataAdapter sda = new SqlDataAdapter("SELECT CompanyId,CompanyName,CompanyAddress,RegiNumber,DateTime FROM Company WHERE (CompanyName LIKE '" + searchTextBox.Text + "%')", con);
-            DataTable dataTable = new DataTable();
-            sda.Fill(dataTable);
-            allCompanyListDataGridView.Rows.Clear();
-            foreach (DataRow item in dataTable.Rows)
-            {
-                int n = allCompanyListDataGridView.Rows.Add();
-                allCompanyListDataGridView.Rows[n].Cells[0].Value = item[0].ToString();
-                allCompanyListDataGridView.Rows[n].Cells[1].Value = item[1].ToString();
-                allCompanyListDataGridView.Rows[n].Cells[2].Value = item[2].ToString();
-                allCompanyListDataGridView.Rows[n].Cells[3].Value = item[3].ToString();
-                allCompanyListDataGridView.Rows[n].Cells[4].Value = item[4].ToString();
-            }
+            //SqlDataAdapter sda = new SqlDataAdapter("SELECT CompanyId,CompanyName,CompanyAddress,RegiNumber,DateTime FROM Company WHERE (CompanyName LIKE '" + searchTextBox.Text + "%')", con);
+            //DataTable dataTable = new DataTable();
+            //sda.Fill(dataTable);
+            //allCompanyListDataGridView.Rows.Clear();
+            //foreach (DataRow item in dataTable.Rows)
+            //{
+            //    int n = allCompanyListDataGridView.Rows.Add();
+            //    allCompanyListDataGridView.Rows[n].Cells[0].Value = item[0].ToString();
+            //    allCompanyListDataGridView.Rows[n].Cells[1].Value = item[1].ToString();
+            //    allCompanyListDataGridView.Rows[n].Cells[2].Value = item[2].ToString();
+            //    allCompanyListDataGridView.Rows[n].Cells[3].Value = item[3].ToString();
+            //    allCompanyListDataGridView.Rows[n].Cells[4].Value = item[4].ToString();
+            //}
         }
 
         private void divisionCombo_SelectedIndexChanged(object sender, EventArgs e)

@@ -20,7 +20,7 @@ namespace BoardSecretariatSystem.UI
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
         private delegate void ChangeFocusDelegate(Control ctl);
-        public int companyId, currentBoardId, bankEmailId;
+        public int companyId, currentBoardId, bankEmailId, boardId,currentBoardMemberId;
         public string userId, divisionId, divisionIdP, districtId, districtIdP, thanaId, thanaIdP, postofficeId, postofficeIdP, memberTypeId;
 
         public BoardEntryUI()
@@ -79,7 +79,7 @@ namespace BoardSecretariatSystem.UI
             cmbCompanyName.SelectedIndex = -1;
             txtBoardName.Clear();
         }
-        private void SaveBoardMember()
+        private void SaveMemberAddress()
         {
             try
             {
@@ -87,10 +87,55 @@ namespace BoardSecretariatSystem.UI
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string cb = "insert into BoardMember(BoardId,ParticipantId) VALUES(@d1,@d2)";
+                    string query1 = "insert into Participant(ParticipantName,BoardMemberTypeId,Designation,EmailBankId,ContactNumber,CompanyId,BoardId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8,@d9)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                    cmd = new SqlCommand(query1, con);
+                    cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[0].Text);
+                    cmd.Parameters.AddWithValue("@d2", "1");
+                    cmd.Parameters.AddWithValue("@d3", listView1.Items[i].SubItems[1].Text);
+                    cmd.Parameters.AddWithValue("@d4", listView1.Items[i].SubItems[3].Text);
+                    cmd.Parameters.AddWithValue("@d5", listView1.Items[i].SubItems[4].Text);
+                    cmd.Parameters.AddWithValue("@d6", companyId);
+                    cmd.Parameters.AddWithValue("@d7", boardId);
+                    cmd.Parameters.AddWithValue("@d8", userId);
+                    cmd.Parameters.AddWithValue("@d9", DateTime.UtcNow.ToLocalTime());
+                    currentBoardMemberId = (int)cmd.ExecuteScalar();
+                    con.Close();        
+
+
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string qry = "insert into PPresentAddresses(PostOfficeId,PFlatNo,PHouseNo,PRoadNo,PBlock,PArea,PContactNo,ParticipantId) VALUES(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)";
+                    cmd = new SqlCommand(qry, con);
+                    cmd.Parameters.AddWithValue("d1", listView1.Items[i].SubItems[11].Text);
+                    cmd.Parameters.AddWithValue("d2", listView1.Items[i].SubItems[5].Text);
+                    cmd.Parameters.AddWithValue("d3", listView1.Items[i].SubItems[6].Text);
+                    cmd.Parameters.AddWithValue("d4", listView1.Items[i].SubItems[7].Text);
+                    cmd.Parameters.AddWithValue("d5", listView1.Items[i].SubItems[8].Text);
+                    cmd.Parameters.AddWithValue("d6", listView1.Items[i].SubItems[9].Text);
+                    cmd.Parameters.AddWithValue("d7", listView1.Items[i].SubItems[10].Text);
+                    cmd.Parameters.Add(new SqlParameter("@d1", string.IsNullOrEmpty(postofficeIdP) ? (object)DBNull.Value : postofficeIdP));
+                    cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(txtPFlatName.Text) ? (object)DBNull.Value : txtPFlatName.Text));
+                    cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(txtPHouseName.Text) ? (object)DBNull.Value : txtPHouseName.Text));
+                    cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(txtPRoadNo.Text) ? (object)DBNull.Value : txtPRoadNo.Text));
+                    cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtPBlock.Text) ? (object)DBNull.Value : txtPBlock.Text));
+                    cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtPArea.Text) ? (object)DBNull.Value : txtPArea.Text));
+                    cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtPContactNo.Text) ? (object)DBNull.Value : txtPContactNo.Text));
+                    cmd.Parameters.AddWithValue("d8", currentBoardMemberId);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string cb = "insert into PPermanantAddresses(PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,ParticipantId) VALUES(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)";
                     cmd = new SqlCommand(cb, con);
-                    cmd.Parameters.AddWithValue("d1", currentBoardId);
-                    cmd.Parameters.AddWithValue("d2", listView1.Items[i].SubItems[1].Text);
+                    cmd.Parameters.AddWithValue("d1", listView1.Items[i].SubItems[18].Text);
+                    cmd.Parameters.AddWithValue("d2", listView1.Items[i].SubItems[12].Text);
+                    cmd.Parameters.AddWithValue("d3", listView1.Items[i].SubItems[13].Text);
+                    cmd.Parameters.AddWithValue("d4", listView1.Items[i].SubItems[14].Text);
+                    cmd.Parameters.AddWithValue("d5", listView1.Items[i].SubItems[15].Text);
+                    cmd.Parameters.AddWithValue("d6", listView1.Items[i].SubItems[16].Text);
+                    cmd.Parameters.AddWithValue("d7", listView1.Items[i].SubItems[17].Text);
+                    cmd.Parameters.AddWithValue("d8", currentBoardMemberId);
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
@@ -100,6 +145,38 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void SaveMemberPermanantAddress()
+        {
+            try
+            {
+                for (int i = 0; i <= listView1.Items.Count - 1; i++)
+                {
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void SavePerticipant()
+        {
+            try
+            {
+                for (int i = 0; i < listView1.Items.Count-1; i++)
+                {
+                       
+                }   
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }                        
         }
         private void saveButton_Click_1(object sender, EventArgs e)
         {
@@ -112,36 +189,23 @@ namespace BoardSecretariatSystem.UI
             {
                 MessageBox.Show("Please enter board name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                  return;
-            }            
-              if (!string.IsNullOrEmpty(cmbCompanyName.Text))
-                {
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    string ct2 = "select CompanyId from Company where CompanyName='" + cmbCompanyName.Text + "'";
-                    cmd = new SqlCommand(ct2, con);
-                    rdr = cmd.ExecuteReader();
-                    if (rdr.Read() && !rdr.IsDBNull(0))
-                    {
-                        companyId = rdr.GetInt32(0);
+            }
 
-                    }                   
-                    con.Close();
-                }
-                if (!string.IsNullOrEmpty(txtBoardName.Text))
-                {
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    string ct1 = "select BoardName,CompanyId from Board where BoardName='" + txtBoardName.Text + "' AND CompanyId='" + companyId + "'";
-                    cmd = new SqlCommand(ct1, con);
-                    rdr = cmd.ExecuteReader();
-                    if (rdr.Read() && !rdr.IsDBNull(0))
-                    {
-                        MessageBox.Show("This Board Name Already Exists,Please Input another one", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtBoardName.ResetText();
-                        txtBoardName.Focus();
-                        con.Close();
+             if (!string.IsNullOrEmpty(txtBoardName.Text))
+             {
+                 con = new SqlConnection(cs.DBConn);
+                 con.Open();
+                 string ct1 = "select BoardName from Board where BoardName='" + txtBoardName.Text + "' ";
+                 cmd = new SqlCommand(ct1, con);
+                 rdr = cmd.ExecuteReader();
+                 if (rdr.Read() && !rdr.IsDBNull(0))
+                 {
+                     MessageBox.Show("This Board Name Already Exists,Please Input another one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                     txtBoardName.ResetText();
+                     txtBoardName.Focus();
+                     con.Close();
 
-                    }                
+                 }                
                         try
                         {
                             con = new SqlConnection(cs.DBConn);
@@ -153,39 +217,17 @@ namespace BoardSecretariatSystem.UI
                             cmd.Parameters.AddWithValue("@d3", userId);
                             cmd.Parameters.AddWithValue("@d4", DateTime.UtcNow.ToLocalTime());
                             currentBoardId = (int) cmd.ExecuteScalar();
-                            con.Close();
-                            SaveBoardMember();
+                            con.Close();                           
+                            SaveMemberAddress();
                             MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Reset();
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }                
-              
+                        }                              
             }
-        }
-
-        private void GetBoardList()
-        {
-            //try
-            //{
-            //    con = new SqlConnection(cs.DBConn);
-            //    con.Open();
-            //    cmd = new SqlCommand("SELECT Board.BoardName,Company.CompanyName FROM  Company INNER JOIN Board ON Company.CompanyId = Board.CompanyId", con);
-            //    rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-            //    dataGridView1.Rows.Clear();
-            //    while (rdr.Read() == true)
-            //    {
-            //        dataGridView1.Rows.Add(rdr[0],rdr[1]);
-            //    }
-            //    con.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-        }
+        }        
         public void FillPermanantDivisionCombo()
         {
             try
@@ -234,6 +276,27 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        //private void GetBoardName()
+        //{
+        //    try
+        //    {
+        //        con = new SqlConnection(cs.DBConn);
+        //        con.Open();
+        //        string ctt = "select BoardName from Board";
+        //        cmd = new SqlCommand(ctt);
+        //        cmd.Connection = con;
+        //        rdr = cmd.ExecuteReader();
+        //        while (rdr.Read())
+        //        {
+        //            cmbBoardName.Items.Add(rdr.GetValue(0).ToString());
+        //        }
+        //        cmbBoardName.Items.Add("Not In The List");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
         private void EmailAddress()
         {
             try
@@ -264,6 +327,16 @@ namespace BoardSecretariatSystem.UI
             txtMDesignation.Clear();
             cmbEmailAddress.SelectedIndex = -1;
             txtCellNumber.Clear();
+            unKnownRA.CheckedChanged -= unKnownRA_CheckedChanged;
+            unKnownRA.Checked = false;
+            unKnownRA.CheckedChanged += unKnownRA_CheckedChanged;
+            unKnownCheckBox.CheckedChanged -= unKnownCheckBox_CheckedChanged;
+            unKnownCheckBox.Checked = false;
+            unKnownCheckBox.CheckedChanged += unKnownCheckBox_CheckedChanged;
+
+            sameAsRACheckBox.CheckedChanged -= sameAsRACheckBox_CheckedChanged;
+            sameAsRACheckBox.Checked = false;
+            sameAsRACheckBox.CheckedChanged += sameAsRACheckBox_CheckedChanged;
 
             ResetPermanantAddress();
             ResetPresentAddress();
@@ -281,14 +354,7 @@ namespace BoardSecretariatSystem.UI
             cmbThana.SelectedIndex = -1;
             cmbDistrict.SelectedIndex = -1;
             cmbDivision.SelectedIndex = -1;
-            unKnownCheckBox.CheckedChanged -= unKnownCheckBox_CheckedChanged;
-            unKnownCheckBox.Checked = false;
-            unKnownCheckBox.CheckedChanged += unKnownCheckBox_CheckedChanged;
-
-            sameAsRACheckBox.CheckedChanged -= sameAsRACheckBox_CheckedChanged;
-            sameAsRACheckBox.Checked = false;
-            sameAsRACheckBox.CheckedChanged += sameAsRACheckBox_CheckedChanged;
-
+          
 
         }
         public void ResetPresentAddress()
@@ -304,9 +370,7 @@ namespace BoardSecretariatSystem.UI
             cmbPThana.SelectedIndex = -1;
             cmbPDistrict.SelectedIndex = -1;
             cmbPDivision.SelectedIndex = -1;
-            unKnownRA.CheckedChanged -= unKnownRA_CheckedChanged;
-            unKnownRA.Checked = false;
-            unKnownRA.CheckedChanged += unKnownRA_CheckedChanged;
+           
 
         }
         private void ResetPStar()
@@ -331,7 +395,7 @@ namespace BoardSecretariatSystem.UI
             FillPermanantDivisionCombo();
             FillPresentDivisionCombo();
             EmailAddress();
-            GetBoardList();
+            //GetBoardName();          
             userId = frmLogin.uId.ToString();
         }
         private void FillStar()
@@ -1173,6 +1237,112 @@ namespace BoardSecretariatSystem.UI
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void cmbBoardName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (cmbBoardName.Text == "Not In The List")
+            //{
+            //    string input = Microsoft.VisualBasic.Interaction.InputBox("Please Input Board Name  Here", "Input Here", "", -1, -1);
+            //    if (string.IsNullOrWhiteSpace(input))
+            //    {
+            //        cmbBoardName.SelectedIndex = -1;
+            //    }
+
+            //    else
+            //    {                   
+            //        con = new SqlConnection(cs.DBConn);
+            //        con.Open();
+            //        string ct2 = "select BoardName from Board where BoardName='" + input + "'";
+            //        cmd = new SqlCommand(ct2, con);
+            //        rdr = cmd.ExecuteReader();
+            //        if (rdr.Read() && !rdr.IsDBNull(0))
+            //        {
+            //            MessageBox.Show("This Board  Already Exists,Please Select From List", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            con.Close();
+            //            cmbBoardName.SelectedIndex = -1;
+            //        }
+            //        else
+            //        {
+            //            try
+            //            {
+            //                con = new SqlConnection(cs.DBConn);
+            //                con.Open();
+            //                string query1 = "insert into Board (BoardName,CompanyId,UserId,DateTime) values (@d1,@d2,@d3,@d4)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+            //                cmd = new SqlCommand(query1, con);
+            //                cmd.Parameters.AddWithValue("@d1", input);
+            //                cmd.Parameters.AddWithValue("@d2", companyId);
+            //                cmd.Parameters.AddWithValue("@d3", userId);
+            //                cmd.Parameters.AddWithValue("@d4", DateTime.UtcNow.ToLocalTime());
+            //                cmd.ExecuteNonQuery();
+            //                con.Close();
+            //                cmbBoardName.Items.Clear();
+            //                GetBoardName();
+            //                cmbBoardName.SelectedText = input;
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            }
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    try
+            //    {
+            //        con = new SqlConnection(cs.DBConn);
+            //        con.Open();
+            //        cmd = con.CreateCommand();
+            //        cmd.CommandText = "SELECT BoardId from Board WHERE BoardName= '" + cmbBoardName.Text + "'";
+
+            //        rdr = cmd.ExecuteReader();
+            //        if (rdr.Read())
+            //        {
+            //            boardId = rdr.GetInt32(0);
+            //        }
+            //        if ((rdr != null))
+            //        {
+            //            rdr.Close();
+            //        }
+            //        if (con.State == ConnectionState.Open)
+            //        {
+            //            con.Close();
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
+        }
+
+        private void cmbCompanyName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT CompanyId from Company WHERE CompanyName= '" + cmbCompanyName.Text + "'";
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    companyId = rdr.GetInt32(0);
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

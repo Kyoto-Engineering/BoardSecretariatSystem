@@ -36,9 +36,9 @@
             this.participantCreateButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonMultiCombo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonLogOut = new System.Windows.Forms.Button();
-            this.buttonMultiCombo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +60,7 @@
             this.boardCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.boardCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boardCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.boardCreateButton.Location = new System.Drawing.Point(21, 82);
+            this.boardCreateButton.Location = new System.Drawing.Point(21, 280);
             this.boardCreateButton.Name = "boardCreateButton";
             this.boardCreateButton.Size = new System.Drawing.Size(144, 56);
             this.boardCreateButton.TabIndex = 1;
@@ -86,7 +86,7 @@
             this.meetingCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.meetingCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meetingCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.meetingCreateButton.Location = new System.Drawing.Point(21, 149);
+            this.meetingCreateButton.Location = new System.Drawing.Point(21, 143);
             this.meetingCreateButton.Name = "meetingCreateButton";
             this.meetingCreateButton.Size = new System.Drawing.Size(144, 59);
             this.meetingCreateButton.TabIndex = 2;
@@ -112,11 +112,11 @@
             this.participantCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.participantCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.participantCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.participantCreateButton.Location = new System.Drawing.Point(21, 277);
+            this.participantCreateButton.Location = new System.Drawing.Point(21, 78);
             this.participantCreateButton.Name = "participantCreateButton";
-            this.participantCreateButton.Size = new System.Drawing.Size(136, 59);
+            this.participantCreateButton.Size = new System.Drawing.Size(144, 59);
             this.participantCreateButton.TabIndex = 4;
-            this.participantCreateButton.Text = "Participant Creation";
+            this.participantCreateButton.Text = "Share Holder  Creation";
             this.participantCreateButton.UseVisualStyleBackColor = false;
             this.participantCreateButton.Click += new System.EventHandler(this.participantCreateButton_Click);
             // 
@@ -136,9 +136,9 @@
             this.groupBox1.Controls.Add(this.buttonMultiCombo);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.companyCreateButton);
+            this.groupBox1.Controls.Add(this.meetingCreateButton);
             this.groupBox1.Controls.Add(this.boardCreateButton);
             this.groupBox1.Controls.Add(this.meetingExecutionButton);
-            this.groupBox1.Controls.Add(this.meetingCreateButton);
             this.groupBox1.Controls.Add(this.participantCreateButton);
             this.groupBox1.Controls.Add(this.agendaCreateButton);
             this.groupBox1.Location = new System.Drawing.Point(14, 12);
@@ -146,6 +146,16 @@
             this.groupBox1.Size = new System.Drawing.Size(183, 578);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
+            // 
+            // buttonMultiCombo
+            // 
+            this.buttonMultiCombo.Location = new System.Drawing.Point(0, 439);
+            this.buttonMultiCombo.Name = "buttonMultiCombo";
+            this.buttonMultiCombo.Size = new System.Drawing.Size(91, 42);
+            this.buttonMultiCombo.TabIndex = 7;
+            this.buttonMultiCombo.Text = "MultiCombo";
+            this.buttonMultiCombo.UseVisualStyleBackColor = true;
+            this.buttonMultiCombo.Click += new System.EventHandler(this.buttonMultiCombo_Click);
             // 
             // button1
             // 
@@ -172,16 +182,6 @@
             this.buttonLogOut.Text = "LogOut";
             this.buttonLogOut.UseVisualStyleBackColor = false;
             this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
-            // 
-            // buttonMultiCombo
-            // 
-            this.buttonMultiCombo.Location = new System.Drawing.Point(52, 426);
-            this.buttonMultiCombo.Name = "buttonMultiCombo";
-            this.buttonMultiCombo.Size = new System.Drawing.Size(91, 42);
-            this.buttonMultiCombo.TabIndex = 7;
-            this.buttonMultiCombo.Text = "MultiCombo";
-            this.buttonMultiCombo.UseVisualStyleBackColor = true;
-            this.buttonMultiCombo.Click += new System.EventHandler(this.buttonMultiCombo_Click);
             // 
             // MainUI
             // 

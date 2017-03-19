@@ -56,6 +56,9 @@
             this.cmbTopics = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label13 = new System.Windows.Forms.Label();
             this.txtCellNumber = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -74,9 +77,6 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.meetingExecListDataGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -218,7 +218,6 @@
             // 
             this.meetingExecListDataGridView.AllowUserToAddRows = false;
             this.meetingExecListDataGridView.AllowUserToDeleteRows = false;
-            this.meetingExecListDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.meetingExecListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.meetingExecListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -229,7 +228,7 @@
             this.meetingExecListDataGridView.Location = new System.Drawing.Point(17, 68);
             this.meetingExecListDataGridView.Name = "meetingExecListDataGridView";
             this.meetingExecListDataGridView.ReadOnly = true;
-            this.meetingExecListDataGridView.Size = new System.Drawing.Size(818, 183);
+            this.meetingExecListDataGridView.Size = new System.Drawing.Size(794, 183);
             this.meetingExecListDataGridView.TabIndex = 16;
             // 
             // Column1
@@ -237,30 +236,35 @@
             this.Column1.HeaderText = "Company Name";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
+            this.Column1.Width = 110;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Board";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
+            this.Column2.Width = 111;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Discussion Summary";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
+            this.Column3.Width = 111;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "Resolution";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
+            this.Column4.Width = 112;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Decision";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
+            this.Column5.Width = 112;
             // 
             // groupBox1
             // 
@@ -378,6 +382,23 @@
             this.dataGridView1.Size = new System.Drawing.Size(403, 279);
             this.dataGridView1.TabIndex = 41;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "BoardMember";
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 150;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Email";
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "ContactNo";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 110;
             // 
             // label13
             // 
@@ -540,23 +561,6 @@
             this.button1.Text = "Add";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "BoardMember";
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 150;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Email";
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "ContactNo";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 110;
             // 
             // MeetingExecutionUI
             // 
