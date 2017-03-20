@@ -19,8 +19,8 @@ namespace BoardSecretariatSystem
         private SqlCommand cmd;
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
-        public string userId, postofficeId,thanaId,districtId,divisionId;
-        public int currentCompanyId, affectedRows1, addHeaderId;
+        public string userId, postofficeId, thanaId, districtId, divisionId, districtIdC, districtIdO,districtIdHQ, divisionIdC, divisionIdO,divisionIdHQ, thanaIdC, thanaIdC2, thanaIdO,thanaIdHQ, postofficeIdC, postofficeIdO, postofficeIdHQ;
+        public int currentCompanyId, affectedRows1,affectedRows2, addHeaderId;
 
         public CompanyEntryUI()
         {
@@ -57,11 +57,78 @@ namespace BoardSecretariatSystem
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public void FillODivisionCombo()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(Divisions.Division) from Divisions  order by Divisions.Division_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbODivision.Items.Add(rdr[0]);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void FillHQDivisionCombo()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(Divisions.Division) from Divisions  order by Divisions.Division_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbHQDivision.Items.Add(rdr[0]);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void AddressHeader()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctt = "select AHeaderName from AddressHeader";
+                cmd = new SqlCommand(ctt);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbAddressHeader.Items.Add(rdr.GetValue(0).ToString());
+                }
+                cmbAddressHeader.Items.Add("Not In The List");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void CompanyEntryUI_Load(object sender, EventArgs e)
         {
             userId = frmLogin.uId.ToString();
+            FillHQDivisionCombo();
+            FillODivisionCombo();
+            groupBox5.Enabled = false;
            // GetAllCompany();
             FillDivisionCombo();
+            AddressHeader();
         }
 
         //public void GetAllCompany()
@@ -110,21 +177,24 @@ namespace BoardSecretariatSystem
 
             if (tableName1 == "OtherAddresses")
             {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string insertQ = "insert into " + tableName1 + "(PostOfficeId,OFlatNo,OHouseNo,ORoadNo,OBlock,OArea,OContactNo,CompanyId) Values(@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
-                cmd = new SqlCommand(insertQ);
-                cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
-                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtOFlat.Text) ? (object)DBNull.Value : txtOFlat.Text));
-                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtOHouse.Text) ? (object)DBNull.Value : txtOHouse.Text));
-                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtORoad.Text) ? (object)DBNull.Value : txtORoad.Text));
-                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(txtOBlock.Text) ? (object)DBNull.Value : txtOBlock.Text));
-                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtOArea.Text) ? (object)DBNull.Value : txtOArea.Text));
-                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtOContactNo.Text) ? (object)DBNull.Value : txtOContactNo.Text));
-                cmd.Parameters.AddWithValue("@d11", currentCompanyId);
-                affectedRows1 = (int)cmd.ExecuteScalar();
-                con.Close();
+                for (int i = 0; i < listView1.Items.Count-1; i++)
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string insertQ = "insert into " + tableName1 + "(PostOfficeId,OFlatNo,OHouseNo,ORoadNo,OBlock,OArea,OContactNo,CompanyId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                    cmd = new SqlCommand(insertQ);
+                    cmd.Connection = con;
+                    cmd.Parameters.Add(new SqlParameter("@d1", string.IsNullOrEmpty(listView1.Items[i].SubItems[9].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[9].Text));
+                    cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(listView1.Items[i].SubItems[3].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[3].Text));
+                    cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(listView1.Items[i].SubItems[4].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[4].Text));
+                    cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(listView1.Items[i].SubItems[5].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[5].Text));
+                    cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(listView1.Items[i].SubItems[6].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[6].Text));
+                    cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(listView1.Items[i].SubItems[7].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[7].Text));
+                    cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(listView1.Items[i].SubItems[8].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[8].Text));
+                    cmd.Parameters.AddWithValue("@d8", currentCompanyId);
+                    affectedRows1 = (int)cmd.ExecuteScalar();
+                    con.Close();
+                }
             }
         }
         private void SaveCompanyAddress(string tableName)
@@ -171,9 +241,37 @@ namespace BoardSecretariatSystem
             
         }
 
-        private void Reset()
-        {  
-            companyNameTextBox.Clear();
+        private void ResetHQAddress()
+        {
+            txtHQFlatNo.Clear();
+            txtHQHouseNo.Clear();
+            txtHQRoadNo.Clear();
+            txtHQBlock.Clear();
+            txtHQArea.Clear();
+            txtHQContactNo.Clear();
+            txtHQPostCode.Clear();
+            cmbHQPost.SelectedIndex = -1;
+            cmbHQThana.SelectedIndex = -1;
+            cmbHQDistrict.SelectedIndex = -1;
+            cmbHQDivision.SelectedIndex = -1;
+        }
+        private void ResetOtherAddress()
+        {
+            txtOFlat.Clear();
+            txtOHouse.Clear();
+            txtORoad.Clear();
+            txtOBlock.Clear();
+            txtOArea.Clear();
+            txtOContactNo.Clear();
+            txtOPostCode.Clear();
+            cmbOPost.SelectedIndex = -1;
+            cmbOThana.SelectedIndex = -1;
+            cmbODistrict.SelectedIndex = -1;
+            cmbODivision.SelectedIndex = -1;
+        }
+
+        private void ResetRegisteredAddress()
+        {
             flatNoTextBox.Clear();
             houseNoTextBox.Clear();
             roadNoTextBox.Clear();
@@ -185,9 +283,39 @@ namespace BoardSecretariatSystem
             thanaCombo.SelectedIndex = -1;
             distCombo.SelectedIndex = -1;
             divisionCombo.SelectedIndex = -1;
+        }
+        private void FillStar()
+        {
+            label38.Visible = true;
+            label46.Visible = true;
+            label45.Visible = true;
+            label6.Visible = true;
+            label40.Visible = true;
+        }
+        private void ResetStar()
+        {
+            label38.Visible = false;
+            label46.Visible = false;
+            label45.Visible = false;
+            label6.Visible = false;
+            label40.Visible = false;
+        }
+        private void Reset()
+        {  
+            companyNameTextBox.Clear();
+            txtValueOfEachShare.Clear();
+            txtTotalIssuedShare.Clear();
+            txtTotalAuthorizedShare.Clear();
             regNoTextBox.Clear();
             creatingDateTimePicker.Value=DateTime.Today.ToLocalTime();
+            otherAddress.CheckedChanged -= checkBox1_CheckedChanged;
+            otherAddress.Checked = false;
+            otherAddress.CheckedChanged += checkBox1_CheckedChanged;
+            ResetRegisteredAddress();
+            ResetHQAddress();
+
         }
+       
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(companyNameTextBox.Text))
@@ -246,7 +374,7 @@ namespace BoardSecretariatSystem
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into Company(CompanyName,ValueofEachShare,TotalIssuedShare,TotalAuthorizedShare,RegiNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into Company(CompanyName,TotalAuthorizedShare,ValueofEachShare,TotalIssuedShare,RegiNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);
                             cmd.Parameters.AddWithValue("@d2", txtValueOfEachShare.Text);
@@ -257,8 +385,13 @@ namespace BoardSecretariatSystem
                             cmd.Parameters.AddWithValue("@d7", creatingDateTimePicker.Value);
                             currentCompanyId = (int) cmd.ExecuteScalar();
                             con.Close();
-                            SaveCompanyAddress("CompanyAddresses");
-                            SaveOtherAddress("OtherAddress");
+                            SaveCompanyAddress("RegisteredAddresses");
+                            SaveCompanyAddress("CorporateHQAddresses");
+                            if (otherAddress.Checked)
+                            {
+                                SaveOtherAddress("OtherAddress");
+                            }
+                           
                             MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);                            
                             Reset();
                         }
@@ -527,6 +660,556 @@ namespace BoardSecretariatSystem
         private void cmbAddressHeadline_SelectedIndexChanged(object sender, EventArgs e)
         {
            
+        }
+
+        private void cmbHQDivision_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Divisions.Division_ID)  from Divisions WHERE Divisions.Division=@find";
+
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Division"));
+                cmd.Parameters["@find"].Value = cmbHQDivision.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    divisionIdHQ = (rdr.GetString(0));
+
+                }
+
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+
+
+                cmbHQDivision.Text = cmbHQDivision.Text.Trim();                
+                cmbHQDistrict.SelectedIndex = -1;
+                cmbHQDistrict.Items.Clear();
+                cmbHQThana.SelectedIndex = -1;
+                cmbHQThana.Items.Clear();
+                cmbHQPost.SelectedIndex = -1;
+                cmbHQPost.Items.Clear();
+                txtHQPostCode.Clear();
+                cmbHQDistrict.Enabled = true;
+                cmbHQDistrict.Focus();
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(Districts.District) from Districts  Where Districts.Division_ID = '" + divisionIdHQ + "' order by Districts.Division_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    cmbHQDistrict.Items.Add(rdr[0]);
+                }
+                con.Close();
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbHQDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Districts.D_ID)  from Districts WHERE Districts.District=@find";
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "District"));
+                cmd.Parameters["@find"].Value = cmbHQDistrict.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    districtIdHQ = (rdr.GetString(0));
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                cmbHQDistrict.Text = cmbHQDistrict.Text.Trim();                
+                cmbHQThana.SelectedIndex = -1;
+                cmbHQThana.Items.Clear();
+                cmbHQPost.SelectedIndex = -1;
+                cmbHQPost.Items.Clear();
+                txtHQPostCode.Clear();
+                cmbHQThana.Enabled = true;
+                cmbHQThana.Focus();
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(Thanas.Thana) from Thanas  Where Thanas.D_ID = '" + districtIdHQ + "' order by Thanas.D_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbHQThana.Items.Add(rdr[0]);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbHQThana_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Thanas.T_ID)  from Thanas WHERE Thanas.Thana=@find";
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Thana"));
+                cmd.Parameters["@find"].Value = cmbHQThana.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    thanaIdHQ = (rdr.GetString(0));
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                cmbHQThana.Text = cmbHQThana.Text.Trim();                
+                cmbHQPost.SelectedIndex=-1;
+                cmbHQPost.Items.Clear();
+                txtHQPostCode.Clear();
+                cmbHQPost.Enabled = true;
+                cmbHQPost.Focus();
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(PostOffice.PostOfficeName) from PostOffice  Where PostOffice.T_ID = '" + thanaIdHQ + "' order by PostOffice.T_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbHQPost.Items.Add(rdr[0]);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbHQPost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "PostOfficeName"));
+                cmd.Parameters["@find"].Value = cmbHQPost.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    postofficeIdHQ = (rdr.GetString(0));
+                    txtHQPostCode.Text = (rdr.GetString(1));
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (otherAddress.Checked)
+            {
+                groupBox5.Enabled = true;
+                FillStar();
+            }
+            else
+            {
+                groupBox5.Enabled = false;
+                ResetStar();
+                ResetOtherAddress();
+            }
+        }
+
+        private void cmbODivision_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Divisions.Division_ID)  from Divisions WHERE Divisions.Division=@find";
+
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Division"));
+                cmd.Parameters["@find"].Value = cmbODivision.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    divisionIdO= (rdr.GetString(0));
+
+                }
+
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+
+
+                cmbODivision.Text = cmbODivision.Text.Trim();
+                cmbODistrict.SelectedIndex = -1;
+                cmbODistrict.Items.Clear();
+                cmbOThana.SelectedIndex = -1;
+                cmbOThana.Items.Clear();
+                cmbOPost.SelectedIndex = -1;
+                cmbOPost.Items.Clear();
+                txtOPostCode.Clear();
+                cmbODistrict.Enabled = true;
+                cmbODistrict.Focus();
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(Districts.District) from Districts  Where Districts.Division_ID = '" + divisionIdO + "' order by Districts.Division_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    cmbODistrict.Items.Add(rdr[0]);
+                }
+                con.Close();
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbODistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Districts.D_ID)  from Districts WHERE Districts.District=@find";
+
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "District"));
+                cmd.Parameters["@find"].Value = cmbODistrict.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    districtIdO= (rdr.GetString(0));
+
+                }
+
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+
+
+                cmbODistrict.Text = cmbODistrict.Text.Trim();
+                cmbOThana.SelectedIndex = -1;
+                cmbOThana.Items.Clear();
+                cmbOPost.SelectedIndex = -1;
+                cmbOPost.Items.Clear();
+                txtOPostCode.Clear();
+                cmbOThana.Enabled = true;
+                cmbOThana.Focus();
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(Thanas.Thana) from Thanas  Where Thanas.D_ID = '" + districtIdO + "' order by Thanas.D_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    cmbOThana.Items.Add(rdr[0]);
+                }
+                con.Close();
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbOThana_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Thanas.T_ID)  from Thanas WHERE Thanas.Thana=@find";
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Thana"));
+                cmd.Parameters["@find"].Value = cmbOThana.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    thanaIdO = (rdr.GetString(0));
+
+                }
+
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+
+
+                cmbOThana.Text = cmbOThana.Text.Trim();               
+                cmbOPost.SelectedIndex = -1;
+                cmbOPost.Items.Clear();
+                txtOPostCode.Clear();
+                cmbOPost.Enabled = true;
+                cmbOPost.Focus();
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(PostOffice.PostOfficeName) from PostOffice  Where PostOffice.T_ID = '" + thanaIdO + "' order by PostOffice.T_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    cmbOPost.Items.Add(rdr[0]);
+                }
+                con.Close();
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbOPost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "PostOfficeName"));
+                cmd.Parameters["@find"].Value = cmbOPost.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    postofficeIdO = (rdr.GetString(0));
+                    txtOPostCode.Text = (rdr.GetString(1));
+
+                }
+
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbEmailAddress_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbAddressHeader_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbAddressHeader.Text == "Not In The List")
+            {
+                string input = Microsoft.VisualBasic.Interaction.InputBox("Please Input Address Header  Here", "Input Here", "", -1, -1);
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    cmbAddressHeader.SelectedIndex = -1;
+                }
+
+                else
+                {                   
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string ct2 = "select AHeaderName from AddressHeader where AHeaderName='" + input + "'";
+                    cmd = new SqlCommand(ct2, con);
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read() && !rdr.IsDBNull(0))
+                    {
+                        MessageBox.Show("This Address Header  Already Exists,Please Select From List", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        con.Close();
+                        cmbAddressHeader.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            con = new SqlConnection(cs.DBConn);
+                            con.Open();
+                            string query1 = "insert into AddressHeader(AHeaderName) values (@d1)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            cmd = new SqlCommand(query1, con);
+                            cmd.Parameters.AddWithValue("@d1", input);                           
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            cmbAddressHeader.Items.Clear();
+                            AddressHeader();
+                            cmbAddressHeader.SelectedText = input;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "SELECT AHeaderId from AddressHeader WHERE AHeaderName= '" + cmbAddressHeader.Text + "'";
+
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        addHeaderId = rdr.GetInt32(0);
+                    }
+                    if ((rdr != null))
+                    {
+                        rdr.Close();
+                    }
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            if (listView1.Items.Count == 0)
+            {
+                ListViewItem list=new ListViewItem();
+                list.SubItems.Add(cmbAddressHeader.Text);
+                list.SubItems.Add(addHeaderId.ToString());                
+                list.SubItems.Add(txtOFlat.Text);
+                list.SubItems.Add(txtOHouse.Text);
+                list.SubItems.Add(txtORoad.Text);
+                list.SubItems.Add(txtOBlock.Text);
+                list.SubItems.Add(txtOArea.Text);
+                list.SubItems.Add(txtOContactNo.Text);
+                list.SubItems.Add(postofficeIdO);
+                listView1.Items.Add(list);
+                cmbAddressHeader.SelectedIndex = -1;
+                txtOFlat.Clear();
+                txtOHouse.Clear();
+                txtORoad.Clear();
+                txtOBlock.Clear();
+                txtOArea.Clear();
+                txtOContactNo.Clear();
+                postofficeIdO="";               
+                return;                           
+            }
+            ListViewItem list1 = new ListViewItem();
+            list1.SubItems.Add(cmbAddressHeader.Text);
+            list1.SubItems.Add(addHeaderId.ToString());
+            list1.SubItems.Add(txtOFlat.Text);
+            list1.SubItems.Add(txtOHouse.Text);
+            list1.SubItems.Add(txtORoad.Text);
+            list1.SubItems.Add(txtOBlock.Text);
+            list1.SubItems.Add(txtOArea.Text);
+            list1.SubItems.Add(txtOContactNo.Text);
+            list1.SubItems.Add(postofficeIdO);
+            listView1.Items.Add(list1);
+            cmbAddressHeader.SelectedIndex = -1;
+            txtOFlat.Clear();
+            txtOHouse.Clear();
+            txtORoad.Clear();
+            txtOBlock.Clear();
+            txtOArea.Clear();
+            txtOContactNo.Clear();
+            postofficeIdO = "";
+            return;
+
         }
 
           

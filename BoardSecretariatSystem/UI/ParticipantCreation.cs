@@ -21,7 +21,7 @@ namespace BoardSecretariatSystem.UI
         private SqlDataReader rdr;
         ConnectionString cs=new ConnectionString();
         public string companyId, nUserId, divisionId, divisionIdP, districtId, districtIdP, thanaId, thanaIdP, postofficeId, postofficeIdP, memberTypeId;
-        public int affectedRows1, affectedRows2, affectedRows3, currentPerticipantId,  bankEmailId;
+        public int affectedRows1, affectedRows2, affectedRows3, currentPerticipantId,currentShareHolderId,  bankEmailId;
         public ParticipantCreation()
         {
             InitializeComponent();
@@ -116,32 +116,12 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void MemberTypeLoad()
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string query = "SELECT BoardMemberType FROM BoardMemberTypes order by  BoardMemberTypes.BoardMemberTypeId desc ";
-                cmd = new SqlCommand(query, con);
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    cmbMemberType.Items.Add(rdr[0]);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
+       
         private void ParticipantCreation_Load(object sender, EventArgs e)
         {
             nUserId = frmLogin.uId.ToString();
             CompanyNameLoad();
-            MemberTypeLoad();
+            
             EmailAddress();
             FillPresentDivisionCombo();
             FillPermanantDivisionCombo();
@@ -247,12 +227,22 @@ namespace BoardSecretariatSystem.UI
         private void Reset()
         {
             companyNameComboBox.SelectedIndex = -1;
-            cmbMemberType.SelectedIndex = -1;
+            //cmbMemberType.SelectedIndex = -1;
             participantNameTextBox.Clear();
             participantDesignationTextBox.Clear();
             cmbEmailAddress.SelectedIndex = -1;
             participantContactNoTextBox.Clear();
 
+            unKnownRA.CheckedChanged -= unKnownRA_CheckedChanged;
+            unKnownRA.Checked = false;
+            unKnownRA.CheckedChanged += unKnownRA_CheckedChanged;
+            unKnownCheckBox.CheckedChanged -= unKnownCheckBox_CheckedChanged;
+            unKnownCheckBox.Checked = false;
+            unKnownCheckBox.CheckedChanged += unKnownCheckBox_CheckedChanged;
+
+            sameAsRACheckBox.CheckedChanged -= sameAsRACheckBox_CheckedChanged;
+            sameAsRACheckBox.Checked = false;
+            sameAsRACheckBox.CheckedChanged += sameAsRACheckBox_CheckedChanged;
             ResetPermanantAddress();
             ResetPresentAddress();
         }
@@ -269,13 +259,7 @@ namespace BoardSecretariatSystem.UI
             cmbThana.SelectedIndex = -1;
             cmbDistrict.SelectedIndex = -1;
             cmbDivision.SelectedIndex = -1;
-            unKnownCheckBox.CheckedChanged -= unKnownCheckBox_CheckedChanged;
-            unKnownCheckBox.Checked = false;
-            unKnownCheckBox.CheckedChanged += unKnownCheckBox_CheckedChanged;
-
-            sameAsRACheckBox.CheckedChanged -= sameAsRACheckBox_CheckedChanged;
-            sameAsRACheckBox.Checked = false;
-            sameAsRACheckBox.CheckedChanged += sameAsRACheckBox_CheckedChanged;
+           
 
 
         }
@@ -292,12 +276,28 @@ namespace BoardSecretariatSystem.UI
             cmbPThana.SelectedIndex = -1;
             cmbPDistrict.SelectedIndex = -1;
             cmbPDivision.SelectedIndex = -1;
-            unKnownRA.CheckedChanged -= unKnownRA_CheckedChanged;
-            unKnownRA.Checked = false;
-            unKnownRA.CheckedChanged += unKnownRA_CheckedChanged;
+           
 
         }
+        private void SaveShareHolder()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query1 = "insert into Shareholder(ParticipantId,ShareHolderName) values (@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                cmd = new SqlCommand(query1, con);
+                cmd.Parameters.AddWithValue("@d1", currentPerticipantId);
+                cmd.Parameters.AddWithValue("@d1", participantNameTextBox.Text);
+                currentShareHolderId = (int)cmd.ExecuteScalar();
+                con.Close();
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void SaveParticipant()
         {
             try
@@ -316,6 +316,7 @@ namespace BoardSecretariatSystem.UI
                 cmd.Parameters.AddWithValue("@d8", DateTime.UtcNow.ToLocalTime());
                 currentPerticipantId = (int) cmd.ExecuteScalar();
                 con.Close();
+                SaveShareHolder();
             }
             catch (Exception ex)
             {
@@ -329,11 +330,7 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show("Please select company name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-           if (string.IsNullOrEmpty(cmbMemberType.Text))
-            {
-                MessageBox.Show("Please select board name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-               return;
-            }
+           
           if (string.IsNullOrEmpty(participantNameTextBox.Text))
             {
                 MessageBox.Show("Please input participant name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -406,7 +403,7 @@ namespace BoardSecretariatSystem.UI
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read() && !rdr.IsDBNull(0))
                 {
-                    MessageBox.Show("This Participant Already Exists,Please Input another one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("This Share Holder Already Exists,Please Input another one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     con.Close();
                 }
                 //1. Both Not Applicable
@@ -435,7 +432,7 @@ namespace BoardSecretariatSystem.UI
                     SaveParticipantAddress("PPermanantAddresses");
                     SaveParticipantAddress("PPresentAddresses");
                 }
-                MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Saved Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Reset();
             }
             catch (Exception ex)
@@ -720,35 +717,7 @@ namespace BoardSecretariatSystem.UI
 
         private void boardNameComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctk = "SELECT  RTRIM(BoardMemberTypes.BoardMemberTypeId)  from  BoardMemberTypes  WHERE BoardMemberTypes.BoardMemberType=@find";
-                cmd = new SqlCommand(ctk);
-                cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Board"));
-                cmd.Parameters["@find"].Value = cmbMemberType.Text;
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    memberTypeId = (rdr.GetString(0));
-
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
 
         private void cmbPDivision_SelectedIndexChanged(object sender, EventArgs e)

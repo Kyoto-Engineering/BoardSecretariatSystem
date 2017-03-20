@@ -83,7 +83,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(26, 65);
+            this.label2.Location = new System.Drawing.Point(22, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(124, 22);
             this.label2.TabIndex = 25;
@@ -115,7 +115,7 @@
             this.agendaSaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.agendaSaveButton.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agendaSaveButton.ForeColor = System.Drawing.Color.Blue;
-            this.agendaSaveButton.Location = new System.Drawing.Point(867, 443);
+            this.agendaSaveButton.Location = new System.Drawing.Point(916, 443);
             this.agendaSaveButton.Name = "agendaSaveButton";
             this.agendaSaveButton.Size = new System.Drawing.Size(119, 60);
             this.agendaSaveButton.TabIndex = 30;
@@ -159,7 +159,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(-1, 33);
+            this.label5.Location = new System.Drawing.Point(-4, 33);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(151, 22);
             this.label5.TabIndex = 34;
@@ -172,7 +172,7 @@
             this.addButton.ForeColor = System.Drawing.Color.Yellow;
             this.addButton.Location = new System.Drawing.Point(397, 128);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(55, 32);
+            this.addButton.Size = new System.Drawing.Size(55, 46);
             this.addButton.TabIndex = 36;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = false;
@@ -390,7 +390,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1271, 514);
+            this.ClientSize = new System.Drawing.Size(1284, 514);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.cmbBoardName);
             this.Controls.Add(this.groupBox1);

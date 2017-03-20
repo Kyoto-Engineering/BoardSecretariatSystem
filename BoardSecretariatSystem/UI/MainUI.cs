@@ -96,7 +96,7 @@ namespace BoardSecretariatSystem
         private void buttonMultiCombo_Click(object sender, EventArgs e)
         {  
                this.Hide();
-            Form1 frm=new Form1();
+               DirectorCreation frm = new DirectorCreation();
                frm.Show();
 
         }

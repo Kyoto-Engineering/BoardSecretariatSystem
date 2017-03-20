@@ -99,19 +99,7 @@
             this.creatingDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.addButton = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cmbAddressHeader = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtOBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbOPost = new System.Windows.Forms.ComboBox();
@@ -140,21 +128,36 @@
             this.label53 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
+            this.otherAddress = new System.Windows.Forms.CheckBox();
+            this.addButton = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.removeButton = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Fuchsia;
             this.label1.Location = new System.Drawing.Point(36, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 24);
+            this.label1.Size = new System.Drawing.Size(151, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Company Name :";
             // 
@@ -178,11 +181,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Blue;
             this.label2.Location = new System.Drawing.Point(9, 179);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(192, 24);
+            this.label2.Size = new System.Drawing.Size(192, 22);
             this.label2.TabIndex = 2;
             this.label2.Text = "Registration Number :";
             // 
@@ -191,7 +194,7 @@
             this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.saveButton.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.ForeColor = System.Drawing.Color.Blue;
-            this.saveButton.Location = new System.Drawing.Point(1193, 470);
+            this.saveButton.Location = new System.Drawing.Point(1204, 531);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(108, 55);
             this.saveButton.TabIndex = 3;
@@ -244,7 +247,7 @@
             this.groupBox2.ForeColor = System.Drawing.Color.Blue;
             this.groupBox2.Location = new System.Drawing.Point(5, 249);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(611, 206);
+            this.groupBox2.Size = new System.Drawing.Size(611, 207);
             this.groupBox2.TabIndex = 60;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registered Address";
@@ -534,11 +537,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
             this.label3.Location = new System.Drawing.Point(26, 79);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(183, 24);
+            this.label3.Size = new System.Drawing.Size(176, 22);
             this.label3.TabIndex = 62;
             this.label3.Text = "Value of Each Share";
             // 
@@ -553,11 +556,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Blue;
             this.label8.Location = new System.Drawing.Point(39, 115);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(166, 24);
+            this.label8.Size = new System.Drawing.Size(162, 22);
             this.label8.TabIndex = 64;
             this.label8.Text = "Total Issued Share";
             // 
@@ -572,11 +575,11 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Blue;
             this.label9.Location = new System.Drawing.Point(4, 149);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(202, 24);
+            this.label9.Size = new System.Drawing.Size(198, 22);
             this.label9.TabIndex = 66;
             this.label9.Text = "Total Authorized Share";
             // 
@@ -638,6 +641,7 @@
             this.cmbHQPost.Name = "cmbHQPost";
             this.cmbHQPost.Size = new System.Drawing.Size(168, 32);
             this.cmbHQPost.TabIndex = 82;
+            this.cmbHQPost.SelectedIndexChanged += new System.EventHandler(this.cmbHQPost_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -678,6 +682,7 @@
             this.cmbHQDivision.Name = "cmbHQDivision";
             this.cmbHQDivision.Size = new System.Drawing.Size(168, 32);
             this.cmbHQDivision.TabIndex = 78;
+            this.cmbHQDivision.SelectedIndexChanged += new System.EventHandler(this.cmbHQDivision_SelectedIndexChanged);
             // 
             // label13
             // 
@@ -693,7 +698,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(447, 164);
+            this.label22.Location = new System.Drawing.Point(442, 164);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(20, 22);
             this.label22.TabIndex = 75;
@@ -728,6 +733,7 @@
             this.cmbHQThana.Name = "cmbHQThana";
             this.cmbHQThana.Size = new System.Drawing.Size(168, 32);
             this.cmbHQThana.TabIndex = 42;
+            this.cmbHQThana.SelectedIndexChanged += new System.EventHandler(this.cmbHQThana_SelectedIndexChanged);
             // 
             // txtHQContactNo
             // 
@@ -758,6 +764,7 @@
             this.cmbHQDistrict.Name = "cmbHQDistrict";
             this.cmbHQDistrict.Size = new System.Drawing.Size(168, 32);
             this.cmbHQDistrict.TabIndex = 19;
+            this.cmbHQDistrict.SelectedIndexChanged += new System.EventHandler(this.cmbHQDistrict_SelectedIndexChanged);
             // 
             // label27
             // 
@@ -773,7 +780,7 @@
             // txtHQPostCode
             // 
             this.txtHQPostCode.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHQPostCode.Location = new System.Drawing.Point(468, 160);
+            this.txtHQPostCode.Location = new System.Drawing.Point(465, 160);
             this.txtHQPostCode.Name = "txtHQPostCode";
             this.txtHQPostCode.ReadOnly = true;
             this.txtHQPostCode.Size = new System.Drawing.Size(168, 29);
@@ -803,7 +810,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.Color.Blue;
-            this.label29.Location = new System.Drawing.Point(352, 163);
+            this.label29.Location = new System.Drawing.Point(347, 163);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(99, 22);
             this.label29.TabIndex = 13;
@@ -910,116 +917,31 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.groupBox3.BackColor = System.Drawing.Color.Olive;
+            this.groupBox3.Controls.Add(this.cmbAddressHeader);
             this.groupBox3.Controls.Add(this.groupBox5);
-            this.groupBox3.Controls.Add(this.checkBox1);
+            this.groupBox3.Controls.Add(this.otherAddress);
             this.groupBox3.Controls.Add(this.addButton);
-            this.groupBox3.Controls.Add(this.textBox7);
             this.groupBox3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox3.Location = new System.Drawing.Point(638, 199);
+            this.groupBox3.Location = new System.Drawing.Point(635, 202);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(663, 256);
+            this.groupBox3.Size = new System.Drawing.Size(677, 253);
             this.groupBox3.TabIndex = 70;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Other Address";
             // 
-            // textBox7
+            // cmbAddressHeader
             // 
-            this.textBox7.Location = new System.Drawing.Point(244, 18);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(246, 29);
-            this.textBox7.TabIndex = 84;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.listView1);
-            this.groupBox4.Location = new System.Drawing.Point(12, 461);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1175, 188);
-            this.groupBox4.TabIndex = 71;
-            this.groupBox4.TabStop = false;
-            // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8});
-            this.listView1.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(6, 17);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1163, 165);
-            this.listView1.TabIndex = 72;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "AddressHeader";
-            this.columnHeader1.Width = 217;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "FlatNo";
-            this.columnHeader2.Width = 93;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "HouseNo";
-            this.columnHeader3.Width = 108;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "RoadNo";
-            this.columnHeader4.Width = 122;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Block";
-            this.columnHeader5.Width = 92;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Area";
-            this.columnHeader6.Width = 200;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "ContactNo";
-            this.columnHeader7.Width = 206;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "PostOfficeId";
-            this.columnHeader8.Width = 118;
-            // 
-            // addButton
-            // 
-            this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.addButton.ForeColor = System.Drawing.Color.Yellow;
-            this.addButton.Location = new System.Drawing.Point(527, 14);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(92, 35);
-            this.addButton.TabIndex = 72;
-            this.addButton.Text = "Add";
-            this.addButton.UseVisualStyleBackColor = false;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(86, 20);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(143, 26);
-            this.checkBox1.TabIndex = 85;
-            this.checkBox1.Text = "OtherAddress";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cmbAddressHeader.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbAddressHeader.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbAddressHeader.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbAddressHeader.FormattingEnabled = true;
+            this.cmbAddressHeader.Location = new System.Drawing.Point(220, 18);
+            this.cmbAddressHeader.Name = "cmbAddressHeader";
+            this.cmbAddressHeader.Size = new System.Drawing.Size(238, 32);
+            this.cmbAddressHeader.TabIndex = 106;
+            this.cmbAddressHeader.SelectedIndexChanged += new System.EventHandler(this.cmbAddressHeader_SelectedIndexChanged);
             // 
             // groupBox5
             // 
@@ -1050,7 +972,7 @@
             this.groupBox5.Controls.Add(this.label53);
             this.groupBox5.Controls.Add(this.label54);
             this.groupBox5.Controls.Add(this.label55);
-            this.groupBox5.Location = new System.Drawing.Point(6, 50);
+            this.groupBox5.Location = new System.Drawing.Point(6, 48);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(651, 206);
             this.groupBox5.TabIndex = 86;
@@ -1075,6 +997,7 @@
             this.cmbOPost.Name = "cmbOPost";
             this.cmbOPost.Size = new System.Drawing.Size(168, 32);
             this.cmbOPost.TabIndex = 109;
+            this.cmbOPost.SelectedIndexChanged += new System.EventHandler(this.cmbOPost_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -1115,6 +1038,7 @@
             this.cmbODivision.Name = "cmbODivision";
             this.cmbODivision.Size = new System.Drawing.Size(168, 32);
             this.cmbODivision.TabIndex = 105;
+            this.cmbODivision.SelectedIndexChanged += new System.EventHandler(this.cmbODivision_SelectedIndexChanged);
             // 
             // label39
             // 
@@ -1165,6 +1089,7 @@
             this.cmbOThana.Name = "cmbOThana";
             this.cmbOThana.Size = new System.Drawing.Size(168, 32);
             this.cmbOThana.TabIndex = 100;
+            this.cmbOThana.SelectedIndexChanged += new System.EventHandler(this.cmbOThana_SelectedIndexChanged);
             // 
             // txtOContactNo
             // 
@@ -1195,6 +1120,7 @@
             this.cmbODistrict.Name = "cmbODistrict";
             this.cmbODistrict.Size = new System.Drawing.Size(169, 32);
             this.cmbODistrict.TabIndex = 97;
+            this.cmbODistrict.SelectedIndexChanged += new System.EventHandler(this.cmbODistrict_SelectedIndexChanged);
             // 
             // label48
             // 
@@ -1325,12 +1251,129 @@
             this.label55.TabIndex = 84;
             this.label55.Text = "Flat No / Name";
             // 
+            // otherAddress
+            // 
+            this.otherAddress.AutoSize = true;
+            this.otherAddress.Location = new System.Drawing.Point(76, 23);
+            this.otherAddress.Name = "otherAddress";
+            this.otherAddress.Size = new System.Drawing.Size(143, 26);
+            this.otherAddress.TabIndex = 85;
+            this.otherAddress.Text = "OtherAddress";
+            this.otherAddress.UseVisualStyleBackColor = true;
+            this.otherAddress.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // addButton
+            // 
+            this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.addButton.ForeColor = System.Drawing.Color.Yellow;
+            this.addButton.Location = new System.Drawing.Point(469, 15);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(96, 34);
+            this.addButton.TabIndex = 72;
+            this.addButton.Text = "Add";
+            this.addButton.UseVisualStyleBackColor = false;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.listView1);
+            this.groupBox4.Location = new System.Drawing.Point(12, 461);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(1175, 188);
+            this.groupBox4.TabIndex = 71;
+            this.groupBox4.TabStop = false;
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.listView1.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView1.GridLines = true;
+            this.listView1.Location = new System.Drawing.Point(6, 17);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(1163, 165);
+            this.listView1.TabIndex = 72;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "columnHeader";
+            this.columnHeader1.Width = 11;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "AddressHeader";
+            this.columnHeader2.Width = 145;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "AddHeaderId";
+            this.columnHeader3.Width = 85;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "FlatNo";
+            this.columnHeader4.Width = 96;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "HouseNo";
+            this.columnHeader5.Width = 92;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "RoadNo";
+            this.columnHeader6.Width = 171;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Block";
+            this.columnHeader7.Width = 148;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Area";
+            this.columnHeader8.Width = 99;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "ContactNo";
+            this.columnHeader9.Width = 117;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "PostOfficeId";
+            this.columnHeader10.Width = 143;
+            // 
+            // removeButton
+            // 
+            this.removeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.removeButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.removeButton.ForeColor = System.Drawing.Color.Blue;
+            this.removeButton.Location = new System.Drawing.Point(1204, 478);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(108, 47);
+            this.removeButton.TabIndex = 72;
+            this.removeButton.Text = "Remove";
+            this.removeButton.UseVisualStyleBackColor = false;
+            // 
             // CompanyEntryUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1325, 649);
+            this.Controls.Add(this.removeButton);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.creatingDateTimePicker);
@@ -1361,9 +1404,9 @@
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1442,7 +1485,6 @@
         private System.Windows.Forms.DateTimePicker creatingDateTimePicker;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -1482,6 +1524,10 @@
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox otherAddress;
+        private System.Windows.Forms.Button removeButton;
+        private System.Windows.Forms.ComboBox cmbAddressHeader;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }
