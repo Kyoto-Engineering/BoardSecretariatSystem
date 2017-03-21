@@ -36,6 +36,7 @@
             this.participantCreateButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonMultiCombo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonLogOut = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -46,9 +47,9 @@
             this.companyCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.companyCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.companyCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.companyCreateButton.Location = new System.Drawing.Point(21, 16);
+            this.companyCreateButton.Location = new System.Drawing.Point(21, 10);
             this.companyCreateButton.Name = "companyCreateButton";
-            this.companyCreateButton.Size = new System.Drawing.Size(144, 56);
+            this.companyCreateButton.Size = new System.Drawing.Size(144, 52);
             this.companyCreateButton.TabIndex = 0;
             this.companyCreateButton.Text = "Company Creation";
             this.companyCreateButton.UseVisualStyleBackColor = false;
@@ -59,7 +60,7 @@
             this.boardCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.boardCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boardCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.boardCreateButton.Location = new System.Drawing.Point(21, 82);
+            this.boardCreateButton.Location = new System.Drawing.Point(21, 300);
             this.boardCreateButton.Name = "boardCreateButton";
             this.boardCreateButton.Size = new System.Drawing.Size(144, 56);
             this.boardCreateButton.TabIndex = 1;
@@ -72,11 +73,11 @@
             this.agendaCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.agendaCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agendaCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.agendaCreateButton.Location = new System.Drawing.Point(21, 216);
+            this.agendaCreateButton.Location = new System.Drawing.Point(21, 253);
             this.agendaCreateButton.Name = "agendaCreateButton";
             this.agendaCreateButton.Size = new System.Drawing.Size(144, 52);
             this.agendaCreateButton.TabIndex = 3;
-            this.agendaCreateButton.Text = "Agenda Creation";
+            this.agendaCreateButton.Text = "Manage Meeting";
             this.agendaCreateButton.UseVisualStyleBackColor = false;
             this.agendaCreateButton.Click += new System.EventHandler(this.agendaCreateButton_Click);
             // 
@@ -85,7 +86,7 @@
             this.meetingCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.meetingCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meetingCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.meetingCreateButton.Location = new System.Drawing.Point(21, 149);
+            this.meetingCreateButton.Location = new System.Drawing.Point(21, 186);
             this.meetingCreateButton.Name = "meetingCreateButton";
             this.meetingCreateButton.Size = new System.Drawing.Size(144, 59);
             this.meetingCreateButton.TabIndex = 2;
@@ -98,7 +99,7 @@
             this.meetingExecutionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.meetingExecutionButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meetingExecutionButton.ForeColor = System.Drawing.Color.Blue;
-            this.meetingExecutionButton.Location = new System.Drawing.Point(21, 342);
+            this.meetingExecutionButton.Location = new System.Drawing.Point(21, 358);
             this.meetingExecutionButton.Name = "meetingExecutionButton";
             this.meetingExecutionButton.Size = new System.Drawing.Size(136, 60);
             this.meetingExecutionButton.TabIndex = 5;
@@ -111,11 +112,11 @@
             this.participantCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.participantCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.participantCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.participantCreateButton.Location = new System.Drawing.Point(21, 277);
+            this.participantCreateButton.Location = new System.Drawing.Point(21, 66);
             this.participantCreateButton.Name = "participantCreateButton";
-            this.participantCreateButton.Size = new System.Drawing.Size(136, 59);
+            this.participantCreateButton.Size = new System.Drawing.Size(144, 56);
             this.participantCreateButton.TabIndex = 4;
-            this.participantCreateButton.Text = "Participant Creation";
+            this.participantCreateButton.Text = "Share Holder  Creation";
             this.participantCreateButton.UseVisualStyleBackColor = false;
             this.participantCreateButton.Click += new System.EventHandler(this.participantCreateButton_Click);
             // 
@@ -132,25 +133,39 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonMultiCombo);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.companyCreateButton);
+            this.groupBox1.Controls.Add(this.meetingCreateButton);
             this.groupBox1.Controls.Add(this.boardCreateButton);
             this.groupBox1.Controls.Add(this.meetingExecutionButton);
-            this.groupBox1.Controls.Add(this.meetingCreateButton);
             this.groupBox1.Controls.Add(this.participantCreateButton);
             this.groupBox1.Controls.Add(this.agendaCreateButton);
             this.groupBox1.Location = new System.Drawing.Point(14, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(183, 516);
+            this.groupBox1.Size = new System.Drawing.Size(183, 578);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
+            // 
+            // buttonMultiCombo
+            // 
+            this.buttonMultiCombo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.buttonMultiCombo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMultiCombo.ForeColor = System.Drawing.Color.Blue;
+            this.buttonMultiCombo.Location = new System.Drawing.Point(21, 128);
+            this.buttonMultiCombo.Name = "buttonMultiCombo";
+            this.buttonMultiCombo.Size = new System.Drawing.Size(144, 42);
+            this.buttonMultiCombo.TabIndex = 7;
+            this.buttonMultiCombo.Text = "Director Creation";
+            this.buttonMultiCombo.UseVisualStyleBackColor = false;
+            this.buttonMultiCombo.Click += new System.EventHandler(this.buttonMultiCombo_Click);
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Teal;
             this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Yellow;
-            this.button1.Location = new System.Drawing.Point(20, 415);
+            this.button1.Location = new System.Drawing.Point(21, 502);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(136, 57);
             this.button1.TabIndex = 6;
@@ -176,7 +191,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1172, 602);
+            this.BackgroundImage = global::BoardSecretariatSystem.Properties.Resources.background_2;
+            this.ClientSize = new System.Drawing.Size(1172, 598);
             this.ControlBox = false;
             this.Controls.Add(this.buttonLogOut);
             this.Controls.Add(this.groupBox1);
@@ -204,5 +220,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonLogOut;
+        private System.Windows.Forms.Button buttonMultiCombo;
     }
 }
