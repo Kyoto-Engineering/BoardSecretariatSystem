@@ -142,7 +142,6 @@ namespace BoardSecretariatSystem.UI
                 if (rdr.Read())
                 {
                     companyId = (rdr.GetString(0));
-
                 }
                 if ((rdr != null))
                 {
@@ -153,7 +152,6 @@ namespace BoardSecretariatSystem.UI
                     con.Close();
                 }           
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -226,25 +224,54 @@ namespace BoardSecretariatSystem.UI
 
         private void Reset()
         {
-            companyNameComboBox.SelectedIndex = -1;
-            //cmbMemberType.SelectedIndex = -1;
-            participantNameTextBox.Clear();
-            participantDesignationTextBox.Clear();
+            companyNameComboBox.SelectedIndex = -1;            
+            txtShareHolderName.Clear();
+            txtCurrentShareHolding.Clear();
+            txtFatherName.Clear();
+            txtMotherName.Clear();
+            txtDesignation.Clear();            
+            txtCellNumber.Clear();
+            txtProfession.Clear();
+
+            txtBirthCertificateNo.Clear();
+            txtDateOfBirth.Value=DateTime.Today;
+            txtCurrentShareHolding.Clear();
+            txtPassportNo.Clear();            
+            txtTINNumber.Clear();
+            txtNationalId.Clear();
+            txtNationality.Clear();
             cmbEmailAddress.SelectedIndex = -1;
-            participantContactNoTextBox.Clear();
 
-            unKnownRA.CheckedChanged -= unKnownRA_CheckedChanged;
-            unKnownRA.Checked = false;
-            unKnownRA.CheckedChanged += unKnownRA_CheckedChanged;
-            unKnownCheckBox.CheckedChanged -= unKnownCheckBox_CheckedChanged;
-            unKnownCheckBox.Checked = false;
-            unKnownCheckBox.CheckedChanged += unKnownCheckBox_CheckedChanged;
+            if (unKnownRA.Checked)
+            {
+                unKnownRA.CheckedChanged -= unKnownRA_CheckedChanged;
+                unKnownRA.Checked = false;
+                unKnownRA.CheckedChanged += unKnownRA_CheckedChanged;
+            }
+            else
+            {
+                ResetPresentAddress();
+            }
 
-            sameAsRACheckBox.CheckedChanged -= sameAsRACheckBox_CheckedChanged;
-            sameAsRACheckBox.Checked = false;
-            sameAsRACheckBox.CheckedChanged += sameAsRACheckBox_CheckedChanged;
-            ResetPermanantAddress();
-            ResetPresentAddress();
+            if (unKnownCheckBox.Checked)
+            {
+                unKnownCheckBox.CheckedChanged -= unKnownCheckBox_CheckedChanged;
+                unKnownCheckBox.Checked = false;
+                unKnownCheckBox.CheckedChanged += unKnownCheckBox_CheckedChanged;
+            }
+            else if (sameAsRACheckBox.Checked)
+            {
+                sameAsRACheckBox.CheckedChanged -= sameAsRACheckBox_CheckedChanged;
+                sameAsRACheckBox.Checked = false;
+                sameAsRACheckBox.CheckedChanged += sameAsRACheckBox_CheckedChanged;
+            }
+            else
+            {
+                ResetPermanantAddress();
+            }
+            
+          
+            
         }
         public void ResetPermanantAddress()
         {
@@ -285,10 +312,11 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 = "insert into Shareholder(ParticipantId,ShareHolderName) values (@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 = "insert into Shareholder(ParticipantId,ShareHolderName,NumberOfCurrentShareHolding) values (@d1,@d2,@d3)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", currentPerticipantId);
-                cmd.Parameters.AddWithValue("@d1", participantNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@d2", txtShareHolderName.Text);
+                cmd.Parameters.AddWithValue("@d3", txtCurrentShareHolding.Text);
                 currentShareHolderId = (int)cmd.ExecuteScalar();
                 con.Close();
 
@@ -304,16 +332,24 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 = "insert into Participant(ParticipantName,ContactNumber,Designation,EmailBankId,CompanyId,BoardMemberTypeId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 = "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,Designation,Profession,ContactNumber,Nationality,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
-                cmd.Parameters.AddWithValue("@d1", participantNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@d2", participantContactNoTextBox.Text);
-                cmd.Parameters.AddWithValue("@d3", participantDesignationTextBox.Text);
-                cmd.Parameters.AddWithValue("@d4", bankEmailId);
-                cmd.Parameters.AddWithValue("@d5", companyId);
-                cmd.Parameters.AddWithValue("@d6", memberTypeId);
-                cmd.Parameters.AddWithValue("@d7", nUserId);
-                cmd.Parameters.AddWithValue("@d8", DateTime.UtcNow.ToLocalTime());
+                cmd.Parameters.AddWithValue("@d1", txtShareHolderName.Text);
+                cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(txtMotherName.Text) ? (object)DBNull.Value : txtMotherName.Text));
+                cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(txtFatherName.Text) ? (object)DBNull.Value : txtFatherName.Text));               
+                cmd.Parameters.AddWithValue("@d4", txtDateOfBirth.Value);
+                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtDesignation.Text) ? (object)DBNull.Value : txtDesignation.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtProfession.Text) ? (object)DBNull.Value : txtProfession.Text));
+                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtCellNumber.Text) ? (object)DBNull.Value : txtCellNumber.Text));
+                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(txtNationality.Text) ? (object)DBNull.Value : txtNationality.Text));
+                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtNationalId.Text) ? (object)DBNull.Value : txtNationalId.Text));
+                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtBirthCertificateNo.Text) ? (object)DBNull.Value : txtBirthCertificateNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d11", string.IsNullOrEmpty(txtPassportNo.Text) ? (object)DBNull.Value : txtPassportNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d12", string.IsNullOrEmpty(txtTINNumber.Text) ? (object)DBNull.Value : txtTINNumber.Text));                               
+                cmd.Parameters.AddWithValue("@d13", bankEmailId);
+                cmd.Parameters.AddWithValue("@d14", companyId);               
+                cmd.Parameters.AddWithValue("@d15", nUserId);
+                cmd.Parameters.AddWithValue("@d16", DateTime.UtcNow.ToLocalTime());
                 currentPerticipantId = (int) cmd.ExecuteScalar();
                 con.Close();
                 SaveShareHolder();
@@ -331,9 +367,9 @@ namespace BoardSecretariatSystem.UI
                 return;
             }
            
-          if (string.IsNullOrEmpty(participantNameTextBox.Text))
+          if (string.IsNullOrEmpty(txtShareHolderName.Text))
             {
-                MessageBox.Show("Please input participant name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              MessageBox.Show("Please enter Share Holder  name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
               return;
             }
 
@@ -398,7 +434,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct3 = "select Participant.ParticipantName from Participant where  Participant.ParticipantName='" + participantNameTextBox.Text + "'";
+                string ct3 = "select Participant.ParticipantName from Participant where  Participant.ParticipantName='" + txtShareHolderName.Text + "'";
                 cmd = new SqlCommand(ct3, con);
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read() && !rdr.IsDBNull(0))
@@ -411,27 +447,35 @@ namespace BoardSecretariatSystem.UI
                 {
                     SaveParticipant(); 
                 }
-                //2.Permanant Address Applicable  & Present Address not Applicable
-                if (unKnownRA.Checked && unKnownCheckBox.Checked==false)
+                //2.Present Address  Applicable & Permanant Address not  Applicable
+                if (unKnownRA.Checked == false & unKnownCheckBox.Checked)
                 {
                     SaveParticipant();
-                    SaveParticipantAddress("PPermanantAddresses");
+                    SaveParticipantAddress("PPresentAddresses");
                 }
-                //3.Permanant Address Applicable  & Present Address Same as  Corporate Address                                        
-                if (sameAsRACheckBox.Checked)
-                {
-                    SaveParticipant();
-                    SaveParticipantAddress("PPermanantAddresses");
-                    PermanantSameAsPresent("PPresentAddresses");
-
-                }
-                //4.Permanant Address Applicable  & Present Address  Applicable
+                //3.Permanant Address Applicable  & Present Address  Applicable
                 if (sameAsRACheckBox.Checked == false && unKnownCheckBox.Checked == false)
                 {
                     SaveParticipant();
                     SaveParticipantAddress("PPermanantAddresses");
                     SaveParticipantAddress("PPresentAddresses");
+                }              
+                //4.Permanant Address Applicable  & Present Address Same as Permanant Address                                        
+                if (sameAsRACheckBox.Checked & unKnownRA.Checked == false & unKnownCheckBox.Checked == false)
+                {
+                    SaveParticipant();
+                    PermanantSameAsPresent("PPresentAddresses");
+                    SaveParticipantAddress("PPermanantAddresses");
+                   
+
                 }
+                //5.Present Address not  Applicable  & Permanant Address  Applicable
+                if (unKnownRA.Checked & sameAsRACheckBox.Checked == false & unKnownCheckBox.Checked == false)
+                {
+                    SaveParticipant();
+                    SaveParticipantAddress("PPermanantAddresses");
+                }
+               
                 MessageBox.Show("Saved Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Reset();
             }
@@ -839,11 +883,13 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctk = "SELECT  RTRIM(Thanas.T_ID)  from Thanas WHERE Thanas.Thana=@find";
+                string ctk = "SELECT  RTRIM(Thanas.T_ID)  from Thanas WHERE Thanas.Thana=@find and Thanas.D_ID=@d2 ";
                 cmd = new SqlCommand(ctk);
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Thana"));
+                cmd.Parameters.Add(new SqlParameter("@d2", System.Data.SqlDbType.NVarChar, 50, "D_ID"));
                 cmd.Parameters["@find"].Value = cmbPThana.Text;
+                cmd.Parameters["@d2"].Value = districtIdP;
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
@@ -1050,11 +1096,13 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctk = "SELECT  RTRIM(Thanas.T_ID)  from Thanas WHERE Thanas.Thana=@find";
+                string ctk = "SELECT  RTRIM(Thanas.T_ID)  from Thanas WHERE Thanas.Thana=@find and  Thanas.D_ID=@d2";
                 cmd = new SqlCommand(ctk);
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Thana"));
+                cmd.Parameters.Add(new SqlParameter("@d2", System.Data.SqlDbType.NVarChar, 50, "D_ID"));
                 cmd.Parameters["@find"].Value = cmbThana.Text;
+                cmd.Parameters["@d2"].Value = districtId;
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
