@@ -117,7 +117,7 @@
             this.agendaSaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.agendaSaveButton.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agendaSaveButton.ForeColor = System.Drawing.Color.Blue;
-            this.agendaSaveButton.Location = new System.Drawing.Point(916, 443);
+            this.agendaSaveButton.Location = new System.Drawing.Point(797, 443);
             this.agendaSaveButton.Name = "agendaSaveButton";
             this.agendaSaveButton.Size = new System.Drawing.Size(119, 60);
             this.agendaSaveButton.TabIndex = 30;
@@ -236,7 +236,7 @@
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Location = new System.Drawing.Point(456, 30);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(807, 407);
+            this.groupBox2.Size = new System.Drawing.Size(816, 407);
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
             // 
