@@ -131,39 +131,7 @@ namespace BoardSecretariatSystem
             AddressHeader();
         }
 
-        //public void GetAllCompany()
-        //{
-         
-        //    try
-        //    {
-        //        con = new SqlConnection(cs.DBConn);
-        //        SqlDataAdapter sda = new SqlDataAdapter("SELECT Company.CompanyName,CompanyAddresses.FlatNo,CompanyAddresses.HouseNo,CompanyAddresses.RoadNo,CompanyAddresses.Block,CompanyAddresses.Area,CompanyAddresses.ContactNo,PostOffice.PostOfficeName, PostOffice.PostCode FROM  Company INNER JOIN CompanyAddresses ON Company.CompanyId = CompanyAddresses.CompanyId  INNER JOIN PostOffice ON CompanyAddresses.PostOfficeId = PostOffice.PostOfficeId INNER JOIN Thanas ON PostOffice.T_ID = Thanas.T_ID  INNER JOIN Districts ON Thanas.D_ID = Districts.D_ID  INNER JOIN Divisions ON Districts.Division_ID = Divisions.Division_ID", con);
-        //        DataTable dt = new DataTable();
-        //        sda.Fill(dt);
-        //        allCompanyListDataGridView.Rows.Clear();
-        //        foreach (DataRow item in dt.Rows)
-        //        {
-        //            int n = allCompanyListDataGridView.Rows.Add();
-        //            allCompanyListDataGridView.Rows[n].Cells[0].Value = item[0].ToString();
-        //            allCompanyListDataGridView.Rows[n].Cells[1].Value = item[1].ToString();
-        //            allCompanyListDataGridView.Rows[n].Cells[2].Value = item[2].ToString();
-        //            allCompanyListDataGridView.Rows[n].Cells[3].Value = item[3].ToString();
-        //            allCompanyListDataGridView.Rows[n].Cells[4].Value = item[4].ToString();
-        //            allCompanyListDataGridView.Rows[n].Cells[5].Value = item[5].ToString();
-        //            allCompanyListDataGridView.Rows[n].Cells[6].Value = item[6].ToString();
-        //            allCompanyListDataGridView.Rows[n].Cells[7].Value = item[7].ToString();
-        //            allCompanyListDataGridView.Rows[n].Cells[8].Value = item[8].ToString();
-                    
-        //        }
 
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-
-        //}
         
         public void CompanyEntryUIClear()
         {
