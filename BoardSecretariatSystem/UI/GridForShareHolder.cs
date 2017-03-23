@@ -76,5 +76,12 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void GridForShareHolder_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Hide();
+            BoardManagementUI frm=new BoardManagementUI();
+                  frm.Show();
+        }
     }
 }

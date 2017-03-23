@@ -90,7 +90,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(319, 9);
+            this.label1.Location = new System.Drawing.Point(324, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(329, 40);
             this.label1.TabIndex = 1;
@@ -104,9 +104,11 @@
             this.ClientSize = new System.Drawing.Size(913, 489);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.Name = "GridForShareHolder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GridForShareHolder";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GridForShareHolder_FormClosed);
             this.Load += new System.EventHandler(this.GridForShareHolder_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

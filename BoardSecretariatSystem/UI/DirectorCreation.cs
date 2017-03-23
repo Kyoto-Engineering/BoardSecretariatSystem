@@ -19,11 +19,43 @@ namespace BoardSecretariatSystem.UI
         private SqlDataReader rdr;
         ConnectionString cs=new ConnectionString();
         public string labelk;
+        public int participantId,shareHolderId,directorId;
         public DirectorCreation()
         {
             InitializeComponent();
         }
 
+        private void GetShareHolderId()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctq = "select ParticipantId from Participant where Participant.ParticipantName='" + txtDirectorName.Text + "'";
+                cmd = new SqlCommand(ctq, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    participantId = (rdr.GetInt32(0));
+                }
+                con.Close();
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string qry = "select ShareholderId from Shareholder where Shareholder.ParticipantId='" + participantId + "'";
+                cmd = new SqlCommand(qry, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    shareHolderId = (rdr.GetInt32(0));
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (txtDirectorName.Text == "")
@@ -34,16 +66,17 @@ namespace BoardSecretariatSystem.UI
             }
             try
             {
-
+                GetShareHolderId();
+                
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select ShareholderId from Derector where ShareholderId='" + txtDirectorName.Text + "'";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
+                string qry1 = "select DerectorId from Derector where Derector.ShareholderId='" + shareHolderId + "'";
+                cmd = new SqlCommand(qry1, con);
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
-                    MessageBox.Show("This Director Name  Already Exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    directorId = (rdr.GetInt32(0));
+                    MessageBox.Show("This Director Name  Already Exists,Please Select another one.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtDirectorName.Text = "";
                     txtDirectorName.Focus();
                     if ((rdr != null))
@@ -52,16 +85,16 @@ namespace BoardSecretariatSystem.UI
                     }
                     return;
                 }
+                
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string cb = "insert into ClientTypes(ClientType,CreatedByUId,CreatedDTime) VALUES (@d1)";
+                string cb = "insert into Derector(ShareholderId,JoiningDate) VALUES (@d1,@d2)";
                 cmd = new SqlCommand(cb, con);
-                cmd.Parameters.AddWithValue("@d1", txtDirectorName.Text);
-                //cmd.Parameters.AddWithValue("@d1", userId);
-                //cmd.Parameters.AddWithValue("@d1", DateTime.UtcNow.ToLocalTime());
+                cmd.Parameters.AddWithValue("@d1", shareHolderId);
+                cmd.Parameters.AddWithValue("@d2", Convert.ToDateTime(txtJoiningDate.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));                  
                 cmd.ExecuteReader();
                 con.Close();
-                MessageBox.Show("Successfully saved", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtDirectorName.Clear();
 
             }
@@ -128,7 +161,7 @@ namespace BoardSecretariatSystem.UI
         private void DirectorCreation_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Hide();
-            MainUI frm=new MainUI();
+            BoardManagementUI frm = new BoardManagementUI();
              frm.Show();
         }
     }

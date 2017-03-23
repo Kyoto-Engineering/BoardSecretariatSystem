@@ -34,27 +34,21 @@ namespace BoardSecretariatSystem
         private void boardCreateButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-
-            BoardEntryUI boardEntry = new BoardEntryUI();
-
+            BoardCreation boardEntry = new BoardCreation();
             boardEntry.Show();
         }
 
         private void meetingCreateButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-
             MeetingEntry meetingEntry = new MeetingEntry();
-
             meetingEntry.Show();
         }
 
         private void agendaCreateButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-
             AgendaEntryUI agendaEntry = new AgendaEntryUI();
-
             agendaEntry.Show();
         }
 
@@ -95,9 +89,9 @@ namespace BoardSecretariatSystem
 
         private void buttonMultiCombo_Click(object sender, EventArgs e)
         {  
-               this.Hide();
-               GridForShareHolder frm = new GridForShareHolder();
-               frm.Show();
+            this.Hide();
+            BoardManagementUI frm=new BoardManagementUI();
+                frm.Show();
 
         }
 

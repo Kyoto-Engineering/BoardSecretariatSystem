@@ -24,10 +24,10 @@ namespace BoardSecretariatSystem
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
 
-        public string userId;
-        public int companyId, addId;
+        public string userId, agendaTypeId, labelk, labelg;
+        public int companyId, addId, aId;
         public int board_id,currentMeetingId;
-        public string v,serialNo;
+        public string v,serialNo,agendaType;
 
         public MeetingEntry()
         {
@@ -55,14 +55,53 @@ namespace BoardSecretariatSystem
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void BoardNameLoad()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query = "SELECT BoardName FROM Board ";
+                cmd = new SqlCommand(query, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    txtBoardName.Text = (rdr.GetString(0));
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void GetAgendaDetails()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                cmd = new SqlCommand("SELECT Agenda.AgendaTopics, Agenda.Memo, AgendaTypes.AgendaType,AgendaTypes.AgendaTypeId FROM  Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId", con);
+                rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                dataGridView1.Rows.Clear();
+                while (rdr.Read() == true)
+                {
+                    dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2],rdr[3]);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void MeetingEntry_Load(object sender, EventArgs e)
         {
+            GetAgendaDetails();
             CompanyNameLoad();
-            GetAllMeetingList();
-            LoadCombo();
-            GetAllParticipant();
+            BoardNameLoad();
 
-            MeetingVanueLoad();
         }
         public void CompanyNameLoad()
         {
@@ -71,12 +110,11 @@ namespace BoardSecretariatSystem
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 string query = "SELECT CompanyName FROM Company ";
-
                 cmd = new SqlCommand(query, con);
                 rdr = cmd.ExecuteReader();
-                while (rdr.Read())
+                if (rdr.Read())
                 {
-                    companyNameComboBox.Items.Add(rdr[0]);
+                    txtCompanyName.Text = (rdr.GetString(0));
                 }
                 con.Close();
             }
@@ -186,8 +224,8 @@ namespace BoardSecretariatSystem
         
         private void Reset()
         {
-            companyNameComboBox.SelectedIndex = -1;
-            boardNameComboBox.SelectedIndex = -1;
+            //companyNameComboBox.SelectedIndex = -1;
+            //boardNameComboBox.SelectedIndex = -1;
             //meetingNameTextBox.Clear();
             cmbVenue.SelectedIndex = -1;
             meetingDatePicker.Value=DateTime.Today;
@@ -208,16 +246,16 @@ namespace BoardSecretariatSystem
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(companyNameComboBox.Text))
-            {
-                MessageBox.Show("Please enter company Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //if (string.IsNullOrEmpty(companyNameComboBox.Text))
+            //{
+            //    MessageBox.Show("Please enter company Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
-            if (string.IsNullOrWhiteSpace(boardNameComboBox.Text))
-            {
-                MessageBox.Show("Please select board Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            //if (string.IsNullOrWhiteSpace(boardNameComboBox.Text))
+            //{
+            //    MessageBox.Show("Please select board Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
            
                 try
                 {                    
@@ -258,70 +296,69 @@ namespace BoardSecretariatSystem
 
         public void GetAllBoardByCompanyId()
         {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                cmd = con.CreateCommand();
+            //try
+            //{
+            //    con = new SqlConnection(cs.DBConn);
+            //    con.Open();
+            //    cmd = con.CreateCommand();
 
-                cmd.CommandText = "select CompanyId from Company WHERE CompanyName= '" + companyNameComboBox.Text + "'";
+            //    cmd.CommandText = "select CompanyId from Company WHERE CompanyName= '" + txtCompanyName.Text + "'";
 
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    companyId = rdr.GetInt32(0);
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-            }
+            //    rdr = cmd.ExecuteReader();
+            //    if (rdr.Read())
+            //    {
+            //        companyId = rdr.GetInt32(0);
+            //    }
+            //    if ((rdr != null))
+            //    {
+            //        rdr.Close();
+            //    }
+            //    if (con.State == ConnectionState.Open)
+            //    {
+            //        con.Close();
+            //    }
+            //}
 
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
 
-            if (!string.IsNullOrWhiteSpace(companyNameComboBox.Text))
-            {
+            //if (!string.IsNullOrWhiteSpace(txtCompanyName.Text))
+            //{
 
-                boardNameComboBox.Items.Clear();
-                boardNameComboBox.ResetText();
-                boardNameComboBox.SelectedIndex = -1;
-                try
-                {
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    cmd = con.CreateCommand();
-                    string query = "SELECT BoardName from Board where CompanyId= '" + companyId + "'";
+            //    txtBoardName.Clear();
+               
+            //    try
+            //    {
+            //        con = new SqlConnection(cs.DBConn);
+            //        con.Open();
+            //        cmd = con.CreateCommand();
+            //        string query = "SELECT BoardName from Board where CompanyId= '" + companyId + "'";
 
-                    cmd = new SqlCommand(query, con);
-                    rdr = cmd.ExecuteReader();
-                    while (rdr.Read())
-                    {
-                        boardNameComboBox.Items.Add(rdr.GetValue(0).ToString());
-                    }
+            //        cmd = new SqlCommand(query, con);
+            //        rdr = cmd.ExecuteReader();
+            //        while (rdr.Read())
+            //        {
+            //            txtBoardName.Items.Add(rdr.GetValue(0).ToString());
+            //        }
 
-                    if ((rdr != null))
-                    {
-                        rdr.Close();
-                    }
-                    if (con.State == ConnectionState.Open)
-                    {
-                        con.Close();
-                    }
-                }
+            //        if ((rdr != null))
+            //        {
+            //            rdr.Close();
+            //        }
+            //        if (con.State == ConnectionState.Open)
+            //        {
+            //            con.Close();
+            //        }
+            //    }
 
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
 
         }
 
@@ -423,32 +460,90 @@ namespace BoardSecretariatSystem
 
         private void boardNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //try
+            //{
+            //    con = new SqlConnection(cs.DBConn);
+            //    con.Open();
+            //    cmd = con.CreateCommand();
+
+            //    cmd.CommandText = "select BoardId from t_board WHERE CompanyId= '" + companyId + "' And BoardName='" + boardNameComboBox.Text + "'";
+
+            //    rdr = cmd.ExecuteReader();
+            //    if (rdr.Read())
+            //    {
+            //        board_id = rdr.GetInt32(0);
+
+            //    }
+            //    if ((rdr != null))
+            //    {
+            //        rdr.Close();
+            //    }
+            //    if (con.State == ConnectionState.Open)
+            //    {
+            //        con.Close();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            ++aId;
+            if (listView1.Items.Count == 0)
+            {
+                ListViewItem list = new ListViewItem();
+                list.SubItems.Add(txtAgendaHeader.Text);
+                list.SubItems.Add(txtMemoName.Text);
+               list.SubItems.Add(agendaType);
+                list.SubItems.Add(agendaTypeId.ToString());
+
+                listView1.Items.Add(list);
+                //GetAgendaId();
+
+                txtAgendaHeader.Text = "Agenda-" + aId;
+
+                txtMemoName.Clear();
+                //cmbAgendaType.SelectedIndex = -1;
+                return;
+            }
+            ListViewItem list1 = new ListViewItem();
+            list1.SubItems.Add(txtAgendaHeader.Text);
+            list1.SubItems.Add(txtMemoName.Text);
+            list1.SubItems.Add(agendaType);
+            list1.SubItems.Add(agendaTypeId.ToString());
+
+            listView1.Items.Add(list1);
+            //aId++;
+            txtAgendaHeader.Text = "Agenda-" + aId;
+            //GetAgendaId();
+            txtMemoName.Clear();
+            // cmbAgendaType.SelectedIndex = -1;
+            return;
+        }
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
             try
             {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                cmd = con.CreateCommand();
 
-                cmd.CommandText = "select BoardId from t_board WHERE CompanyId= '" + companyId + "' And BoardName='" + boardNameComboBox.Text + "'";
+                DataGridViewRow dr = dataGridView1.CurrentRow;
+                                           
+              txtAgendaHeader.Text = dr.Cells[0].Value.ToString();
+              txtMemoName.Text = dr.Cells[1].Value.ToString();
+                agendaType = dr.Cells[2].Value.ToString();
+                agendaTypeId = dr.Cells[3].Value.ToString();
 
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    board_id = rdr.GetInt32(0);
+                labelk = labelg;
 
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
+
             }
+
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

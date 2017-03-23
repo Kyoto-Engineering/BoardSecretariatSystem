@@ -30,5 +30,10 @@ namespace BoardSecretariatSystem.LoginUI
             MainUI  frm=new MainUI();
                  frm.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

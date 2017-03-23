@@ -41,7 +41,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(402, 9);
+            this.label1.Location = new System.Drawing.Point(391, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(299, 32);
             this.label1.TabIndex = 0;
@@ -63,7 +63,7 @@
             this.buttonChairman.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.buttonChairman.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonChairman.ForeColor = System.Drawing.Color.Blue;
-            this.buttonChairman.Location = new System.Drawing.Point(12, 175);
+            this.buttonChairman.Location = new System.Drawing.Point(12, 173);
             this.buttonChairman.Name = "buttonChairman";
             this.buttonChairman.Size = new System.Drawing.Size(143, 65);
             this.buttonChairman.TabIndex = 10;
@@ -76,7 +76,7 @@
             this.buttonMD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.buttonMD.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonMD.ForeColor = System.Drawing.Color.Blue;
-            this.buttonMD.Location = new System.Drawing.Point(11, 89);
+            this.buttonMD.Location = new System.Drawing.Point(11, 96);
             this.buttonMD.Name = "buttonMD";
             this.buttonMD.Size = new System.Drawing.Size(144, 66);
             this.buttonMD.TabIndex = 9;
@@ -89,7 +89,7 @@
             this.buttonDirector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.buttonDirector.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDirector.ForeColor = System.Drawing.Color.Blue;
-            this.buttonDirector.Location = new System.Drawing.Point(12, 19);
+            this.buttonDirector.Location = new System.Drawing.Point(12, 20);
             this.buttonDirector.Name = "buttonDirector";
             this.buttonDirector.Size = new System.Drawing.Size(144, 60);
             this.buttonDirector.TabIndex = 8;
@@ -103,7 +103,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.BackgroundImage = global::BoardSecretariatSystem.Properties.Resources.background_6677;
-            this.ClientSize = new System.Drawing.Size(971, 583);
+            this.ClientSize = new System.Drawing.Size(971, 585);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "BoardManagementUI";

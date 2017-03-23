@@ -395,7 +395,7 @@ namespace BoardSecretariatSystem.UI
             FillPermanantDivisionCombo();
             FillPresentDivisionCombo();
             EmailAddress();
-            //GetBoardName();          
+                
             userId = frmLogin.uId.ToString();
         }
         private void FillStar()

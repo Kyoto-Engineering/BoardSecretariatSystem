@@ -60,7 +60,7 @@
             this.boardCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.boardCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boardCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.boardCreateButton.Location = new System.Drawing.Point(21, 300);
+            this.boardCreateButton.Location = new System.Drawing.Point(21, 333);
             this.boardCreateButton.Name = "boardCreateButton";
             this.boardCreateButton.Size = new System.Drawing.Size(144, 56);
             this.boardCreateButton.TabIndex = 1;
@@ -73,11 +73,11 @@
             this.agendaCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.agendaCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agendaCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.agendaCreateButton.Location = new System.Drawing.Point(21, 253);
+            this.agendaCreateButton.Location = new System.Drawing.Point(21, 187);
             this.agendaCreateButton.Name = "agendaCreateButton";
             this.agendaCreateButton.Size = new System.Drawing.Size(144, 52);
             this.agendaCreateButton.TabIndex = 3;
-            this.agendaCreateButton.Text = "Manage Meeting";
+            this.agendaCreateButton.Text = "Agenda Creation";
             this.agendaCreateButton.UseVisualStyleBackColor = false;
             this.agendaCreateButton.Click += new System.EventHandler(this.agendaCreateButton_Click);
             // 
@@ -86,7 +86,7 @@
             this.meetingCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.meetingCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meetingCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.meetingCreateButton.Location = new System.Drawing.Point(21, 186);
+            this.meetingCreateButton.Location = new System.Drawing.Point(21, 245);
             this.meetingCreateButton.Name = "meetingCreateButton";
             this.meetingCreateButton.Size = new System.Drawing.Size(144, 59);
             this.meetingCreateButton.TabIndex = 2;
@@ -99,9 +99,9 @@
             this.meetingExecutionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.meetingExecutionButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meetingExecutionButton.ForeColor = System.Drawing.Color.Blue;
-            this.meetingExecutionButton.Location = new System.Drawing.Point(21, 358);
+            this.meetingExecutionButton.Location = new System.Drawing.Point(21, 448);
             this.meetingExecutionButton.Name = "meetingExecutionButton";
-            this.meetingExecutionButton.Size = new System.Drawing.Size(136, 60);
+            this.meetingExecutionButton.Size = new System.Drawing.Size(144, 60);
             this.meetingExecutionButton.TabIndex = 5;
             this.meetingExecutionButton.Text = "Meeting Execution";
             this.meetingExecutionButton.UseVisualStyleBackColor = false;
@@ -123,6 +123,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Fuchsia;
             this.label1.Location = new System.Drawing.Point(330, 8);
@@ -154,9 +155,9 @@
             this.buttonMultiCombo.ForeColor = System.Drawing.Color.Blue;
             this.buttonMultiCombo.Location = new System.Drawing.Point(21, 128);
             this.buttonMultiCombo.Name = "buttonMultiCombo";
-            this.buttonMultiCombo.Size = new System.Drawing.Size(144, 42);
+            this.buttonMultiCombo.Size = new System.Drawing.Size(144, 53);
             this.buttonMultiCombo.TabIndex = 7;
-            this.buttonMultiCombo.Text = "Director Creation";
+            this.buttonMultiCombo.Text = "Board Management";
             this.buttonMultiCombo.UseVisualStyleBackColor = false;
             this.buttonMultiCombo.Click += new System.EventHandler(this.buttonMultiCombo_Click);
             // 
@@ -165,9 +166,9 @@
             this.button1.BackColor = System.Drawing.Color.Teal;
             this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Yellow;
-            this.button1.Location = new System.Drawing.Point(21, 502);
+            this.button1.Location = new System.Drawing.Point(21, 512);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 57);
+            this.button1.Size = new System.Drawing.Size(144, 57);
             this.button1.TabIndex = 6;
             this.button1.Text = "User Management";
             this.button1.UseVisualStyleBackColor = false;
@@ -178,7 +179,7 @@
             this.buttonLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.buttonLogOut.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogOut.ForeColor = System.Drawing.Color.Yellow;
-            this.buttonLogOut.Location = new System.Drawing.Point(1081, -1);
+            this.buttonLogOut.Location = new System.Drawing.Point(985, 4);
             this.buttonLogOut.Name = "buttonLogOut";
             this.buttonLogOut.Size = new System.Drawing.Size(91, 50);
             this.buttonLogOut.TabIndex = 8;
@@ -191,8 +192,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.BackgroundImage = global::BoardSecretariatSystem.Properties.Resources.background_2;
-            this.ClientSize = new System.Drawing.Size(1172, 598);
+            this.BackgroundImage = global::BoardSecretariatSystem.Properties.Resources.background_2withlogo6999;
+            this.ClientSize = new System.Drawing.Size(1097, 686);
             this.ControlBox = false;
             this.Controls.Add(this.buttonLogOut);
             this.Controls.Add(this.groupBox1);

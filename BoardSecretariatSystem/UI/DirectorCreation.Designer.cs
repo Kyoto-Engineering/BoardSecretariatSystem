@@ -29,32 +29,44 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtDirectorName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonCreate = new System.Windows.Forms.Button();
-            this.txtDirectorName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtJoiningDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtJoiningDate);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtDirectorName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(12, 39);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(583, 127);
+            this.groupBox1.Size = new System.Drawing.Size(583, 198);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // txtDirectorName
+            // 
+            this.txtDirectorName.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDirectorName.Location = new System.Drawing.Point(262, 45);
+            this.txtDirectorName.Name = "txtDirectorName";
+            this.txtDirectorName.Size = new System.Drawing.Size(287, 32);
+            this.txtDirectorName.TabIndex = 42;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 43);
+            this.label2.Location = new System.Drawing.Point(69, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(250, 26);
+            this.label2.Size = new System.Drawing.Size(183, 26);
             this.label2.TabIndex = 41;
-            this.label2.Text = "Select Derector Name :";
+            this.label2.Text = "Derector Name :";
             // 
             // label3
             // 
@@ -72,28 +84,39 @@
             this.buttonCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.buttonCreate.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCreate.ForeColor = System.Drawing.Color.Blue;
-            this.buttonCreate.Location = new System.Drawing.Point(453, 187);
+            this.buttonCreate.Location = new System.Drawing.Point(464, 243);
             this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(131, 57);
+            this.buttonCreate.Size = new System.Drawing.Size(131, 75);
             this.buttonCreate.TabIndex = 2;
             this.buttonCreate.Text = "Create";
             this.buttonCreate.UseVisualStyleBackColor = false;
             this.buttonCreate.Click += new System.EventHandler(this.button1_Click);
             // 
-            // txtDirectorName
+            // label1
             // 
-            this.txtDirectorName.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDirectorName.Location = new System.Drawing.Point(262, 45);
-            this.txtDirectorName.Name = "txtDirectorName";
-            this.txtDirectorName.Size = new System.Drawing.Size(287, 32);
-            this.txtDirectorName.TabIndex = 42;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(96, 113);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(156, 26);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "Joining Date :";
+            // 
+            // txtJoiningDate
+            // 
+            this.txtJoiningDate.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtJoiningDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txtJoiningDate.Location = new System.Drawing.Point(262, 109);
+            this.txtJoiningDate.Name = "txtJoiningDate";
+            this.txtJoiningDate.Size = new System.Drawing.Size(287, 32);
+            this.txtJoiningDate.TabIndex = 44;
             // 
             // DirectorCreation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(634, 282);
+            this.ClientSize = new System.Drawing.Size(634, 330);
             this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
@@ -117,5 +140,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonCreate;
         public System.Windows.Forms.TextBox txtDirectorName;
+        private System.Windows.Forms.DateTimePicker txtJoiningDate;
+        private System.Windows.Forms.Label label1;
     }
 }

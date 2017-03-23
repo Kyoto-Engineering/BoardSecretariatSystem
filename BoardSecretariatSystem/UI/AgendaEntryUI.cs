@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BoardSecretariatSystem.DBGateway;
@@ -20,13 +21,10 @@ namespace BoardSecretariatSystem
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
         private delegate void ChangeFocusDelegate(Control ctl);
-
-        public string userId, boardId, companyId, labelv, labelg,nParticipantId;
-
-        public int agendaId, meetingId, participantId;
+        public string userId, boardId, companyId, labelv, labelg, nParticipantId, nUserId;
+        public int agendaId, agendaTypeId, meetingId, participantId, aId, agendaId1;
         public AgendaEntryUI()
-        {
-            
+        {            
             InitializeComponent();
         }
         private void changeFocus(Control ctl)
@@ -40,26 +38,7 @@ namespace BoardSecretariatSystem
             mainUI.Show();
         }
         public void CompanyNameLoad()
-        {
-
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string query = "SELECT RTRIM(Company.CompanyName) FROM  Company  order by Company.CompanyId desc";
-                cmd = new SqlCommand(query, con);
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    companyNameComboBox.Items.Add(rdr[0]);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+        {         
         }
         private void SaveMeetingAgenda()
         {
@@ -72,7 +51,7 @@ namespace BoardSecretariatSystem
                     string cb = "insert into MeetingParticipant(MeetingId,AgendaId) VALUES(@d1,@d2)";
                     cmd = new SqlCommand(cb, con);
                     cmd.Parameters.AddWithValue("d1", meetingId);
-                    cmd.Parameters.AddWithValue("d2", listView2.Items[i].SubItems[1].Text);
+                    cmd.Parameters.AddWithValue("d2", listView1.Items[i].SubItems[1].Text);
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
@@ -87,14 +66,14 @@ namespace BoardSecretariatSystem
         {
             try
             {
-                for (int i = 0; i <= listView2.Items.Count - 1; i++)
+                for (int i = 0; i <= listView1.Items.Count - 1; i++)
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     string cb = "insert into MeetingParticipant(MeetingId,ParticipantId) VALUES(@d1,@d2)";
                     cmd = new SqlCommand(cb,con);                    
                     cmd.Parameters.AddWithValue("d1", meetingId);
-                    cmd.Parameters.AddWithValue("d2", listView2.Items[i].SubItems[4].Text);
+                    cmd.Parameters.AddWithValue("d2", listView1.Items[i].SubItems[4].Text);
                     cmd.ExecuteNonQuery();                    
                     con.Close();
                 }
@@ -105,13 +84,13 @@ namespace BoardSecretariatSystem
             }
 
         }
-        private void GetBoardMemberDetails()
+        private void GetAgendaDetails()
         {
             try
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                cmd = new SqlCommand("SELECT Participant.ParticipantName, EmailBank.Email, Participant.ContactNumber FROM  Participant INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId", con);
+                cmd = new SqlCommand("SELECT Agenda.AgendaTopics, Agenda.Memo, AgendaTypes.AgendaType FROM  Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId", con);
                 rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 dataGridView1.Rows.Clear();
                 while (rdr.Read() == true)
@@ -124,295 +103,204 @@ namespace BoardSecretariatSystem
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }              
-        private void AgendaEntryUI_Load(object sender, EventArgs e)
-        {
-            userId = frmLogin.uId.ToString();
-            CompanyNameLoad();
-            GetBoardMemberDetails();
-        }      
-        private void companyNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        }
+        private void GetAgendaId()
         {
             try
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct2 = "select MeetingId from Meeting where  Meeting.MeetingName='" + meetingNameComboBox.Text + "'";
-                cmd = new SqlCommand(ct2, con);
+                string ctt = "Select MAX(AgendaId) from Agenda ";
+                cmd = new SqlCommand(ctt);
+                cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
-                if (rdr.Read() && !rdr.IsDBNull(0))
+                if (rdr.Read())
                 {
-                    meetingId = rdr.GetInt32(0);
+                    aId = (rdr.GetInt32(0));
+                   // string[] tokens = agendaId1.Split('-');
+                    //aId = Convert.ToInt32(tokens[1]);
+                    txtAgendaHeader.Text = "Agenda-" +aId;
                 }
-                con.Close();
+                if (!rdr.Read())
+                {
+                   
+                    txtAgendaHeader.Text = "Agenda-1";
+                }
+                
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void Reset()
+        private void LoadAgendaType()
         {
-            companyNameComboBox.SelectedIndex = -1;
-            cmbBoardName.SelectedIndex = -1;
-            meetingNameComboBox.SelectedIndex = -1;
-            listView1.Items.Clear();
-            listView2.Items.Clear();
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctt = "select AgendaType from AgendaTypes order by AgendaTypes.AgendaTypeId desc";
+                cmd = new SqlCommand(ctt);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbAgendaType.Items.Add(rdr.GetValue(0).ToString());
+                }
+                cmbAgendaType.Items.Add("Not In The List");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+        private void AgendaEntryUI_Load(object sender, EventArgs e)
+        {
+            userId = frmLogin.uId.ToString();
+            GetAgendaId();
+            CompanyNameLoad();
+            GetAgendaDetails();
+            LoadAgendaType();
+        }      
+       
+       
         private void agendaSaveButton_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(companyNameComboBox.Text))
-            {
-                MessageBox.Show("Please Select company name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (string.IsNullOrEmpty(meetingNameComboBox.Text))
-            {
-                MessageBox.Show("Please Select company name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (string.IsNullOrEmpty(cmbBoardName.Text))
-            {
-                MessageBox.Show("Please enter board name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }   
-                      
+        {                                
                try
                 {
                     for (int i = 0; i < listView1.Items.Count - 1; i++)
                     {
                         con = new SqlConnection(cs.DBConn);
                         con.Open();
-                        string query1 = "insert into Agenda(AgendaTopics,UserId,DateTime) values (@d1,@d3,@d4)";
+                        string query1 = "insert into Agenda(AgendaTopics,Memo,AgendaTypeId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5)";
                         cmd = new SqlCommand(query1, con);
-                        cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[1].Text);                       
-                       // cmd.Parameters.AddWithValue("@d2", meetingId);
-                        cmd.Parameters.AddWithValue("@d3", userId);
-                        cmd.Parameters.AddWithValue("@d4", DateTime.UtcNow.ToLocalTime());
+                        cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[1].Text);
+                        cmd.Parameters.AddWithValue("@d2", listView1.Items[i].SubItems[2].Text);
+                        cmd.Parameters.AddWithValue("@d3", listView1.Items[i].SubItems[4].Text);
+                        cmd.Parameters.AddWithValue("@d4", userId);
+                        cmd.Parameters.AddWithValue("@d5", DateTime.UtcNow.ToLocalTime());
                         cmd.ExecuteNonQuery();
                         con.Close();
                     }
-                    SaveMeetingParticipant();
+                    //SaveMeetingParticipant();
                     MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Reset();
+                  
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
            
-        }
-        private void companyNameComboBox_Leave(object sender, EventArgs e)
+        }                    
+      
+        private void button1_Click_2(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(meetingNameComboBox.Text) && !meetingNameComboBox.Items.Contains(meetingNameComboBox.Text))
-            {
-                MessageBox.Show("Please Select A Valid Company Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                meetingNameComboBox.ResetText();
-                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), meetingNameComboBox);
-            }
-        }
-        private void boardNameComboBox_Leave(object sender, EventArgs e)
-        {            
-        }
-        private void boardNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {            
-        }
-        private void addButton_Click(object sender, EventArgs e)
-        {
+            ++aId;
             if (listView1.Items.Count == 0)
             {
-                ListViewItem list =new ListViewItem();
-                list.SubItems.Add(txtTopics.Text);
+                ListViewItem list = new ListViewItem();
+                list.SubItems.Add(txtAgendaHeader.Text);
+                list.SubItems.Add(txtMemoName.Text);
+                list.SubItems.Add(cmbAgendaType.Text);
+                list.SubItems.Add(agendaTypeId.ToString());
+
                 listView1.Items.Add(list);
-                txtTopics.Clear();
+                //GetAgendaId();
+                
+                txtAgendaHeader.Text = "Agenda-" + aId;
+               
+                txtMemoName.Clear();
+                //cmbAgendaType.SelectedIndex = -1;
                 return;
             }
             ListViewItem list1 = new ListViewItem();
-            list1.SubItems.Add(txtTopics.Text);
+            list1.SubItems.Add(txtAgendaHeader.Text);
+            list1.SubItems.Add(txtMemoName.Text);
+            list1.SubItems.Add(cmbAgendaType.Text);
+            list1.SubItems.Add(agendaTypeId.ToString());
+
             listView1.Items.Add(list1);
-            txtTopics.Clear();
+            //aId++;
+            txtAgendaHeader.Text = "Agenda-" + aId;
+            //GetAgendaId();
+            txtMemoName.Clear();
+           // cmbAgendaType.SelectedIndex = -1;
             return;
         }
 
-        private void companyNameComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void cmbAgendaType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            if (cmbAgendaType.Text == "Not In The List")
             {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctk = "SELECT  RTRIM(Company.CompanyId)  from  Company  WHERE Company.CompanyName=@find";
-                cmd = new SqlCommand(ctk);
-                cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Company"));
-                cmd.Parameters["@find"].Value = companyNameComboBox.Text;
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
+                string input = Microsoft.VisualBasic.Interaction.InputBox("Please Input New Agenda Type  Here", "Input Here", "", -1, -1);
+                if (string.IsNullOrWhiteSpace(input))
                 {
-                    companyId = (rdr.GetString(0));
+                    cmbAgendaType.SelectedIndex = -1;
                 }
-                if ((rdr != null))
+
+                else
                 {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-                companyNameComboBox.Text = companyNameComboBox.Text.Trim();               
-                cmbBoardName.SelectedIndex = -1;
-                cmbBoardName.Items.Clear();
-                cmbBoardName.Enabled = true;
-                cmbBoardName.Focus();
-
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "select RTRIM(Board.BoardName) from Board  Where Board.CompanyId = '" + companyId + "' order by Board.BoardId desc";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    cmbBoardName.Items.Add(rdr[0]);
-                }
-                con.Close();
-
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {           
-        }
-        private void cmbParticipantName_SelectedIndexChanged(object sender, EventArgs e)
-        {        
-        }
-
-        private void cmbBoardName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctk = "SELECT  RTRIM(Board.BoardId)  from  Board  WHERE Board.BoardName=@find";
-                cmd = new SqlCommand(ctk);
-                cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Board"));
-                cmd.Parameters["@find"].Value = cmbBoardName.Text;
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    boardId = (rdr.GetString(0));
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-                cmbBoardName.Text = cmbBoardName.Text.Trim();
-                meetingNameComboBox.Items.Clear();
-                meetingNameComboBox.SelectedIndex = -1;
-                meetingNameComboBox.Enabled = true;
-                meetingNameComboBox.Focus();
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "select RTRIM(Meeting.MeetingName) from Meeting  Where Meeting.BoardId = '" + boardId + "' order by Meeting.MeetingId desc";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    meetingNameComboBox.Items.Add(rdr[0]);
-                }
-                con.Close();
-
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            try
-            {
-                DataGridViewRow dr = dataGridView1.CurrentRow;
-                txtBoardMemberName.Text = dr.Cells[0].Value.ToString();
-                txtEmail.Text = dr.Cells[1].Value.ToString();
-                txtCellNumber.Text = dr.Cells[2].Value.ToString();
-                labelv = labelg;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-             if (listView2.Items.Count == 0)
-            {
-                ListViewItem lst = new ListViewItem();
-                lst.SubItems.Add(txtBoardMemberName.Text);
-                lst.SubItems.Add(txtEmail.Text);
-                lst.SubItems.Add(txtCellNumber.Text);
-                lst.SubItems.Add(nParticipantId);
-
-                listView2.Items.Add(lst);
-                txtBoardMemberName.Clear();
-                txtEmail.Clear();
-                txtCellNumber.Clear();
-                return;
-            }
-
-            ListViewItem lst1 = new ListViewItem();
-            lst1.SubItems.Add(txtBoardMemberName.Text);
-            lst1.SubItems.Add(txtEmail.Text);
-            lst1.SubItems.Add(txtCellNumber.Text);
-            lst1.SubItems.Add(nParticipantId);
-            listView2.Items.Add(lst1);
-            txtBoardMemberName.Clear();
-            txtEmail.Clear();
-            txtCellNumber.Clear();
-            return;
-
-        }
-
-        private void txtCellNumber_TextChanged(object sender, EventArgs e)
-        {
-             try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctk = "SELECT  RTRIM(Participant.ParticipantId)  from  Participant  WHERE Participant.ContactNumber=@find";
-                cmd = new SqlCommand(ctk);
-                cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Participant"));
-                cmd.Parameters["@find"].Value = txtCellNumber.Text;
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    nParticipantId = (rdr.GetString(0));
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
+                    
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string ct2 = "select AgendaType from AgendaTypes where AgendaType='" + input + "'";
+                    cmd = new SqlCommand(ct2, con);
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read() && !rdr.IsDBNull(0))
+                    {
+                        MessageBox.Show("This  Agenda Types  Already Exists,Please Select From List", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        con.Close();
+                        cmbAgendaType.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            con = new SqlConnection(cs.DBConn);
+                            con.Open();
+                            string query1 = "insert into AgendaTypes(AgendaType) values (@d1)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            cmd = new SqlCommand(query1, con);
+                            cmd.Parameters.AddWithValue("@d1", input);                            
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            cmbAgendaType.Items.Clear();
+                            LoadAgendaType();
+                            cmbAgendaType.SelectedText = input;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
-
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "SELECT AgendaTypeId from AgendaTypes WHERE AgendaType= '" + cmbAgendaType.Text + "'";
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        agendaTypeId = rdr.GetInt32(0);
+                    }
+                    if ((rdr != null))
+                    {
+                        rdr.Close();
+                    }
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

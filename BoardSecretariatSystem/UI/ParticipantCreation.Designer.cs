@@ -202,6 +202,7 @@
             this.txtCellNumber.Name = "txtCellNumber";
             this.txtCellNumber.Size = new System.Drawing.Size(278, 29);
             this.txtCellNumber.TabIndex = 117;
+            this.txtCellNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCellNumber_KeyPress);
             // 
             // label10
             // 

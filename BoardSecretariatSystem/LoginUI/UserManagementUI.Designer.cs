@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.buttonRegistration = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonRegistration = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,16 +45,18 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // label1
+            // button1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(397, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(308, 36);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "User Management UI";
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Blue;
+            this.button1.Location = new System.Drawing.Point(13, 104);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(123, 54);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Reset Password";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonRegistration
             // 
@@ -69,17 +71,16 @@
             this.buttonRegistration.UseVisualStyleBackColor = false;
             this.buttonRegistration.Click += new System.EventHandler(this.buttonRegistration_Click);
             // 
-            // button1
+            // label1
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Blue;
-            this.button1.Location = new System.Drawing.Point(13, 104);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 54);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Reset Password";
-            this.button1.UseVisualStyleBackColor = false;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.Location = new System.Drawing.Point(397, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(308, 36);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "User Management UI";
             // 
             // UserManagementUI
             // 

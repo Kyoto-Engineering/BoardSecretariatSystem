@@ -169,7 +169,7 @@ namespace BoardSecretariatSystem.UI
             string tableName = tblName1;
             con = new SqlConnection(cs.DBConn);
             con.Open();
-            string Qry = "insert into " + tableName + "(PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())"; 
+            string Qry = "insert into " + tableName + "(PostOfficeId,PFlatNo,PHouseNo,PRoadNo,PBlock,PArea,PContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())"; 
             cmd = new SqlCommand(Qry,con);            
             cmd.Parameters.Add(new SqlParameter("@d1", string.IsNullOrEmpty(postofficeIdP) ? (object)DBNull.Value : postofficeIdP));
             cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(txtPFlatName.Text) ? (object)DBNull.Value : txtPFlatName.Text));
@@ -440,6 +440,7 @@ namespace BoardSecretariatSystem.UI
                 if (rdr.Read() && !rdr.IsDBNull(0))
                 {
                     MessageBox.Show("This Share Holder Already Exists,Please Input another one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                     con.Close();
                 }
                 //1. Both Not Applicable
@@ -464,10 +465,8 @@ namespace BoardSecretariatSystem.UI
                 if (sameAsRACheckBox.Checked & unKnownRA.Checked == false & unKnownCheckBox.Checked == false)
                 {
                     SaveParticipant();
-                    PermanantSameAsPresent("PPresentAddresses");
                     SaveParticipantAddress("PPermanantAddresses");
-                   
-
+                    PermanantSameAsPresent("PPresentAddresses");                                     
                 }
                 //5.Present Address not  Applicable  & Permanant Address  Applicable
                 if (unKnownRA.Checked & sameAsRACheckBox.Checked == false & unKnownCheckBox.Checked == false)
@@ -476,7 +475,7 @@ namespace BoardSecretariatSystem.UI
                     SaveParticipantAddress("PPermanantAddresses");
                 }
                
-                MessageBox.Show("Saved Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Reset();
             }
             catch (Exception ex)
@@ -1190,6 +1189,12 @@ namespace BoardSecretariatSystem.UI
         }
 
         private void txtContactNo_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
+                e.Handled = true;
+        }
+
+        private void txtCellNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
                 e.Handled = true;
