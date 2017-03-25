@@ -165,17 +165,18 @@ namespace BoardSecretariatSystem
                 }
             }
         }
-        private void SaveCompanyAddress(string tableName)
+        private void SaveCompanyAddress(int  addHeaderId)
         {
-            string tableName1 = tableName;
+            int aHeaderId = addHeaderId;
 
-            if (tableName1 == "RegisteredAddresses")
+            if (aHeaderId == 1)
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string insertQ = "insert into " + tableName1 + "(PostOfficeId,RgFlatNo,RgHouseNo,RgRoadNo,RgBlock,RgArea,RgContactNo,CompanyId) Values(@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string insertQ = "insert into CompanyAddresses(AHeaderId,PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,CompanyId) Values(@d1,@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(insertQ);
                 cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@d1", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
                 cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
                 cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(flatNoTextBox.Text) ? (object)DBNull.Value : flatNoTextBox.Text));
                 cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(houseNoTextBox.Text) ? (object)DBNull.Value : houseNoTextBox.Text));
@@ -187,11 +188,11 @@ namespace BoardSecretariatSystem
                 affectedRows1 = (int)cmd.ExecuteScalar();
                 con.Close();
             }
-            if (tableName1 == "CorporateHQAddresses")
+            if (aHeaderId == 1)
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string insertQ = "insert into " + tableName1 + "(PostOfficeId,CHQFlatNo,CHQHouseNo,CHQRoadNo,CHQBlock,CHQArea,CHQContactNo,CompanyId) Values(@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string insertQ = "insert into  CompanyAddresses(AHeaderId,PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,CompanyId) Values(@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(insertQ);
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
@@ -353,8 +354,8 @@ namespace BoardSecretariatSystem
                             cmd.Parameters.AddWithValue("@d7", creatingDateTimePicker.Value);
                             currentCompanyId = (int) cmd.ExecuteScalar();
                             con.Close();
-                            SaveCompanyAddress("RegisteredAddresses");
-                            SaveCompanyAddress("CorporateHQAddresses");
+                          //  SaveCompanyAddress("RegisteredAddresses");
+                           // SaveCompanyAddress("CorporateHQAddresses");
                             if (otherAddress.Checked)
                             {
                                 SaveOtherAddress("OtherAddress");

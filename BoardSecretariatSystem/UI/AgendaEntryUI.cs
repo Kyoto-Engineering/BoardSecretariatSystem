@@ -117,15 +117,16 @@ namespace BoardSecretariatSystem
                 if (rdr.Read())
                 {
                     aId = (rdr.GetInt32(0));
+                    aId += 1;
                    // string[] tokens = agendaId1.Split('-');
                     //aId = Convert.ToInt32(tokens[1]);
                     txtAgendaHeader.Text = "Agenda-" +aId;
                 }
-                if (!rdr.Read())
-                {
+                //if (!rdr.Read())
+                //{
                    
-                    txtAgendaHeader.Text = "Agenda-1";
-                }
+                //    txtAgendaHeader.Text = "Agenda-1";
+                //}
                 
 
             }
@@ -173,13 +174,14 @@ namespace BoardSecretariatSystem
                     {
                         con = new SqlConnection(cs.DBConn);
                         con.Open();
-                        string query1 = "insert into Agenda(AgendaTopics,Memo,AgendaTypeId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5)";
+                        string query1 = "insert into Agenda(AgendaTopics,AgendaTitle,Memo,AgendaTypeId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6)";
                         cmd = new SqlCommand(query1, con);
                         cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[1].Text);
                         cmd.Parameters.AddWithValue("@d2", listView1.Items[i].SubItems[2].Text);
-                        cmd.Parameters.AddWithValue("@d3", listView1.Items[i].SubItems[4].Text);
-                        cmd.Parameters.AddWithValue("@d4", userId);
-                        cmd.Parameters.AddWithValue("@d5", DateTime.UtcNow.ToLocalTime());
+                        cmd.Parameters.AddWithValue("@d3", listView1.Items[i].SubItems[3].Text);
+                        cmd.Parameters.AddWithValue("@d4", listView1.Items[i].SubItems[5].Text);
+                        cmd.Parameters.AddWithValue("@d5", userId);
+                        cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
                         cmd.ExecuteNonQuery();
                         con.Close();
                     }
@@ -201,31 +203,28 @@ namespace BoardSecretariatSystem
             {
                 ListViewItem list = new ListViewItem();
                 list.SubItems.Add(txtAgendaHeader.Text);
+                list.SubItems.Add(txtAgendaTitle.Text);
                 list.SubItems.Add(txtMemoName.Text);
                 list.SubItems.Add(cmbAgendaType.Text);
                 list.SubItems.Add(agendaTypeId.ToString());
 
-                listView1.Items.Add(list);
-                //GetAgendaId();
-                
+                listView1.Items.Add(list);            
                 txtAgendaHeader.Text = "Agenda-" + aId;
-               
-                txtMemoName.Clear();
-                //cmbAgendaType.SelectedIndex = -1;
+                txtAgendaTitle.Clear();
+                txtMemoName.Clear();               
                 return;
             }
             ListViewItem list1 = new ListViewItem();
             list1.SubItems.Add(txtAgendaHeader.Text);
+            list1.SubItems.Add(txtAgendaTitle.Text);
             list1.SubItems.Add(txtMemoName.Text);
             list1.SubItems.Add(cmbAgendaType.Text);
             list1.SubItems.Add(agendaTypeId.ToString());
 
-            listView1.Items.Add(list1);
-            //aId++;
+            listView1.Items.Add(list1);            
             txtAgendaHeader.Text = "Agenda-" + aId;
-            //GetAgendaId();
-            txtMemoName.Clear();
-           // cmbAgendaType.SelectedIndex = -1;
+            txtAgendaTitle.Clear();
+            txtMemoName.Clear();          
             return;
         }
 
