@@ -40,7 +40,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Yellow;
-            this.label1.Location = new System.Drawing.Point(61, 61);
+            this.label1.Location = new System.Drawing.Point(89, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(160, 31);
             this.label1.TabIndex = 0;
@@ -51,7 +51,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Yellow;
-            this.label2.Location = new System.Drawing.Point(75, 108);
+            this.label2.Location = new System.Drawing.Point(103, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 31);
             this.label2.TabIndex = 1;
@@ -60,18 +60,18 @@
             // userNameTextBox
             // 
             this.userNameTextBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userNameTextBox.Location = new System.Drawing.Point(225, 60);
+            this.userNameTextBox.Location = new System.Drawing.Point(253, 60);
             this.userNameTextBox.Name = "userNameTextBox";
-            this.userNameTextBox.Size = new System.Drawing.Size(362, 32);
+            this.userNameTextBox.Size = new System.Drawing.Size(282, 32);
             this.userNameTextBox.TabIndex = 2;
             // 
             // passwoardTextBox
             // 
             this.passwoardTextBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwoardTextBox.Location = new System.Drawing.Point(225, 110);
+            this.passwoardTextBox.Location = new System.Drawing.Point(253, 110);
             this.passwoardTextBox.Name = "passwoardTextBox";
             this.passwoardTextBox.PasswordChar = '*';
-            this.passwoardTextBox.Size = new System.Drawing.Size(362, 32);
+            this.passwoardTextBox.Size = new System.Drawing.Size(282, 32);
             this.passwoardTextBox.TabIndex = 3;
             // 
             // loginButton
@@ -79,9 +79,9 @@
             this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.loginButton.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginButton.ForeColor = System.Drawing.Color.Blue;
-            this.loginButton.Location = new System.Drawing.Point(304, 191);
+            this.loginButton.Location = new System.Drawing.Point(302, 171);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(155, 59);
+            this.loginButton.Size = new System.Drawing.Size(155, 81);
             this.loginButton.TabIndex = 4;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = false;

@@ -86,23 +86,23 @@ namespace BoardSecretariatSystem
         }
         private void GetAgendaDetails()
         {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                cmd = new SqlCommand("SELECT Agenda.AgendaTopics, Agenda.Memo, AgendaTypes.AgendaType FROM  Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId", con);
-                rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-                dataGridView1.Rows.Clear();
-                while (rdr.Read() == true)
-                {
-                    dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2]);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //try
+            //{
+            //    con = new SqlConnection(cs.DBConn);
+            //    con.Open();
+            //    cmd = new SqlCommand("SELECT Agenda.AgendaTopics, Agenda.Memo, AgendaTypes.AgendaType FROM  Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId", con);
+            //    rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            //    dataGridView1.Rows.Clear();
+            //    while (rdr.Read() == true)
+            //    {
+            //        dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2]);
+            //    }
+            //    con.Close();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
         private void GetAgendaId()
         {
@@ -174,18 +174,16 @@ namespace BoardSecretariatSystem
                     {
                         con = new SqlConnection(cs.DBConn);
                         con.Open();
-                        string query1 = "insert into Agenda(AgendaTopics,AgendaTitle,Memo,AgendaTypeId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6)";
+                        string query1 = "insert into Agenda(AgendaTopics,AgendaTitle,AgendaTypeId,UserId,DateTime) values (@d1,@d2,@d4,@d5,@d6)";
                         cmd = new SqlCommand(query1, con);
                         cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[1].Text);
-                        cmd.Parameters.AddWithValue("@d2", listView1.Items[i].SubItems[2].Text);
-                        cmd.Parameters.AddWithValue("@d3", listView1.Items[i].SubItems[3].Text);
-                        cmd.Parameters.AddWithValue("@d4", listView1.Items[i].SubItems[5].Text);
+                        cmd.Parameters.AddWithValue("@d2", listView1.Items[i].SubItems[2].Text);                       
+                        cmd.Parameters.AddWithValue("@d4", listView1.Items[i].SubItems[4].Text);
                         cmd.Parameters.AddWithValue("@d5", userId);
                         cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
                         cmd.ExecuteNonQuery();
                         con.Close();
-                    }
-                    //SaveMeetingParticipant();
+                    }                  
                     MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                   
                 }
@@ -204,27 +202,27 @@ namespace BoardSecretariatSystem
                 ListViewItem list = new ListViewItem();
                 list.SubItems.Add(txtAgendaHeader.Text);
                 list.SubItems.Add(txtAgendaTitle.Text);
-                list.SubItems.Add(txtMemoName.Text);
+               // list.SubItems.Add(txtMemoName.Text);
                 list.SubItems.Add(cmbAgendaType.Text);
                 list.SubItems.Add(agendaTypeId.ToString());
 
                 listView1.Items.Add(list);            
                 txtAgendaHeader.Text = "Agenda-" + aId;
                 txtAgendaTitle.Clear();
-                txtMemoName.Clear();               
+                //txtMemoName.Clear();               
                 return;
             }
             ListViewItem list1 = new ListViewItem();
             list1.SubItems.Add(txtAgendaHeader.Text);
             list1.SubItems.Add(txtAgendaTitle.Text);
-            list1.SubItems.Add(txtMemoName.Text);
+          //  list1.SubItems.Add(txtMemoName.Text);
             list1.SubItems.Add(cmbAgendaType.Text);
             list1.SubItems.Add(agendaTypeId.ToString());
 
             listView1.Items.Add(list1);            
             txtAgendaHeader.Text = "Agenda-" + aId;
             txtAgendaTitle.Clear();
-            txtMemoName.Clear();          
+          //  txtMemoName.Clear();          
             return;
         }
 
