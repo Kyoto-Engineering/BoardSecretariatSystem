@@ -95,6 +95,15 @@ namespace BoardSecretariatSystem
 
         }
 
+        private void reportButton_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            ReportUI frm = new ReportUI();
+            frm.Show();
+        }
+
+        
+
         
 
        

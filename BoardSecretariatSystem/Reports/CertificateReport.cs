@@ -16,14 +16,14 @@ namespace BoardSecretariatSystem.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class MemberAttendenceReport : ReportClass {
+    public class CertificateReport : ReportClass {
         
-        public MemberAttendenceReport() {
+        public CertificateReport() {
         }
         
         public override string ResourceName {
             get {
-                return "MemberAttendenceReport.rpt";
+                return "CertificateReport.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace BoardSecretariatSystem.Reports {
         
         public override string FullResourceName {
             get {
-                return "BoardSecretariatSystem.Reports.MemberAttendenceReport.rpt";
+                return "BoardSecretariatSystem.Reports.CertificateReport.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace BoardSecretariatSystem.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedMemberAttendenceReport : Component, ICachedReport {
+    public class CachedCertificateReport : Component, ICachedReport {
         
-        public CachedMemberAttendenceReport() {
+        public CachedCertificateReport() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace BoardSecretariatSystem.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            MemberAttendenceReport rpt = new MemberAttendenceReport();
+            CertificateReport rpt = new CertificateReport();
             rpt.Site = this.Site;
             return rpt;
         }
