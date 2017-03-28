@@ -159,8 +159,6 @@ namespace BoardSecretariatSystem.UI
 
             //set the parameterfield information in the crystal report
 
-
-
             ReportViewer f2 = new ReportViewer();
             TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
             TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
@@ -214,8 +212,6 @@ namespace BoardSecretariatSystem.UI
             //paramFields.Add(paramField);
 
             //set the parameterfield information in the crystal report
-
-
 
             ReportViewer f2 = new ReportViewer();
             TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
