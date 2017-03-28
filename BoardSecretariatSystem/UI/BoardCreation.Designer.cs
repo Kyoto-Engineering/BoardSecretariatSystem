@@ -47,7 +47,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(32, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(592, 139);
+            this.groupBox1.Size = new System.Drawing.Size(592, 128);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Board Creation";
@@ -98,7 +98,7 @@
             this.saveButton.BackColor = System.Drawing.Color.Lime;
             this.saveButton.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.ForeColor = System.Drawing.Color.Blue;
-            this.saveButton.Location = new System.Drawing.Point(444, 188);
+            this.saveButton.Location = new System.Drawing.Point(356, 169);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(122, 61);
             this.saveButton.TabIndex = 12;
