@@ -40,9 +40,9 @@ namespace BoardSecretariatSystem
 
         private void meetingCreateButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MeetingEntry meetingEntry = new MeetingEntry();
-            meetingEntry.Show();
+                               this.Hide();
+            MeetingManagementUI meetingEntry = new MeetingManagementUI();
+                              meetingEntry.Show();
         }
 
         private void agendaCreateButton_Click(object sender, EventArgs e)

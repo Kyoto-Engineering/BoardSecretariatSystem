@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BoardSecretariatSystem.DBGateway;
+using BoardSecretariatSystem.UI;
 
 namespace BoardSecretariatSystem
 {
@@ -232,13 +233,7 @@ namespace BoardSecretariatSystem
                     cmd.Parameters.AddWithValue("@d5", userId);
                     cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
                     currentMeetingId = (int)cmd.ExecuteScalar();
-                    con.Close(); 
-
-
-                    for (int i = 0; i < listView1.Items.Count-1; i++)
-                    {
-                        
-                    }
+                    con.Close();                   
                     Reset();
                     MessageBox.Show("Saved Sucessfully", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -253,8 +248,8 @@ namespace BoardSecretariatSystem
 
         private void MeetingEntry_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Dispose();
-            MainUI mainUI = new MainUI();
+            this.Hide();
+    MeetingManagementUI mainUI = new MeetingManagementUI();
             mainUI.Show();
         }                
         private void cmbVenue_SelectedIndexChanged(object sender, EventArgs e)
@@ -439,6 +434,11 @@ namespace BoardSecretariatSystem
                     listView1.Items[i].Remove();
                 }
             }
+        }
+
+        private void txtMeetingName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

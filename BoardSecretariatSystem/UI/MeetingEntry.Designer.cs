@@ -109,7 +109,7 @@
             // 
             this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.saveButton.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(589, 561);
+            this.saveButton.Location = new System.Drawing.Point(589, 569);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(190, 69);
             this.saveButton.TabIndex = 18;
@@ -151,7 +151,7 @@
             this.meetingListGroupBox.ForeColor = System.Drawing.Color.Blue;
             this.meetingListGroupBox.Location = new System.Drawing.Point(10, -6);
             this.meetingListGroupBox.Name = "meetingListGroupBox";
-            this.meetingListGroupBox.Size = new System.Drawing.Size(1336, 798);
+            this.meetingListGroupBox.Size = new System.Drawing.Size(1338, 798);
             this.meetingListGroupBox.TabIndex = 26;
             this.meetingListGroupBox.TabStop = false;
             this.meetingListGroupBox.Enter += new System.EventHandler(this.meetingListGroupBox_Enter);
@@ -179,6 +179,7 @@
             this.txtMeetingName.ReadOnly = true;
             this.txtMeetingName.Size = new System.Drawing.Size(445, 28);
             this.txtMeetingName.TabIndex = 60;
+            this.txtMeetingName.TextChanged += new System.EventHandler(this.txtMeetingName_TextChanged);
             // 
             // label10
             // 
@@ -194,11 +195,11 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(564, 15);
+            this.label8.Location = new System.Drawing.Point(538, 22);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(232, 32);
+            this.label8.Size = new System.Drawing.Size(227, 32);
             this.label8.TabIndex = 56;
-            this.label8.Text = "Meeting Creation";
+            this.label8.Text = "Agenda Selection";
             // 
             // label6
             // 
