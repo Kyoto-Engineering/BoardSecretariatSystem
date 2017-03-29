@@ -10,15 +10,11 @@ using System.Windows.Forms;
 
 namespace BoardSecretariatSystem.UI
 {
-    public partial class MeetingConsole7 : Form
+    public partial class MeetingConsole6UI : Form
     {
-        public MeetingConsole7()
+        public MeetingConsole6UI()
         {
             InitializeComponent();
         }
-
-   
-
-       
     }
 }
