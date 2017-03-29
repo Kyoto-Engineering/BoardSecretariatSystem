@@ -86,23 +86,23 @@ namespace BoardSecretariatSystem
         }
         private void GetAgendaDetails()
         {
-            //try
-            //{
-            //    con = new SqlConnection(cs.DBConn);
-            //    con.Open();
-            //    cmd = new SqlCommand("SELECT Agenda.AgendaTopics, Agenda.Memo, AgendaTypes.AgendaType FROM  Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId", con);
-            //    rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-            //    dataGridView1.Rows.Clear();
-            //    while (rdr.Read() == true)
-            //    {
-            //        dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2]);
-            //    }
-            //    con.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                cmd = new SqlCommand("SELECT Agenda.AgendaTopics,Agenda.AgendaTitle,AgendaTypes.AgendaType,AgendaTypes.AgendaTypeId  FROM  Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId", con);
+                rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                dataGridView1.Rows.Clear();
+                while (rdr.Read() == true)
+                {
+                    dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2],rdr[3]);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void GetAgendaId()
         {
@@ -170,6 +170,12 @@ namespace BoardSecretariatSystem
         {                                
                try
                 {
+                    if (listView1.Items.Count == 0)
+                    {
+                        MessageBox.Show("Please add agenda in the list before submit", "error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        return;
+
+                    }
                     for (int i = 0; i < listView1.Items.Count - 1; i++)
                     {
                         con = new SqlConnection(cs.DBConn);
@@ -196,6 +202,17 @@ namespace BoardSecretariatSystem
       
         private void button1_Click_2(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtAgendaTitle.Text))
+            {
+                MessageBox.Show("Please enter agenda title", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(cmbAgendaType.Text))
+            {
+                MessageBox.Show("Please select agenda type", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             ++aId;
             if (listView1.Items.Count == 0)
             {

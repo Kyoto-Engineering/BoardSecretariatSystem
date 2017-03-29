@@ -155,6 +155,7 @@ namespace BoardSecretariatSystem.UI
         }
         private void MeetingCreation_Load(object sender, EventArgs e)
         {
+            groupBox2.Visible = false;
             GetMeetingTitle();
             BoardNameLoad();
             CompanyNameLoad();
@@ -213,6 +214,10 @@ namespace BoardSecretariatSystem.UI
 
         }
 
+        //private void VisibleAddressHeader()
+        //{
+            
+        //}
         private void cmbVenue_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -234,6 +239,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     con.Close();
                 }
+                groupBox2.Visible = true;
             }
             catch (Exception ex)
             {
