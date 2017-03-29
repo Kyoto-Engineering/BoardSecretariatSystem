@@ -85,7 +85,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(292, 5);
+            this.label4.Location = new System.Drawing.Point(514, 1);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(363, 32);
             this.label4.TabIndex = 31;

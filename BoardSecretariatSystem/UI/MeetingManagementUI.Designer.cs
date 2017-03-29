@@ -30,9 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonMeetingCreate = new System.Windows.Forms.Button();
-            this.buttonAgendaSelection = new System.Windows.Forms.Button();
             this.buttonBoardMemo = new System.Windows.Forms.Button();
+            this.buttonAgendaSelection = new System.Windows.Forms.Button();
+            this.buttonMeetingCreate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,7 +40,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(436, -1);
+            this.label1.Location = new System.Drawing.Point(368, -2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(303, 31);
             this.label1.TabIndex = 0;
@@ -57,18 +57,18 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // buttonMeetingCreate
+            // buttonBoardMemo
             // 
-            this.buttonMeetingCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.buttonMeetingCreate.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMeetingCreate.ForeColor = System.Drawing.Color.Blue;
-            this.buttonMeetingCreate.Location = new System.Drawing.Point(18, 19);
-            this.buttonMeetingCreate.Name = "buttonMeetingCreate";
-            this.buttonMeetingCreate.Size = new System.Drawing.Size(101, 62);
-            this.buttonMeetingCreate.TabIndex = 0;
-            this.buttonMeetingCreate.Text = "Create Meeting";
-            this.buttonMeetingCreate.UseVisualStyleBackColor = false;
-            this.buttonMeetingCreate.Click += new System.EventHandler(this.buttonMeetingCreate_Click);
+            this.buttonBoardMemo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.buttonBoardMemo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBoardMemo.ForeColor = System.Drawing.Color.Blue;
+            this.buttonBoardMemo.Location = new System.Drawing.Point(18, 157);
+            this.buttonBoardMemo.Name = "buttonBoardMemo";
+            this.buttonBoardMemo.Size = new System.Drawing.Size(101, 68);
+            this.buttonBoardMemo.TabIndex = 2;
+            this.buttonBoardMemo.Text = "Board Memo";
+            this.buttonBoardMemo.UseVisualStyleBackColor = false;
+            this.buttonBoardMemo.Click += new System.EventHandler(this.buttonBoardMemo_Click);
             // 
             // buttonAgendaSelection
             // 
@@ -83,25 +83,26 @@
             this.buttonAgendaSelection.UseVisualStyleBackColor = false;
             this.buttonAgendaSelection.Click += new System.EventHandler(this.buttonAgendaSelection_Click);
             // 
-            // buttonBoardMemo
+            // buttonMeetingCreate
             // 
-            this.buttonBoardMemo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.buttonBoardMemo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBoardMemo.ForeColor = System.Drawing.Color.Blue;
-            this.buttonBoardMemo.Location = new System.Drawing.Point(18, 157);
-            this.buttonBoardMemo.Name = "buttonBoardMemo";
-            this.buttonBoardMemo.Size = new System.Drawing.Size(101, 68);
-            this.buttonBoardMemo.TabIndex = 2;
-            this.buttonBoardMemo.Text = "Board Memo";
-            this.buttonBoardMemo.UseVisualStyleBackColor = false;
-            this.buttonBoardMemo.Click += new System.EventHandler(this.buttonBoardMemo_Click);
+            this.buttonMeetingCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.buttonMeetingCreate.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMeetingCreate.ForeColor = System.Drawing.Color.Blue;
+            this.buttonMeetingCreate.Location = new System.Drawing.Point(18, 19);
+            this.buttonMeetingCreate.Name = "buttonMeetingCreate";
+            this.buttonMeetingCreate.Size = new System.Drawing.Size(101, 62);
+            this.buttonMeetingCreate.TabIndex = 0;
+            this.buttonMeetingCreate.Text = "Create Meeting";
+            this.buttonMeetingCreate.UseVisualStyleBackColor = false;
+            this.buttonMeetingCreate.Click += new System.EventHandler(this.buttonMeetingCreate_Click);
             // 
             // MeetingManagementUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1028, 596);
+            this.BackgroundImage = global::BoardSecretariatSystem.Properties.Resources.background_6677;
+            this.ClientSize = new System.Drawing.Size(965, 587);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "MeetingManagementUI";

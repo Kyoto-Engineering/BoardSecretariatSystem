@@ -102,6 +102,13 @@ namespace BoardSecretariatSystem
             //frm.Show();
         }
 
+        private void agendaAmendmentButton_Click(object sender, EventArgs e)
+        {
+                      this.Hide();
+            AgendaConsole2 frm=new AgendaConsole2();
+                      frm.Show();
+        }
+
         
 
         

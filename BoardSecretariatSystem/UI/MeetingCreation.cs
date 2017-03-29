@@ -19,8 +19,8 @@ namespace BoardSecretariatSystem.UI
         ConnectionString cs=new ConnectionString();
         private SqlDataReader rdr;
         public decimal aId, aId1, addHId, userId;
-        public int currentMeetingId, boardId,count;
-        public string serialNo;
+        public int currentMeetingId, boardId, count;
+        public string serialNo, divisionId, districtId, thanaId, postofficeId;
 
 
         public MeetingCreation()
@@ -132,6 +132,20 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void ChangedPositioned()
+        {
+            label7.Visible = false;
+           // textBox1.Visible = false;
+           // textBox1.Clear();
+            label7.Location = new Point(46, 444);
+           // textBox1.Location = new Point(200, 437);
+
+            label12.Location = new Point(81, 217);
+           // txtC1DM2Particulars.Location = new Point(200, 217);
+            label13.Location = new Point(56, 397);
+           // txtC1DM2DebitBalance.Location = new Point(200, 394);
+        }
         public void MeetingVanueLoad()
         {
             try
@@ -153,13 +167,38 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public void FillHQDivisionCombo()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(Divisions.Division) from Divisions  order by Divisions.Division_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbDivision.Items.Add(rdr[0]);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void MeetingCreation_Load(object sender, EventArgs e)
         {
             groupBox2.Visible = false;
+            label4.Visible = false;
+            this.MaximumSize = new Size(700, 1080);
             GetMeetingTitle();
             BoardNameLoad();
             CompanyNameLoad();
             MeetingVanueLoad();
+            FillHQDivisionCombo();
+            GenerateSerialNumberForMeeting();
         }
         private void GenerateSerialNumberForMeeting()
         {
@@ -178,12 +217,16 @@ namespace BoardSecretariatSystem.UI
                 count = (rdr.GetInt32(0));
             }
 
-
-
             serialNo = yy + "-" + boardId + "-" + count + "-" + currentMeetingId;
         }
+
         private void buttonMeetingCreation_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cmbVenue.Text))
+            {
+                MessageBox.Show("Please Select Vanue for the Meeting", "error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 con = new SqlConnection(cs.DBConn);
@@ -197,8 +240,8 @@ namespace BoardSecretariatSystem.UI
                 cmd.Parameters.AddWithValue("@d5", userId);
                 cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
                 currentMeetingId = (int)cmd.ExecuteScalar();
-                con.Close(); 
-
+                con.Close();
+                MessageBox.Show("Meeting Created Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception exception)
             {
@@ -214,10 +257,23 @@ namespace BoardSecretariatSystem.UI
 
         }
 
-        //private void VisibleAddressHeader()
-        //{
+        private void VisibleAddressHeader()
+        {
+            if (cmbVenue.Text == "Not In The List")
+            {
+                groupBox2.Visible = true;
+                label4.Visible = true;
+                this.MaximumSize = new Size(1400, 1080);
+               
+            }
+            else
+            {
+                groupBox2.Visible = false;
+                label4.Visible = false;
+                this.MaximumSize = new Size(700, 1080);
+            }
             
-        //}
+        }
         private void cmbVenue_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -239,12 +295,12 @@ namespace BoardSecretariatSystem.UI
                 {
                     con.Close();
                 }
-                groupBox2.Visible = true;
+                VisibleAddressHeader();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }           
+            }
         }
 
         private void txtBoardName_TextChanged(object sender, EventArgs e)
@@ -273,6 +329,199 @@ namespace BoardSecretariatSystem.UI
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }           
+        }
+
+        private void cmbDivision_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Divisions.Division_ID)  from Divisions WHERE Divisions.Division=@find";
+
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Division"));
+                cmd.Parameters["@find"].Value = cmbDivision.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    divisionId = (rdr.GetString(0));
+
+                }
+
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+
+
+                cmbDivision.Text = cmbDivision.Text.Trim();
+                cmbDistrict.SelectedIndex = -1;
+                cmbDistrict.Items.Clear();
+                cmbThana.SelectedIndex = -1;
+                cmbThana.Items.Clear();
+                cmbPost.SelectedIndex = -1;
+                cmbPost.Items.Clear();
+                txtPostCode.Clear();
+                cmbDistrict.Enabled = true;
+                cmbDistrict.Focus();
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(Districts.District) from Districts  Where Districts.Division_ID = '" + divisionId + "' order by Districts.Division_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    cmbDistrict.Items.Add(rdr[0]);
+                }
+                con.Close();
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Districts.D_ID)  from Districts WHERE Districts.District=@find";
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "District"));
+                cmd.Parameters["@find"].Value = cmbDistrict.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    districtId = (rdr.GetString(0));
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                cmbDistrict.Text = cmbDistrict.Text.Trim();
+                cmbThana.SelectedIndex = -1;
+                cmbThana.Items.Clear();
+                cmbPost.SelectedIndex = -1;
+                cmbPost.Items.Clear();
+                txtPostCode.Clear();
+                cmbThana.Enabled = true;
+                cmbThana.Focus();
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(Thanas.Thana) from Thanas  Where Thanas.D_ID = '" + districtId + "' order by Thanas.D_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbThana.Items.Add(rdr[0]);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbThana_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Thanas.T_ID)  from Thanas WHERE Thanas.Thana=@find";
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Thana"));
+                cmd.Parameters["@find"].Value = cmbThana.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    thanaId = (rdr.GetString(0));
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                cmbThana.Text = cmbThana.Text.Trim();
+                cmbPost.SelectedIndex = -1;
+                cmbPost.Items.Clear();
+                txtPostCode.Clear();
+                cmbPost.Enabled = true;
+                cmbPost.Focus();
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "select RTRIM(PostOffice.PostOfficeName) from PostOffice  Where PostOffice.T_ID = '" + thanaId + "' order by PostOffice.T_ID desc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbPost.Items.Add(rdr[0]);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbPost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "PostOfficeName"));
+                cmd.Parameters["@find"].Value = cmbPost.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    postofficeId = (rdr.GetString(0));
+                    txtPostCode.Text = (rdr.GetString(1));
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

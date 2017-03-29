@@ -52,6 +52,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -85,6 +86,7 @@
             this.cmbAgendaType.Name = "cmbAgendaType";
             this.cmbAgendaType.Size = new System.Drawing.Size(377, 32);
             this.cmbAgendaType.TabIndex = 57;
+            this.cmbAgendaType.SelectedIndexChanged += new System.EventHandler(this.cmbAgendaType_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -108,13 +110,14 @@
             this.txtAgendaHeader.ReadOnly = true;
             this.txtAgendaHeader.Size = new System.Drawing.Size(377, 28);
             this.txtAgendaHeader.TabIndex = 55;
+            this.txtAgendaHeader.TextChanged += new System.EventHandler(this.txtAgendaHeader_TextChanged);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.listView1);
             this.groupBox1.Location = new System.Drawing.Point(14, 191);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(691, 303);
+            this.groupBox1.Size = new System.Drawing.Size(691, 324);
             this.groupBox1.TabIndex = 54;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " ";
@@ -126,12 +129,14 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader4});
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(17, 38);
+            this.listView1.Location = new System.Drawing.Point(13, 19);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(653, 231);
+            this.listView1.Size = new System.Drawing.Size(651, 294);
             this.listView1.TabIndex = 38;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -203,6 +208,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(580, 251);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
             // Column1
             // 
@@ -238,6 +244,7 @@
             this.buttonAdd.TabIndex = 62;
             this.buttonAdd.Text = "Add";
             this.buttonAdd.UseVisualStyleBackColor = false;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // button1
             // 
@@ -250,18 +257,20 @@
             this.button1.TabIndex = 63;
             this.button1.Text = "Remove";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonSave
             // 
             this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSave.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSave.ForeColor = System.Drawing.Color.Blue;
-            this.buttonSave.Location = new System.Drawing.Point(951, 383);
+            this.buttonSave.Location = new System.Drawing.Point(911, 387);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(183, 77);
             this.buttonSave.TabIndex = 64;
-            this.buttonSave.Text = "Save";
+            this.buttonSave.Text = "Update";
             this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // label4
             // 
@@ -273,6 +282,10 @@
             this.label4.Size = new System.Drawing.Size(150, 26);
             this.label4.TabIndex = 65;
             this.label4.Text = "Agenda Bank";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "AgendaId";
             // 
             // AgendaConsole2
             // 
@@ -292,8 +305,11 @@
             this.Controls.Add(this.txtAgendaHeader);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
+            this.MaximizeBox = false;
             this.Name = "AgendaConsole2";
             this.Text = "AgendaConsole2";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AgendaConsole2_FormClosed);
+            this.Load += new System.EventHandler(this.AgendaConsole2_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -328,5 +344,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }
