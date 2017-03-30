@@ -33,10 +33,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.attendedParticipantDataGridView = new System.Windows.Forms.DataGridView();
-            this.invitedParticipantDataGridView = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invitedParticipantDataGridView = new System.Windows.Forms.DataGridView();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,22 +108,6 @@
             this.attendedParticipantDataGridView.Size = new System.Drawing.Size(490, 150);
             this.attendedParticipantDataGridView.TabIndex = 4;
             // 
-            // invitedParticipantDataGridView
-            // 
-            this.invitedParticipantDataGridView.AllowUserToAddRows = false;
-            this.invitedParticipantDataGridView.AllowUserToDeleteRows = false;
-            this.invitedParticipantDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.invitedParticipantDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.invitedParticipantDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column4,
-            this.Column5,
-            this.Column6});
-            this.invitedParticipantDataGridView.Location = new System.Drawing.Point(549, 141);
-            this.invitedParticipantDataGridView.Name = "invitedParticipantDataGridView";
-            this.invitedParticipantDataGridView.ReadOnly = true;
-            this.invitedParticipantDataGridView.Size = new System.Drawing.Size(404, 150);
-            this.invitedParticipantDataGridView.TabIndex = 5;
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "Sl";
@@ -141,6 +125,22 @@
             this.Column3.HeaderText = "Type";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
+            // 
+            // invitedParticipantDataGridView
+            // 
+            this.invitedParticipantDataGridView.AllowUserToAddRows = false;
+            this.invitedParticipantDataGridView.AllowUserToDeleteRows = false;
+            this.invitedParticipantDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.invitedParticipantDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.invitedParticipantDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column4,
+            this.Column5,
+            this.Column6});
+            this.invitedParticipantDataGridView.Location = new System.Drawing.Point(549, 141);
+            this.invitedParticipantDataGridView.Name = "invitedParticipantDataGridView";
+            this.invitedParticipantDataGridView.ReadOnly = true;
+            this.invitedParticipantDataGridView.Size = new System.Drawing.Size(404, 150);
+            this.invitedParticipantDataGridView.TabIndex = 5;
             // 
             // Column4
             // 
@@ -204,8 +204,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "MeetingConsole5UI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MeetingConsole5";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MeetingConsole5UI_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.attendedParticipantDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invitedParticipantDataGridView)).EndInit();
             this.ResumeLayout(false);

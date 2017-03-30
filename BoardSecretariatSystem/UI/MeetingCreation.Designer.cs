@@ -43,6 +43,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtNAddressHeader = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.cmbPost = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -53,25 +55,24 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.cmbThana = new System.Windows.Forms.ComboBox();
-            this.txtHQContactNo = new System.Windows.Forms.TextBox();
+            this.txtContactNo = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.cmbDistrict = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
             this.txtPostCode = new System.Windows.Forms.TextBox();
-            this.txtHQArea = new System.Windows.Forms.TextBox();
+            this.txtArea = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
-            this.txtHQRoadNo = new System.Windows.Forms.TextBox();
-            this.txtHQHouseNo = new System.Windows.Forms.TextBox();
-            this.txtHQFlatNo = new System.Windows.Forms.TextBox();
+            this.txtRoadNo = new System.Windows.Forms.TextBox();
+            this.txtHouseNo = new System.Windows.Forms.TextBox();
+            this.txtFlatNo = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
-            this.txtHQBlock = new wmgCMS.WaterMarkTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtNAddressHeader = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtBlock = new wmgCMS.WaterMarkTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -90,9 +91,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtMeetingDate);
             this.groupBox1.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox1.Location = new System.Drawing.Point(7, 64);
+            this.groupBox1.Location = new System.Drawing.Point(7, 120);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(647, 360);
+            this.groupBox1.Size = new System.Drawing.Size(647, 365);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -220,7 +221,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Lime;
-            this.label3.Location = new System.Drawing.Point(273, 6);
+            this.label3.Location = new System.Drawing.Point(298, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(262, 32);
             this.label3.TabIndex = 2;
@@ -231,7 +232,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(667, 41);
+            this.label4.Location = new System.Drawing.Point(667, 92);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(115, 26);
             this.label4.TabIndex = 3;
@@ -242,7 +243,7 @@
             this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.groupBox2.Controls.Add(this.txtNAddressHeader);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.txtHQBlock);
+            this.groupBox2.Controls.Add(this.txtBlock);
             this.groupBox2.Controls.Add(this.cmbPost);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label11);
@@ -253,30 +254,47 @@
             this.groupBox2.Controls.Add(this.label23);
             this.groupBox2.Controls.Add(this.label24);
             this.groupBox2.Controls.Add(this.cmbThana);
-            this.groupBox2.Controls.Add(this.txtHQContactNo);
+            this.groupBox2.Controls.Add(this.txtContactNo);
             this.groupBox2.Controls.Add(this.label25);
             this.groupBox2.Controls.Add(this.cmbDistrict);
             this.groupBox2.Controls.Add(this.label27);
             this.groupBox2.Controls.Add(this.txtPostCode);
-            this.groupBox2.Controls.Add(this.txtHQArea);
+            this.groupBox2.Controls.Add(this.txtArea);
             this.groupBox2.Controls.Add(this.label28);
             this.groupBox2.Controls.Add(this.label29);
             this.groupBox2.Controls.Add(this.label30);
-            this.groupBox2.Controls.Add(this.txtHQRoadNo);
-            this.groupBox2.Controls.Add(this.txtHQHouseNo);
-            this.groupBox2.Controls.Add(this.txtHQFlatNo);
+            this.groupBox2.Controls.Add(this.txtRoadNo);
+            this.groupBox2.Controls.Add(this.txtHouseNo);
+            this.groupBox2.Controls.Add(this.txtFlatNo);
             this.groupBox2.Controls.Add(this.label31);
             this.groupBox2.Controls.Add(this.label35);
             this.groupBox2.Controls.Add(this.label36);
             this.groupBox2.Controls.Add(this.label37);
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox2.Location = new System.Drawing.Point(666, 71);
+            this.groupBox2.Location = new System.Drawing.Point(666, 122);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(639, 298);
             this.groupBox2.TabIndex = 68;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Corporate  Address";
+            // 
+            // txtNAddressHeader
+            // 
+            this.txtNAddressHeader.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNAddressHeader.Location = new System.Drawing.Point(215, 30);
+            this.txtNAddressHeader.Name = "txtNAddressHeader";
+            this.txtNAddressHeader.Size = new System.Drawing.Size(402, 35);
+            this.txtNAddressHeader.TabIndex = 85;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(70, 35);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(141, 22);
+            this.label8.TabIndex = 84;
+            this.label8.Text = "Address Header";
             // 
             // cmbPost
             // 
@@ -381,14 +399,14 @@
             this.cmbThana.TabIndex = 42;
             this.cmbThana.SelectedIndexChanged += new System.EventHandler(this.cmbThana_SelectedIndexChanged);
             // 
-            // txtHQContactNo
+            // txtContactNo
             // 
-            this.txtHQContactNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHQContactNo.Location = new System.Drawing.Point(151, 251);
-            this.txtHQContactNo.MaxLength = 11;
-            this.txtHQContactNo.Name = "txtHQContactNo";
-            this.txtHQContactNo.Size = new System.Drawing.Size(146, 26);
-            this.txtHQContactNo.TabIndex = 41;
+            this.txtContactNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContactNo.Location = new System.Drawing.Point(151, 251);
+            this.txtContactNo.MaxLength = 11;
+            this.txtContactNo.Name = "txtContactNo";
+            this.txtContactNo.Size = new System.Drawing.Size(146, 26);
+            this.txtContactNo.TabIndex = 41;
             // 
             // label25
             // 
@@ -432,13 +450,13 @@
             this.txtPostCode.Size = new System.Drawing.Size(168, 29);
             this.txtPostCode.TabIndex = 17;
             // 
-            // txtHQArea
+            // txtArea
             // 
-            this.txtHQArea.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHQArea.Location = new System.Drawing.Point(151, 219);
-            this.txtHQArea.Name = "txtHQArea";
-            this.txtHQArea.Size = new System.Drawing.Size(146, 26);
-            this.txtHQArea.TabIndex = 15;
+            this.txtArea.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArea.Location = new System.Drawing.Point(151, 219);
+            this.txtArea.Name = "txtArea";
+            this.txtArea.Size = new System.Drawing.Size(146, 26);
+            this.txtArea.TabIndex = 15;
             // 
             // label28
             // 
@@ -473,29 +491,29 @@
             this.label30.TabIndex = 12;
             this.label30.Text = "Thana:";
             // 
-            // txtHQRoadNo
+            // txtRoadNo
             // 
-            this.txtHQRoadNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHQRoadNo.Location = new System.Drawing.Point(151, 156);
-            this.txtHQRoadNo.Name = "txtHQRoadNo";
-            this.txtHQRoadNo.Size = new System.Drawing.Size(146, 26);
-            this.txtHQRoadNo.TabIndex = 10;
+            this.txtRoadNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRoadNo.Location = new System.Drawing.Point(151, 156);
+            this.txtRoadNo.Name = "txtRoadNo";
+            this.txtRoadNo.Size = new System.Drawing.Size(146, 26);
+            this.txtRoadNo.TabIndex = 10;
             // 
-            // txtHQHouseNo
+            // txtHouseNo
             // 
-            this.txtHQHouseNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHQHouseNo.Location = new System.Drawing.Point(151, 123);
-            this.txtHQHouseNo.Name = "txtHQHouseNo";
-            this.txtHQHouseNo.Size = new System.Drawing.Size(146, 26);
-            this.txtHQHouseNo.TabIndex = 9;
+            this.txtHouseNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHouseNo.Location = new System.Drawing.Point(151, 123);
+            this.txtHouseNo.Name = "txtHouseNo";
+            this.txtHouseNo.Size = new System.Drawing.Size(146, 26);
+            this.txtHouseNo.TabIndex = 9;
             // 
-            // txtHQFlatNo
+            // txtFlatNo
             // 
-            this.txtHQFlatNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHQFlatNo.Location = new System.Drawing.Point(151, 90);
-            this.txtHQFlatNo.Name = "txtHQFlatNo";
-            this.txtHQFlatNo.Size = new System.Drawing.Size(146, 26);
-            this.txtHQFlatNo.TabIndex = 8;
+            this.txtFlatNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFlatNo.Location = new System.Drawing.Point(151, 90);
+            this.txtFlatNo.Name = "txtFlatNo";
+            this.txtFlatNo.Size = new System.Drawing.Size(146, 26);
+            this.txtFlatNo.TabIndex = 8;
             // 
             // label31
             // 
@@ -541,39 +559,34 @@
             this.label37.TabIndex = 4;
             this.label37.Text = "Flat No / Name";
             // 
-            // txtHQBlock
+            // label9
             // 
-            this.txtHQBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHQBlock.Location = new System.Drawing.Point(151, 188);
-            this.txtHQBlock.Name = "txtHQBlock";
-            this.txtHQBlock.Size = new System.Drawing.Size(146, 26);
-            this.txtHQBlock.TabIndex = 83;
-            this.txtHQBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtHQBlock.WaterMarkText = "if any";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Red;
+            this.label9.Location = new System.Drawing.Point(198, 90);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(381, 22);
+            this.label9.TabIndex = 69;
+            this.label9.Text = "Please Expand this Window on the right Side ";
             // 
-            // label8
+            // txtBlock
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(70, 35);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(141, 22);
-            this.label8.TabIndex = 84;
-            this.label8.Text = "Address Header";
-            // 
-            // txtNAddressHeader
-            // 
-            this.txtNAddressHeader.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNAddressHeader.Location = new System.Drawing.Point(215, 30);
-            this.txtNAddressHeader.Name = "txtNAddressHeader";
-            this.txtNAddressHeader.Size = new System.Drawing.Size(402, 35);
-            this.txtNAddressHeader.TabIndex = 85;
+            this.txtBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBlock.Location = new System.Drawing.Point(151, 188);
+            this.txtBlock.Name = "txtBlock";
+            this.txtBlock.Size = new System.Drawing.Size(146, 26);
+            this.txtBlock.TabIndex = 83;
+            this.txtBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtBlock.WaterMarkText = "if any";
             // 
             // MeetingCreation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1311, 444);
+            this.ClientSize = new System.Drawing.Size(1311, 507);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -610,7 +623,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox2;
-        private wmgCMS.WaterMarkTextBox txtHQBlock;
+        private wmgCMS.WaterMarkTextBox txtBlock;
         private System.Windows.Forms.ComboBox cmbPost;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label11;
@@ -621,24 +634,25 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.ComboBox cmbThana;
-        private System.Windows.Forms.TextBox txtHQContactNo;
+        private System.Windows.Forms.TextBox txtContactNo;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.ComboBox cmbDistrict;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox txtPostCode;
-        private System.Windows.Forms.TextBox txtHQArea;
+        private System.Windows.Forms.TextBox txtArea;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox txtHQRoadNo;
-        private System.Windows.Forms.TextBox txtHQHouseNo;
-        private System.Windows.Forms.TextBox txtHQFlatNo;
+        private System.Windows.Forms.TextBox txtRoadNo;
+        private System.Windows.Forms.TextBox txtHouseNo;
+        private System.Windows.Forms.TextBox txtFlatNo;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.TextBox txtNAddressHeader;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
 
     }
 }

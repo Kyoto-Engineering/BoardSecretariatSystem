@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace BoardSecretariatSystem.UI
 {
-    public partial class MeetingConsole6UI : Form
+    public partial class ParticipantCreation2 : Form
     {
-        public MeetingConsole6UI()
+        public ParticipantCreation2()
         {
             InitializeComponent();
-        }
-
-        private void MeetingConsole6UI_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.Hide();
-            MeetingManagementUI frm = new MeetingManagementUI();
-            frm.Show();
         }
     }
 }
