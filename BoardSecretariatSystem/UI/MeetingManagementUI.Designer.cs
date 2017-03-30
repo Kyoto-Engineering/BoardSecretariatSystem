@@ -62,7 +62,7 @@
             this.buttonBoardMemo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.buttonBoardMemo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBoardMemo.ForeColor = System.Drawing.Color.Blue;
-            this.buttonBoardMemo.Location = new System.Drawing.Point(18, 157);
+            this.buttonBoardMemo.Location = new System.Drawing.Point(16, 251);
             this.buttonBoardMemo.Name = "buttonBoardMemo";
             this.buttonBoardMemo.Size = new System.Drawing.Size(101, 68);
             this.buttonBoardMemo.TabIndex = 2;

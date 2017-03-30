@@ -195,7 +195,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(538, 22);
+            this.label8.Location = new System.Drawing.Point(538, 20);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(227, 32);
             this.label8.TabIndex = 56;
@@ -208,9 +208,9 @@
             this.label6.ForeColor = System.Drawing.Color.Magenta;
             this.label6.Location = new System.Drawing.Point(692, 80);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(145, 24);
+            this.label6.Size = new System.Drawing.Size(132, 24);
             this.label6.TabIndex = 55;
-            this.label6.Text = "Agenda Details";
+            this.label6.Text = "Agenda Bank";
             // 
             // groupBox1
             // 

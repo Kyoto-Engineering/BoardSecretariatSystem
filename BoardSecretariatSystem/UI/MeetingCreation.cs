@@ -274,6 +274,7 @@ namespace BoardSecretariatSystem.UI
             }
             
         }
+       
         private void cmbVenue_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
