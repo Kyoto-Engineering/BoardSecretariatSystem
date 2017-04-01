@@ -35,48 +35,48 @@ namespace BoardSecretariatSystem
             
             InitializeComponent();
         }
-        public void MeetingVanueLoad()
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string query = "SELECT CompanyAddresses.AddressHeader FROM CompanyAddresses order by  CompanyAddresses.ADId desc";
-                cmd = new SqlCommand(query, con);
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    cmbVenue.Items.Add(rdr[0]);
-                }
-                con.Close();
-                cmbVenue.Items.Add("Not In The List");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //public void MeetingVanueLoad()
+        //{
+        //    try
+        //    {
+        //        con = new SqlConnection(cs.DBConn);
+        //        con.Open();
+        //        string query = "SELECT CompanyAddresses.AddressHeader FROM CompanyAddresses order by  CompanyAddresses.ADId desc";
+        //        cmd = new SqlCommand(query, con);
+        //        rdr = cmd.ExecuteReader();
+        //        while (rdr.Read())
+        //        {
+        //            cmbVenue.Items.Add(rdr[0]);
+        //        }
+        //        con.Close();
+        //        cmbVenue.Items.Add("Not In The List");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
-        public void BoardNameLoad()
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string query = "SELECT BoardName FROM Board ";
-                cmd = new SqlCommand(query, con);
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    txtBoardName.Text = (rdr.GetString(0));
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //public void BoardNameLoad()
+        //{
+        //    try
+        //    {
+        //        con = new SqlConnection(cs.DBConn);
+        //        con.Open();
+        //        string query = "SELECT BoardName FROM Board ";
+        //        cmd = new SqlCommand(query, con);
+        //        rdr = cmd.ExecuteReader();
+        //        if (rdr.Read())
+        //        {
+        //            txtBoardName.Text = (rdr.GetString(0));
+        //        }
+        //        con.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
         private void GetAgendaDetails()
         {
             try
@@ -97,26 +97,26 @@ namespace BoardSecretariatSystem
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void AgendaHeaderLoad()
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string query = "SELECT  AHeaderName  FROM  AddressHeader";
-                cmd = new SqlCommand(query, con);
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    cmbVenue.Items.Add(rdr.GetValue(0).ToString());
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //public void AgendaHeaderLoad()
+        //{
+        //    try
+        //    {
+        //        con = new SqlConnection(cs.DBConn);
+        //        con.Open();
+        //        string query = "SELECT  AHeaderName  FROM  AddressHeader";
+        //        cmd = new SqlCommand(query, con);
+        //        rdr = cmd.ExecuteReader();
+        //        while (rdr.Read())
+        //        {
+        //            cmbVenue.Items.Add(rdr.GetValue(0).ToString());
+        //        }
+        //        con.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
         private void GetMeetingTitle()
         {
@@ -131,27 +131,31 @@ namespace BoardSecretariatSystem
                 if (rdr.Read())
                 {
                     aId = (rdr.GetDecimal(0));
-                    if(aId == 0)
+                    if(aId == 1)
                     {
-                        txtMeetingName.Text ="1st Board Meeting";
-                    }
-                    else if (aId == 1)
-                    {
-                        txtMeetingName.Text = "2nd Board Meeting";
+                        txtMeetingNumber.Text = "1";
+                        txtMeetingTitle.Text ="1st Board Meeting";
                     }
                     else if (aId == 2)
                     {
-                        txtMeetingName.Text = "3rd Board Meeting";
+                        txtMeetingNumber.Text = "2";
+                        txtMeetingTitle.Text = "2nd Board Meeting";
                     }
                     else if (aId == 3)
                     {
-                        txtMeetingName.Text = "4rth Board Meeting";
+                        txtMeetingNumber.Text = "3";
+                        txtMeetingTitle.Text = "3rd Board Meeting";
+                    }
+                    else if (aId == 4)
+                    {
+                        txtMeetingNumber.Text = "4";
+                        txtMeetingTitle.Text = "4rth Board Meeting";
                     }
 
-                    else if (aId >= 4)
+                    else if (aId >= 5)
                     {
-                        aId1 = aId + 1;
-                        txtMeetingName.Text = aId1+"th Board Meeting";
+                        txtMeetingNumber.Text = aId.ToString();
+                        txtMeetingTitle.Text = aId + "th Board Meeting";
                     }
                                      
                 }                
@@ -190,39 +194,39 @@ namespace BoardSecretariatSystem
         {
             userId = frmLogin.uId.ToString();
             GetAgendaDetails();
-            CompanyNameLoad();
-            BoardNameLoad();
-            AgendaHeaderLoad();
+           // CompanyNameLoad();
+           // BoardNameLoad();
+            //AgendaHeaderLoad();
             GetMeetingTitle();
 
         }
-        public void CompanyNameLoad()
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string query = "SELECT CompanyName FROM Company ";
-                cmd = new SqlCommand(query, con);
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    txtCompanyName.Text = (rdr.GetString(0));
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }                     
+        //public void CompanyNameLoad()
+        //{
+        //    try
+        //    {
+        //        con = new SqlConnection(cs.DBConn);
+        //        con.Open();
+        //        string query = "SELECT CompanyName FROM Company ";
+        //        cmd = new SqlCommand(query, con);
+        //        rdr = cmd.ExecuteReader();
+        //        if (rdr.Read())
+        //        {
+        //            txtCompanyName.Text = (rdr.GetString(0));
+        //        }
+        //        con.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}                     
         private void Reset()
         {
             //companyNameComboBox.SelectedIndex = -1;
             //boardNameComboBox.SelectedIndex = -1;
             //meetingNameTextBox.Clear();
-            cmbVenue.SelectedIndex = -1;
-            txtMeetingDate.Value=DateTime.Today;
+           // cmbVenue.SelectedIndex = -1;
+           // txtMeetingDate.Value=DateTime.Today;
         }
 
         private void GenerateSerialNumberForMeeting()
@@ -251,9 +255,9 @@ namespace BoardSecretariatSystem
                     string query2 = "insert into Meeting(AHeaderId,MeetingName,MeetingDate,SerialNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                     cmd = new SqlCommand(query2, con);
                     cmd.Parameters.AddWithValue("@d1", addHId);
-                    cmd.Parameters.AddWithValue("@d2", txtMeetingName.Text);
+                    //cmd.Parameters.AddWithValue("@d2", txtMeetingName.Text);
                     cmd.Parameters.AddWithValue("@d3", serialNo); 
-                    cmd.Parameters.AddWithValue("@d4", txtMeetingDate.Value.Date);                   
+                   // cmd.Parameters.AddWithValue("@d4", txtMeetingDate.Value.Date);                   
                     cmd.Parameters.AddWithValue("@d5", userId);
                     cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
                     currentMeetingId = (int)cmd.ExecuteScalar();
@@ -278,30 +282,30 @@ namespace BoardSecretariatSystem
         }                
         private void cmbVenue_SelectedIndexChanged(object sender, EventArgs e)
         {            
-                try
-                {
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT AHeaderId from AddressHeader WHERE AHeaderName= '" + cmbVenue.Text + "'";
-                    rdr = cmd.ExecuteReader();
-                    if (rdr.Read())
-                    {
-                        addHId = rdr.GetInt32(0);
-                    }
-                    if ((rdr != null))
-                    {
-                        rdr.Close();
-                    }
-                    if (con.State == ConnectionState.Open)
-                    {
-                        con.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }           
+                //try
+                //{
+                //    con = new SqlConnection(cs.DBConn);
+                //    con.Open();
+                //    cmd = con.CreateCommand();
+                //    cmd.CommandText = "SELECT AHeaderId from AddressHeader WHERE AHeaderName= '" + cmbVenue.Text + "'";
+                //    rdr = cmd.ExecuteReader();
+                //    if (rdr.Read())
+                //    {
+                //        addHId = rdr.GetInt32(0);
+                //    }
+                //    if ((rdr != null))
+                //    {
+                //        rdr.Close();
+                //    }
+                //    if (con.State == ConnectionState.Open)
+                //    {
+                //        con.Close();
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}           
         }      
         private void addButton_Click(object sender, EventArgs e)
         {
@@ -421,30 +425,30 @@ namespace BoardSecretariatSystem
 
         private void txtBoardName_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT BoardId from Board WHERE BoardName= '" + txtBoardName.Text + "'";
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    boardId = rdr.GetInt32(0);
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }           
+            //try
+            //{
+            //    con = new SqlConnection(cs.DBConn);
+            //    con.Open();
+            //    cmd = con.CreateCommand();
+            //    cmd.CommandText = "SELECT BoardId from Board WHERE BoardName= '" + txtBoardName.Text + "'";
+            //    rdr = cmd.ExecuteReader();
+            //    if (rdr.Read())
+            //    {
+            //        boardId = rdr.GetInt32(0);
+            //    }
+            //    if ((rdr != null))
+            //    {
+            //        rdr.Close();
+            //    }
+            //    if (con.State == ConnectionState.Open)
+            //    {
+            //        con.Close();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}           
         }
 
         private void removeButton_Click(object sender, EventArgs e)

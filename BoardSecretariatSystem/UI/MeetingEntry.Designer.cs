@@ -28,16 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtMeetingDate = new System.Windows.Forms.DateTimePicker();
             this.saveButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.meetingListGroupBox = new System.Windows.Forms.GroupBox();
+            this.txtMeetingTitle = new System.Windows.Forms.TextBox();
+            this.txtMeetingNumber = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.removeButton = new System.Windows.Forms.Button();
-            this.txtMeetingName = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -57,53 +54,11 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtBoardName = new System.Windows.Forms.TextBox();
-            this.txtCompanyName = new System.Windows.Forms.TextBox();
-            this.cmbVenue = new System.Windows.Forms.ComboBox();
             this.meetingListGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(189, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Company Name :";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(37, 222);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 26);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Meeting Date :";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(118, 182);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(83, 26);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Venue:";
-            // 
-            // txtMeetingDate
-            // 
-            this.txtMeetingDate.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeetingDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtMeetingDate.Location = new System.Drawing.Point(208, 219);
-            this.txtMeetingDate.Name = "txtMeetingDate";
-            this.txtMeetingDate.Size = new System.Drawing.Size(445, 35);
-            this.txtMeetingDate.TabIndex = 16;
             // 
             // saveButton
             // 
@@ -117,36 +72,20 @@
             this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(47, 105);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(155, 26);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "Board Name :";
-            // 
             // meetingListGroupBox
             // 
             this.meetingListGroupBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.meetingListGroupBox.Controls.Add(this.txtMeetingTitle);
+            this.meetingListGroupBox.Controls.Add(this.txtMeetingNumber);
+            this.meetingListGroupBox.Controls.Add(this.label2);
+            this.meetingListGroupBox.Controls.Add(this.label1);
             this.meetingListGroupBox.Controls.Add(this.removeButton);
-            this.meetingListGroupBox.Controls.Add(this.txtMeetingName);
-            this.meetingListGroupBox.Controls.Add(this.label10);
             this.meetingListGroupBox.Controls.Add(this.label8);
             this.meetingListGroupBox.Controls.Add(this.label6);
             this.meetingListGroupBox.Controls.Add(this.groupBox1);
             this.meetingListGroupBox.Controls.Add(this.addButton);
             this.meetingListGroupBox.Controls.Add(this.groupBox2);
-            this.meetingListGroupBox.Controls.Add(this.txtBoardName);
-            this.meetingListGroupBox.Controls.Add(this.txtCompanyName);
-            this.meetingListGroupBox.Controls.Add(this.cmbVenue);
-            this.meetingListGroupBox.Controls.Add(this.label1);
             this.meetingListGroupBox.Controls.Add(this.saveButton);
-            this.meetingListGroupBox.Controls.Add(this.label5);
-            this.meetingListGroupBox.Controls.Add(this.label7);
-            this.meetingListGroupBox.Controls.Add(this.label2);
-            this.meetingListGroupBox.Controls.Add(this.txtMeetingDate);
             this.meetingListGroupBox.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meetingListGroupBox.ForeColor = System.Drawing.Color.Blue;
             this.meetingListGroupBox.Location = new System.Drawing.Point(10, -6);
@@ -156,40 +95,57 @@
             this.meetingListGroupBox.TabStop = false;
             this.meetingListGroupBox.Enter += new System.EventHandler(this.meetingListGroupBox_Enter);
             // 
+            // txtMeetingTitle
+            // 
+            this.txtMeetingTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.txtMeetingTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMeetingTitle.ForeColor = System.Drawing.Color.Blue;
+            this.txtMeetingTitle.Location = new System.Drawing.Point(226, 108);
+            this.txtMeetingTitle.Name = "txtMeetingTitle";
+            this.txtMeetingTitle.ReadOnly = true;
+            this.txtMeetingTitle.Size = new System.Drawing.Size(294, 32);
+            this.txtMeetingTitle.TabIndex = 65;
+            // 
+            // txtMeetingNumber
+            // 
+            this.txtMeetingNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.txtMeetingNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMeetingNumber.ForeColor = System.Drawing.Color.Blue;
+            this.txtMeetingNumber.Location = new System.Drawing.Point(228, 59);
+            this.txtMeetingNumber.Name = "txtMeetingNumber";
+            this.txtMeetingNumber.ReadOnly = true;
+            this.txtMeetingNumber.Size = new System.Drawing.Size(292, 32);
+            this.txtMeetingNumber.TabIndex = 64;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(41, 103);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(179, 31);
+            this.label2.TabIndex = 63;
+            this.label2.Text = "Meeting Title:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(2, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(220, 31);
+            this.label1.TabIndex = 62;
+            this.label1.Text = "Meeting Number:";
+            // 
             // removeButton
             // 
             this.removeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.removeButton.ForeColor = System.Drawing.Color.Blue;
-            this.removeButton.Location = new System.Drawing.Point(383, 260);
+            this.removeButton.Location = new System.Drawing.Point(547, 185);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(118, 48);
             this.removeButton.TabIndex = 61;
             this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = false;
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
-            // 
-            // txtMeetingName
-            // 
-            this.txtMeetingName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.txtMeetingName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMeetingName.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeetingName.ForeColor = System.Drawing.Color.Magenta;
-            this.txtMeetingName.Location = new System.Drawing.Point(206, 144);
-            this.txtMeetingName.Name = "txtMeetingName";
-            this.txtMeetingName.ReadOnly = true;
-            this.txtMeetingName.Size = new System.Drawing.Size(445, 28);
-            this.txtMeetingName.TabIndex = 60;
-            this.txtMeetingName.TextChanged += new System.EventHandler(this.txtMeetingName_TextChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(19, 140);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(182, 26);
-            this.label10.TabIndex = 59;
-            this.label10.Text = "Meeting  Name :";
             // 
             // label8
             // 
@@ -216,9 +172,9 @@
             // 
             this.groupBox1.Controls.Add(this.listView1);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(6, 310);
+            this.groupBox1.Location = new System.Drawing.Point(6, 248);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(676, 245);
+            this.groupBox1.Size = new System.Drawing.Size(676, 307);
             this.groupBox1.TabIndex = 52;
             this.groupBox1.TabStop = false;
             // 
@@ -236,7 +192,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(12, 21);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(649, 212);
+            this.listView1.Size = new System.Drawing.Size(649, 267);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -273,7 +229,7 @@
             // addButton
             // 
             this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.addButton.Location = new System.Drawing.Point(527, 260);
+            this.addButton.Location = new System.Drawing.Point(543, 114);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(124, 52);
             this.addButton.TabIndex = 51;
@@ -340,41 +296,6 @@
             this.Column6.HeaderText = "AgendaTypeId";
             this.Column6.Name = "Column6";
             // 
-            // txtBoardName
-            // 
-            this.txtBoardName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.txtBoardName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoardName.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoardName.ForeColor = System.Drawing.Color.Magenta;
-            this.txtBoardName.Location = new System.Drawing.Point(206, 107);
-            this.txtBoardName.Name = "txtBoardName";
-            this.txtBoardName.ReadOnly = true;
-            this.txtBoardName.Size = new System.Drawing.Size(449, 28);
-            this.txtBoardName.TabIndex = 43;
-            this.txtBoardName.TextChanged += new System.EventHandler(this.txtBoardName_TextChanged);
-            // 
-            // txtCompanyName
-            // 
-            this.txtCompanyName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.txtCompanyName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCompanyName.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCompanyName.ForeColor = System.Drawing.Color.Magenta;
-            this.txtCompanyName.Location = new System.Drawing.Point(204, 72);
-            this.txtCompanyName.Name = "txtCompanyName";
-            this.txtCompanyName.ReadOnly = true;
-            this.txtCompanyName.Size = new System.Drawing.Size(448, 28);
-            this.txtCompanyName.TabIndex = 42;
-            // 
-            // cmbVenue
-            // 
-            this.cmbVenue.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbVenue.FormattingEnabled = true;
-            this.cmbVenue.Location = new System.Drawing.Point(208, 179);
-            this.cmbVenue.Name = "cmbVenue";
-            this.cmbVenue.Size = new System.Drawing.Size(445, 34);
-            this.cmbVenue.TabIndex = 26;
-            this.cmbVenue.SelectedIndexChanged += new System.EventHandler(this.cmbVenue_SelectedIndexChanged);
-            // 
             // MeetingEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -399,16 +320,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker txtMeetingDate;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox meetingListGroupBox;
-        private System.Windows.Forms.ComboBox cmbVenue;
-        private System.Windows.Forms.TextBox txtBoardName;
-        private System.Windows.Forms.TextBox txtCompanyName;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -422,8 +335,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.TextBox txtMeetingName;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -431,6 +342,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Button removeButton;
+        private System.Windows.Forms.TextBox txtMeetingTitle;
+        private System.Windows.Forms.TextBox txtMeetingNumber;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

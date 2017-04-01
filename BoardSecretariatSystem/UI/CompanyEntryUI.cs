@@ -188,7 +188,7 @@ namespace BoardSecretariatSystem
                 affectedRows1 = (int)cmd.ExecuteScalar();
                 con.Close();
             }
-            if (aHeaderId == 1)
+            if (aHeaderId == 2)
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
@@ -354,8 +354,8 @@ namespace BoardSecretariatSystem
                             cmd.Parameters.AddWithValue("@d7", creatingDateTimePicker.Value);
                             currentCompanyId = (int) cmd.ExecuteScalar();
                             con.Close();
-                          //  SaveCompanyAddress("RegisteredAddresses");
-                           // SaveCompanyAddress("CorporateHQAddresses");
+                           SaveCompanyAddress(1);
+                           SaveCompanyAddress(2);
                             if (otherAddress.Checked)
                             {
                                 SaveOtherAddress("OtherAddress");

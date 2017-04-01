@@ -33,6 +33,11 @@
             this.buttonBoardMemo = new System.Windows.Forms.Button();
             this.buttonAgendaSelection = new System.Windows.Forms.Button();
             this.buttonMeetingCreate = new System.Windows.Forms.Button();
+            this.buttonMeetingInvitation = new System.Windows.Forms.Button();
+            this.buttonCancelMeeting = new System.Windows.Forms.Button();
+            this.buttonAttendance = new System.Windows.Forms.Button();
+            this.buttonMinutesManagement = new System.Windows.Forms.Button();
+            this.buttonResolutionManagement = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,12 +53,17 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonResolutionManagement);
+            this.groupBox1.Controls.Add(this.buttonMinutesManagement);
+            this.groupBox1.Controls.Add(this.buttonAttendance);
+            this.groupBox1.Controls.Add(this.buttonCancelMeeting);
+            this.groupBox1.Controls.Add(this.buttonMeetingInvitation);
             this.groupBox1.Controls.Add(this.buttonBoardMemo);
             this.groupBox1.Controls.Add(this.buttonAgendaSelection);
             this.groupBox1.Controls.Add(this.buttonMeetingCreate);
-            this.groupBox1.Location = new System.Drawing.Point(12, 30);
+            this.groupBox1.Location = new System.Drawing.Point(12, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(141, 516);
+            this.groupBox1.Size = new System.Drawing.Size(173, 545);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
@@ -62,9 +72,9 @@
             this.buttonBoardMemo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.buttonBoardMemo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBoardMemo.ForeColor = System.Drawing.Color.Blue;
-            this.buttonBoardMemo.Location = new System.Drawing.Point(16, 251);
+            this.buttonBoardMemo.Location = new System.Drawing.Point(16, 143);
             this.buttonBoardMemo.Name = "buttonBoardMemo";
-            this.buttonBoardMemo.Size = new System.Drawing.Size(101, 68);
+            this.buttonBoardMemo.Size = new System.Drawing.Size(135, 56);
             this.buttonBoardMemo.TabIndex = 2;
             this.buttonBoardMemo.Text = "Board Memo";
             this.buttonBoardMemo.UseVisualStyleBackColor = false;
@@ -75,9 +85,9 @@
             this.buttonAgendaSelection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.buttonAgendaSelection.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAgendaSelection.ForeColor = System.Drawing.Color.Blue;
-            this.buttonAgendaSelection.Location = new System.Drawing.Point(18, 87);
+            this.buttonAgendaSelection.Location = new System.Drawing.Point(18, 78);
             this.buttonAgendaSelection.Name = "buttonAgendaSelection";
-            this.buttonAgendaSelection.Size = new System.Drawing.Size(99, 64);
+            this.buttonAgendaSelection.Size = new System.Drawing.Size(133, 60);
             this.buttonAgendaSelection.TabIndex = 1;
             this.buttonAgendaSelection.Text = "Agenda Selection";
             this.buttonAgendaSelection.UseVisualStyleBackColor = false;
@@ -88,13 +98,78 @@
             this.buttonMeetingCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.buttonMeetingCreate.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonMeetingCreate.ForeColor = System.Drawing.Color.Blue;
-            this.buttonMeetingCreate.Location = new System.Drawing.Point(18, 19);
+            this.buttonMeetingCreate.Location = new System.Drawing.Point(18, 15);
             this.buttonMeetingCreate.Name = "buttonMeetingCreate";
-            this.buttonMeetingCreate.Size = new System.Drawing.Size(101, 62);
+            this.buttonMeetingCreate.Size = new System.Drawing.Size(133, 57);
             this.buttonMeetingCreate.TabIndex = 0;
             this.buttonMeetingCreate.Text = "Create Meeting";
             this.buttonMeetingCreate.UseVisualStyleBackColor = false;
             this.buttonMeetingCreate.Click += new System.EventHandler(this.buttonMeetingCreate_Click);
+            // 
+            // buttonMeetingInvitation
+            // 
+            this.buttonMeetingInvitation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.buttonMeetingInvitation.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMeetingInvitation.ForeColor = System.Drawing.Color.Blue;
+            this.buttonMeetingInvitation.Location = new System.Drawing.Point(18, 202);
+            this.buttonMeetingInvitation.Name = "buttonMeetingInvitation";
+            this.buttonMeetingInvitation.Size = new System.Drawing.Size(133, 56);
+            this.buttonMeetingInvitation.TabIndex = 3;
+            this.buttonMeetingInvitation.Text = "Meeting Invitation";
+            this.buttonMeetingInvitation.UseVisualStyleBackColor = false;
+            this.buttonMeetingInvitation.Click += new System.EventHandler(this.buttonMeetingInvitation_Click);
+            // 
+            // buttonCancelMeeting
+            // 
+            this.buttonCancelMeeting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.buttonCancelMeeting.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCancelMeeting.ForeColor = System.Drawing.Color.Blue;
+            this.buttonCancelMeeting.Location = new System.Drawing.Point(16, 265);
+            this.buttonCancelMeeting.Name = "buttonCancelMeeting";
+            this.buttonCancelMeeting.Size = new System.Drawing.Size(135, 58);
+            this.buttonCancelMeeting.TabIndex = 4;
+            this.buttonCancelMeeting.Text = "Cancel Meeting ";
+            this.buttonCancelMeeting.UseVisualStyleBackColor = false;
+            this.buttonCancelMeeting.Click += new System.EventHandler(this.buttonCancelMeeting_Click);
+            // 
+            // buttonAttendance
+            // 
+            this.buttonAttendance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.buttonAttendance.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAttendance.ForeColor = System.Drawing.Color.Blue;
+            this.buttonAttendance.Location = new System.Drawing.Point(16, 329);
+            this.buttonAttendance.Name = "buttonAttendance";
+            this.buttonAttendance.Size = new System.Drawing.Size(135, 56);
+            this.buttonAttendance.TabIndex = 5;
+            this.buttonAttendance.Text = "Attendence Management";
+            this.buttonAttendance.UseVisualStyleBackColor = false;
+            this.buttonAttendance.Click += new System.EventHandler(this.buttonAttendance_Click);
+            // 
+            // buttonMinutesManagement
+            // 
+            this.buttonMinutesManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.buttonMinutesManagement.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMinutesManagement.ForeColor = System.Drawing.Color.Blue;
+            this.buttonMinutesManagement.Location = new System.Drawing.Point(16, 391);
+            this.buttonMinutesManagement.Name = "buttonMinutesManagement";
+            this.buttonMinutesManagement.Size = new System.Drawing.Size(135, 68);
+            this.buttonMinutesManagement.TabIndex = 6;
+            this.buttonMinutesManagement.Text = "Minutes Management";
+            this.buttonMinutesManagement.UseVisualStyleBackColor = false;
+            this.buttonMinutesManagement.Click += new System.EventHandler(this.buttonMinutesManagement_Click);
+            // 
+            // buttonResolutionManagement
+            // 
+            this.buttonResolutionManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.buttonResolutionManagement.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonResolutionManagement.ForeColor = System.Drawing.Color.Blue;
+            this.buttonResolutionManagement.Location = new System.Drawing.Point(16, 465);
+            this.buttonResolutionManagement.Name = "buttonResolutionManagement";
+            this.buttonResolutionManagement.Size = new System.Drawing.Size(135, 64);
+            this.buttonResolutionManagement.TabIndex = 7;
+            this.buttonResolutionManagement.Text = "Resolution Management";
+            this.buttonResolutionManagement.UseVisualStyleBackColor = false;
+            this.buttonResolutionManagement.Click += new System.EventHandler(this.buttonResolutionManagement_Click);
             // 
             // MeetingManagementUI
             // 
@@ -122,5 +197,10 @@
         private System.Windows.Forms.Button buttonMeetingCreate;
         private System.Windows.Forms.Button buttonAgendaSelection;
         private System.Windows.Forms.Button buttonBoardMemo;
+        private System.Windows.Forms.Button buttonMeetingInvitation;
+        private System.Windows.Forms.Button buttonResolutionManagement;
+        private System.Windows.Forms.Button buttonMinutesManagement;
+        private System.Windows.Forms.Button buttonAttendance;
+        private System.Windows.Forms.Button buttonCancelMeeting;
     }
 }

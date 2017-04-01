@@ -18,9 +18,10 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         ConnectionString cs=new ConnectionString();
         private SqlDataReader rdr;
-        public decimal aId, aId1, addHId, userId;
-        public int currentMeetingId, boardId, count;
-        public string serialNo, divisionId, districtId, thanaId, postofficeId;
+        public Nullable<decimal> aId, aId1;
+        public decimal addHId;
+        public int affectedRows1, currentMeetingId, boardId, count, companyId;
+        public string serialNo, divisionId, districtId, thanaId, postofficeId, userId;
 
 
         public MeetingCreation()
@@ -82,16 +83,23 @@ namespace BoardSecretariatSystem.UI
                 if (rdr.Read())
                 {
                     aId = (rdr.GetDecimal(0));
+
                     if (aId == 1)
+
                     {
+                        aId1 = aId;
                         txtMeetingName.Text = "1st Board Meeting";
                     }
+
                     else if (aId == 2)
                     {
+                        aId1 = aId;
                         txtMeetingName.Text = "2nd Board Meeting";
                     }
+
                     else if (aId == 3)
                     {
+                        aId1 = aId;
                         txtMeetingName.Text = "3rd Board Meeting";
                     }
                  
@@ -121,6 +129,18 @@ namespace BoardSecretariatSystem.UI
                 {
                     txtCompanyName.Text = (rdr.GetString(0));
                 }
+
+                con.Close();
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query2 = "SELECT CompanyId FROM Company where  Company.CompanyName='" + txtCompanyName.Text + "' ";
+                cmd = new SqlCommand(query2, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    companyId = (rdr.GetInt32(0));
+                }
+
                 con.Close();
             }
             catch (Exception ex)
@@ -186,8 +206,10 @@ namespace BoardSecretariatSystem.UI
         }
         private void MeetingCreation_Load(object sender, EventArgs e)
         {
+            userId = frmLogin.uId.ToString();
             groupBox2.Visible = false;
             label4.Visible = false;
+            label9.Visible = false;
             this.MaximumSize = new Size(700, 1080);
             GetMeetingTitle();
             BoardNameLoad();
@@ -212,33 +234,152 @@ namespace BoardSecretariatSystem.UI
             {
                 count = (rdr.GetInt32(0));
             }
-
-            serialNo = yy + "-" + boardId + "-" + count + "-" + currentMeetingId;
+            if (count == 0)
+            {
+                currentMeetingId = 1;
+                count = 1;
+                serialNo = yy + "-" + boardId + "-" + count + "-" + currentMeetingId;
+            }
+            else
+            {
+                serialNo = yy + "-" + boardId + "-" + count + "-" + currentMeetingId;
+            }
+            
         }
 
-        private void buttonMeetingCreation_Click(object sender, EventArgs e)
+        private void SaveAddressHeader()
         {
-            if (string.IsNullOrEmpty(cmbVenue.Text))
-            {
-                MessageBox.Show("Please Select Vanue for the Meeting", "error", MessageBoxButtons.OK,MessageBoxIcon.Error);
-                return;
-            }
             try
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query2 = "insert into Meeting(AHeaderId,MeetingNo,MeetingDate,SerialNumber,UserId,DateTime,MeetingTypeId) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query2 = "insert into AddressHeader(AHeaderName) values (@d1)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                cmd = new SqlCommand(query2, con);
+                cmd.Parameters.AddWithValue("@d1", txtNAddressHeader.Text);               
+                addHId = (int)cmd.ExecuteScalar();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        private void SaveMeetingAddress()
+        {
+                SaveAddressHeader();
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string insertQ = "insert into CompanyAddresses(AHeaderId,PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,CompanyId) Values(@d1,@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                cmd = new SqlCommand(insertQ);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@d1", string.IsNullOrEmpty(addHId.ToString()) ? (object)DBNull.Value : addHId.ToString()));
+                cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
+                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtFlatNo.Text) ? (object)DBNull.Value : txtFlatNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtHouseNo.Text) ? (object)DBNull.Value : txtHouseNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtRoadNo.Text) ? (object)DBNull.Value : txtRoadNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(txtBlock.Text) ? (object)DBNull.Value : txtBlock.Text));
+                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtArea.Text) ? (object)DBNull.Value : txtArea.Text));
+                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtContactNo.Text) ? (object)DBNull.Value : txtContactNo.Text));
+                cmd.Parameters.AddWithValue("@d11", companyId);
+                affectedRows1 = (int)cmd.ExecuteScalar();
+                con.Close();
+        }
+
+        private void ResetAddress()
+        {
+            txtFlatNo.Clear();
+            txtHouseNo.Clear();
+            txtRoadNo.Clear();
+            txtBlock.Clear();
+            txtArea.Clear();
+            txtContactNo.Clear();
+            txtPostCode.Clear();
+            cmbPost.SelectedIndex = -1;
+            cmbThana.SelectedIndex = -1;
+            cmbDistrict.SelectedIndex = -1;
+            cmbDivision.SelectedIndex = -1;
+        }
+        private void Reset()
+        {
+            txtCompanyName.Clear();
+            txtBoardName.Clear();
+            txtMeetingName.Clear();
+            cmbVenue.SelectedIndex = -1;
+            txtMeetingDate.Value=DateTime.Today;
+
+            if (!string.IsNullOrEmpty(txtNAddressHeader.Text))
+            {
+                ResetAddress();
+            }
+           
+        }
+        private void buttonMeetingCreation_Click(object sender, EventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(cmbVenue.Text))
+            {
+                MessageBox.Show("Please Select Vanue for the Meeting", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (cmbVenue.Text == "Not In The List")
+            {
+                if (string.IsNullOrEmpty(txtNAddressHeader.Text))
+                {
+                    MessageBox.Show("Please enter Address Header for the Meeting", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrEmpty(cmbDivision.Text))
+                {
+                    MessageBox.Show("Please Select division of Address", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrEmpty(cmbDistrict.Text))
+                {
+                    MessageBox.Show("Please Select district of Address", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrEmpty(cmbThana.Text))
+                {
+                    MessageBox.Show("Please Select thana of Address", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrEmpty(cmbPost.Text))
+                {
+                    MessageBox.Show("Please Select Post Office of Address", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                
+            }
+           
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+
+                string query2 = "insert into Meeting(AHeaderId,MeetingNo,MeetingDate,SerialNumber,UserId,DateTime,MeetingTypeId,Statuss) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+
                 cmd = new SqlCommand(query2, con);
                 cmd.Parameters.AddWithValue("@d1", addHId);
-                cmd.Parameters.AddWithValue("@d2", aId);
-                cmd.Parameters.AddWithValue("@d3", serialNo);
-                cmd.Parameters.AddWithValue("@d4", txtMeetingDate.Value.Date);
+
+                cmd.Parameters.AddWithValue("@d2", aId1);               
+                cmd.Parameters.AddWithValue("@d3", Convert.ToDateTime(txtMeetingDate.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
+                cmd.Parameters.AddWithValue("@d4", serialNo);
+
                 cmd.Parameters.AddWithValue("@d5", userId);
                 cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
                 cmd.Parameters.AddWithValue("@d7", 1);
+                cmd.Parameters.AddWithValue("@d8", "Open");
                 currentMeetingId = (int)cmd.ExecuteScalar();
                 con.Close();
+                if (!string.IsNullOrEmpty(txtNAddressHeader.Text))
+                {
+                    SaveMeetingAddress();
+                }
                 MessageBox.Show("Meeting Created Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Reset();
+
             }
             catch (Exception exception)
             {
@@ -260,12 +401,14 @@ namespace BoardSecretariatSystem.UI
             {
                 groupBox2.Visible = true;
                 label4.Visible = true;
+                label9.Visible = true;
                 this.MaximumSize = new Size(1400, 1080);
                
             }
             else
             {
                 groupBox2.Visible = false;
+                label9.Visible = false;
                 label4.Visible = false;
                 this.MaximumSize = new Size(700, 1080);
             }

@@ -17,6 +17,13 @@ namespace BoardSecretariatSystem.UI
             InitializeComponent();
         }
 
+        private void MeetingConsole7UI_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Hide();
+            MeetingManagementUI frm = new MeetingManagementUI();
+            frm.Show();
+        }
+
    
 
        
