@@ -339,7 +339,7 @@ namespace BoardSecretariatSystem
                         listView1.Items.Add(lst);
                         SaveSelectedAgenda();   
                     }                    
-                    else if (listView1.FindItemWithText(tAgendaId.ToString()) == null)
+                    else if (listView1.FindItemWithText(tAgendaId.ToString()) != null)
                     {
                         ListViewItem lst1 = new ListViewItem();
                         lst1.Text = dr.Cells[0].Value.ToString();

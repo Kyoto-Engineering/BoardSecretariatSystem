@@ -21,7 +21,7 @@ namespace BoardSecretariatSystem.UI
         private SqlDataReader rdr;
         ConnectionString cs=new ConnectionString();
         public string companyId, nUserId, divisionId, divisionIdP, districtId, districtIdP, thanaId, thanaIdP, postofficeId, postofficeIdP, memberTypeId;
-        public int affectedRows1, affectedRows2, affectedRows3, currentPerticipantId,currentShareHolderId,  bankEmailId;
+        public int affectedRows1, affectedRows2, affectedRows3, currentPerticipantId,currentShareHolderId,  bankEmailId,boardMemberId;
         public ParticipantCreation()
         {
             InitializeComponent();
@@ -116,12 +116,32 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-       
+        private void GetParticipantType()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctt = "select BoardMemberType from BoardMemberTypes";
+                cmd = new SqlCommand(ctt);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbParticipantType.Items.Add(rdr.GetValue(0).ToString());
+                }
+                cmbParticipantType.Items.Add("Not In The List");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void ParticipantCreation_Load(object sender, EventArgs e)
         {
             nUserId = frmLogin.uId.ToString();
             CompanyNameLoad();
-            
+            GetParticipantType();
             EmailAddress();
             FillPresentDivisionCombo();
             FillPermanantDivisionCombo();
@@ -332,7 +352,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 = "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,Designation,Profession,ContactNumber,Nationality,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 = "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,Designation,Profession,BoardMemberTypeId,ContactNumber,Nationality,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16,@d17)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", txtShareHolderName.Text);
                 cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(txtMotherName.Text) ? (object)DBNull.Value : txtMotherName.Text));
@@ -340,16 +360,18 @@ namespace BoardSecretariatSystem.UI
                 cmd.Parameters.AddWithValue("@d4", txtDateOfBirth.Value);
                 cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtDesignation.Text) ? (object)DBNull.Value : txtDesignation.Text));
                 cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtProfession.Text) ? (object)DBNull.Value : txtProfession.Text));
-                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtCellNumber.Text) ? (object)DBNull.Value : txtCellNumber.Text));
-                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(txtNationality.Text) ? (object)DBNull.Value : txtNationality.Text));
-                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtNationalId.Text) ? (object)DBNull.Value : txtNationalId.Text));
-                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtBirthCertificateNo.Text) ? (object)DBNull.Value : txtBirthCertificateNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d11", string.IsNullOrEmpty(txtPassportNo.Text) ? (object)DBNull.Value : txtPassportNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d12", string.IsNullOrEmpty(txtTINNumber.Text) ? (object)DBNull.Value : txtTINNumber.Text));                               
-                cmd.Parameters.AddWithValue("@d13", bankEmailId);
-                cmd.Parameters.AddWithValue("@d14", companyId);               
-                cmd.Parameters.AddWithValue("@d15", nUserId);
-                cmd.Parameters.AddWithValue("@d16", DateTime.UtcNow.ToLocalTime());
+                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(boardMemberId.ToString()) ? (object)DBNull.Value : boardMemberId.ToString()));
+
+                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(txtCellNumber.Text) ? (object)DBNull.Value : txtCellNumber.Text));
+                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtNationality.Text) ? (object)DBNull.Value : txtNationality.Text));
+                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtNationalId.Text) ? (object)DBNull.Value : txtNationalId.Text));
+                cmd.Parameters.Add(new SqlParameter("@d11", string.IsNullOrEmpty(txtBirthCertificateNo.Text) ? (object)DBNull.Value : txtBirthCertificateNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d12", string.IsNullOrEmpty(txtPassportNo.Text) ? (object)DBNull.Value : txtPassportNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d13", string.IsNullOrEmpty(txtTINNumber.Text) ? (object)DBNull.Value : txtTINNumber.Text));                               
+                cmd.Parameters.AddWithValue("@d14", bankEmailId);
+                cmd.Parameters.AddWithValue("@d15", companyId);               
+                cmd.Parameters.AddWithValue("@d16", nUserId);
+                cmd.Parameters.AddWithValue("@d17", DateTime.UtcNow.ToLocalTime());
                 currentPerticipantId = (int) cmd.ExecuteScalar();
                 con.Close();
                 SaveShareHolder();
@@ -1198,6 +1220,34 @@ namespace BoardSecretariatSystem.UI
         {
             if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
                 e.Handled = true;
+        }
+
+        private void cmbParticipantType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT BoardMemberTypeId from BoardMemberTypes WHERE BoardMemberTypes.BoardMemberType= '" + cmbParticipantType.Text + "'";
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    boardMemberId = rdr.GetInt32(0);
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

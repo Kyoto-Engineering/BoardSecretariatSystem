@@ -19,7 +19,7 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         ConnectionString cs = new ConnectionString();
-
+        public int affectedRows1, affectedRows2, affectedRows3, currentPerticipantId, currentShareHolderId, bankEmailId,boardMemberId;
         public string companyId,
             nUserId,
             divisionId,
@@ -32,7 +32,7 @@ namespace BoardSecretariatSystem.UI
             postofficeIdP,
             memberTypeId;
 
-        public int affectedRows1, affectedRows2, affectedRows3, currentPerticipantId, currentShareHolderId, bankEmailId;
+       
 
         public ParticipantCreation2()
         {
@@ -140,7 +140,7 @@ namespace BoardSecretariatSystem.UI
                 cmd.Parameters.AddWithValue("@d4", txtDateOfBirth.Value);
                 cmd.Parameters.Add(new SqlParameter("@d5",
                     string.IsNullOrEmpty(txtDesignation.Text) ? (object) DBNull.Value : txtDesignation.Text));
-                //cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtProfession.Text) ? (object)DBNull.Value : txtProfession.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(boardMemberId.ToString()) ? (object)DBNull.Value : boardMemberId.ToString()));
                 cmd.Parameters.Add(new SqlParameter("@d7",
                     string.IsNullOrEmpty(txtCellNumber.Text) ? (object) DBNull.Value : txtCellNumber.Text));
                 cmd.Parameters.Add(new SqlParameter("@d8",
@@ -593,9 +593,30 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void GetParticipantType()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctt = "select BoardMemberType from BoardMemberTypes";
+                cmd = new SqlCommand(ctt);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbParticipantType.Items.Add(rdr.GetValue(0).ToString());
+                }
+                cmbParticipantType.Items.Add("Not In The List");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void ParticipantCreation2_Load(object sender, EventArgs e)
         {
-
+            GetParticipantType();
             FillPermanantDivisionCombo();
             FillPresentDivisionCombo();
             EmailAddress();
@@ -1087,6 +1108,34 @@ namespace BoardSecretariatSystem.UI
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void cmbParticipantType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT BoardMemberTypeId from BoardMemberTypes WHERE BoardMemberTypes.BoardMemberType= '" + cmbParticipantType.Text + "'";
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    boardMemberId = rdr.GetInt32(0);
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
