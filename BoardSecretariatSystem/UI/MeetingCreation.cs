@@ -82,26 +82,22 @@ namespace BoardSecretariatSystem.UI
                 if (rdr.Read())
                 {
                     aId = (rdr.GetDecimal(0));
-                    if (aId == 0)
+                    if (aId == 1)
                     {
                         txtMeetingName.Text = "1st Board Meeting";
                     }
-                    else if (aId == 1)
+                    else if (aId == 2)
                     {
                         txtMeetingName.Text = "2nd Board Meeting";
                     }
-                    else if (aId == 2)
+                    else if (aId == 3)
                     {
                         txtMeetingName.Text = "3rd Board Meeting";
                     }
-                    else if (aId == 3)
-                    {
-                        txtMeetingName.Text = "4rth Board Meeting";
-                    }
-
+                 
                     else if (aId >= 4)
                     {
-                        aId1 = aId + 1;
+                        aId1 = aId;
                         txtMeetingName.Text = aId1 + "th Board Meeting";
                     }
 
@@ -231,14 +227,15 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query2 = "insert into Meeting(AHeaderId,MeetingName,MeetingDate,SerialNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query2 = "insert into Meeting(AHeaderId,MeetingNo,MeetingDate,SerialNumber,UserId,DateTime,MeetingTypeId) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query2, con);
                 cmd.Parameters.AddWithValue("@d1", addHId);
-                cmd.Parameters.AddWithValue("@d2", txtMeetingName.Text);
+                cmd.Parameters.AddWithValue("@d2", aId);
                 cmd.Parameters.AddWithValue("@d3", serialNo);
                 cmd.Parameters.AddWithValue("@d4", txtMeetingDate.Value.Date);
                 cmd.Parameters.AddWithValue("@d5", userId);
                 cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
+                cmd.Parameters.AddWithValue("@d7", 1);
                 currentMeetingId = (int)cmd.ExecuteScalar();
                 con.Close();
                 MessageBox.Show("Meeting Created Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
