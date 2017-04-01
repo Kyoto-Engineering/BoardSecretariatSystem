@@ -23,7 +23,9 @@ namespace BoardSecretariatSystem
         private SqlConnection con;
         private SqlCommand cmd;
         private SqlDataReader rdr;
+        private SqlDataAdapter ada;
         private ConnectionString cs = new ConnectionString();
+        private DataTable dt;
         public string userId, agendaTypeId, labelk, labelg;
         public int companyId, addHId;
         public int boardId,currentMeetingId,  tAgendaId;
@@ -83,12 +85,12 @@ namespace BoardSecretariatSystem
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                cmd = new SqlCommand("SELECT Agenda.AgendaId,Agenda.AgendaTopics, Agenda.AgendaTitle, Agenda.Memo, AgendaTypes.AgendaType,AgendaTypes.AgendaTypeId FROM  Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId", con);
+                cmd = new SqlCommand("SELECT Agenda.AgendaId,Agenda.AgendaTopics, Agenda.AgendaTitle,AgendaTypes.AgendaType,AgendaTypes.AgendaTypeId FROM  Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId", con);
                 rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 dataGridView1.Rows.Clear();
                 while (rdr.Read() == true)
                 {
-                    dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2],rdr[3],rdr[4],rdr[5]);
+                    dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2],rdr[3],rdr[4]);
                 }
                 con.Close();
             }
@@ -190,13 +192,35 @@ namespace BoardSecretariatSystem
             }
  
         }
+        private void LoadExistingAgenda()
+        {
+            //listView1.View = View.Details;
+            //con = new SqlConnection(cs.DBConn);
+            //string qry = "SELECT RTRIM(Ledger.LedgerName),RTRIM(Ledger.LedgerId),RTRIM(MPBYearOpening.CarriedBalance),RTRIM(BalanceFiscal.LId),RTRIM(Ledger.AGRelId)  FROM Ledger INNER JOIN  BalanceFiscal ON Ledger.LedgerId = BalanceFiscal.LedgerId INNER JOIN  MPBYearOpening ON BalanceFiscal.LId = MPBYearOpening.LId INNER JOIN  YearOpeningEvent ON MPBYearOpening.EventId = YearOpeningEvent.EventId where (Ledger.AGRelId=1 or Ledger.AGRelId=6) and YearOpeningEvent.FiscalId='" + fiscalLE3Year + "'";
+            //ada = new SqlDataAdapter(qry, con);
+            //dt = new DataTable();
+            //ada.Fill(dt);
+
+            //for (int b = 0; b < dt.Rows.Count; b++)
+            //{
+            //    DataRow dr = dt.Rows[b];
+            //    ListViewItem listitem1 = new ListViewItem(dr[0].ToString());
+            //    listitem1.SubItems.Add(dr[1].ToString());
+            //    listitem1.SubItems.Add(dr[2].ToString());
+
+            //    listitem1.SubItems.Add(dr[3].ToString());
+            //    listitem1.SubItems.Add(dr[4].ToString());
+            //    //listitem1.SubItems.Add(dr[5].ToString());
+            //    listView1.Items.Add(listitem1);
+            //}
+        }
+
+
         private void MeetingEntry_Load(object sender, EventArgs e)
         {
             userId = frmLogin.uId.ToString();
             GetAgendaDetails();
-           // CompanyNameLoad();
-           // BoardNameLoad();
-            //AgendaHeaderLoad();
+           
             GetMeetingTitle();
 
         }
@@ -220,56 +244,45 @@ namespace BoardSecretariatSystem
         //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         //    }
         //}                     
-        private void Reset()
+              
+        private void SaveSelectedAgenda()
         {
-            //companyNameComboBox.SelectedIndex = -1;
-            //boardNameComboBox.SelectedIndex = -1;
-            //meetingNameTextBox.Clear();
-           // cmbVenue.SelectedIndex = -1;
-           // txtMeetingDate.Value=DateTime.Today;
-        }
-
-        private void GenerateSerialNumberForMeeting()
-        {
-           String sDate = DateTime.Now.ToString();
-           DateTime datevalue = (Convert.ToDateTime(sDate.ToString()));
-           String dy = datevalue.Day.ToString();
-           String mn = datevalue.Month.ToString();
-           String yy = datevalue.Year.ToString();
-             //referenceNo = "OIA-" + sClientIdForRefNum + "-" + sQN + "-" + quotationId +"";
-            serialNo = yy + boardId + "" + currentMeetingId; 
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query2 = "insert into SelectedAgenda(MeetingId,AgendaId) values (@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                cmd = new SqlCommand(query2, con);
+                cmd.Parameters.AddWithValue("@d1", txtMeetingNumber.Text);
+                cmd.Parameters.AddWithValue("@d2", tAgendaId);
+                currentMeetingId = (int)cmd.ExecuteScalar();
+                con.Close();  
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (listView1.Items.Count == 0)
-            {
-                MessageBox.Show("Please Select the item from the grid and into the list", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else
-            {
-                try
-                {
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    string query2 = "insert into Meeting(AHeaderId,MeetingName,MeetingDate,SerialNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
-                    cmd = new SqlCommand(query2, con);
-                    cmd.Parameters.AddWithValue("@d1", addHId);
-                    //cmd.Parameters.AddWithValue("@d2", txtMeetingName.Text);
-                    cmd.Parameters.AddWithValue("@d3", serialNo); 
-                   // cmd.Parameters.AddWithValue("@d4", txtMeetingDate.Value.Date);                   
-                    cmd.Parameters.AddWithValue("@d5", userId);
-                    cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
-                    currentMeetingId = (int)cmd.ExecuteScalar();
-                    con.Close();                   
-                    Reset();
-                    MessageBox.Show("Saved Sucessfully", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            //if (listView1.Items.Count == 0)
+            //{
+            //    MessageBox.Show("Please Select the item from the grid and into the list", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+            //else
+            //{
+            //    try
+            //    {
+            //        SaveSelectedAgenda();               
+                    
+            //        MessageBox.Show(" All Saved Sucessfully", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
 
         }
         
@@ -322,10 +335,9 @@ namespace BoardSecretariatSystem
                         lst.SubItems.Add(dr.Cells[1].Value.ToString());
                         lst.SubItems.Add(dr.Cells[2].Value.ToString());
                         lst.SubItems.Add(dr.Cells[3].Value.ToString());
-                        lst.SubItems.Add(dr.Cells[4].Value.ToString());
-                        lst.SubItems.Add(dr.Cells[5].Value.ToString());
-                      
+                        lst.SubItems.Add(dr.Cells[4].Value.ToString());                                              
                         listView1.Items.Add(lst);
+                        SaveSelectedAgenda();   
                     }                    
                     else if (listView1.FindItemWithText(tAgendaId.ToString()) == null)
                     {
@@ -334,9 +346,9 @@ namespace BoardSecretariatSystem
                         lst1.SubItems.Add(dr.Cells[1].Value.ToString());
                         lst1.SubItems.Add(dr.Cells[2].Value.ToString());
                         lst1.SubItems.Add(dr.Cells[3].Value.ToString());
-                        lst1.SubItems.Add(dr.Cells[4].Value.ToString());
-                        lst1.SubItems.Add(dr.Cells[5].Value.ToString());
+                        lst1.SubItems.Add(dr.Cells[4].Value.ToString());                        
                         listView1.Items.Add(lst1);
+                        SaveSelectedAgenda();
                     }
                     else
                     {

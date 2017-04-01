@@ -52,7 +52,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -114,10 +113,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.groupBox1.Controls.Add(this.listView1);
             this.groupBox1.Location = new System.Drawing.Point(14, 191);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(691, 324);
+            this.groupBox1.Size = new System.Drawing.Size(691, 344);
             this.groupBox1.TabIndex = 54;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " ";
@@ -129,12 +129,11 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader4});
+            this.columnHeader6});
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(13, 19);
+            this.listView1.Location = new System.Drawing.Point(18, 22);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(651, 294);
             this.listView1.TabIndex = 38;
@@ -147,23 +146,23 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Agendum ";
-            this.columnHeader2.Width = 144;
+            this.columnHeader2.Text = "Agenda Id";
+            this.columnHeader2.Width = 130;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "AgendaTitle";
-            this.columnHeader3.Width = 222;
+            this.columnHeader3.Width = 288;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "AgendaTypeId";
-            this.columnHeader5.Width = 178;
+            this.columnHeader5.Text = "AgendaType";
+            this.columnHeader5.Width = 213;
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "AT Id";
-            this.columnHeader6.Width = 97;
+            this.columnHeader6.Text = "AgendaTypeId";
+            this.columnHeader6.Width = 11;
             // 
             // label3
             // 
@@ -240,7 +239,7 @@
             this.buttonAdd.ForeColor = System.Drawing.Color.Blue;
             this.buttonAdd.Location = new System.Drawing.Point(629, 51);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(98, 40);
+            this.buttonAdd.Size = new System.Drawing.Size(86, 40);
             this.buttonAdd.TabIndex = 62;
             this.buttonAdd.Text = "Add";
             this.buttonAdd.UseVisualStyleBackColor = false;
@@ -253,7 +252,7 @@
             this.button1.ForeColor = System.Drawing.Color.Blue;
             this.button1.Location = new System.Drawing.Point(630, 101);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(97, 49);
+            this.button1.Size = new System.Drawing.Size(85, 43);
             this.button1.TabIndex = 63;
             this.button1.Text = "Remove";
             this.button1.UseVisualStyleBackColor = false;
@@ -283,15 +282,11 @@
             this.label4.TabIndex = 65;
             this.label4.Text = "Agenda Bank";
             // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "AgendaId";
-            // 
             // AgendaConsole2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 516);
+            this.ClientSize = new System.Drawing.Size(1362, 547);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.button1);
@@ -344,6 +339,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

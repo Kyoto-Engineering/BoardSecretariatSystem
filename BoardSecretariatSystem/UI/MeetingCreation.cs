@@ -357,16 +357,12 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-
                 string query2 = "insert into Meeting(AHeaderId,MeetingNo,MeetingDate,SerialNumber,UserId,DateTime,MeetingTypeId,Statuss) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
-
                 cmd = new SqlCommand(query2, con);
                 cmd.Parameters.AddWithValue("@d1", addHId);
-
                 cmd.Parameters.AddWithValue("@d2", aId1);               
                 cmd.Parameters.AddWithValue("@d3", Convert.ToDateTime(txtMeetingDate.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
                 cmd.Parameters.AddWithValue("@d4", serialNo);
-
                 cmd.Parameters.AddWithValue("@d5", userId);
                 cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
                 cmd.Parameters.AddWithValue("@d7", 1);

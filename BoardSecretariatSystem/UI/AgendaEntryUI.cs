@@ -22,7 +22,8 @@ namespace BoardSecretariatSystem
         private ConnectionString cs = new ConnectionString();
         private delegate void ChangeFocusDelegate(Control ctl);
         public string userId, boardId, companyId, labelv, labelg, nParticipantId, nUserId;
-        public int agendaId, agendaTypeId, meetingId, participantId, aId, agendaId1;
+        public int agendaId, agendaTypeId, meetingId, participantId, agendaId1;
+        public Nullable<decimal> aId, aId1;
         public AgendaEntryUI()
         {            
             InitializeComponent();
@@ -110,14 +111,14 @@ namespace BoardSecretariatSystem
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctt = "Select MAX(AgendaId) from Agenda ";
+                string ctt = "SELECT IDENT_CURRENT ('Agenda')";
                 cmd = new SqlCommand(ctt);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
-                    aId = (rdr.GetInt32(0));
-                    aId += 1;
+                    aId = (rdr.GetDecimal(0));
+                    aId = 1;
                    // string[] tokens = agendaId1.Split('-');
                     //aId = Convert.ToInt32(tokens[1]);
                     txtAgendaHeader.Text = "Agenda-" +aId;
