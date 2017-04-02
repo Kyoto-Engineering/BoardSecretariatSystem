@@ -18,6 +18,8 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         ConnectionString cs=new ConnectionString();
+        public decimal meetingId;
+        public string status;
 
         public MeetingManagementUI()
         {
@@ -31,15 +33,47 @@ namespace BoardSecretariatSystem.UI
                        frm.Show();
         }
 
+        private void CheckMeeting()
+        {
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string qry = "SELECT IDENT_CURRENT ('Meeting')";
+            cmd = new SqlCommand(qry, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                meetingId = (rdr.GetDecimal(0));
+            }
+            con.Close();
+
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string qry2 = "SELECT Meeting.Statuss from  Meeting  where  Meeting.MeetingId='" + meetingId + "' ";
+            cmd = new SqlCommand(qry2, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                status = (rdr.GetString(0));
+            }
+            con.Close();
+            if (status == "Open")
+            {
+                MessageBox.Show("Please Complete the current meeting before creating a new  meeting.", "error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                this.Hide();
+                MeetingCreation frm = new MeetingCreation();
+                frm.Show();
+            }
+
+        }
         private void buttonMeetingCreate_Click(object sender, EventArgs e)
         {
-            con=new SqlConnection(cs.DBConn);
-            con.Open();
-            string qry = "Select Statuss  from  Meeting  where ";
 
-            this.Hide();
-            MeetingCreation frm = new MeetingCreation();
-            frm.Show();
+            CheckMeeting();
+            
         }
 
         private void MeetingManagementUI_FormClosed(object sender, FormClosedEventArgs e)

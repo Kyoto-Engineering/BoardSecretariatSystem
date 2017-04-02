@@ -28,32 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtMeetingNumber = new System.Windows.Forms.TextBox();
-            this.txtParticipantName = new System.Windows.Forms.TextBox();
-            this.txtDesignation = new System.Windows.Forms.TextBox();
-            this.txtParticipantType = new System.Windows.Forms.TextBox();
             this.addRecipientListButton = new System.Windows.Forms.Button();
             this.saveAllButton = new System.Windows.Forms.Button();
-            this.addtionalParticipantDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonAdditionalParticipant = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonAdditionalParticipant = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.addtionalParticipantDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -61,12 +56,13 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(269, 9);
+            this.label1.Location = new System.Drawing.Point(299, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(529, 93);
             this.label1.TabIndex = 0;
             this.label1.Text = "                     Meeting Console 3\r\nMeeting Notice and Invitation Management " +
     "\r\n                     (During Invitation)\r\n";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -95,44 +91,11 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(672, 142);
+            this.label4.Location = new System.Drawing.Point(709, 142);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(296, 26);
             this.label4.TabIndex = 2;
             this.label4.Text = "Additional  Participant List\r\n";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Magenta;
-            this.label5.Location = new System.Drawing.Point(63, 303);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(204, 26);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Participant  Type :";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Magenta;
-            this.label6.Location = new System.Drawing.Point(44, 270);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(223, 26);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Designation/ Status :";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Magenta;
-            this.label7.Location = new System.Drawing.Point(182, 234);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(85, 26);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Name :";
             // 
             // label8
             // 
@@ -149,34 +112,10 @@
             this.txtMeetingNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.txtMeetingNumber.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMeetingNumber.ForeColor = System.Drawing.Color.Blue;
-            this.txtMeetingNumber.Location = new System.Drawing.Point(279, 140);
+            this.txtMeetingNumber.Location = new System.Drawing.Point(279, 136);
             this.txtMeetingNumber.Name = "txtMeetingNumber";
             this.txtMeetingNumber.Size = new System.Drawing.Size(283, 29);
             this.txtMeetingNumber.TabIndex = 8;
-            // 
-            // txtParticipantName
-            // 
-            this.txtParticipantName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtParticipantName.Location = new System.Drawing.Point(279, 236);
-            this.txtParticipantName.Name = "txtParticipantName";
-            this.txtParticipantName.Size = new System.Drawing.Size(283, 29);
-            this.txtParticipantName.TabIndex = 10;
-            // 
-            // txtDesignation
-            // 
-            this.txtDesignation.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDesignation.Location = new System.Drawing.Point(279, 271);
-            this.txtDesignation.Name = "txtDesignation";
-            this.txtDesignation.Size = new System.Drawing.Size(283, 29);
-            this.txtDesignation.TabIndex = 11;
-            // 
-            // txtParticipantType
-            // 
-            this.txtParticipantType.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtParticipantType.Location = new System.Drawing.Point(279, 306);
-            this.txtParticipantType.Name = "txtParticipantType";
-            this.txtParticipantType.Size = new System.Drawing.Size(283, 29);
-            this.txtParticipantType.TabIndex = 12;
             // 
             // addRecipientListButton
             // 
@@ -194,44 +133,44 @@
             this.saveAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.saveAllButton.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveAllButton.ForeColor = System.Drawing.Color.Magenta;
-            this.saveAllButton.Location = new System.Drawing.Point(772, 496);
+            this.saveAllButton.Location = new System.Drawing.Point(818, 523);
             this.saveAllButton.Name = "saveAllButton";
-            this.saveAllButton.Size = new System.Drawing.Size(187, 71);
+            this.saveAllButton.Size = new System.Drawing.Size(162, 93);
             this.saveAllButton.TabIndex = 14;
             this.saveAllButton.Text = "Save All\r\n";
             this.saveAllButton.UseVisualStyleBackColor = false;
             // 
-            // addtionalParticipantDataGridView
+            // dataGridView1
             // 
-            this.addtionalParticipantDataGridView.AllowUserToAddRows = false;
-            this.addtionalParticipantDataGridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.addtionalParticipantDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.addtionalParticipantDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.addtionalParticipantDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column4,
             this.Column5,
             this.Column1});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.addtionalParticipantDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
-            this.addtionalParticipantDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.addtionalParticipantDataGridView.Location = new System.Drawing.Point(638, 178);
-            this.addtionalParticipantDataGridView.Name = "addtionalParticipantDataGridView";
-            this.addtionalParticipantDataGridView.ReadOnly = true;
-            this.addtionalParticipantDataGridView.Size = new System.Drawing.Size(497, 239);
-            this.addtionalParticipantDataGridView.TabIndex = 15;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.dataGridView1.Location = new System.Drawing.Point(679, 178);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(496, 267);
+            this.dataGridView1.TabIndex = 15;
             // 
             // listView1
             // 
@@ -263,6 +202,32 @@
             this.columnHeader3.Text = "Participant Type";
             this.columnHeader3.Width = 179;
             // 
+            // buttonAdditionalParticipant
+            // 
+            this.buttonAdditionalParticipant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.buttonAdditionalParticipant.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdditionalParticipant.ForeColor = System.Drawing.Color.Fuchsia;
+            this.buttonAdditionalParticipant.Location = new System.Drawing.Point(279, 178);
+            this.buttonAdditionalParticipant.Name = "buttonAdditionalParticipant";
+            this.buttonAdditionalParticipant.Size = new System.Drawing.Size(283, 41);
+            this.buttonAdditionalParticipant.TabIndex = 17;
+            this.buttonAdditionalParticipant.Text = "Additional Participant";
+            this.buttonAdditionalParticipant.UseVisualStyleBackColor = false;
+            this.buttonAdditionalParticipant.Click += new System.EventHandler(this.buttonAdditionalParticipant_Click);
+            // 
+            // addButton
+            // 
+            this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.addButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addButton.ForeColor = System.Drawing.Color.Blue;
+            this.addButton.Location = new System.Drawing.Point(355, 232);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(125, 45);
+            this.addButton.TabIndex = 18;
+            this.addButton.Text = "Add";
+            this.addButton.UseVisualStyleBackColor = false;
+            this.addButton.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Column4
             // 
             this.Column4.HeaderText = "Id";
@@ -279,42 +244,25 @@
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "Type";
+            this.Column1.HeaderText = "Type/Title";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Width = 160;
-            // 
-            // buttonAdditionalParticipant
-            // 
-            this.buttonAdditionalParticipant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.buttonAdditionalParticipant.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdditionalParticipant.ForeColor = System.Drawing.Color.Fuchsia;
-            this.buttonAdditionalParticipant.Location = new System.Drawing.Point(279, 178);
-            this.buttonAdditionalParticipant.Name = "buttonAdditionalParticipant";
-            this.buttonAdditionalParticipant.Size = new System.Drawing.Size(283, 41);
-            this.buttonAdditionalParticipant.TabIndex = 17;
-            this.buttonAdditionalParticipant.Text = "Additional Participant";
-            this.buttonAdditionalParticipant.UseVisualStyleBackColor = false;
-            this.buttonAdditionalParticipant.Click += new System.EventHandler(this.buttonAdditionalParticipant_Click);
             // 
             // MeetingConsole3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1189, 674);
+            this.BackColor = System.Drawing.Color.Olive;
+            this.ClientSize = new System.Drawing.Size(1232, 674);
+            this.Controls.Add(this.addButton);
             this.Controls.Add(this.buttonAdditionalParticipant);
             this.Controls.Add(this.listView1);
-            this.Controls.Add(this.addtionalParticipantDataGridView);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.saveAllButton);
             this.Controls.Add(this.addRecipientListButton);
-            this.Controls.Add(this.txtParticipantType);
-            this.Controls.Add(this.txtDesignation);
-            this.Controls.Add(this.txtParticipantName);
             this.Controls.Add(this.txtMeetingNumber);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -325,7 +273,7 @@
             this.Text = "Meeting Invitation";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MeetingConsole3_FormClosed);
             this.Load += new System.EventHandler(this.MeetingConsole3_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.addtionalParticipantDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,24 +285,19 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtMeetingNumber;
-        private System.Windows.Forms.TextBox txtParticipantName;
-        private System.Windows.Forms.TextBox txtDesignation;
-        private System.Windows.Forms.TextBox txtParticipantType;
         private System.Windows.Forms.Button addRecipientListButton;
         private System.Windows.Forms.Button saveAllButton;
-        private System.Windows.Forms.DataGridView addtionalParticipantDataGridView;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Button buttonAdditionalParticipant;
+        private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.Button buttonAdditionalParticipant;
     }
 }

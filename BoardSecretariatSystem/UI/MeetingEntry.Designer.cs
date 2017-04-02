@@ -42,7 +42,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.addButton = new System.Windows.Forms.Button();
@@ -51,7 +50,6 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.meetingListGroupBox.SuspendLayout();
@@ -64,7 +62,7 @@
             // 
             this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.saveButton.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(589, 569);
+            this.saveButton.Location = new System.Drawing.Point(818, 537);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(190, 69);
             this.saveButton.TabIndex = 18;
@@ -139,7 +137,7 @@
             // 
             this.removeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.removeButton.ForeColor = System.Drawing.Color.Blue;
-            this.removeButton.Location = new System.Drawing.Point(547, 185);
+            this.removeButton.Location = new System.Drawing.Point(574, 185);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(118, 48);
             this.removeButton.TabIndex = 61;
@@ -150,10 +148,10 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(538, 20);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(227, 32);
+            this.label8.Size = new System.Drawing.Size(251, 36);
             this.label8.TabIndex = 56;
             this.label8.Text = "Agenda Selection";
             // 
@@ -162,7 +160,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Magenta;
-            this.label6.Location = new System.Drawing.Point(692, 80);
+            this.label6.Location = new System.Drawing.Point(713, 85);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(132, 24);
             this.label6.TabIndex = 55;
@@ -174,7 +172,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(6, 248);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(676, 307);
+            this.groupBox1.Size = new System.Drawing.Size(676, 358);
             this.groupBox1.TabIndex = 52;
             this.groupBox1.TabStop = false;
             // 
@@ -184,7 +182,6 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6});
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -192,7 +189,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(12, 21);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(649, 267);
+            this.listView1.Size = new System.Drawing.Size(650, 331);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -204,32 +201,27 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "Agenda Header";
-            this.columnHeader2.Width = 86;
+            this.columnHeader2.Width = 124;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Agenda Title";
-            this.columnHeader3.Width = 108;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Memo";
-            this.columnHeader4.Width = 223;
+            this.columnHeader3.Width = 203;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "AgendaType";
-            this.columnHeader5.Width = 115;
+            this.columnHeader5.Width = 191;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "AgendaTypeId";
-            this.columnHeader6.Width = 111;
+            this.columnHeader6.Width = 121;
             // 
             // addButton
             // 
             this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.addButton.Location = new System.Drawing.Point(543, 114);
+            this.addButton.Location = new System.Drawing.Point(570, 114);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(124, 52);
             this.addButton.TabIndex = 51;
@@ -241,9 +233,9 @@
             // 
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(688, 99);
+            this.groupBox2.Location = new System.Drawing.Point(707, 108);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(632, 455);
+            this.groupBox2.Size = new System.Drawing.Size(619, 417);
             this.groupBox2.TabIndex = 48;
             this.groupBox2.TabStop = false;
             // 
@@ -254,54 +246,48 @@
             this.Column1,
             this.Column2,
             this.Column3,
-            this.Column4,
             this.Column5,
             this.Column6});
-            this.dataGridView1.Location = new System.Drawing.Point(13, 29);
+            this.dataGridView1.Location = new System.Drawing.Point(19, 28);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(601, 402);
+            this.dataGridView1.Size = new System.Drawing.Size(574, 369);
             this.dataGridView1.TabIndex = 0;
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "MeetingId";
+            this.Column1.HeaderText = "Agenda SL";
             this.Column1.Name = "Column1";
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Agenda Header";
             this.Column2.Name = "Column2";
-            this.Column2.Width = 200;
+            this.Column2.Width = 5;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "AgendaTitle";
             this.Column3.Name = "Column3";
-            this.Column3.Width = 120;
-            // 
-            // Column4
-            // 
-            this.Column4.FillWeight = 130F;
-            this.Column4.HeaderText = "Memo";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 130;
+            this.Column3.Width = 220;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "AgendaType";
             this.Column5.Name = "Column5";
+            this.Column5.Width = 200;
             // 
             // Column6
             // 
             this.Column6.HeaderText = "AgendaTypeId";
             this.Column6.Name = "Column6";
+            this.Column6.Width = 5;
             // 
             // MeetingEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(1350, 639);
+            this.ClientSize = new System.Drawing.Size(1358, 612);
             this.Controls.Add(this.meetingListGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "MeetingEntry";
@@ -331,21 +317,19 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.TextBox txtMeetingTitle;
         private System.Windows.Forms.TextBox txtMeetingNumber;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
     }
 }
 
