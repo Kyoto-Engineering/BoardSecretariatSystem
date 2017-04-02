@@ -37,12 +37,12 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                cmd = new SqlCommand("SELECT Agenda.AgendaTopics,Agenda.AgendaTitle,AgendaTypes.AgendaType,AgendaTypes.AgendaTypeId  FROM  Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId", con);
+                cmd = new SqlCommand("SELECT Agenda.AgendaId,Agenda.AgendaTopics,Agenda.AgendaTitle,AgendaTypes.AgendaType,AgendaTypes.AgendaTypeId FROM  Agenda inner join AgendaTypes on Agenda.AgendaTypeId=AgendaTypes.AgendaTypeId Where AgendaTypes.AgendaTypeId= 1 Union  SELECT  Agenda.AgendaId,Agenda.AgendaTopics,Agenda.AgendaTitle,AgendaTypes.AgendaType,Agenda.AgendaTypeId FROM   Agenda inner  join AgendaTypes on Agenda.AgendaTypeId=AgendaTypes.AgendaTypeId Where Agenda.AgendaTypeId<> 1  and AgendaId not in(Select Agenda.AgendaId from SelectedAgenda inner join Agenda on Agenda.AgendaId=SelectedAgenda.AgendaId) order by Agenda.AgendaId", con);
                 rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 dataGridView1.Rows.Clear();
                 while (rdr.Read() == true)
                 {
-                    dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2], rdr[3]);
+                    dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2], rdr[3],rdr[4]);
                 }
                 con.Close();
             }
@@ -84,9 +84,9 @@ namespace BoardSecretariatSystem.UI
             try
             {
                 DataGridViewRow dr = dataGridView1.CurrentRow;
-                txtAgendaHeader.Text = dr.Cells[0].Value.ToString();
-                txtAgendaTitle.Text = dr.Cells[1].Value.ToString();
-                cmbAgendaType.Text = dr.Cells[2].Value.ToString();
+                txtAgendaHeader.Text = dr.Cells[1].Value.ToString();
+                txtAgendaTitle.Text = dr.Cells[2].Value.ToString();
+                cmbAgendaType.Text = dr.Cells[3].Value.ToString();
                 k = h;
             }
 
@@ -113,27 +113,26 @@ namespace BoardSecretariatSystem.UI
             if (listView1.Items.Count == 0)
             {
                 ListViewItem list = new ListViewItem();
-                list.SubItems.Add(txtAgendaHeader.Text);
+                list.SubItems.Add(agendaId.ToString());               
                 list.SubItems.Add(txtAgendaTitle.Text);               
                 list.SubItems.Add(cmbAgendaType.Text);
                 list.SubItems.Add(agendaTypeId.ToString());
-                list.SubItems.Add(agendaId.ToString());
+               
 
                 listView1.Items.Add(list);
-                txtAgendaHeader.Text="";
+                txtAgendaHeader.Clear();
                 txtAgendaTitle.Clear();
                 cmbAgendaType.SelectedIndex = -1;           
                 return;
             }
             ListViewItem list1 = new ListViewItem();
-            list1.SubItems.Add(txtAgendaHeader.Text);
-            list1.SubItems.Add(txtAgendaTitle.Text);           
+            list1.SubItems.Add(agendaId.ToString());
+            list1.SubItems.Add(txtAgendaTitle.Text);
             list1.SubItems.Add(cmbAgendaType.Text);
             list1.SubItems.Add(agendaTypeId.ToString());
-            list1.SubItems.Add(agendaId.ToString());
 
             listView1.Items.Add(list1);
-            txtAgendaHeader.Text = "";
+            txtAgendaHeader.Clear();
             txtAgendaTitle.Clear();
             cmbAgendaType.SelectedIndex = -1;          
             return;
@@ -192,17 +191,19 @@ namespace BoardSecretariatSystem.UI
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string query1 = "Update Agenda  Set AgendaTopics=@d1,AgendaTitle=@d2,AgendaTypeId=@d4,UserId=@d5,DateTime=@d6 where Agenda.AgendaId='"+listView1.Items[i].SubItems[5].Text+"'";
+                    string query1 = "Update Agenda  Set AgendaTitle=@d1,AgendaTypeId=@d2,UserId=@d5,DateTime=@d6 where Agenda.AgendaId='"+listView1.Items[i].SubItems[1].Text+"'";
                     cmd = new SqlCommand(query1, con);
-                    cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[1].Text);
-                    cmd.Parameters.AddWithValue("@d2", listView1.Items[i].SubItems[2].Text);
-                    cmd.Parameters.AddWithValue("@d4", listView1.Items[i].SubItems[4].Text);
+                    cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[2].Text);
+                    cmd.Parameters.AddWithValue("@d2", listView1.Items[i].SubItems[4].Text);
+                   // cmd.Parameters.AddWithValue("@d4", listView1.Items[i].SubItems[4].Text);
                     cmd.Parameters.AddWithValue("@d5", userId);
                     cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
                 MessageBox.Show("Sucessfully Updated", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                GetAgendaDetails();
+                listView1.Items.Clear();
             }
             catch (Exception exception)
             {

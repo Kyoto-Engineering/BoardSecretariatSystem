@@ -34,7 +34,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,10 +46,12 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -72,7 +73,7 @@
             this.agendaSaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.agendaSaveButton.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agendaSaveButton.ForeColor = System.Drawing.Color.Blue;
-            this.agendaSaveButton.Location = new System.Drawing.Point(1001, 515);
+            this.agendaSaveButton.Location = new System.Drawing.Point(880, 486);
             this.agendaSaveButton.Name = "agendaSaveButton";
             this.agendaSaveButton.Size = new System.Drawing.Size(160, 91);
             this.agendaSaveButton.TabIndex = 30;
@@ -105,10 +106,11 @@
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2,
             this.columnHeader3,
             this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader4,
+            this.columnHeader2});
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(9, 19);
@@ -122,25 +124,20 @@
             // 
             this.columnHeader1.Width = 0;
             // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Agenda Header";
-            this.columnHeader2.Width = 144;
-            // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "Agenda Title";
-            this.columnHeader3.Width = 355;
+            this.columnHeader3.Text = "Agenda Header";
+            this.columnHeader3.Width = 119;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Agenda Type";
-            this.columnHeader5.Width = 178;
+            this.columnHeader5.Text = "Agenda Title";
+            this.columnHeader5.Width = 389;
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "AT Id";
-            this.columnHeader6.Width = 97;
+            this.columnHeader6.Text = "Agenda Type";
+            this.columnHeader6.Width = 213;
             // 
             // button1
             // 
@@ -213,7 +210,7 @@
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Location = new System.Drawing.Point(775, 70);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(556, 422);
+            this.groupBox2.Size = new System.Drawing.Size(556, 410);
             this.groupBox2.TabIndex = 53;
             this.groupBox2.TabStop = false;
             // 
@@ -225,7 +222,7 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            this.dataGridView1.Location = new System.Drawing.Point(18, 34);
+            this.dataGridView1.Location = new System.Drawing.Point(17, 21);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(523, 373);
             this.dataGridView1.TabIndex = 0;
@@ -240,6 +237,11 @@
             this.label1.Size = new System.Drawing.Size(171, 31);
             this.label1.TabIndex = 54;
             this.label1.Text = "Agenda Bank";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Agenda Type Id";
+            this.columnHeader4.Width = 5;
             // 
             // Column1
             // 
@@ -260,9 +262,13 @@
             // 
             // Column4
             // 
-            this.Column4.HeaderText = "AT Id";
+            this.Column4.HeaderText = "Agenda Type Id";
             this.Column4.Name = "Column4";
             this.Column4.Width = 5;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "AgendaId";
             // 
             // AgendaEntryUI
             // 
@@ -306,7 +312,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtAgendaHeader;
@@ -319,9 +324,11 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

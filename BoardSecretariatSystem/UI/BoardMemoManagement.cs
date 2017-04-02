@@ -80,6 +80,7 @@ namespace BoardSecretariatSystem.UI
 
         private void BoardMemoManagement_Load(object sender, EventArgs e)
         {
+           // Ordinal();
             MeetingInfo();
             LoadUI();
             LoadGrid();
