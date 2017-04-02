@@ -18,7 +18,7 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
-        private int meetingId, meetingNo,agendaId;
+        private int meetingId, meetingNo,agendaId=0;
         public BoardMemoManagement()
         {
             InitializeComponent();
@@ -46,7 +46,10 @@ namespace BoardSecretariatSystem.UI
                     meetingId = Convert.ToInt32(rdr["MeetingId"]);
                     meetingNo = Convert.ToInt32(rdr["MeetingNo"]);
                 }
-                con.Close();
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -56,19 +59,15 @@ namespace BoardSecretariatSystem.UI
         public static string Ordinal(int number)
         {
             string suffix = String.Empty;
-            if (number%100==23)
-            {
-                suffix = "rd";
-            }
-            else if (number == 1 || number == 21 || number == 31)
+            if (number == 1 || number == 21 || number == 31 || number % 100 == 21 || number % 100 == 31)
             {
                 suffix = "st";
             }
-            else if (number == 2 || number == 22)
+            else if (number == 2 || number == 22 || number % 100 == 22)
             {
                 suffix = "nd";
             }
-            else if (number == 3 || number == 23)
+            else if (number == 3 || number == 23 || number % 100 == 23)
             {
                 suffix = "rd";
             }
@@ -100,6 +99,10 @@ namespace BoardSecretariatSystem.UI
             {
                 dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2]);
             }
+            if (con.State==ConnectionState.Open)
+            {
+                con.Close();
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -112,13 +115,51 @@ namespace BoardSecretariatSystem.UI
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow dr in dataGridView1.Rows)
+
+            if (agendaId==0)
             {
-                if (dr.Cells[0].Value.ToString()==agendaId.ToString())
-                {
-                    dataGridView1.Rows.Remove(dr);
-                }
+                MessageBox.Show("Please Select Agenda First", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            else if (string.IsNullOrWhiteSpace(textWithSpellCheck1.Text))
+            {
+                MessageBox.Show("Please Write Something As Memo", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                try
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string query = "Update Agenda Set Memo=@memo  where AgendaId=@agid";
+                    cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@memo", textWithSpellCheck1.Text);
+                    cmd.Parameters.AddWithValue("@agid", agendaId);
+                    cmd.ExecuteNonQuery();
+                    foreach (DataGridViewRow dr in dataGridView1.Rows)
+                    {
+                        if (dr.Cells[0].Value.ToString() == agendaId.ToString())
+                        {
+                            dataGridView1.Rows.Remove(dr);
+                        }
+                    }
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                    MessageBox.Show("Memo Saved Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Clear();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
         }
+
+        private void Clear()
+        {
+            agendaId = 0;
+            txtAgendaTitle.Clear();
+            textWithSpellCheck1.Text=String.Empty;
+        }
+        
     }
 }
