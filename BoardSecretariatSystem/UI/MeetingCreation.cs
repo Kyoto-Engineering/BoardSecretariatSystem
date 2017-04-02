@@ -75,7 +75,7 @@ namespace BoardSecretariatSystem.UI
         {
             con=new SqlConnection(cs.DBConn);
             con.Open();
-            string qry = "";
+            string qry = "insert into MeetingParticipant(MeetingId,ParticipantId,Title) SELECT  1,Participant.ParticipantId As ParticipantId , 'Chairman' As Title FROM   Chairman INNER JOIN Derector ON Chairman.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where Chairman.DateofRetirement is null Union SELECT 1, Participant.ParticipantId , 'Managing Director' As Title FROM  MDerector INNER JOIN  Derector ON MDerector.DerectorId = Derector.DerectorId INNER JOIN  Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where MDerector.DateofRetirement is null Union SELECT 1, Participant.ParticipantId , 'Director' As Title FROM  Derector INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId  where Participant.ParticipantId not in (SELECT Participant.ParticipantId FROM  Chairman INNER JOIN Derector ON Chairman.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN  Participant ON Shareholder.ParticipantId = Participant.ParticipantId where Chairman.DateofRetirement is null Union SELECT  Participant.ParticipantId FROM  MDerector INNER JOIN Derector ON MDerector.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where MDerector.DateofRetirement is null)";
             cmd=new SqlCommand(qry,con);
             cmd.ExecuteNonQuery();
             con.Close();
@@ -360,9 +360,10 @@ namespace BoardSecretariatSystem.UI
             }
            
         }
+        
         private void buttonMeetingCreation_Click(object sender, EventArgs e)
         {
-
+            SaveMeetingParticipant();
             if (string.IsNullOrEmpty(cmbVenue.Text))
             {
                 MessageBox.Show("Please Select Vanue for the Meeting", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -419,7 +420,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     SaveMeetingAddress();
                 }
-
+                SaveMeetingParticipant();
                 MessageBox.Show("Meeting Created Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Reset();
 

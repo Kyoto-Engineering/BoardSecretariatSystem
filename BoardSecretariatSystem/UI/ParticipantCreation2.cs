@@ -1138,5 +1138,12 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void ParticipantCreation2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+             this.Hide();
+            MeetingConsole3 frm=new MeetingConsole3();
+             frm.Show();
+        }
     }
 }

@@ -39,7 +39,7 @@ namespace BoardSecretariatSystem.UI
         {
             listView1.View = View.Details;
             con = new SqlConnection(cs.DBConn);
-            string qry = "SELECT Participant.ParticipantId,Participant.ParticipantName, BoardMemberTypes.BoardMemberType FROM  Participant INNER JOIN BoardMemberTypes ON Participant.BoardMemberTypeId = BoardMemberTypes.BoardMemberTypeId where  EXISTS (Select Shareholder.ParticipantId from  Shareholder)";
+            string qry = "SELECT  Participant.ParticipantId,Participant.ParticipantName, 'Director' As Title FROM Derector INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId  where Participant.ParticipantId not in (SELECT  Participant.ParticipantId FROM Chairman INNER JOIN Derector ON Chairman.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where Chairman.DateofRetirement is null Union SELECT Participant.ParticipantId FROM  MDerector INNER JOIN  Derector ON MDerector.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where MDerector.DateofRetirement is null)";
             ada = new SqlDataAdapter(qry, con);
             dt = new DataTable();
             ada.Fill(dt);
@@ -69,7 +69,7 @@ namespace BoardSecretariatSystem.UI
                     dataGridView1.Rows[n].Cells[0].Value = item[0].ToString();
                     dataGridView1.Rows[n].Cells[1].Value = item[1].ToString();
                     dataGridView1.Rows[n].Cells[2].Value = item[2].ToString();
-                    dataGridView1.Rows[n].Cells[3].Value = item[3].ToString();
+                   // dataGridView1.Rows[n].Cells[3].Value = item[3].ToString();
 
                 }
             }
