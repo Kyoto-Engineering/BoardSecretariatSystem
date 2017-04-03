@@ -9,6 +9,6 @@ namespace BoardSecretariatSystem.DBGateway
    public class ConnectionString
     {
         //For Local
-       public string DBConn = @"Data Source=tcp:KyotoServer,49172;Initial Catalog=BoardSecretariatDBKD22;Persist Security Info=True;User ID=sa;Password=SystemAdministrator";
+       public string DBConn = @"Data Source=tcp:KyotoServer,49172;Initial Catalog=BoardSecretariatDBKD;Persist Security Info=True;User ID=sa;Password=SystemAdministrator";
     }
 }

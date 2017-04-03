@@ -21,7 +21,7 @@ namespace BoardSecretariatSystem.UI
         private SqlDataReader rdr;
         ConnectionString cs=new ConnectionString();
         public string companyId, nUserId, divisionId, divisionIdP, districtId, districtIdP, thanaId, thanaIdP, postofficeId, postofficeIdP, memberTypeId;
-        public int affectedRows1, affectedRows2, affectedRows3, currentPerticipantId,currentShareHolderId,  bankEmailId,boardMemberId;
+        public int affectedRows1, affectedRows2, affectedRows3, currentPerticipantId, currentShareHolderId, bankEmailId, boardMemberId, availableIssuedShare, availableIssuedShare1;
         public ParticipantCreation()
         {
             InitializeComponent();
@@ -137,6 +137,39 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void UpdateAvailableIssuedShare()
+        {
+
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string qry2 = "SELECT Company.AvailableIssuedShare from  Company";
+                cmd = new SqlCommand(qry2, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    int k = Convert.ToInt32(txtCurrentShareHolding.Text);
+                    availableIssuedShare = (rdr.GetInt32(0));
+                    availableIssuedShare1 = availableIssuedShare - k;
+                }
+                con.Close();
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string qry = "Update Company Set AvailableIssuedShare=@d1 where Company.CompanyId='" + companyId + "'";
+                cmd = new SqlCommand(qry, con);
+                cmd.Parameters.AddWithValue("@d1", availableIssuedShare1);
+                cmd.ExecuteReader();               
+                con.Close();               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
         private void ParticipantCreation_Load(object sender, EventArgs e)
         {
             nUserId = frmLogin.uId.ToString();
@@ -346,6 +379,7 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void SaveParticipant()
         {
             try
