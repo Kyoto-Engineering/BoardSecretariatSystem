@@ -121,9 +121,9 @@
             // 
             this.addRecipientListButton.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addRecipientListButton.ForeColor = System.Drawing.Color.Magenta;
-            this.addRecipientListButton.Location = new System.Drawing.Point(365, 383);
+            this.addRecipientListButton.Location = new System.Drawing.Point(365, 362);
             this.addRecipientListButton.Name = "addRecipientListButton";
-            this.addRecipientListButton.Size = new System.Drawing.Size(210, 34);
+            this.addRecipientListButton.Size = new System.Drawing.Size(210, 44);
             this.addRecipientListButton.TabIndex = 13;
             this.addRecipientListButton.Text = "Add to Recipient List\r\n";
             this.addRecipientListButton.UseVisualStyleBackColor = true;
@@ -133,7 +133,7 @@
             this.saveAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.saveAllButton.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveAllButton.ForeColor = System.Drawing.Color.Magenta;
-            this.saveAllButton.Location = new System.Drawing.Point(818, 523);
+            this.saveAllButton.Location = new System.Drawing.Point(894, 527);
             this.saveAllButton.Name = "saveAllButton";
             this.saveAllButton.Size = new System.Drawing.Size(162, 93);
             this.saveAllButton.TabIndex = 14;
@@ -169,7 +169,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(679, 178);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(496, 267);
+            this.dataGridView1.Size = new System.Drawing.Size(498, 302);
             this.dataGridView1.TabIndex = 15;
             // 
             // Column4
