@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -59,7 +60,7 @@ namespace BoardSecretariatSystem.UI
             try
             {
                 con = new SqlConnection(cs.DBConn);
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT Participant.ParticipantId,Participant.ParticipantName, BoardMemberTypes.BoardMemberType FROM  Participant INNER JOIN BoardMemberTypes ON Participant.BoardMemberTypeId = BoardMemberTypes.BoardMemberTypeId where  EXISTS (Select Shareholder.ParticipantId from  Shareholder)", con);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT  Participant.ParticipantId,Participant.ParticipantName, Participant.Designation FROM   Participant where  Participant.ParticipantId not in (Select Shareholder.ParticipantId from Shareholder)", con);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 dataGridView1.Rows.Clear();
@@ -68,7 +69,7 @@ namespace BoardSecretariatSystem.UI
                     int n = dataGridView1.Rows.Add();
                     dataGridView1.Rows[n].Cells[0].Value = item[0].ToString();
                     dataGridView1.Rows[n].Cells[1].Value = item[1].ToString();
-                    dataGridView1.Rows[n].Cells[2].Value = item[2].ToString();
+                   dataGridView1.Rows[n].Cells[2].Value = item[2].ToString();
                    // dataGridView1.Rows[n].Cells[3].Value = item[3].ToString();
 
                 }
@@ -81,6 +82,7 @@ namespace BoardSecretariatSystem.UI
         }
         private void MeetingConsole3_Load(object sender, EventArgs e)
         {
+            buttonInvitation.Visible = false;
             SetExistingMeetingMemberInList();
             GetAdditionalParticipant();
         }
@@ -145,6 +147,36 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show("There is not any row selected, please select row and Click Add Button!");
 
             }              
+        }
+
+        private void buttonComplete_Click(object sender, EventArgs e)
+        {
+            buttonInvitation.Visible = true;
+        }
+
+        private void buttonInvitation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("siddique_iceiu@yahoo.com");
+
+                mail.From = new MailAddress("siddiqueiceiu@gmail.com");
+                mail.To.Add("siddique_iceiu@yahoo.com");
+                mail.Subject = "Test Mail";
+                mail.Body = "This is for testing SMTP mail from GMAIL";
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("siddique_iceiu@yahoo.com", "a123456789a");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                MessageBox.Show("mail Send");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

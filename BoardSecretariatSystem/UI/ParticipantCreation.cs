@@ -155,13 +155,15 @@ namespace BoardSecretariatSystem.UI
                 }
                 con.Close();
 
+
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 string qry = "Update Company Set AvailableIssuedShare=@d1 where Company.CompanyId='" + companyId + "'";
                 cmd = new SqlCommand(qry, con);
                 cmd.Parameters.AddWithValue("@d1", availableIssuedShare1);
                 cmd.ExecuteReader();               
-                con.Close();               
+                con.Close();   
+            
             }
             catch (Exception ex)
             {
@@ -282,7 +284,7 @@ namespace BoardSecretariatSystem.UI
             txtCurrentShareHolding.Clear();
             txtFatherName.Clear();
             txtMotherName.Clear();
-            txtDesignation.Clear();            
+           // txtDesignation.Clear();            
             txtCellNumber.Clear();
             txtProfession.Clear();
 
@@ -363,6 +365,8 @@ namespace BoardSecretariatSystem.UI
         {
             try
             {
+                UpdateAvailableIssuedShare();
+
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 string query1 = "insert into Shareholder(ParticipantId,ShareHolderName,NumberOfCurrentShareHolding) values (@d1,@d2,@d3)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
@@ -386,26 +390,24 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 = "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,Designation,Profession,BoardMemberTypeId,ContactNumber,Nationality,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16,@d17)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 = "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,Profession,BoardMemberTypeId,ContactNumber,Nationality,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", txtShareHolderName.Text);
                 cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(txtMotherName.Text) ? (object)DBNull.Value : txtMotherName.Text));
-                cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(txtFatherName.Text) ? (object)DBNull.Value : txtFatherName.Text));               
-                cmd.Parameters.AddWithValue("@d4", txtDateOfBirth.Value);
-                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtDesignation.Text) ? (object)DBNull.Value : txtDesignation.Text));
-                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtProfession.Text) ? (object)DBNull.Value : txtProfession.Text));
-                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(boardMemberId.ToString()) ? (object)DBNull.Value : boardMemberId.ToString()));
-
-                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(txtCellNumber.Text) ? (object)DBNull.Value : txtCellNumber.Text));
-                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtNationality.Text) ? (object)DBNull.Value : txtNationality.Text));
-                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtNationalId.Text) ? (object)DBNull.Value : txtNationalId.Text));
-                cmd.Parameters.Add(new SqlParameter("@d11", string.IsNullOrEmpty(txtBirthCertificateNo.Text) ? (object)DBNull.Value : txtBirthCertificateNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d12", string.IsNullOrEmpty(txtPassportNo.Text) ? (object)DBNull.Value : txtPassportNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d13", string.IsNullOrEmpty(txtTINNumber.Text) ? (object)DBNull.Value : txtTINNumber.Text));                               
-                cmd.Parameters.AddWithValue("@d14", bankEmailId);
-                cmd.Parameters.AddWithValue("@d15", companyId);               
-                cmd.Parameters.AddWithValue("@d16", nUserId);
-                cmd.Parameters.AddWithValue("@d17", DateTime.UtcNow.ToLocalTime());
+                cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(txtFatherName.Text) ? (object)DBNull.Value : txtFatherName.Text));
+                cmd.Parameters.AddWithValue("@d4", Convert.ToDateTime(txtDateOfBirth.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));               
+                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtProfession.Text) ? (object)DBNull.Value : txtProfession.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(boardMemberId.ToString()) ? (object)DBNull.Value : boardMemberId.ToString()));
+                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtCellNumber.Text) ? (object)DBNull.Value : txtCellNumber.Text));
+                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(txtNationality.Text) ? (object)DBNull.Value : txtNationality.Text));
+                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtNationalId.Text) ? (object)DBNull.Value : txtNationalId.Text));
+                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtBirthCertificateNo.Text) ? (object)DBNull.Value : txtBirthCertificateNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d11", string.IsNullOrEmpty(txtPassportNo.Text) ? (object)DBNull.Value : txtPassportNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d12", string.IsNullOrEmpty(txtTINNumber.Text) ? (object)DBNull.Value : txtTINNumber.Text));                               
+                cmd.Parameters.AddWithValue("@d13", bankEmailId);
+                cmd.Parameters.AddWithValue("@d14", companyId);               
+                cmd.Parameters.AddWithValue("@d15", nUserId);
+                cmd.Parameters.AddWithValue("@d16", DateTime.UtcNow.ToLocalTime());
                 currentPerticipantId = (int) cmd.ExecuteScalar();
                 con.Close();
                 SaveShareHolder();
@@ -529,8 +531,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     SaveParticipant();
                     SaveParticipantAddress("PPermanantAddresses");
-                }
-               
+                }               
                 MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Reset();
             }
@@ -538,10 +539,6 @@ namespace BoardSecretariatSystem.UI
             {
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }                    
-
-
-
-
         }
         private void boardNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {          
@@ -663,14 +660,14 @@ namespace BoardSecretariatSystem.UI
                 if (unKnownCheckBox.Checked)
                 {
                     groupBox4.Enabled = false;
-                    ResetPresentAddress();
+                    ResetPermanantAddress();
                     ResetPStar();
                 }
                 else
                 {
 
                     groupBox4.Enabled = true;
-                    ResetPresentAddress();
+                    ResetPermanantAddress();
                     FillPStar();
                 }
             }

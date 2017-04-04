@@ -19,7 +19,7 @@ namespace BoardSecretariatSystem.UI
         private SqlDataReader rdr;
         ConnectionString cs=new ConnectionString();
         public string labelk;
-        public int directorId, participantId, shareHolderId,mDirectorId;
+        public int directorId, participantId, shareHolderId, mDirectorId, vacantPostOfMDirector, vacantPostOfMDirector1, companyId=1;
         public ManagingDirector()
         {
             InitializeComponent();
@@ -78,7 +78,7 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+       
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             if (txtMDirectorName.Text == "")
@@ -89,37 +89,64 @@ namespace BoardSecretariatSystem.UI
             }
             try
             {
-                GetDirectorId();
-
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string qry1 = "select MDerectorId from MDerector where MDerector.DerectorId='" + directorId + "'";
-                cmd = new SqlCommand(qry1, con);
+                string qry2 = "SELECT Company.VacantPostofMDirector from  Company";
+                cmd = new SqlCommand(qry2, con);
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
-                    mDirectorId = (rdr.GetInt32(0));
-                    MessageBox.Show("This Managing Director   Already Exists,Please Select another one.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtMDirectorName.Text = "";
-                    txtMDirectorName.Focus();
-                    if ((rdr != null))
-                    {
-                        rdr.Close();
-                    }
+                    vacantPostOfMDirector = (rdr.GetInt32(0));
+
+                }
+                con.Close();
+                
+                if (vacantPostOfMDirector == 0)
+                {
+                    MessageBox.Show("There is not  available any  vacant Post of Managing Director", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                else
+                {
+                    vacantPostOfMDirector1 = vacantPostOfMDirector - 1;
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string qry = "Update Company Set VacantPostofMDirector=@d1 where Company.CompanyId='" + companyId + "'";
+                    cmd = new SqlCommand(qry, con);
+                    cmd.Parameters.AddWithValue("@d1", vacantPostOfMDirector1);
+                    cmd.ExecuteReader();
+                    con.Close();
 
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string cb = "insert into MDerector(DerectorId,JoiningDate) VALUES (@d1,@d2)";
-                cmd = new SqlCommand(cb, con);
-                cmd.Parameters.AddWithValue("@d1", directorId);
-                cmd.Parameters.AddWithValue("@d2", Convert.ToDateTime(txtMDJoiningDate.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
-                cmd.ExecuteReader();
-                con.Close();
-                MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtMDirectorName.Clear();
+                    GetDirectorId();
 
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string qry1 = "select MDerectorId from MDerector where MDerector.DerectorId='" + directorId + "'";
+                    cmd = new SqlCommand(qry1, con);
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        mDirectorId = (rdr.GetInt32(0));
+                        MessageBox.Show("This Managing Director Already Exists,Please Select another one.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtMDirectorName.Text = "";
+                        txtMDirectorName.Focus();
+                        if ((rdr != null))
+                        {
+                            rdr.Close();
+                        }
+                        return;
+                    }
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string cb = "insert into MDerector(DerectorId,JoiningDate) VALUES (@d1,@d2)";
+                    cmd = new SqlCommand(cb, con);
+                    cmd.Parameters.AddWithValue("@d1", directorId);
+                    cmd.Parameters.AddWithValue("@d2", Convert.ToDateTime(txtMDJoiningDate.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
+                    cmd.ExecuteReader();
+                    con.Close();
+                    MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtMDirectorName.Clear();
+                }                               
             }
             catch (Exception ex)
             {

@@ -97,7 +97,6 @@ namespace BoardSecretariatSystem
         private void participantCreateButton_Click(object sender, EventArgs e)
         {
             CheckAvailableIssuedShare();
-           // CheckMeeting();
             //this.Hide();
             //ParticipantCreation participantEntry = new ParticipantCreation();
             //participantEntry.Show();
