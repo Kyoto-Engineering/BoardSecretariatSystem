@@ -84,10 +84,32 @@ namespace BoardSecretariatSystem.UI
         }
 
         private void buttonBoardMemo_Click(object sender, EventArgs e)
-        {
-                         this.Hide();
+        { con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query = "SELECT        MeetingId FROM            Meeting where  MeetingTypeId=1 and  Statuss='Open'";
+            cmd = new SqlCommand(query, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+
+                         
             BoardMemoManagement frm =new BoardMemoManagement();
-                         frm.Show();
+            //frm.FormClosed += new FormClosedEventHandler(frm2_FormClosed);
+            //this.Hide();
+                         //frm.Show();
+                         frm.ShowDialog();
+            }
+
+
+            else
+            {
+
+                MessageBox.Show("Theere is no opened meeting", "Report",
+                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+            }
+
         }
 
         private void buttonMeetingInvitation_Click(object sender, EventArgs e)
@@ -99,9 +121,36 @@ namespace BoardSecretariatSystem.UI
 
         private void buttonCancelMeeting_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MeetingConsole4 frm = new MeetingConsole4();
-            frm.Show();
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query = "SELECT        MeetingId FROM            Meeting where  MeetingTypeId=1 and  Statuss='Open'";
+            cmd = new SqlCommand(query, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+
+
+
+               
+                
+                MeetingConsole4 frm = new MeetingConsole4();
+                //frm.FormClosed += new FormClosedEventHandler(frm2_FormClosed);
+                frm.ShowDialog();
+
+
+                 
+                }
+
+
+            else
+            {
+
+                MessageBox.Show("Theere is no opened meeting", "Report",
+                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+
+            }
+          
         }
 
         private void buttonAttendance_Click(object sender, EventArgs e)
@@ -123,6 +172,11 @@ namespace BoardSecretariatSystem.UI
             this.Hide();
             MeetingConsole7UI frm = new MeetingConsole7UI();
             frm.Show();
+        }
+
+        private void frm2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

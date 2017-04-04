@@ -8,12 +8,13 @@
     <Grid>
         <ComboBox x:Name="comboBox"
         Margin="4"
-        ItemsSource="{Binding Employees}">
+        ItemsSource="{Binding Employees}" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <Label BorderThickness="1,1,0,1" BorderBrush="Black" Content="{Binding Path=Name}" />
-                        <Label BorderThickness="1,1,0,1" BorderBrush="Black" Content="{Binding Path=Title}" />
+                        <Label BorderThickness="1" BorderBrush="Black" Content="{Binding Path=Title}" />
+                        <Label Visibility="Hidden"  BorderThickness="1" BorderBrush="Black" Content="{Binding Path=Id}" />
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>

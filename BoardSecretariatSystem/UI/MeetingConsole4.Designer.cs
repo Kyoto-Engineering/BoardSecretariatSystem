@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -36,6 +36,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cancelationNoticeDataGridView = new System.Windows.Forms.DataGridView();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cancelButton = new System.Windows.Forms.Button();
             this.deleteAllButton = new System.Windows.Forms.Button();
             this.sendNoticeButton = new System.Windows.Forms.Button();
@@ -43,8 +45,6 @@
             this.probableNextMeetingDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.reasonForCancelRichTextBox = new System.Windows.Forms.RichTextBox();
             this.comboBoxWithGrid_WinformsHost1 = new BoardSecretariatSystem.ComboBoxWithGrid_WinformsHost();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.cancelationNoticeDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,7 +97,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Magenta;
-            this.label6.Location = new System.Drawing.Point(4, 275);
+            this.label6.Location = new System.Drawing.Point(4, 286);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(325, 26);
             this.label6.TabIndex = 5;
@@ -117,14 +117,14 @@
             // cancelationNoticeDataGridView
             // 
             this.cancelationNoticeDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cancelationNoticeDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cancelationNoticeDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.cancelationNoticeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.cancelationNoticeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column2,
@@ -133,6 +133,16 @@
             this.cancelationNoticeDataGridView.Name = "cancelationNoticeDataGridView";
             this.cancelationNoticeDataGridView.Size = new System.Drawing.Size(495, 150);
             this.cancelationNoticeDataGridView.TabIndex = 7;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Participant Name";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Participant Title";
+            this.Column3.Name = "Column3";
             // 
             // cancelButton
             // 
@@ -143,6 +153,7 @@
             this.cancelButton.TabIndex = 8;
             this.cancelButton.Text = "Postpone This Meeting ";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // deleteAllButton
             // 
@@ -166,18 +177,19 @@
             // 
             // meetingNumIDTextBox
             // 
-            this.meetingNumIDTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.meetingNumIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meetingNumIDTextBox.Location = new System.Drawing.Point(335, 113);
             this.meetingNumIDTextBox.Name = "meetingNumIDTextBox";
             this.meetingNumIDTextBox.ReadOnly = true;
-            this.meetingNumIDTextBox.Size = new System.Drawing.Size(200, 26);
+            this.meetingNumIDTextBox.Size = new System.Drawing.Size(322, 26);
             this.meetingNumIDTextBox.TabIndex = 11;
             // 
             // probableNextMeetingDateTimePicker
             // 
+            this.probableNextMeetingDateTimePicker.CustomFormat = "dd/MM/yyyy";
             this.probableNextMeetingDateTimePicker.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.probableNextMeetingDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.probableNextMeetingDateTimePicker.Location = new System.Drawing.Point(335, 275);
+            this.probableNextMeetingDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.probableNextMeetingDateTimePicker.Location = new System.Drawing.Point(335, 286);
             this.probableNextMeetingDateTimePicker.Name = "probableNextMeetingDateTimePicker";
             this.probableNextMeetingDateTimePicker.Size = new System.Drawing.Size(211, 26);
             this.probableNextMeetingDateTimePicker.TabIndex = 14;
@@ -194,23 +206,14 @@
             // comboBoxWithGrid_WinformsHost1
             // 
             this.comboBoxWithGrid_WinformsHost1.Employee2s = null;
+            this.comboBoxWithGrid_WinformsHost1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.comboBoxWithGrid_WinformsHost1.Location = new System.Drawing.Point(330, 227);
             this.comboBoxWithGrid_WinformsHost1.Name = "comboBoxWithGrid_WinformsHost1";
             this.comboBoxWithGrid_WinformsHost1.SelectedIndex = -1;
             this.comboBoxWithGrid_WinformsHost1.SelectedItem = null;
-            this.comboBoxWithGrid_WinformsHost1.Size = new System.Drawing.Size(430, 38);
+            this.comboBoxWithGrid_WinformsHost1.Size = new System.Drawing.Size(430, 53);
             this.comboBoxWithGrid_WinformsHost1.TabIndex = 17;
             this.comboBoxWithGrid_WinformsHost1.Text = "comboBoxWithGrid_WinformsHost1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Participant Name";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Participant Title";
-            this.Column3.Name = "Column3";
             // 
             // MeetingConsole4
             // 
