@@ -57,7 +57,7 @@ namespace BoardSecretariatSystem.UI
             try
             {
                 con = new SqlConnection(cs.DBConn);
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT Participant.ParticipantName, Participant.FatherName, EmailBank.Email, Participant.ContactNumber FROM   Participant INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId INNER JOIN Shareholder ON Participant.ParticipantId = Shareholder.ParticipantId INNER JOIN Derector ON Shareholder.ShareholderId = Derector.ShareholderId", con);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT Participant.ParticipantName, Participant.FatherName, EmailBank.Email, Participant.ContactNumber FROM   Participant  INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId  INNER JOIN Shareholder ON Participant.ParticipantId = Shareholder.ParticipantId   INNER JOIN Derector ON Shareholder.ShareholderId = Derector.ShareholderId  where Derector.DerectorId not in (Select MDerector.DerectorId from MDerector) and Derector.DerectorId not in (Select Chairman.DerectorId from Chairman)", con);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 dataGridView1.Rows.Clear();
@@ -70,8 +70,6 @@ namespace BoardSecretariatSystem.UI
                     dataGridView1.Rows[n].Cells[3].Value = item[3].ToString();
 
                 }
-
-
             }
             catch (Exception ex)
             {

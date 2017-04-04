@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbParticipantType = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtParticipantName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCellNumber = new System.Windows.Forms.TextBox();
@@ -52,9 +54,9 @@
             this.txtFatherName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbEmailAddress = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbPost = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
@@ -85,6 +87,7 @@
             this.unKnownCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtPBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbPPost = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
@@ -116,10 +119,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbParticipantType = new System.Windows.Forms.ComboBox();
-            this.txtBlock = new wmgCMS.WaterMarkTextBox();
-            this.txtPBlock = new wmgCMS.WaterMarkTextBox();
+            this.addButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -130,6 +130,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LimeGreen;
+            this.groupBox1.Controls.Add(this.addButton);
             this.groupBox1.Controls.Add(this.cmbParticipantType);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtParticipantName);
@@ -155,7 +156,6 @@
             this.groupBox1.Controls.Add(this.txtFatherName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cmbEmailAddress);
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.label7);
@@ -166,6 +166,29 @@
             this.groupBox1.Size = new System.Drawing.Size(1254, 562);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // cmbParticipantType
+            // 
+            this.cmbParticipantType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbParticipantType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbParticipantType.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbParticipantType.FormattingEnabled = true;
+            this.cmbParticipantType.Location = new System.Drawing.Point(235, 184);
+            this.cmbParticipantType.Name = "cmbParticipantType";
+            this.cmbParticipantType.Size = new System.Drawing.Size(278, 30);
+            this.cmbParticipantType.TabIndex = 121;
+            this.cmbParticipantType.SelectedIndexChanged += new System.EventHandler(this.cmbParticipantType_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Blue;
+            this.label3.Location = new System.Drawing.Point(83, 187);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(146, 22);
+            this.label3.TabIndex = 120;
+            this.label3.Text = "Participant Type";
             // 
             // txtParticipantName
             // 
@@ -194,6 +217,7 @@
             this.txtCellNumber.Name = "txtCellNumber";
             this.txtCellNumber.Size = new System.Drawing.Size(278, 29);
             this.txtCellNumber.TabIndex = 117;
+            this.txtCellNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCellNumber_KeyPress);
             // 
             // label10
             // 
@@ -390,19 +414,6 @@
             this.cmbEmailAddress.TabIndex = 95;
             this.cmbEmailAddress.SelectedIndexChanged += new System.EventHandler(this.cmbEmailAddress_SelectedIndexChanged);
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Blue;
-            this.button1.Location = new System.Drawing.Point(377, 469);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(134, 62);
-            this.button1.TabIndex = 94;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.Olive;
@@ -454,6 +465,16 @@
             this.groupBox4.Size = new System.Drawing.Size(668, 209);
             this.groupBox4.TabIndex = 89;
             this.groupBox4.TabStop = false;
+            // 
+            // txtBlock
+            // 
+            this.txtBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBlock.Location = new System.Drawing.Point(158, 108);
+            this.txtBlock.Name = "txtBlock";
+            this.txtBlock.Size = new System.Drawing.Size(172, 26);
+            this.txtBlock.TabIndex = 83;
+            this.txtBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtBlock.WaterMarkText = "if Any";
             // 
             // cmbPost
             // 
@@ -561,6 +582,7 @@
             this.txtContactNo.Name = "txtContactNo";
             this.txtContactNo.Size = new System.Drawing.Size(171, 26);
             this.txtContactNo.TabIndex = 41;
+            this.txtContactNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContactNo_KeyPress);
             // 
             // label26
             // 
@@ -777,6 +799,16 @@
             this.groupBox5.TabIndex = 87;
             this.groupBox5.TabStop = false;
             // 
+            // txtPBlock
+            // 
+            this.txtPBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPBlock.Location = new System.Drawing.Point(158, 108);
+            this.txtPBlock.Name = "txtPBlock";
+            this.txtPBlock.Size = new System.Drawing.Size(172, 26);
+            this.txtPBlock.TabIndex = 83;
+            this.txtPBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtPBlock.WaterMarkText = "if Any";
+            // 
             // cmbPPost
             // 
             this.cmbPPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -883,6 +915,8 @@
             this.txtPContactNo.Name = "txtPContactNo";
             this.txtPContactNo.Size = new System.Drawing.Size(171, 26);
             this.txtPContactNo.TabIndex = 41;
+            this.txtPContactNo.TextChanged += new System.EventHandler(this.txtPContactNo_TextChanged);
+            this.txtPContactNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPContactNo_KeyPress);
             // 
             // label46
             // 
@@ -1079,48 +1113,18 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Participant Creation";
             // 
-            // label3
+            // addButton
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(83, 187);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 22);
-            this.label3.TabIndex = 120;
-            this.label3.Text = "Participant Type";
-            // 
-            // cmbParticipantType
-            // 
-            this.cmbParticipantType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbParticipantType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbParticipantType.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbParticipantType.FormattingEnabled = true;
-            this.cmbParticipantType.Location = new System.Drawing.Point(235, 184);
-            this.cmbParticipantType.Name = "cmbParticipantType";
-            this.cmbParticipantType.Size = new System.Drawing.Size(278, 30);
-            this.cmbParticipantType.TabIndex = 121;
-            this.cmbParticipantType.SelectedIndexChanged += new System.EventHandler(this.cmbParticipantType_SelectedIndexChanged);
-            // 
-            // txtBlock
-            // 
-            this.txtBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBlock.Location = new System.Drawing.Point(158, 108);
-            this.txtBlock.Name = "txtBlock";
-            this.txtBlock.Size = new System.Drawing.Size(172, 26);
-            this.txtBlock.TabIndex = 83;
-            this.txtBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtBlock.WaterMarkText = "if Any";
-            // 
-            // txtPBlock
-            // 
-            this.txtPBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPBlock.Location = new System.Drawing.Point(158, 108);
-            this.txtPBlock.Name = "txtPBlock";
-            this.txtPBlock.Size = new System.Drawing.Size(172, 26);
-            this.txtPBlock.TabIndex = 83;
-            this.txtPBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtPBlock.WaterMarkText = "if Any";
+            this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.addButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addButton.ForeColor = System.Drawing.Color.Blue;
+            this.addButton.Location = new System.Drawing.Point(331, 478);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(158, 63);
+            this.addButton.TabIndex = 122;
+            this.addButton.Text = "Add";
+            this.addButton.UseVisualStyleBackColor = false;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // ParticipantCreation2
             // 
@@ -1131,6 +1135,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ParticipantCreation2";
             this.Text = "ParticipantCreation2";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ParticipantCreation2_FormClosed);
             this.Load += new System.EventHandler(this.ParticipantCreation2_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1171,7 +1176,6 @@
         private System.Windows.Forms.TextBox txtFatherName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbEmailAddress;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private wmgCMS.WaterMarkTextBox txtBlock;
@@ -1241,5 +1245,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbParticipantType;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button addButton;
     }
 }

@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BoardSecretariatSystem.DBGateway;
+using CrystalDecisions.Shared;
 
 namespace BoardSecretariatSystem
 {
@@ -20,7 +21,7 @@ namespace BoardSecretariatSystem
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
         public string userId, postofficeId, thanaId, districtId, divisionId, districtIdC, districtIdO,districtIdHQ, divisionIdC, divisionIdO,divisionIdHQ, thanaIdC, thanaIdC2, thanaIdO,thanaIdHQ, postofficeIdC, postofficeIdO, postofficeIdHQ;
-        public int currentCompanyId, affectedRows1,affectedRows2, addHeaderId;
+        public int currentCompanyId, affectedRows1,affectedRows2, addHeaderId,availableAuthorizedShare;
 
         public CompanyEntryUI()
         {
@@ -130,40 +131,34 @@ namespace BoardSecretariatSystem
             FillDivisionCombo();
             AddressHeader();
         }
-
-
-        
+       
         public void CompanyEntryUIClear()
         {
             companyNameTextBox.Clear();         
             regNoTextBox.Clear();
         }
 
-        private void SaveOtherAddress(string  tableName)
-        {
-            string tableName1 = tableName;
-
-            if (tableName1 == "OtherAddresses")
-            {
+        private void SaveOtherAddress()
+        {                    
                 for (int i = 0; i < listView1.Items.Count-1; i++)
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string insertQ = "insert into " + tableName1 + "(PostOfficeId,OFlatNo,OHouseNo,ORoadNo,OBlock,OArea,OContactNo,CompanyId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                    string insertQ = "insert into CompanyAddresses(AHeaderId,PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,CompanyId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8,@d9)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                     cmd = new SqlCommand(insertQ);
                     cmd.Connection = con;
-                    cmd.Parameters.Add(new SqlParameter("@d1", string.IsNullOrEmpty(listView1.Items[i].SubItems[9].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[9].Text));
-                    cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(listView1.Items[i].SubItems[3].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[3].Text));
-                    cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(listView1.Items[i].SubItems[4].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[4].Text));
-                    cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(listView1.Items[i].SubItems[5].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[5].Text));
-                    cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(listView1.Items[i].SubItems[6].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[6].Text));
-                    cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(listView1.Items[i].SubItems[7].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[7].Text));
-                    cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(listView1.Items[i].SubItems[8].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[8].Text));
-                    cmd.Parameters.AddWithValue("@d8", currentCompanyId);
+                    cmd.Parameters.Add(new SqlParameter("@d1", string.IsNullOrEmpty(listView1.Items[i].SubItems[2].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[2].Text));
+                    cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(listView1.Items[i].SubItems[9].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[9].Text));
+                    cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(listView1.Items[i].SubItems[3].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[3].Text));
+                    cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(listView1.Items[i].SubItems[4].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[4].Text));
+                    cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(listView1.Items[i].SubItems[5].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[5].Text));
+                    cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(listView1.Items[i].SubItems[6].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[6].Text));
+                    cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(listView1.Items[i].SubItems[7].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[7].Text));
+                    cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(listView1.Items[i].SubItems[8].Text) ? (object)DBNull.Value : listView1.Items[i].SubItems[8].Text));
+                    cmd.Parameters.AddWithValue("@d9", currentCompanyId);
                     affectedRows1 = (int)cmd.ExecuteScalar();
                     con.Close();
-                }
-            }
+                }            
         }
         private void SaveCompanyAddress(int  addHeaderId)
         {
@@ -173,18 +168,18 @@ namespace BoardSecretariatSystem
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string insertQ = "insert into CompanyAddresses(AHeaderId,PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,CompanyId) Values(@d1,@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string insertQ = "insert into CompanyAddresses(AHeaderId,PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,CompanyId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8,@d9)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(insertQ);
                 cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@d1", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
-                cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
-                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(flatNoTextBox.Text) ? (object)DBNull.Value : flatNoTextBox.Text));
-                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(houseNoTextBox.Text) ? (object)DBNull.Value : houseNoTextBox.Text));
-                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(roadNoTextBox.Text) ? (object)DBNull.Value : roadNoTextBox.Text));
-                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(blockTextBox.Text) ? (object)DBNull.Value : blockTextBox.Text));
-                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(areaTextBox.Text) ? (object)DBNull.Value : areaTextBox.Text));
-                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(contactNoTextBox.Text) ? (object)DBNull.Value : contactNoTextBox.Text));
-                cmd.Parameters.AddWithValue("@d11", currentCompanyId);
+                cmd.Parameters.Add(new SqlParameter("@d1", string.IsNullOrEmpty(aHeaderId.ToString()) ? (object)DBNull.Value : aHeaderId));
+                cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
+                cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(flatNoTextBox.Text) ? (object)DBNull.Value : flatNoTextBox.Text));
+                cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(houseNoTextBox.Text) ? (object)DBNull.Value : houseNoTextBox.Text));
+                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(roadNoTextBox.Text) ? (object)DBNull.Value : roadNoTextBox.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(blockTextBox.Text) ? (object)DBNull.Value : blockTextBox.Text));
+                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(areaTextBox.Text) ? (object)DBNull.Value : areaTextBox.Text));
+                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(contactNoTextBox.Text) ? (object)DBNull.Value : contactNoTextBox.Text));
+                cmd.Parameters.AddWithValue("@d9", currentCompanyId);
                 affectedRows1 = (int)cmd.ExecuteScalar();
                 con.Close();
             }
@@ -192,24 +187,22 @@ namespace BoardSecretariatSystem
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string insertQ = "insert into  CompanyAddresses(AHeaderId,PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,CompanyId) Values(@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string insertQ = "insert into CompanyAddresses(AHeaderId,PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,CompanyId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8,@d9)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(insertQ);
                 cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
-                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtHQFlatNo.Text) ? (object)DBNull.Value : txtHQFlatNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtHQHouseNo.Text) ? (object)DBNull.Value : txtHQHouseNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtHQRoadNo.Text) ? (object)DBNull.Value : txtHQRoadNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(txtHQBlock.Text) ? (object)DBNull.Value : txtHQBlock.Text));
-                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtHQArea.Text) ? (object)DBNull.Value : txtHQArea.Text));
-                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtHQContactNo.Text) ? (object)DBNull.Value : txtHQContactNo.Text));
-                cmd.Parameters.AddWithValue("@d11", currentCompanyId);
+                cmd.Parameters.Add(new SqlParameter("@d1", string.IsNullOrEmpty(aHeaderId.ToString()) ? (object)DBNull.Value : aHeaderId));
+                cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(postofficeIdHQ) ? (object)DBNull.Value : postofficeIdHQ));
+                cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(txtHQFlatNo.Text) ? (object)DBNull.Value : txtHQFlatNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(txtHQHouseNo.Text) ? (object)DBNull.Value : txtHQHouseNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtHQRoadNo.Text) ? (object)DBNull.Value : txtHQRoadNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtHQBlock.Text) ? (object)DBNull.Value : txtHQBlock.Text));
+                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtHQArea.Text) ? (object)DBNull.Value : txtHQArea.Text));
+                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(txtHQContactNo.Text) ? (object)DBNull.Value : txtHQContactNo.Text));
+                cmd.Parameters.AddWithValue("@d9", currentCompanyId);
                 affectedRows1 = (int)cmd.ExecuteScalar();
                 con.Close();
-            }
-            
-            
+            }                        
         }
-
         private void ResetHQAddress()
         {
             txtHQFlatNo.Clear();
@@ -276,13 +269,15 @@ namespace BoardSecretariatSystem
             txtTotalIssuedShare.Clear();
             txtTotalAuthorizedShare.Clear();
             regNoTextBox.Clear();
+            txtCorum.Clear();
+            txtNumberOfDirector.Clear();            
             creatingDateTimePicker.Value=DateTime.Today.ToLocalTime();
             otherAddress.CheckedChanged -= checkBox1_CheckedChanged;
             otherAddress.Checked = false;
             otherAddress.CheckedChanged += checkBox1_CheckedChanged;
             ResetRegisteredAddress();
             ResetHQAddress();
-
+            listView1.Items.Clear();
         }
        
         private void saveButton_Click(object sender, EventArgs e)
@@ -341,24 +336,32 @@ namespace BoardSecretariatSystem
                     {
                         try
                         {
+                            int x = Convert.ToInt32(txtTotalAuthorizedShare.Text);
+                            int y = Convert.ToInt32(txtTotalIssuedShare.Text);
+                            availableAuthorizedShare = x - y;
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into Company(CompanyName,TotalAuthorizedShare,ValueofEachShare,TotalIssuedShare,RegiNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into Company(CompanyName,TotalAuthorizedShare,AvailableAuthorizedShare,ValueofEachShare,TotalIssuedShare,AvailableIssuedShare,Corum,NumberOfDirector,VacantPostofDirector,VacantPostofMDirector,VacantPostofChairman,RegiNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d5,@d6,@d7,@d7,@d8,@d9,@d10,@d11,@d12)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);
-                            cmd.Parameters.AddWithValue("@d2", txtValueOfEachShare.Text);
-                            cmd.Parameters.AddWithValue("@d3", txtTotalIssuedShare.Text);
-                            cmd.Parameters.AddWithValue("@d4", txtTotalAuthorizedShare.Text);    
-                            cmd.Parameters.AddWithValue("@d5", regNoTextBox.Text);
-                            cmd.Parameters.AddWithValue("@d6", userId);
-                            cmd.Parameters.AddWithValue("@d7", creatingDateTimePicker.Value);
+                            cmd.Parameters.AddWithValue("@d2", txtTotalAuthorizedShare.Text);
+                            cmd.Parameters.AddWithValue("@d3", availableAuthorizedShare);
+                            cmd.Parameters.AddWithValue("@d4", txtValueOfEachShare.Text);
+                            cmd.Parameters.AddWithValue("@d5", txtTotalIssuedShare.Text);                            
+                            cmd.Parameters.AddWithValue("@d6", txtCorum.Text);
+                            cmd.Parameters.AddWithValue("@d7", txtNumberOfDirector.Text);
+                            cmd.Parameters.AddWithValue("@d8", "1");
+                            cmd.Parameters.AddWithValue("@d9", "1");
+                            cmd.Parameters.AddWithValue("@d10", regNoTextBox.Text);
+                            cmd.Parameters.AddWithValue("@d11", userId);
+                            cmd.Parameters.AddWithValue("@d12", creatingDateTimePicker.Value);
                             currentCompanyId = (int) cmd.ExecuteScalar();
                             con.Close();
-                           SaveCompanyAddress(1);
-                           SaveCompanyAddress(2);
+                            SaveCompanyAddress(1);
+                            SaveCompanyAddress(2);
                             if (otherAddress.Checked)
                             {
-                                SaveOtherAddress("OtherAddress");
+                                SaveOtherAddress();
                             }
                            
                             MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);                            
@@ -367,8 +370,7 @@ namespace BoardSecretariatSystem
                         catch (Exception ex)
                         {
                             MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                       // GetAllCompany();
+                        }                    
                     }
 
                 } 
@@ -866,8 +868,6 @@ namespace BoardSecretariatSystem
                 {
                     con.Close();
                 }
-
-
                 cmbODivision.Text = cmbODivision.Text.Trim();
                 cmbODistrict.SelectedIndex = -1;
                 cmbODistrict.Items.Clear();
@@ -928,8 +928,6 @@ namespace BoardSecretariatSystem
                 {
                     con.Close();
                 }
-
-
                 cmbODistrict.Text = cmbODistrict.Text.Trim();
                 cmbOThana.SelectedIndex = -1;
                 cmbOThana.Items.Clear();
@@ -986,8 +984,6 @@ namespace BoardSecretariatSystem
                 {
                     con.Close();
                 }
-
-
                 cmbOThana.Text = cmbOThana.Text.Trim();               
                 cmbOPost.SelectedIndex = -1;
                 cmbOPost.Items.Clear();
@@ -1053,10 +1049,7 @@ namespace BoardSecretariatSystem
             }
         }
 
-        private void cmbEmailAddress_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void cmbAddressHeader_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1155,6 +1148,11 @@ namespace BoardSecretariatSystem
                 txtOBlock.Clear();
                 txtOArea.Clear();
                 txtOContactNo.Clear();
+                txtOPostCode.Clear();
+                cmbOPost.SelectedIndex = -1;
+                cmbOThana.SelectedIndex = -1;
+                cmbODistrict.SelectedIndex = -1;
+                cmbODivision.SelectedIndex = -1;                                                             
                 postofficeIdO="";               
                 return;                           
             }
@@ -1176,9 +1174,26 @@ namespace BoardSecretariatSystem
             txtOBlock.Clear();
             txtOArea.Clear();
             txtOContactNo.Clear();
+            txtOContactNo.Clear();
+            txtOPostCode.Clear();
+            cmbOPost.SelectedIndex = -1;
+            cmbOThana.SelectedIndex = -1;
+            cmbODistrict.SelectedIndex = -1;
+            cmbODivision.SelectedIndex = -1;   
             postofficeIdO = "";
             return;
 
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            for (int i = listView1.Items.Count - 1; i >= 0; i--)
+            {
+                if (listView1.Items[i].Selected)
+                {
+                    listView1.Items[i].Remove();
+                }
+            }
         }
 
           

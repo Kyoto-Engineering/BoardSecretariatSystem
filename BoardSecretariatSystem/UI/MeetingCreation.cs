@@ -18,9 +18,9 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         ConnectionString cs=new ConnectionString();
         private SqlDataReader rdr;
-        public Nullable<decimal> aId, aId1;
+        public Nullable<int> meetingNum, meetingNum1;
         public decimal addHId;
-        public int affectedRows1, currentMeetingId, boardId, count, companyId;
+        public int affectedRows1, currentMeetingId, boardId, count, companyId,metingTypeId;
         public string serialNo, divisionId, districtId, thanaId, postofficeId, userId;
 
 
@@ -70,46 +70,71 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void SaveMeetingParticipant()
+        {
+            con=new SqlConnection(cs.DBConn);
+            con.Open();
+            string qry = "insert into MeetingParticipant(MeetingId,ParticipantId,Title) SELECT  1,Participant.ParticipantId As ParticipantId , 'Chairman' As Title FROM   Chairman INNER JOIN Derector ON Chairman.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where Chairman.DateofRetirement is null Union SELECT 1, Participant.ParticipantId , 'Managing Director' As Title FROM  MDerector INNER JOIN  Derector ON MDerector.DerectorId = Derector.DerectorId INNER JOIN  Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where MDerector.DateofRetirement is null Union SELECT 1, Participant.ParticipantId , 'Director' As Title FROM  Derector INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId  where Participant.ParticipantId not in (SELECT Participant.ParticipantId FROM  Chairman INNER JOIN Derector ON Chairman.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN  Participant ON Shareholder.ParticipantId = Participant.ParticipantId where Chairman.DateofRetirement is null Union SELECT  Participant.ParticipantId FROM  MDerector INNER JOIN Derector ON MDerector.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where MDerector.DateofRetirement is null)";
+            cmd=new SqlCommand(qry,con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
         private void GetMeetingTitle()
         {
             try
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctt = "SELECT IDENT_CURRENT ('Meeting')";
-                cmd = new SqlCommand(ctt);
-                cmd.Connection = con;
+                string query = "Select MeetingTypeId From Meeting where MeetingTypeId=1";
+                cmd = new SqlCommand(query, con);
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
-                    aId = (rdr.GetDecimal(0));
-
-                    if (aId == 1)
-
-                    {
-                        aId1 = aId;
-                        txtMeetingName.Text = "1st Board Meeting";
-                    }
-
-                    else if (aId == 2)
-                    {
-                        aId1 = aId;
-                        txtMeetingName.Text = "2nd Board Meeting";
-                    }
-
-                    else if (aId == 3)
-                    {
-                        aId1 = aId;
-                        txtMeetingName.Text = "3rd Board Meeting";
-                    }
-                 
-                    else if (aId >= 4)
-                    {
-                        aId1 = aId;
-                        txtMeetingName.Text = aId1 + "th Board Meeting";
-                    }
-
+                    metingTypeId = (rdr.GetInt32(0));
                 }
+
+                if (metingTypeId == 1)
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    //string q2 = "Select SQN From RefNumForQuotation where SClientId='" + sClientIdForRefNum + "'";
+                    string qr2 = "SELECT MAX(Meeting.MeetingNo) FROM Meeting where Meeting.MeetingTypeId='"+metingTypeId+"'";
+                    cmd = new SqlCommand(qr2, con);
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        meetingNum = (rdr.GetInt32(0));
+                       if (meetingNum == 1)
+                       {
+                            meetingNum1 = meetingNum;
+                           txtMeetingName.Text = "2nd Board Meeting";
+                       }
+                      else if (meetingNum == 2)
+                      {
+                            meetingNum1 = meetingNum;
+                           txtMeetingName.Text = "2nd Board Meeting";
+                      }
+
+                     else if (meetingNum == 3)
+                     {
+                           meetingNum1 = meetingNum;
+                           txtMeetingName.Text = "3rd Board Meeting";
+                     }
+
+                    else if (meetingNum >= 4)
+                      {
+                           meetingNum1 = meetingNum;
+                           txtMeetingName.Text = meetingNum + "th Board Meeting";
+                      }
+                       
+                   }
+                }
+                else
+                {
+                      meetingNum1 = meetingNum;
+                      txtMeetingName.Text = "1st Board Meeting";
+                }             
             }
             catch (Exception ex)
             {
@@ -183,6 +208,27 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public static string Ordinal(int number)
+        {
+            string suffix = String.Empty;
+            if (number == 1 || number == 21 || number == 31 || number % 100 == 21 || number % 100 == 31)
+            {
+                suffix = "st";
+            }
+            else if (number == 2 || number == 22 || number % 100 == 22)
+            {
+                suffix = "nd";
+            }
+            else if (number == 3 || number == 23 || number % 100 == 23)
+            {
+                suffix = "rd";
+            }
+            else
+            {
+                suffix = "th";
+            }
+            return String.Format("{0}{1}", number, suffix);
+        }
         public void FillHQDivisionCombo()
         {
             try
@@ -210,12 +256,12 @@ namespace BoardSecretariatSystem.UI
             groupBox2.Visible = false;
             label4.Visible = false;
             label9.Visible = false;
-            this.MaximumSize = new Size(700, 1080);
-            GetMeetingTitle();
+            this.MaximumSize = new Size(700, 1080);            
             BoardNameLoad();
             CompanyNameLoad();
             MeetingVanueLoad();
             FillHQDivisionCombo();
+            GetMeetingTitle();
             GenerateSerialNumberForMeeting();
         }
         private void GenerateSerialNumberForMeeting()
@@ -314,9 +360,10 @@ namespace BoardSecretariatSystem.UI
             }
            
         }
+        
         private void buttonMeetingCreation_Click(object sender, EventArgs e)
         {
-
+            SaveMeetingParticipant();
             if (string.IsNullOrEmpty(cmbVenue.Text))
             {
                 MessageBox.Show("Please Select Vanue for the Meeting", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -360,7 +407,7 @@ namespace BoardSecretariatSystem.UI
                 string query2 = "insert into Meeting(AHeaderId,MeetingNo,MeetingDate,SerialNumber,UserId,DateTime,MeetingTypeId,Statuss) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query2, con);
                 cmd.Parameters.AddWithValue("@d1", addHId);
-                cmd.Parameters.AddWithValue("@d2", aId1);               
+                cmd.Parameters.AddWithValue("@d2", meetingNum1);               
                 cmd.Parameters.AddWithValue("@d3", Convert.ToDateTime(txtMeetingDate.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
                 cmd.Parameters.AddWithValue("@d4", serialNo);
                 cmd.Parameters.AddWithValue("@d5", userId);
@@ -373,6 +420,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     SaveMeetingAddress();
                 }
+                SaveMeetingParticipant();
                 MessageBox.Show("Meeting Created Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Reset();
 

@@ -221,7 +221,7 @@
             // addButton
             // 
             this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.addButton.Location = new System.Drawing.Point(570, 114);
+            this.addButton.Location = new System.Drawing.Point(570, 110);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(124, 52);
             this.addButton.TabIndex = 51;

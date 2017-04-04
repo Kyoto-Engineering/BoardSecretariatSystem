@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,11 +36,11 @@ namespace BoardSecretariatSystem.UI
         }
 
        
-        private void SetExistingMeetingMember()
+        private void SetExistingMeetingMemberInList()
         {
             listView1.View = View.Details;
             con = new SqlConnection(cs.DBConn);
-            string qry = "SELECT Participant.ParticipantId,Participant.ParticipantName, BoardMemberTypes.BoardMemberType FROM  Participant INNER JOIN BoardMemberTypes ON Participant.BoardMemberTypeId = BoardMemberTypes.BoardMemberTypeId where  EXISTS (Select Shareholder.ParticipantId from  Shareholder)";
+            string qry = "SELECT Participant.ParticipantId As ParticipantId ,Participant.ParticipantName As ParticipantName, 'Chairman' As Title FROM  Chairman INNER JOIN Derector ON Chairman.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where Chairman.DateofRetirement is null Union SELECT  Participant.ParticipantId ,Participant.ParticipantName As ParticipantName, 'Managing Director' As Title FROM   MDerector INNER JOIN Derector ON MDerector.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where MDerector.DateofRetirement is null Union SELECT Participant.ParticipantId,Participant.ParticipantName As ParticipantName, 'Director' As Title FROM   Derector INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId  where Participant.ParticipantId not in (SELECT Participant.ParticipantId FROM  Chairman INNER JOIN Derector ON Chairman.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where Chairman.DateofRetirement is null Union SELECT  Participant.ParticipantId  FROM   MDerector INNER JOIN Derector ON MDerector.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where MDerector.DateofRetirement is null)";
             ada = new SqlDataAdapter(qry, con);
             dt = new DataTable();
             ada.Fill(dt);
@@ -59,7 +60,7 @@ namespace BoardSecretariatSystem.UI
             try
             {
                 con = new SqlConnection(cs.DBConn);
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT Participant.ParticipantId,Participant.ParticipantName, BoardMemberTypes.BoardMemberType FROM  Participant INNER JOIN BoardMemberTypes ON Participant.BoardMemberTypeId = BoardMemberTypes.BoardMemberTypeId where  EXISTS (Select Shareholder.ParticipantId from  Shareholder)", con);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT  Participant.ParticipantId,Participant.ParticipantName, Participant.Designation FROM   Participant where  Participant.ParticipantId not in (Select Shareholder.ParticipantId from Shareholder)", con);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 dataGridView1.Rows.Clear();
@@ -68,8 +69,8 @@ namespace BoardSecretariatSystem.UI
                     int n = dataGridView1.Rows.Add();
                     dataGridView1.Rows[n].Cells[0].Value = item[0].ToString();
                     dataGridView1.Rows[n].Cells[1].Value = item[1].ToString();
-                    dataGridView1.Rows[n].Cells[2].Value = item[2].ToString();
-                    dataGridView1.Rows[n].Cells[3].Value = item[3].ToString();
+                   dataGridView1.Rows[n].Cells[2].Value = item[2].ToString();
+                   // dataGridView1.Rows[n].Cells[3].Value = item[3].ToString();
 
                 }
             }
@@ -81,7 +82,8 @@ namespace BoardSecretariatSystem.UI
         }
         private void MeetingConsole3_Load(object sender, EventArgs e)
         {
-            SetExistingMeetingMember();
+            buttonInvitation.Visible = false;
+            SetExistingMeetingMemberInList();
             GetAdditionalParticipant();
         }
 
@@ -145,6 +147,36 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show("There is not any row selected, please select row and Click Add Button!");
 
             }              
+        }
+
+        private void buttonComplete_Click(object sender, EventArgs e)
+        {
+            buttonInvitation.Visible = true;
+        }
+
+        private void buttonInvitation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("siddique_iceiu@yahoo.com");
+
+                mail.From = new MailAddress("siddiqueiceiu@gmail.com");
+                mail.To.Add("siddique_iceiu@yahoo.com");
+                mail.Subject = "Test Mail";
+                mail.Body = "This is for testing SMTP mail from GMAIL";
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("siddique_iceiu@yahoo.com", "a123456789a");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                MessageBox.Show("mail Send");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

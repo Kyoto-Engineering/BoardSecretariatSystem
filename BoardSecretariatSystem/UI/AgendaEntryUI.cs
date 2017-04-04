@@ -22,8 +22,8 @@ namespace BoardSecretariatSystem
         private ConnectionString cs = new ConnectionString();
         private delegate void ChangeFocusDelegate(Control ctl);
         public string userId, boardId, companyId, labelv, labelg, nParticipantId, nUserId;
-        public int agendaId, agendaTypeId, meetingId, participantId, agendaId1;
-        public Nullable<decimal> aId, aId1;
+        public int agendaId,  meetingId, participantId, agendaId1;
+        public Nullable<decimal> aId, aId1,agendaTypeId1,agendaTypeId,aIdK;
         public AgendaEntryUI()
         {            
             InitializeComponent();
@@ -91,7 +91,7 @@ namespace BoardSecretariatSystem
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                cmd = new SqlCommand("SELECT Agenda.AgendaTopics,Agenda.AgendaTitle,AgendaTypes.AgendaType,AgendaTypes.AgendaTypeId  FROM  Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId", con);
+                cmd = new SqlCommand("SELECT Agenda.AgendaId,Agenda.AgendaTitle,AgendaTypes.AgendaType,AgendaTypes.AgendaTypeId FROM  Agenda inner join AgendaTypes on Agenda.AgendaTypeId=AgendaTypes.AgendaTypeId Where AgendaTypes.AgendaTypeId= 1 Union SELECT  Agenda.AgendaId, Agenda.AgendaTitle,AgendaTypes.AgendaType,Agenda.AgendaTypeId FROM   Agenda inner  join AgendaTypes on Agenda.AgendaTypeId=AgendaTypes.AgendaTypeId Where Agenda.AgendaTypeId<> 1 and AgendaId not in( Select Agenda.AgendaId from SelectedAgenda inner join Agenda on Agenda.AgendaId=SelectedAgenda.AgendaId) order by Agenda.AgendaId", con);
                 rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 dataGridView1.Rows.Clear();
                 while (rdr.Read() == true)
@@ -99,6 +99,49 @@ namespace BoardSecretariatSystem
                     dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2],rdr[3]);
                 }
                 con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void GetAgendaHeader()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query = "Select Agenda.AgendaTypeId From  Agenda  where Agenda.AgendaTypeId=1 OR Agenda.AgendaTypeId=2 OR Agenda.AgendaTypeId=3";
+                cmd = new SqlCommand(query, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                   agendaTypeId = (rdr.GetInt32(0));
+                }
+                con.Close();
+
+                if (agendaTypeId ==1 || agendaTypeId==2 || agendaTypeId== 3)
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();                    
+                    string qr2 = "SELECT MAX(Agenda.AgendaNo) FROM Agenda";
+                    cmd = new SqlCommand(qr2, con);
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        aId = (rdr.GetInt32(0));
+                        if (aId >= 1)
+                        {
+                            aId = aId+1;
+                            txtAgendaHeader.Text = "Agenda-"+aId;
+                        }                        
+                    }
+                }
+                else
+                {
+                    aId = 1;
+                    txtAgendaHeader.Text = "Agenda-1";
+                }
             }
             catch (Exception ex)
             {
@@ -159,8 +202,8 @@ namespace BoardSecretariatSystem
         }
         private void AgendaEntryUI_Load(object sender, EventArgs e)
         {
-            userId = frmLogin.uId.ToString();
-            GetAgendaId();
+            userId = frmLogin.uId.ToString();          
+            GetAgendaHeader();
             CompanyNameLoad();
             GetAgendaDetails();
             LoadAgendaType();
@@ -177,22 +220,24 @@ namespace BoardSecretariatSystem
                         return;
 
                     }
-                    for (int i = 0; i < listView1.Items.Count - 1; i++)
+                    for (int i = 0; i <= listView1.Items.Count - 1; i++)
                     {
                         con = new SqlConnection(cs.DBConn);
                         con.Open();
-                        string query1 = "insert into Agenda(AgendaTopics,AgendaTitle,AgendaTypeId,UserId,DateTime) values (@d1,@d2,@d4,@d5,@d6)";
+                        string query1 = "insert into Agenda(AgendaTopics,AgendaTitle,AgendaTypeId,AgendaNo,UserId,DateTime) values(@d1,@d2,@d3,@d4,@d5,@d6)";
                         cmd = new SqlCommand(query1, con);
                         cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[1].Text);
                         cmd.Parameters.AddWithValue("@d2", listView1.Items[i].SubItems[2].Text);                       
-                        cmd.Parameters.AddWithValue("@d4", listView1.Items[i].SubItems[4].Text);
+                        cmd.Parameters.AddWithValue("@d3", listView1.Items[i].SubItems[4].Text);
+                        cmd.Parameters.AddWithValue("@d4", listView1.Items[i].SubItems[5].Text);
                         cmd.Parameters.AddWithValue("@d5", userId);
                         cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
                         cmd.ExecuteNonQuery();
                         con.Close();
                     }                  
                     MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                  
+                    GetAgendaDetails();
+                   listView1.Items.Clear();
                 }
                 catch (Exception ex)
                 {
@@ -223,24 +268,26 @@ namespace BoardSecretariatSystem
                // list.SubItems.Add(txtMemoName.Text);
                 list.SubItems.Add(cmbAgendaType.Text);
                 list.SubItems.Add(agendaTypeId.ToString());
+                aIdK = aId - 1;
+                list.SubItems.Add(aIdK.ToString());
 
                 listView1.Items.Add(list);            
                 txtAgendaHeader.Text = "Agenda-" + aId;
                 txtAgendaTitle.Clear();
-                //txtMemoName.Clear();               
+                cmbAgendaType.SelectedIndex = -1;               
                 return;
             }
             ListViewItem list1 = new ListViewItem();
             list1.SubItems.Add(txtAgendaHeader.Text);
-            list1.SubItems.Add(txtAgendaTitle.Text);
-          //  list1.SubItems.Add(txtMemoName.Text);
+            list1.SubItems.Add(txtAgendaTitle.Text);          
             list1.SubItems.Add(cmbAgendaType.Text);
             list1.SubItems.Add(agendaTypeId.ToString());
-
+            aIdK = aId - 1;
+            list1.SubItems.Add(aIdK.ToString());
             listView1.Items.Add(list1);            
             txtAgendaHeader.Text = "Agenda-" + aId;
             txtAgendaTitle.Clear();
-          //  txtMemoName.Clear();          
+            cmbAgendaType.SelectedIndex = -1;       
             return;
         }
 

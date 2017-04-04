@@ -19,9 +19,8 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         ConnectionString cs = new ConnectionString();
-        public int affectedRows1, affectedRows2, affectedRows3, currentPerticipantId, currentShareHolderId, bankEmailId,boardMemberId;
-        public string companyId,
-            nUserId,
+        public int affectedRows1, affectedRows2, affectedRows3, currentPerticipantId, currentShareHolderId, bankEmailId, boardMemberId, companyId=1;
+        public string nUserId,
             divisionId,
             divisionIdP,
             districtId,
@@ -54,6 +53,7 @@ namespace BoardSecretariatSystem.UI
             txtNationalId.Clear();
             txtNationality.Clear();
             cmbEmailAddress.SelectedIndex = -1;
+            cmbParticipantType.SelectedIndex = -1;
 
             if (unKnownRA.Checked)
             {
@@ -128,33 +128,20 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 =
-                    "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,Designation,ContactNumber,Nationality,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16)" +
-                    "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 = "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,Designation,ContactNumber,Nationality,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", txtParticipantName.Text);
-                cmd.Parameters.Add(new SqlParameter("@d2",
-                    string.IsNullOrEmpty(txtMotherName.Text) ? (object) DBNull.Value : txtMotherName.Text));
-                cmd.Parameters.Add(new SqlParameter("@d3",
-                    string.IsNullOrEmpty(txtFatherName.Text) ? (object) DBNull.Value : txtFatherName.Text));
-                cmd.Parameters.AddWithValue("@d4", txtDateOfBirth.Value);
-                cmd.Parameters.Add(new SqlParameter("@d5",
-                    string.IsNullOrEmpty(txtDesignation.Text) ? (object) DBNull.Value : txtDesignation.Text));
-                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(boardMemberId.ToString()) ? (object)DBNull.Value : boardMemberId.ToString()));
-                cmd.Parameters.Add(new SqlParameter("@d7",
-                    string.IsNullOrEmpty(txtCellNumber.Text) ? (object) DBNull.Value : txtCellNumber.Text));
-                cmd.Parameters.Add(new SqlParameter("@d8",
-                    string.IsNullOrEmpty(txtNationality.Text) ? (object) DBNull.Value : txtNationality.Text));
-                cmd.Parameters.Add(new SqlParameter("@d9",
-                    string.IsNullOrEmpty(txtNationalId.Text) ? (object) DBNull.Value : txtNationalId.Text));
-                cmd.Parameters.Add(new SqlParameter("@d10",
-                    string.IsNullOrEmpty(txtBirthCertificateNo.Text)
-                        ? (object) DBNull.Value
-                        : txtBirthCertificateNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d11",
-                    string.IsNullOrEmpty(txtPassportNo.Text) ? (object) DBNull.Value : txtPassportNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d12",
-                    string.IsNullOrEmpty(txtTINNumber.Text) ? (object) DBNull.Value : txtTINNumber.Text));
+                cmd.Parameters.Add(new SqlParameter("@d2",string.IsNullOrEmpty(txtMotherName.Text) ? (object) DBNull.Value : txtMotherName.Text));
+                cmd.Parameters.Add(new SqlParameter("@d3",string.IsNullOrEmpty(txtFatherName.Text) ? (object) DBNull.Value : txtFatherName.Text));
+                cmd.Parameters.AddWithValue("@d4", Convert.ToDateTime(txtDateOfBirth.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat)); 
+                cmd.Parameters.Add(new SqlParameter("@d5",string.IsNullOrEmpty(txtDesignation.Text) ? (object) DBNull.Value : txtDesignation.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6",string.IsNullOrEmpty(boardMemberId.ToString()) ? (object)DBNull.Value : boardMemberId.ToString()));
+                cmd.Parameters.Add(new SqlParameter("@d7",string.IsNullOrEmpty(txtCellNumber.Text) ? (object) DBNull.Value : txtCellNumber.Text));
+                cmd.Parameters.Add(new SqlParameter("@d8",string.IsNullOrEmpty(txtNationality.Text) ? (object) DBNull.Value : txtNationality.Text));
+                cmd.Parameters.Add(new SqlParameter("@d9",string.IsNullOrEmpty(txtNationalId.Text) ? (object) DBNull.Value : txtNationalId.Text));
+                cmd.Parameters.Add(new SqlParameter("@d10",string.IsNullOrEmpty(txtBirthCertificateNo.Text)? (object) DBNull.Value:txtBirthCertificateNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d11",string.IsNullOrEmpty(txtPassportNo.Text) ? (object) DBNull.Value : txtPassportNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d12",string.IsNullOrEmpty(txtTINNumber.Text) ? (object) DBNull.Value : txtTINNumber.Text));
                 cmd.Parameters.AddWithValue("@d13", bankEmailId);
                 cmd.Parameters.AddWithValue("@d14", companyId);
                 cmd.Parameters.AddWithValue("@d15", nUserId);
@@ -177,24 +164,15 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string insertQ = "insert into " + tableName +
-                                 "(PostOfficeId,PFlatNo,PHouseNo,PRoadNo,PBlock,PArea,PContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" +
-                                 "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string insertQ = "insert into " + tableName + "(PostOfficeId,PFlatNo,PHouseNo,PRoadNo,PBlock,PArea,PContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" +"SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(insertQ, con);
-                cmd.Parameters.Add(new SqlParameter("@d1",
-                    string.IsNullOrEmpty(postofficeIdP) ? (object) DBNull.Value : postofficeIdP));
-                cmd.Parameters.Add(new SqlParameter("@d2",
-                    string.IsNullOrEmpty(txtPFlatName.Text) ? (object) DBNull.Value : txtPFlatName.Text));
-                cmd.Parameters.Add(new SqlParameter("@d3",
-                    string.IsNullOrEmpty(txtPHouseName.Text) ? (object) DBNull.Value : txtPHouseName.Text));
-                cmd.Parameters.Add(new SqlParameter("@d4",
-                    string.IsNullOrEmpty(txtPRoadNo.Text) ? (object) DBNull.Value : txtPRoadNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d5",
-                    string.IsNullOrEmpty(txtPBlock.Text) ? (object) DBNull.Value : txtPBlock.Text));
-                cmd.Parameters.Add(new SqlParameter("@d6",
-                    string.IsNullOrEmpty(txtPArea.Text) ? (object) DBNull.Value : txtPArea.Text));
-                cmd.Parameters.Add(new SqlParameter("@d7",
-                    string.IsNullOrEmpty(txtPContactNo.Text) ? (object) DBNull.Value : txtPContactNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d1",string.IsNullOrEmpty(postofficeIdP) ? (object) DBNull.Value : postofficeIdP));
+                cmd.Parameters.Add(new SqlParameter("@d2",string.IsNullOrEmpty(txtPFlatName.Text) ? (object) DBNull.Value : txtPFlatName.Text));
+                cmd.Parameters.Add(new SqlParameter("@d3",string.IsNullOrEmpty(txtPHouseName.Text) ? (object) DBNull.Value : txtPHouseName.Text));
+                cmd.Parameters.Add(new SqlParameter("@d4",string.IsNullOrEmpty(txtPRoadNo.Text) ? (object) DBNull.Value : txtPRoadNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d5",string.IsNullOrEmpty(txtPBlock.Text) ? (object) DBNull.Value : txtPBlock.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6",string.IsNullOrEmpty(txtPArea.Text) ? (object) DBNull.Value : txtPArea.Text));
+                cmd.Parameters.Add(new SqlParameter("@d7",string.IsNullOrEmpty(txtPContactNo.Text) ? (object) DBNull.Value : txtPContactNo.Text));
                 cmd.Parameters.AddWithValue("@d8", currentPerticipantId);
                 affectedRows1 = (int) cmd.ExecuteScalar();
                 con.Close();
@@ -203,24 +181,15 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string insertQ = "insert into " + tableName +
-                                 "(PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" +
-                                 "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string insertQ = "insert into " + tableName + "(PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" +"SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(insertQ, con);
-                cmd.Parameters.Add(new SqlParameter("@d1",
-                    string.IsNullOrEmpty(postofficeId) ? (object) DBNull.Value : postofficeId));
-                cmd.Parameters.Add(new SqlParameter("@d2",
-                    string.IsNullOrEmpty(txtFlatNo.Text) ? (object) DBNull.Value : txtFlatNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d3",
-                    string.IsNullOrEmpty(txtHouseNo.Text) ? (object) DBNull.Value : txtHouseNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d4",
-                    string.IsNullOrEmpty(txtRoadNo.Text) ? (object) DBNull.Value : txtRoadNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d5",
-                    string.IsNullOrEmpty(txtBlock.Text) ? (object) DBNull.Value : txtBlock.Text));
-                cmd.Parameters.Add(new SqlParameter("@d6",
-                    string.IsNullOrEmpty(txtArea.Text) ? (object) DBNull.Value : txtArea.Text));
-                cmd.Parameters.Add(new SqlParameter("@d7",
-                    string.IsNullOrEmpty(txtContactNo.Text) ? (object) DBNull.Value : txtContactNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d1",string.IsNullOrEmpty(postofficeId) ? (object) DBNull.Value : postofficeId));
+                cmd.Parameters.Add(new SqlParameter("@d2",string.IsNullOrEmpty(txtFlatNo.Text) ? (object) DBNull.Value : txtFlatNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d3",string.IsNullOrEmpty(txtHouseNo.Text) ? (object) DBNull.Value : txtHouseNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d4",string.IsNullOrEmpty(txtRoadNo.Text) ? (object) DBNull.Value : txtRoadNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtBlock.Text) ? (object) DBNull.Value : txtBlock.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtArea.Text) ? (object) DBNull.Value : txtArea.Text));
+                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtContactNo.Text) ? (object) DBNull.Value : txtContactNo.Text));
                 cmd.Parameters.AddWithValue("@d8", currentPerticipantId);
                 affectedRows1 = (int) cmd.ExecuteScalar();
                 con.Close();
@@ -232,24 +201,15 @@ namespace BoardSecretariatSystem.UI
             string tableName = tblName1;
             con = new SqlConnection(cs.DBConn);
             con.Open();
-            string Qry = "insert into " + tableName +
-                         "(PostOfficeId,PFlatNo,PHouseNo,PRoadNo,PBlock,PArea,PContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" +
-                         "SELECT CONVERT(int, SCOPE_IDENTITY())";
+            string Qry = "insert into " + tableName + "(PostOfficeId,PFlatNo,PHouseNo,PRoadNo,PBlock,PArea,PContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)"+"SELECT CONVERT(int, SCOPE_IDENTITY())";
             cmd = new SqlCommand(Qry, con);
-            cmd.Parameters.Add(new SqlParameter("@d1",
-                string.IsNullOrEmpty(postofficeIdP) ? (object) DBNull.Value : postofficeIdP));
-            cmd.Parameters.Add(new SqlParameter("@d2",
-                string.IsNullOrEmpty(txtPFlatName.Text) ? (object) DBNull.Value : txtPFlatName.Text));
-            cmd.Parameters.Add(new SqlParameter("@d3",
-                string.IsNullOrEmpty(txtPHouseName.Text) ? (object) DBNull.Value : txtPHouseName.Text));
-            cmd.Parameters.Add(new SqlParameter("@d4",
-                string.IsNullOrEmpty(txtPRoadNo.Text) ? (object) DBNull.Value : txtPRoadNo.Text));
-            cmd.Parameters.Add(new SqlParameter("@d5",
-                string.IsNullOrEmpty(txtPBlock.Text) ? (object) DBNull.Value : txtPBlock.Text));
-            cmd.Parameters.Add(new SqlParameter("@d6",
-                string.IsNullOrEmpty(txtPArea.Text) ? (object) DBNull.Value : txtPArea.Text));
-            cmd.Parameters.Add(new SqlParameter("@d7",
-                string.IsNullOrEmpty(txtPContactNo.Text) ? (object) DBNull.Value : txtPContactNo.Text));
+            cmd.Parameters.Add(new SqlParameter("@d1", string.IsNullOrEmpty(postofficeIdP) ? (object) DBNull.Value : postofficeIdP));
+            cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(txtPFlatName.Text) ? (object) DBNull.Value : txtPFlatName.Text));
+            cmd.Parameters.Add(new SqlParameter("@d3",string.IsNullOrEmpty(txtPHouseName.Text) ? (object) DBNull.Value : txtPHouseName.Text));
+            cmd.Parameters.Add(new SqlParameter("@d4",string.IsNullOrEmpty(txtPRoadNo.Text) ? (object) DBNull.Value : txtPRoadNo.Text));
+            cmd.Parameters.Add(new SqlParameter("@d5",string.IsNullOrEmpty(txtPBlock.Text) ? (object) DBNull.Value : txtPBlock.Text));
+            cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtPArea.Text) ? (object) DBNull.Value : txtPArea.Text));
+            cmd.Parameters.Add(new SqlParameter("@d7",string.IsNullOrEmpty(txtPContactNo.Text) ? (object) DBNull.Value : txtPContactNo.Text));
             cmd.Parameters.AddWithValue("@d8", currentPerticipantId);
             affectedRows2 = (int) cmd.ExecuteScalar();
             con.Close();
@@ -257,134 +217,7 @@ namespace BoardSecretariatSystem.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtParticipantName.Text))
-            {
-                MessageBox.Show("Please enter Participant  name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (unKnownRA.Checked == false)
-            {
-                if (string.IsNullOrWhiteSpace(cmbPDivision.Text))
-                {
-                    MessageBox.Show("Please select Present Address division", "Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(cmbPDistrict.Text))
-                {
-                    MessageBox.Show("Please Select Present Address district", "Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(cmbPThana.Text))
-                {
-                    MessageBox.Show("Please select Present Address Thana", "Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(cmbPPost.Text))
-                {
-                    MessageBox.Show("Please Select Present Address Post Name", "Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txtPPostCode.Text))
-                {
-                    MessageBox.Show("Please select Present Address Post Code", "Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            if (unKnownCheckBox.Checked == false && sameAsRACheckBox.Checked == false)
-            {
-                if (string.IsNullOrWhiteSpace(cmbDivision.Text))
-                {
-                    MessageBox.Show("Please select Permanant Address division", "Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(cmbDistrict.Text))
-                {
-                    MessageBox.Show("Please Select Permanant Address district", "Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(cmbThana.Text))
-                {
-                    MessageBox.Show("Please select Permanant Address Thana", "Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(cmbPost.Text))
-                {
-                    MessageBox.Show("Please Select Permanant Address Post Name", "Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txtPostCode.Text))
-                {
-                    MessageBox.Show("Please select Permanant Address Post Code", "Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-
-                try
-                {
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    string ct3 =
-                        "select Participant.ParticipantName from Participant where  Participant.ParticipantName='" +
-                        txtParticipantName.Text + "'";
-                    cmd = new SqlCommand(ct3, con);
-                    rdr = cmd.ExecuteReader();
-                    if (rdr.Read() && !rdr.IsDBNull(0))
-                    {
-                        MessageBox.Show("This Share Holder Already Exists,Please Input another one", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                        con.Close();
-                    }
-                    //1. Both Not Applicable
-                    if (unKnownRA.Checked && unKnownCheckBox.Checked)
-                    {
-                        SaveParticipant();
-                    }
-                    //2.Present Address  Applicable & Permanant Address not  Applicable
-                    if (unKnownRA.Checked == false & unKnownCheckBox.Checked)
-                    {
-                        SaveParticipant();
-                        SaveParticipantAddress("PPresentAddresses");
-                    }
-                    //3.Permanant Address Applicable  & Present Address  Applicable
-                    if (sameAsRACheckBox.Checked == false && unKnownCheckBox.Checked == false)
-                    {
-                        SaveParticipant();
-                        SaveParticipantAddress("PPermanantAddresses");
-                        SaveParticipantAddress("PPresentAddresses");
-                    }
-                    //4.Permanant Address Applicable  & Present Address Same as Permanant Address                                        
-                    if (sameAsRACheckBox.Checked & unKnownRA.Checked == false & unKnownCheckBox.Checked == false)
-                    {
-                        SaveParticipant();
-                        SaveParticipantAddress("PPermanantAddresses");
-                        PermanantSameAsPresent("PPresentAddresses");
-                    }
-                    //5.Present Address not  Applicable  & Permanant Address  Applicable
-                    if (unKnownRA.Checked & sameAsRACheckBox.Checked == false & unKnownCheckBox.Checked == false)
-                    {
-                        SaveParticipant();
-                        SaveParticipantAddress("PPermanantAddresses");
-                    }
-
-                    MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Reset();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+           
         }
 
         private void FillStar()
@@ -510,14 +343,14 @@ namespace BoardSecretariatSystem.UI
                 if (unKnownCheckBox.Checked)
                 {
                     groupBox4.Enabled = false;
-                    ResetPresentAddress();
+                    ResetPermanantAddress();
                     ResetPStar();
                 }
                 else
                 {
 
                     groupBox4.Enabled = true;
-                    ResetPresentAddress();
+                    ResetPermanantAddress();
                     FillPStar();
                 }
             }
@@ -616,6 +449,7 @@ namespace BoardSecretariatSystem.UI
         }
         private void ParticipantCreation2_Load(object sender, EventArgs e)
         {
+            nUserId=frmLogin.uId.ToString();
             GetParticipantType();
             FillPermanantDivisionCombo();
             FillPresentDivisionCombo();
@@ -991,8 +825,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctk =
-                    "SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
+                string ctk ="SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
                 cmd = new SqlCommand(ctk);
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "PostOfficeName"));
@@ -1013,10 +846,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     con.Close();
                 }
-
-
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1063,7 +893,7 @@ namespace BoardSecretariatSystem.UI
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into EmailBank (Email, UserId,DateAndTime) values (@d1,@d2,@d3)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into  EmailBank(Email, UserId,DateAndTime) values (@d1,@d2,@d3)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", input);
                             cmd.Parameters.AddWithValue("@d2", nUserId);
@@ -1137,6 +967,162 @@ namespace BoardSecretariatSystem.UI
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ParticipantCreation2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+             this.Hide();
+            MeetingConsole3 frm=new MeetingConsole3();
+             frm.Show();
+        }
+
+        private void txtPContactNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
+                e.Handled = true;
+        }
+
+        private void txtContactNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
+                e.Handled = true;
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtParticipantName.Text))
+            {
+                MessageBox.Show("Please enter Participant  name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (unKnownRA.Checked == false)
+            {
+                if (string.IsNullOrWhiteSpace(cmbPDivision.Text))
+                {
+                    MessageBox.Show("Please select Present Address division", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(cmbPDistrict.Text))
+                {
+                    MessageBox.Show("Please Select Present Address district", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(cmbPThana.Text))
+                {
+                    MessageBox.Show("Please select Present Address Thana", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(cmbPPost.Text))
+                {
+                    MessageBox.Show("Please Select Present Address Post Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtPPostCode.Text))
+                {
+                    MessageBox.Show("Please select Present Address Post Code", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            if (unKnownCheckBox.Checked == false && sameAsRACheckBox.Checked == false)
+            {
+                if (string.IsNullOrWhiteSpace(cmbDivision.Text))
+                {
+                    MessageBox.Show("Please select Permanant Address division", "Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(cmbDistrict.Text))
+                {
+                    MessageBox.Show("Please Select Permanant Address district", "Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(cmbThana.Text))
+                {
+                    MessageBox.Show("Please select Permanant Address Thana", "Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(cmbPost.Text))
+                {
+                    MessageBox.Show("Please Select Permanant Address Post Name", "Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtPostCode.Text))
+                {
+                    MessageBox.Show("Please select Permanant Address Post Code", "Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            try
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string ct3 = "select Participant.ParticipantName from Participant where  Participant.ParticipantName='" + txtParticipantName.Text + "'";
+                    cmd = new SqlCommand(ct3, con);
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read() && !rdr.IsDBNull(0))
+                    {
+                        MessageBox.Show("This Share Holder Already Exists,Please Input another one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+
+                    }
+                    con.Close();
+                    //1. Both Not Applicable
+                    if (unKnownRA.Checked && unKnownCheckBox.Checked)
+                    {
+                        SaveParticipant();
+                    }
+                    //2.Present Address  Applicable & Permanant Address not  Applicable
+                    if (unKnownRA.Checked == false & unKnownCheckBox.Checked)
+                    {
+                        SaveParticipant();
+                        SaveParticipantAddress("PPresentAddresses");
+                    }
+                    //3.Permanant Address Applicable  & Present Address  Applicable
+                    if (sameAsRACheckBox.Checked == false && unKnownCheckBox.Checked == false)
+                    {
+                        SaveParticipant();
+                        SaveParticipantAddress("PPermanantAddresses");
+                        SaveParticipantAddress("PPresentAddresses");
+                    }
+                    //4.Permanant Address Applicable  & Present Address Same as Permanant Address                                        
+                    if (sameAsRACheckBox.Checked & unKnownRA.Checked == false & unKnownCheckBox.Checked == false)
+                    {
+                        SaveParticipant();
+                        SaveParticipantAddress("PPermanantAddresses");
+                        PermanantSameAsPresent("PPresentAddresses");
+                    }
+                    //5.Present Address not  Applicable  & Permanant Address  Applicable
+                    if (unKnownRA.Checked & sameAsRACheckBox.Checked == false & unKnownCheckBox.Checked == false)
+                    {
+                        SaveParticipant();
+                        SaveParticipantAddress("PPermanantAddresses");
+                    }
+
+                    MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Reset();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+           
+        }
+
+        private void txtCellNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
+                e.Handled = true;
+        }
+
+        private void txtPContactNo_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
