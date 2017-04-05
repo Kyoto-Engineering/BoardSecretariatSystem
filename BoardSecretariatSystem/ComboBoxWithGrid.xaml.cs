@@ -50,6 +50,26 @@ namespace BoardSecretariatSystem
             }
         } 
         public List<Employee2> Employees { get; set; }
+        public event EventHandler ComboboxIndexChhanged;
+        //private void HandleSelectionChanged(object sender, EventArgs e)
+        //{
+        //    // we'll explain this in a minute
+        //    this.Onc(EventArgs.Empty);
+
+          
+        //}
+
+        //private void ComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //  //this.
+        //  //  throw new NotImplementedException();
+
+        //    var comboBox = sender as ComboBox;
+
+        //    // ... Set SelectedItem as Window Title.
+        //    Employee2 value = comboBox.SelectedItem as Employee2;
+        //    //this.Title = "Selected: " + value;
+        //}
     }
         }
     
