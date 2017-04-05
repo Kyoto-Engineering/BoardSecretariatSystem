@@ -152,6 +152,13 @@ namespace BoardSecretariatSystem
                       frm.Show();
         }
 
+        private void sendMail_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MailSend frm=new MailSend();
+            frm.Show();
+        }
+
         
 
         

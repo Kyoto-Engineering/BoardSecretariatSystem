@@ -30,11 +30,11 @@
         {
             this.buttonCreate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbUserName = new System.Windows.Forms.ComboBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmbUserName = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +63,23 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             // 
+            // cmbUserName
+            // 
+            this.cmbUserName.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbUserName.FormattingEnabled = true;
+            this.cmbUserName.Location = new System.Drawing.Point(285, 28);
+            this.cmbUserName.Name = "cmbUserName";
+            this.cmbUserName.Size = new System.Drawing.Size(311, 34);
+            this.cmbUserName.TabIndex = 45;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(282, 80);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(314, 32);
+            this.txtPassword.TabIndex = 44;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -85,14 +102,6 @@
             this.label2.TabIndex = 41;
             this.label2.Text = "User Name:";
             // 
-            // txtPassword
-            // 
-            this.txtPassword.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(282, 80);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(314, 32);
-            this.txtPassword.TabIndex = 44;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -103,15 +112,6 @@
             this.label3.Size = new System.Drawing.Size(151, 24);
             this.label3.TabIndex = 12;
             this.label3.Text = "Reset Password";
-            // 
-            // cmbUserName
-            // 
-            this.cmbUserName.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbUserName.FormattingEnabled = true;
-            this.cmbUserName.Location = new System.Drawing.Point(285, 28);
-            this.cmbUserName.Name = "cmbUserName";
-            this.cmbUserName.Size = new System.Drawing.Size(311, 34);
-            this.cmbUserName.TabIndex = 45;
             // 
             // Reset
             // 
@@ -126,6 +126,7 @@
             this.Name = "Reset";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reset";
+            this.Load += new System.EventHandler(this.Reset_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
