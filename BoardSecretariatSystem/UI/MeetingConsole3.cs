@@ -5,11 +5,14 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using BoardSecretariatSystem.DBGateway;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace BoardSecretariatSystem.UI
 {
@@ -21,7 +24,8 @@ namespace BoardSecretariatSystem.UI
         ConnectionString cs=new ConnectionString();
         private SqlDataAdapter ada;
         private DataTable dt;
-        public int participantId;
+        public int participantId, metingTypeId;
+        public Nullable<int> meetingNum, meetingNum1;
 
         public MeetingConsole3()
         {
@@ -80,11 +84,126 @@ namespace BoardSecretariatSystem.UI
             }
 
         }
+        //private void GetMeetingTitle()
+        //{
+        //    try
+        //    {
+        //        con = new SqlConnection(cs.DBConn);
+        //        con.Open();
+        //        string ctt = "SELECT IDENT_CURRENT ('Meeting')";
+        //        cmd = new SqlCommand(ctt);
+        //        cmd.Connection = con;
+        //        rdr = cmd.ExecuteReader();
+        //        if (rdr.Read())
+        //        {
+        //            aId = (rdr.GetDecimal(0));
+        //            if (aId == 1)
+        //            {
+        //                txtMeetingNumber.Text = "1";
+        //                txtMeetingTitle.Text = "1st Board Meeting";
+        //            }
+        //            else if (aId == 2)
+        //            {
+        //                txtMeetingNumber.Text = "2";
+        //                txtMeetingTitle.Text = "2nd Board Meeting";
+        //            }
+        //            else if (aId == 3)
+        //            {
+        //                txtMeetingNumber.Text = "3";
+        //                txtMeetingTitle.Text = "3rd Board Meeting";
+        //            }
+        //            else if (aId == 4)
+        //            {
+        //                txtMeetingNumber.Text = "4";
+        //                txtMeetingTitle.Text = "4rth Board Meeting";
+        //            }
+
+        //            else if (aId >= 5)
+        //            {
+        //                txtMeetingNumber.Text = aId.ToString();
+        //                txtMeetingTitle.Text = aId + "th Board Meeting";
+        //            }
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
+
+        private void GetMeetingNumber()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query = "Select MeetingTypeId From Meeting where MeetingTypeId=1";
+                cmd = new SqlCommand(query, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    metingTypeId = (rdr.GetInt32(0));
+                }
+
+                if (metingTypeId == 1)
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string qr2 = "SELECT MAX(Meeting.MeetingNo) FROM Meeting where Meeting.MeetingTypeId='" + metingTypeId + "'";
+                    cmd = new SqlCommand(qr2, con);
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        meetingNum = (rdr.GetInt32(0));
+                        if (meetingNum == 1)
+                        {
+                            meetingNum1 = meetingNum;
+                            txtMeetingNumber.Text = meetingNum1.ToString();
+                            txtMeetingTitle.Text = "1st Board Meeting";
+                        }
+                        else if (meetingNum == 2)
+                        {
+                            meetingNum1 = meetingNum;
+                            txtMeetingNumber.Text = meetingNum1.ToString();
+                            txtMeetingTitle.Text = "2nd Board Meeting";
+                        }
+
+                        else if (meetingNum == 3)
+                        {
+                            meetingNum1 = meetingNum;
+                            txtMeetingNumber.Text = meetingNum1.ToString();
+                           txtMeetingTitle.Text = "3rd Board Meeting";
+                        }
+
+                        else if (meetingNum >= 4)
+                        {
+                            meetingNum1 = meetingNum;
+                            txtMeetingNumber.Text = meetingNum1.ToString();
+                            txtMeetingTitle.Text = meetingNum + "th Board Meeting";
+                        }
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You need to Create or Schedule a new Meeting", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //meetingNum1 = meetingNum;
+                    //txtMeetingNumber.Text = meetingNum1.ToString();
+                    //txtMeetingTitle.Text = "1st Board Meeting";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void MeetingConsole3_Load(object sender, EventArgs e)
         {
             buttonInvitation.Visible = false;
             SetExistingMeetingMemberInList();
             GetAdditionalParticipant();
+            GetMeetingNumber();
         }
 
         private void buttonAdditionalParticipant_Click(object sender, EventArgs e)
@@ -154,29 +273,109 @@ namespace BoardSecretariatSystem.UI
             buttonInvitation.Visible = true;
         }
 
+
+
+        protected void SendEmail(string _subject, MailAddress _from, MailAddress _to, List<MailAddress> _cc, List<MailAddress> _bcc = null)
+             {
+        string Text = "";
+        SmtpClient mailClient = new SmtpClient("Mailhost");
+        MailMessage msgMail;
+                 Text = "Stuff";
+        msgMail = new MailMessage();
+        msgMail.From = _from;
+        msgMail.To.Add(_to);
+        foreach (MailAddress addr in _cc)
+        {
+            msgMail.CC.Add(addr);
+        }
+        if (_bcc != null)
+        {
+            foreach (MailAddress addr in _bcc)
+            {
+                msgMail.Bcc.Add(addr);
+            }
+        }
+        msgMail.Subject = _subject;
+        msgMail.Body = Text;
+        msgMail.IsBodyHtml = true;
+        mailClient.Send(msgMail);
+        msgMail.Dispose();
+    }
+
+
+        private void buttonInvitation_Click(object sender, RoutedEventArgs e)
+        {
+            MailAddress from = new MailAddress("it@keal.com.bd", "Kyoto");
+            MailAddress to = new MailAddress("siddiqueiceiu@gmail.com", "AshrafSiddik");
+            List<MailAddress> cc = new List<MailAddress>();
+            cc.Add(new MailAddress("siddiqueiciu@gmail.com", "Siddik"));
+            SendEmail("Want to test this damn thing", from, to, cc);
+
+
+
+            //try
+            //{
+            //    MailMessage mail = new MailMessage();
+            //    SmtpClient SmtpServer = new SmtpClient("siddique_iceiu@yahoo.com");
+
+            //    mail.From = new MailAddress("siddiqueiceiu@gmail.com");
+            //    mail.To.Add("siddique_iceiu@yahoo.com");
+            //    mail.Subject = "Test Mail";
+            //    mail.Body = "This is for testing SMTP mail from GMAIL";
+
+            //    SmtpServer.Port = 587;
+            //    SmtpServer.Credentials = new System.Net.NetworkCredential("siddique_iceiu@yahoo.com", "a123456789a");
+            //    SmtpServer.EnableSsl = true;
+
+            //    SmtpServer.Send(mail);
+            //    MessageBox.Show("mail Send");
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString());
+            //}
+        }
+
+        private void NewMailMessage()
+        {
+            //try
+            //{
+            //    MailMessage msg = new MailMessage();
+            //    msg.From = new MailAddress(fromMailTextBox.Text, "gethealthTips");
+            //    msg.To.Add(new MailAddress(toTextBox.Text));
+            //    msg.Subject = subjectTextBox.Text;
+            //    msg.Body = listBox1.Text;
+            //    msg.IsBodyHtml = true;
+            //    if ((labelpath.Text.Length) > 0)
+            //    {
+            //        if (System.IO.File.Exists(labelpath.Text))
+            //        {
+            //            msg.Attachments.Add(new Attachment(labelpath.Text));
+            //        }
+            //        SmtpClient smtp = new SmtpClient();
+            //        smtp.Host = "smtp.gmail.com";
+            //        smtp.Credentials = new NetworkCredential(fromMailTextBox.Text, passwordTextBox.Text);
+            //        smtp.EnableSsl = true;
+            //        smtp.Send(msg);
+            //        MessageBox.Show("Mail Sending Successfully");
+            //    }
+            //}
+
+            //catch
+            //{
+            //    MessageBox.Show("Please check your UserName & Password");
+            //}
+        }
         private void buttonInvitation_Click(object sender, EventArgs e)
         {
-            try
-            {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("siddique_iceiu@yahoo.com");
-
-                mail.From = new MailAddress("siddiqueiceiu@gmail.com");
-                mail.To.Add("siddique_iceiu@yahoo.com");
-                mail.Subject = "Test Mail";
-                mail.Body = "This is for testing SMTP mail from GMAIL";
-
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("siddique_iceiu@yahoo.com", "a123456789a");
-                SmtpServer.EnableSsl = true;
-
-                SmtpServer.Send(mail);
-                MessageBox.Show("mail Send");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            this.Hide();
+            MailSend frm=new MailSend();
+            frm.Show();
+            //MailAddress from = new MailAddress("it@keal.com.bd", "Kyoto");
+            //MailAddress to = new MailAddress("siddiqueiceiu@gmail.com", "AshrafSiddik");
+            //List<MailAddress> cc = new List<MailAddress>();
+            //cc.Add(new MailAddress("siddiqueiciu@gmail.com", "Siddik"));
+            //SendEmail("Want to test this damn thing", from, to, cc);
         }
     }
 }

@@ -36,11 +36,12 @@
             this.participantCreateButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.agendaAmendmentButton = new System.Windows.Forms.Button();
             this.reportButton = new System.Windows.Forms.Button();
             this.buttonMultiCombo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonLogOut = new System.Windows.Forms.Button();
-            this.agendaAmendmentButton = new System.Windows.Forms.Button();
+            this.sendMail = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -136,6 +137,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.sendMail);
             this.groupBox1.Controls.Add(this.agendaAmendmentButton);
             this.groupBox1.Controls.Add(this.reportButton);
             this.groupBox1.Controls.Add(this.buttonMultiCombo);
@@ -148,16 +150,29 @@
             this.groupBox1.Controls.Add(this.agendaCreateButton);
             this.groupBox1.Location = new System.Drawing.Point(14, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(183, 646);
+            this.groupBox1.Size = new System.Drawing.Size(183, 662);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
+            // 
+            // agendaAmendmentButton
+            // 
+            this.agendaAmendmentButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.agendaAmendmentButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.agendaAmendmentButton.ForeColor = System.Drawing.Color.Blue;
+            this.agendaAmendmentButton.Location = new System.Drawing.Point(21, 242);
+            this.agendaAmendmentButton.Name = "agendaAmendmentButton";
+            this.agendaAmendmentButton.Size = new System.Drawing.Size(144, 59);
+            this.agendaAmendmentButton.TabIndex = 9;
+            this.agendaAmendmentButton.Text = "Agenda Amendment";
+            this.agendaAmendmentButton.UseVisualStyleBackColor = false;
+            this.agendaAmendmentButton.Click += new System.EventHandler(this.agendaAmendmentButton_Click);
             // 
             // reportButton
             // 
             this.reportButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.reportButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportButton.ForeColor = System.Drawing.Color.Blue;
-            this.reportButton.Location = new System.Drawing.Point(21, 504);
+            this.reportButton.Location = new System.Drawing.Point(21, 493);
             this.reportButton.Name = "reportButton";
             this.reportButton.Size = new System.Drawing.Size(144, 53);
             this.reportButton.TabIndex = 8;
@@ -183,7 +198,7 @@
             this.button1.BackColor = System.Drawing.Color.Teal;
             this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Yellow;
-            this.button1.Location = new System.Drawing.Point(21, 567);
+            this.button1.Location = new System.Drawing.Point(21, 549);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(144, 57);
             this.button1.TabIndex = 6;
@@ -204,18 +219,15 @@
             this.buttonLogOut.UseVisualStyleBackColor = false;
             this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
             // 
-            // agendaAmendmentButton
+            // sendMail
             // 
-            this.agendaAmendmentButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.agendaAmendmentButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agendaAmendmentButton.ForeColor = System.Drawing.Color.Blue;
-            this.agendaAmendmentButton.Location = new System.Drawing.Point(21, 242);
-            this.agendaAmendmentButton.Name = "agendaAmendmentButton";
-            this.agendaAmendmentButton.Size = new System.Drawing.Size(144, 59);
-            this.agendaAmendmentButton.TabIndex = 9;
-            this.agendaAmendmentButton.Text = "Agenda Amendment";
-            this.agendaAmendmentButton.UseVisualStyleBackColor = false;
-            this.agendaAmendmentButton.Click += new System.EventHandler(this.agendaAmendmentButton_Click);
+            this.sendMail.Location = new System.Drawing.Point(21, 612);
+            this.sendMail.Name = "sendMail";
+            this.sendMail.Size = new System.Drawing.Size(144, 44);
+            this.sendMail.TabIndex = 10;
+            this.sendMail.Text = "Mail";
+            this.sendMail.UseVisualStyleBackColor = true;
+            this.sendMail.Click += new System.EventHandler(this.sendMail_Click);
             // 
             // MainUI
             // 
@@ -254,5 +266,6 @@
         private System.Windows.Forms.Button buttonMultiCombo;
         private System.Windows.Forms.Button reportButton;
         private System.Windows.Forms.Button agendaAmendmentButton;
+        private System.Windows.Forms.Button sendMail;
     }
 }

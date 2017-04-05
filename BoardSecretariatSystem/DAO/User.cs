@@ -53,6 +53,13 @@ namespace BoardSecretariatSystem.DAO
             set { email = value; }
             get { return email; }
         }
+
+        private int emailId;
+        public int EmailId
+        {
+            set { emailId = value; }
+            get { return emailId; }
+        }
         public string Designation
         {
             set { designation = value; }
