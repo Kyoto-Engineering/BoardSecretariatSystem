@@ -18,7 +18,8 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
-        private int meetingId, meetingNo,agendaId;
+        private int meetingId, meetingNo,agendaId=0;
+        private bool attendancetaken;
         public BoardMemoManagement()
         {
             InitializeComponent();
@@ -27,9 +28,9 @@ namespace BoardSecretariatSystem.UI
 
         private void BoardMemoManagement_FormClosed(object sender, FormClosedEventArgs e)
         {
-                            this.Hide();
-            MeetingManagementUI frm=new MeetingManagementUI();
-                             frm.Show();
+                            this.Dispose();
+            //MeetingManagementUI frm=new MeetingManagementUI();
+            //                 frm.Show();
         }
 
         private void MeetingInfo()
@@ -38,15 +39,19 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query = "SELECT MeetingId, MeetingNo FROM Meeting where Statuss='Open' and MeetingTypeId=1";
+                string query = "SELECT MeetingId, MeetingNo,AttendenceTaken FROM Meeting where Statuss='Open' and MeetingTypeId=1";
                 cmd = new SqlCommand(query, con);
                rdr= cmd.ExecuteReader();
                 if (rdr.Read())
                 {
                     meetingId = Convert.ToInt32(rdr["MeetingId"]);
                     meetingNo = Convert.ToInt32(rdr["MeetingNo"]);
+                    attendancetaken = rdr.GetBoolean(2);
                 }
-                con.Close();
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -56,19 +61,19 @@ namespace BoardSecretariatSystem.UI
         public static string Ordinal(int number)
         {
             string suffix = String.Empty;
-            if (number%100==23)
+            if (number == 11 || number == 12 || number == 13 || number % 100 == 11 || number % 100 == 12 || number % 100 == 13)
             {
-                suffix = "rd";
+                suffix = "th";
             }
-            else if (number == 1 || number == 21 || number == 31)
+            else if (number == 1 || number % 10 == 1)
             {
                 suffix = "st";
             }
-            else if (number == 2 || number == 22)
+            else if (number == 2 || number % 10 == 2)
             {
                 suffix = "nd";
             }
-            else if (number == 3 || number == 23)
+            else if (number == 3 || number % 10 == 3)
             {
                 suffix = "rd";
             }
@@ -81,6 +86,7 @@ namespace BoardSecretariatSystem.UI
 
         private void BoardMemoManagement_Load(object sender, EventArgs e)
         {
+           // Ordinal();
             MeetingInfo();
             LoadUI();
             LoadGrid();
@@ -100,25 +106,77 @@ namespace BoardSecretariatSystem.UI
             {
                 dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2]);
             }
+            if (con.State==ConnectionState.Open)
+            {
+                con.Close();
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+         
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+
+            if (agendaId==0)
+            {
+                MessageBox.Show("Please Select Agenda First", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (string.IsNullOrWhiteSpace(textWithSpellCheck1.Text))
+            {
+                MessageBox.Show("Please Write Something As Memo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else if (attendancetaken)
+            {
+                MessageBox.Show("Attendance is Taken For this meeting . You can not edit memo now", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+            }
+            else
+                try
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string query = "Update Agenda Set Memo=@memo  where AgendaId=@agid";
+                    cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@memo", textWithSpellCheck1.Text);
+                    cmd.Parameters.AddWithValue("@agid", agendaId);
+                    cmd.ExecuteNonQuery();
+                    foreach (DataGridViewRow dr in dataGridView1.Rows)
+                    {
+                        if (dr.Cells[0].Value.ToString() == agendaId.ToString())
+                        {
+                            dataGridView1.Rows.Remove(dr);
+                        }
+                    }
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                    MessageBox.Show("Memo Saved Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Clear();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+        }
+
+        private void Clear()
+        {
+            agendaId = 0;
+            txtAgendaTitle.Clear();
+            textWithSpellCheck1.Text=String.Empty;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow dr = dataGridView1.CurrentRow;
             agendaId = int.Parse(dr.Cells[0].Value.ToString());
             txtAgendaTitle.Text = dr.Cells[1].Value.ToString();
             textWithSpellCheck1.Text = dr.Cells[2].Value.ToString();
         }
-
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow dr in dataGridView1.Rows)
-            {
-                if (dr.Cells[0].Value.ToString()==agendaId.ToString())
-                {
-                    dataGridView1.Rows.Remove(dr);
-                }
-            }
-        }
+        
     }
 }

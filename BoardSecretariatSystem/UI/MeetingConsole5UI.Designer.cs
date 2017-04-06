@@ -33,16 +33,21 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.attendedParticipantDataGridView = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invitedParticipantDataGridView = new System.Windows.Forms.DataGridView();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.meetingNumOrIDTextBox = new System.Windows.Forms.TextBox();
             this.addToListButton = new System.Windows.Forms.Button();
             this.saveAllButton = new System.Windows.Forms.Button();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBoxWithGrid_WinformsHost1 = new BoardSecretariatSystem.ComboBoxWithGrid_WinformsHost();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.attendedParticipantDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invitedParticipantDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +80,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(662, 101);
+            this.label3.Location = new System.Drawing.Point(701, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(194, 26);
             this.label3.TabIndex = 2;
@@ -101,30 +106,13 @@
             this.attendedParticipantDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
-            this.Column3});
+            this.Column3,
+            this.Column8});
             this.attendedParticipantDataGridView.Location = new System.Drawing.Point(29, 367);
             this.attendedParticipantDataGridView.Name = "attendedParticipantDataGridView";
             this.attendedParticipantDataGridView.ReadOnly = true;
             this.attendedParticipantDataGridView.Size = new System.Drawing.Size(490, 150);
             this.attendedParticipantDataGridView.TabIndex = 4;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Sl";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Name";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Type";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
             // 
             // invitedParticipantDataGridView
             // 
@@ -135,36 +123,21 @@
             this.invitedParticipantDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column4,
             this.Column5,
-            this.Column6});
-            this.invitedParticipantDataGridView.Location = new System.Drawing.Point(549, 141);
+            this.Column6,
+            this.Column7});
+            this.invitedParticipantDataGridView.Location = new System.Drawing.Point(569, 141);
             this.invitedParticipantDataGridView.Name = "invitedParticipantDataGridView";
             this.invitedParticipantDataGridView.ReadOnly = true;
-            this.invitedParticipantDataGridView.Size = new System.Drawing.Size(404, 150);
+            this.invitedParticipantDataGridView.Size = new System.Drawing.Size(384, 150);
             this.invitedParticipantDataGridView.TabIndex = 5;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Sl";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Name";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Type";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
+            this.invitedParticipantDataGridView.SelectionChanged += new System.EventHandler(this.invitedParticipantDataGridView_SelectionChanged);
             // 
             // meetingNumOrIDTextBox
             // 
             this.meetingNumOrIDTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meetingNumOrIDTextBox.Location = new System.Drawing.Point(228, 142);
             this.meetingNumOrIDTextBox.Name = "meetingNumOrIDTextBox";
+            this.meetingNumOrIDTextBox.ReadOnly = true;
             this.meetingNumOrIDTextBox.Size = new System.Drawing.Size(193, 26);
             this.meetingNumOrIDTextBox.TabIndex = 12;
             // 
@@ -172,12 +145,13 @@
             // 
             this.addToListButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addToListButton.ForeColor = System.Drawing.Color.Magenta;
-            this.addToListButton.Location = new System.Drawing.Point(406, 298);
+            this.addToListButton.Location = new System.Drawing.Point(569, 297);
             this.addToListButton.Name = "addToListButton";
             this.addToListButton.Size = new System.Drawing.Size(113, 32);
             this.addToListButton.TabIndex = 13;
             this.addToListButton.Text = "Add To List";
             this.addToListButton.UseVisualStyleBackColor = true;
+            this.addToListButton.Click += new System.EventHandler(this.addToListButton_Click);
             // 
             // saveAllButton
             // 
@@ -189,12 +163,115 @@
             this.saveAllButton.TabIndex = 14;
             this.saveAllButton.Text = "Save All";
             this.saveAllButton.UseVisualStyleBackColor = true;
+            this.saveAllButton.Click += new System.EventHandler(this.saveAllButton_Click);
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column4.FillWeight = 40.60914F;
+            this.Column4.Frozen = true;
+            this.Column4.HeaderText = "Sl";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 35;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column5.FillWeight = 176.9728F;
+            this.Column5.Frozen = true;
+            this.Column5.HeaderText = "Name";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 152;
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column6.FillWeight = 176.9728F;
+            this.Column6.HeaderText = "Title";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 152;
+            // 
+            // Column7
+            // 
+            this.Column7.FillWeight = 5.445316F;
+            this.Column7.HeaderText = "Id";
+            this.Column7.MinimumWidth = 2;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.FillWeight = 30.45685F;
+            this.Column1.HeaderText = "Sl";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 134.7716F;
+            this.Column2.HeaderText = "Name";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 134.7716F;
+            this.Column3.HeaderText = "Title";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "MPId";
+            this.Column8.MinimumWidth = 2;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Visible = false;
+            // 
+            // comboBoxWithGrid_WinformsHost1
+            // 
+            this.comboBoxWithGrid_WinformsHost1.Employee2s = null;
+            this.comboBoxWithGrid_WinformsHost1.Location = new System.Drawing.Point(228, 185);
+            this.comboBoxWithGrid_WinformsHost1.Name = "comboBoxWithGrid_WinformsHost1";
+            this.comboBoxWithGrid_WinformsHost1.SelectedIndex = -1;
+            this.comboBoxWithGrid_WinformsHost1.SelectedItem = null;
+            this.comboBoxWithGrid_WinformsHost1.Size = new System.Drawing.Size(335, 45);
+            this.comboBoxWithGrid_WinformsHost1.TabIndex = 15;
+            this.comboBoxWithGrid_WinformsHost1.Text = "comboBoxWithGrid_WinformsHost1";
+            this.comboBoxWithGrid_WinformsHost1.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(29, 201);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(168, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Who Chaired The Meeting";
+            this.label5.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(407, 252);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Add As Chairman";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MeetingConsole5UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(965, 532);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.comboBoxWithGrid_WinformsHost1);
             this.Controls.Add(this.saveAllButton);
             this.Controls.Add(this.addToListButton);
             this.Controls.Add(this.meetingNumOrIDTextBox);
@@ -209,6 +286,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MeetingConsole5";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MeetingConsole5UI_FormClosed);
+            this.Load += new System.EventHandler(this.MeetingConsole5UI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.attendedParticipantDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invitedParticipantDataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -223,15 +301,20 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView attendedParticipantDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridView invitedParticipantDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.TextBox meetingNumOrIDTextBox;
         private System.Windows.Forms.Button addToListButton;
         private System.Windows.Forms.Button saveAllButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private ComboBoxWithGrid_WinformsHost comboBoxWithGrid_WinformsHost1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button1;
     }
 }

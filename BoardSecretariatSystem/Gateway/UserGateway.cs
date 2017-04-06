@@ -21,7 +21,7 @@ namespace BoardSecretariatSystem.Gateway
            cmd.Parameters.AddWithValue("@d2", aUser.UserType);
            cmd.Parameters.AddWithValue("@d3", aUser.Password);
            cmd.Parameters.AddWithValue("@d4", aUser.Name);
-           cmd.Parameters.AddWithValue("@d5", aUser.Email);
+           cmd.Parameters.AddWithValue("@d5", aUser.EmailId);
            cmd.Parameters.AddWithValue("@d6", aUser.Designation);
            cmd.Parameters.AddWithValue("@d7", aUser.Department);
            cmd.Parameters.AddWithValue("@d8", aUser.ContactNo);

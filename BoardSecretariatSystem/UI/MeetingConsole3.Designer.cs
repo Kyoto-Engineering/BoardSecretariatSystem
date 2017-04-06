@@ -36,18 +36,21 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtMeetingNumber = new System.Windows.Forms.TextBox();
-            this.addRecipientListButton = new System.Windows.Forms.Button();
             this.saveAllButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonAdditionalParticipant = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonComplete = new System.Windows.Forms.Button();
+            this.buttonInvitation = new System.Windows.Forms.Button();
+            this.txtMeetingTitle = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +72,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Magenta;
-            this.label2.Location = new System.Drawing.Point(27, 134);
+            this.label2.Location = new System.Drawing.Point(27, 126);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(240, 26);
             this.label2.TabIndex = 1;
@@ -112,28 +115,17 @@
             this.txtMeetingNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.txtMeetingNumber.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMeetingNumber.ForeColor = System.Drawing.Color.Blue;
-            this.txtMeetingNumber.Location = new System.Drawing.Point(279, 136);
+            this.txtMeetingNumber.Location = new System.Drawing.Point(279, 128);
             this.txtMeetingNumber.Name = "txtMeetingNumber";
-            this.txtMeetingNumber.Size = new System.Drawing.Size(283, 29);
+            this.txtMeetingNumber.Size = new System.Drawing.Size(316, 29);
             this.txtMeetingNumber.TabIndex = 8;
-            // 
-            // addRecipientListButton
-            // 
-            this.addRecipientListButton.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addRecipientListButton.ForeColor = System.Drawing.Color.Magenta;
-            this.addRecipientListButton.Location = new System.Drawing.Point(365, 383);
-            this.addRecipientListButton.Name = "addRecipientListButton";
-            this.addRecipientListButton.Size = new System.Drawing.Size(210, 34);
-            this.addRecipientListButton.TabIndex = 13;
-            this.addRecipientListButton.Text = "Add to Recipient List\r\n";
-            this.addRecipientListButton.UseVisualStyleBackColor = true;
             // 
             // saveAllButton
             // 
             this.saveAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.saveAllButton.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveAllButton.ForeColor = System.Drawing.Color.Magenta;
-            this.saveAllButton.Location = new System.Drawing.Point(818, 523);
+            this.saveAllButton.Location = new System.Drawing.Point(894, 527);
             this.saveAllButton.Name = "saveAllButton";
             this.saveAllButton.Size = new System.Drawing.Size(162, 93);
             this.saveAllButton.TabIndex = 14;
@@ -158,7 +150,7 @@
             this.Column5,
             this.Column1});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Blue;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
@@ -166,11 +158,32 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.dataGridView1.Location = new System.Drawing.Point(679, 178);
+            this.dataGridView1.Location = new System.Drawing.Point(644, 178);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(496, 267);
+            this.dataGridView1.Size = new System.Drawing.Size(533, 302);
             this.dataGridView1.TabIndex = 15;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Id";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 5;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Name";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 290;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Type/Title";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 160;
             // 
             // listView1
             // 
@@ -207,9 +220,9 @@
             this.buttonAdditionalParticipant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.buttonAdditionalParticipant.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAdditionalParticipant.ForeColor = System.Drawing.Color.Fuchsia;
-            this.buttonAdditionalParticipant.Location = new System.Drawing.Point(279, 178);
+            this.buttonAdditionalParticipant.Location = new System.Drawing.Point(279, 201);
             this.buttonAdditionalParticipant.Name = "buttonAdditionalParticipant";
-            this.buttonAdditionalParticipant.Size = new System.Drawing.Size(283, 41);
+            this.buttonAdditionalParticipant.Size = new System.Drawing.Size(316, 41);
             this.buttonAdditionalParticipant.TabIndex = 17;
             this.buttonAdditionalParticipant.Text = "Additional Participant";
             this.buttonAdditionalParticipant.UseVisualStyleBackColor = false;
@@ -220,34 +233,56 @@
             this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.addButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addButton.ForeColor = System.Drawing.Color.Blue;
-            this.addButton.Location = new System.Drawing.Point(355, 232);
+            this.addButton.Location = new System.Drawing.Point(279, 249);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(125, 45);
+            this.addButton.Size = new System.Drawing.Size(316, 45);
             this.addButton.TabIndex = 18;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = false;
             this.addButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Column4
+            // buttonComplete
             // 
-            this.Column4.HeaderText = "Id";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 5;
+            this.buttonComplete.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonComplete.Location = new System.Drawing.Point(279, 304);
+            this.buttonComplete.Name = "buttonComplete";
+            this.buttonComplete.Size = new System.Drawing.Size(316, 41);
+            this.buttonComplete.TabIndex = 19;
+            this.buttonComplete.Text = "Complete";
+            this.buttonComplete.UseVisualStyleBackColor = true;
+            this.buttonComplete.Click += new System.EventHandler(this.buttonComplete_Click);
             // 
-            // Column5
+            // buttonInvitation
             // 
-            this.Column5.HeaderText = "Name";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 290;
+            this.buttonInvitation.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonInvitation.Location = new System.Drawing.Point(279, 351);
+            this.buttonInvitation.Name = "buttonInvitation";
+            this.buttonInvitation.Size = new System.Drawing.Size(316, 41);
+            this.buttonInvitation.TabIndex = 20;
+            this.buttonInvitation.Text = "MailSend";
+            this.buttonInvitation.UseVisualStyleBackColor = true;
+            this.buttonInvitation.Click += new System.EventHandler(this.buttonInvitation_Click);
             // 
-            // Column1
+            // txtMeetingTitle
             // 
-            this.Column1.HeaderText = "Type/Title";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 160;
+            this.txtMeetingTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.txtMeetingTitle.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMeetingTitle.ForeColor = System.Drawing.Color.Blue;
+            this.txtMeetingTitle.Location = new System.Drawing.Point(279, 166);
+            this.txtMeetingTitle.Name = "txtMeetingTitle";
+            this.txtMeetingTitle.Size = new System.Drawing.Size(316, 29);
+            this.txtMeetingTitle.TabIndex = 22;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Magenta;
+            this.label5.Location = new System.Drawing.Point(109, 168);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(151, 26);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Meeting Title";
             // 
             // MeetingConsole3
             // 
@@ -255,12 +290,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Olive;
             this.ClientSize = new System.Drawing.Size(1232, 674);
+            this.Controls.Add(this.txtMeetingTitle);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.buttonInvitation);
+            this.Controls.Add(this.buttonComplete);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.buttonAdditionalParticipant);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.saveAllButton);
-            this.Controls.Add(this.addRecipientListButton);
             this.Controls.Add(this.txtMeetingNumber);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label3);
@@ -287,7 +325,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtMeetingNumber;
-        private System.Windows.Forms.Button addRecipientListButton;
         private System.Windows.Forms.Button saveAllButton;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ListView listView1;
@@ -299,5 +336,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.Button buttonComplete;
+        private System.Windows.Forms.Button buttonInvitation;
+        private System.Windows.Forms.TextBox txtMeetingTitle;
+        private System.Windows.Forms.Label label5;
     }
 }

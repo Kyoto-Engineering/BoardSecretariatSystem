@@ -27,58 +27,18 @@ namespace BoardSecretariatSystem
         private ConnectionString cs = new ConnectionString();
         private DataTable dt;
         public string userId, agendaTypeId, labelk, labelg;
-        public int companyId, addHId;
+        public int companyId, addHId, metingTypeId;
         public int boardId,currentMeetingId,  tAgendaId;
         public string v,serialNo,agendaType;
-        public decimal aId,aId1;
+       // public decimal aId,aId1;
+        public Nullable<int> meetingNum, meetingNum1;
 
         public MeetingEntry()
         {
             
             InitializeComponent();
         }
-        //public void MeetingVanueLoad()
-        //{
-        //    try
-        //    {
-        //        con = new SqlConnection(cs.DBConn);
-        //        con.Open();
-        //        string query = "SELECT CompanyAddresses.AddressHeader FROM CompanyAddresses order by  CompanyAddresses.ADId desc";
-        //        cmd = new SqlCommand(query, con);
-        //        rdr = cmd.ExecuteReader();
-        //        while (rdr.Read())
-        //        {
-        //            cmbVenue.Items.Add(rdr[0]);
-        //        }
-        //        con.Close();
-        //        cmbVenue.Items.Add("Not In The List");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
-        //public void BoardNameLoad()
-        //{
-        //    try
-        //    {
-        //        con = new SqlConnection(cs.DBConn);
-        //        con.Open();
-        //        string query = "SELECT BoardName FROM Board ";
-        //        cmd = new SqlCommand(query, con);
-        //        rdr = cmd.ExecuteReader();
-        //        if (rdr.Read())
-        //        {
-        //            txtBoardName.Text = (rdr.GetString(0));
-        //        }
-        //        con.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
+               
         private void GetAgendaDetails()
         {
             try
@@ -99,74 +59,54 @@ namespace BoardSecretariatSystem
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        //public void AgendaHeaderLoad()
+        
+        //private void GetMeetingTitle()
         //{
         //    try
         //    {
         //        con = new SqlConnection(cs.DBConn);
         //        con.Open();
-        //        string query = "SELECT  AHeaderName  FROM  AddressHeader";
-        //        cmd = new SqlCommand(query, con);
+        //        string ctt = "SELECT IDENT_CURRENT ('Meeting')";                
+        //        cmd = new SqlCommand(ctt);
+        //        cmd.Connection = con;
         //        rdr = cmd.ExecuteReader();
-        //        while (rdr.Read())
+        //        if (rdr.Read())
         //        {
-        //            cmbVenue.Items.Add(rdr.GetValue(0).ToString());
-        //        }
-        //        con.Close();
+        //            aId = (rdr.GetDecimal(0));
+        //            if(aId == 1)
+        //            {
+        //                txtMeetingNumber.Text = "1";
+        //                txtMeetingTitle.Text ="1st Board Meeting";
+        //            }
+        //            else if (aId == 2)
+        //            {
+        //                txtMeetingNumber.Text = "2";
+        //                txtMeetingTitle.Text = "2nd Board Meeting";
+        //            }
+        //            else if (aId == 3)
+        //            {
+        //                txtMeetingNumber.Text = "3";
+        //                txtMeetingTitle.Text = "3rd Board Meeting";
+        //            }
+        //            else if (aId == 4)
+        //            {
+        //                txtMeetingNumber.Text = "4";
+        //                txtMeetingTitle.Text = "4rth Board Meeting";
+        //            }
+
+        //            else if (aId >= 5)
+        //            {
+        //                txtMeetingNumber.Text = aId.ToString();
+        //                txtMeetingTitle.Text = aId + "th Board Meeting";
+        //            }
+                                     
+        //        }                
         //    }
         //    catch (Exception ex)
         //    {
-        //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         //    }
         //}
-
-        private void GetMeetingTitle()
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctt = "SELECT IDENT_CURRENT ('Meeting')";                
-                cmd = new SqlCommand(ctt);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    aId = (rdr.GetDecimal(0));
-                    if(aId == 1)
-                    {
-                        txtMeetingNumber.Text = "1";
-                        txtMeetingTitle.Text ="1st Board Meeting";
-                    }
-                    else if (aId == 2)
-                    {
-                        txtMeetingNumber.Text = "2";
-                        txtMeetingTitle.Text = "2nd Board Meeting";
-                    }
-                    else if (aId == 3)
-                    {
-                        txtMeetingNumber.Text = "3";
-                        txtMeetingTitle.Text = "3rd Board Meeting";
-                    }
-                    else if (aId == 4)
-                    {
-                        txtMeetingNumber.Text = "4";
-                        txtMeetingTitle.Text = "4rth Board Meeting";
-                    }
-
-                    else if (aId >= 5)
-                    {
-                        txtMeetingNumber.Text = aId.ToString();
-                        txtMeetingTitle.Text = aId + "th Board Meeting";
-                    }
-                                     
-                }                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         private void SaveCompanyAddress(int addHeaderId)
         {
             int aHeaderId = addHeaderId;
@@ -215,7 +155,66 @@ namespace BoardSecretariatSystem
             //}
         }
 
+        private void GetMeetingTitle()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query = "Select MeetingTypeId From Meeting where MeetingTypeId=1";
+                cmd = new SqlCommand(query, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    metingTypeId = (rdr.GetInt32(0));
+                }
 
+                if (metingTypeId == 1)
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();                   
+                    string qr2 = "SELECT MAX(Meeting.MeetingNo) FROM Meeting where Meeting.MeetingTypeId='" + metingTypeId + "'";
+                    cmd = new SqlCommand(qr2, con);
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        meetingNum = (rdr.GetInt32(0));
+                        if (meetingNum == 1)
+                        {
+                            meetingNum1 = meetingNum;
+                            txtMeetingTitle.Text = "2nd Board Meeting";
+                        }
+                        else if (meetingNum == 2)
+                        {
+                            meetingNum1 = meetingNum;
+                            txtMeetingTitle.Text = "2nd Board Meeting";
+                        }
+
+                        else if (meetingNum == 3)
+                        {
+                            meetingNum1 = meetingNum;
+                            txtMeetingTitle.Text = "3rd Board Meeting";
+                        }
+
+                        else if (meetingNum >= 4)
+                        {
+                            meetingNum1 = meetingNum;
+                            txtMeetingTitle.Text = meetingNum + "th Board Meeting";
+                        }
+
+                    }
+                }
+                else
+                {
+                    meetingNum1 = meetingNum;
+                    txtMeetingTitle.Text = "1st Board Meeting";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void MeetingEntry_Load(object sender, EventArgs e)
         {
             userId = frmLogin.uId.ToString();
@@ -322,12 +321,37 @@ namespace BoardSecretariatSystem
         }      
         private void addButton_Click(object sender, EventArgs e)
         {
-             if (dataGridView1.SelectedRows.Count > 0)
+            try
             {
-                try
-                {
+                   
+              if (dataGridView1.SelectedRows.Count > 0)
+                 {                                                  
                     DataGridViewRow dr = dataGridView1.SelectedRows[0];
                     tAgendaId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+                   
+                    if (listView1.Items.Count>0)
+                    {
+                       int x = listView1.Items.Count - 1;
+                       for (int i = 0; i <= x; i++)
+                        {                          
+                               if (tAgendaId == Convert.ToInt32(listView1.Items[i].SubItems[0].Text))
+                               {
+                                   MessageBox.Show("You Can Not Add Same Item More than one times", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                   return;                                                                
+                               }
+                              
+                          
+                        }
+                       ListViewItem lst1 = new ListViewItem();
+                       lst1.Text = dr.Cells[0].Value.ToString();
+                       lst1.SubItems.Add(dr.Cells[1].Value.ToString());
+                       lst1.SubItems.Add(dr.Cells[2].Value.ToString());
+                       lst1.SubItems.Add(dr.Cells[3].Value.ToString());
+                       lst1.SubItems.Add(dr.Cells[4].Value.ToString());
+                       listView1.Items.Add(lst1);
+                       SaveSelectedAgenda();
+                     }
+
                     if (listView1.Items.Count == 0)
                     {
                         ListViewItem lst = new ListViewItem();
@@ -335,38 +359,22 @@ namespace BoardSecretariatSystem
                         lst.SubItems.Add(dr.Cells[1].Value.ToString());
                         lst.SubItems.Add(dr.Cells[2].Value.ToString());
                         lst.SubItems.Add(dr.Cells[3].Value.ToString());
-                        lst.SubItems.Add(dr.Cells[4].Value.ToString());                                              
+                        lst.SubItems.Add(dr.Cells[4].Value.ToString());
                         listView1.Items.Add(lst);
-                        SaveSelectedAgenda();   
-                    }                    
-                    else if (listView1.FindItemWithText(tAgendaId.ToString()) != null)
-                    {
-                        ListViewItem lst1 = new ListViewItem();
-                        lst1.Text = dr.Cells[0].Value.ToString();
-                        lst1.SubItems.Add(dr.Cells[1].Value.ToString());
-                        lst1.SubItems.Add(dr.Cells[2].Value.ToString());
-                        lst1.SubItems.Add(dr.Cells[3].Value.ToString());
-                        lst1.SubItems.Add(dr.Cells[4].Value.ToString());                        
-                        listView1.Items.Add(lst1);
                         SaveSelectedAgenda();
-                    }
-                    else
-                    {
-                        MessageBox.Show("You Can Not Add Same Item More than one times", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-
-                    }
-                }
-                catch (Exception ex)
+                    }              
+                  }
+               else
                 {
-                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
                 MessageBox.Show("There is not any row selected, please select row and Click Add Button!");
            
-            }                           
+               } 
+               
+            }
+           catch (Exception ex)
+            {
+             MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)

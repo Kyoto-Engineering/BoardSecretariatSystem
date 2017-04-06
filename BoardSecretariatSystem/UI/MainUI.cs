@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BoardSecretariatSystem.DBGateway;
 using BoardSecretariatSystem.LoginUI;
 using BoardSecretariatSystem.UI;
 
@@ -14,6 +16,12 @@ namespace BoardSecretariatSystem
 {
     public partial class MainUI : Form
     {
+        private SqlConnection con;
+        private SqlCommand cmd;
+        private SqlDataReader rdr;
+        ConnectionString cs=new ConnectionString();
+        public int availableIssuedShare;
+
         public MainUI()
         {
             InitializeComponent();
@@ -51,12 +59,47 @@ namespace BoardSecretariatSystem
             AgendaEntryUI agendaEntry = new AgendaEntryUI();
             agendaEntry.Show();
         }
+        private void CheckAvailableIssuedShare()
+        {
+
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string qry2 = "SELECT Company.AvailableIssuedShare from  Company";
+                cmd = new SqlCommand(qry2, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    availableIssuedShare = (rdr.GetInt32(0));
+                }
+                con.Close();
+                if (availableIssuedShare == 0)
+                {
+                    MessageBox.Show("There is no Available Issued Share", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                              this.Hide();
+                    ParticipantCreation frm = new ParticipantCreation();
+                               frm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
 
         private void participantCreateButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            ParticipantCreation participantEntry = new ParticipantCreation();
-            participantEntry.Show();
+            CheckAvailableIssuedShare();
+            //this.Hide();
+            //ParticipantCreation participantEntry = new ParticipantCreation();
+            //participantEntry.Show();
         }
         private void meetingExecutionButton_Click(object sender, EventArgs e)
         {
@@ -107,6 +150,13 @@ namespace BoardSecretariatSystem
                       this.Hide();
             AgendaConsole2 frm=new AgendaConsole2();
                       frm.Show();
+        }
+
+        private void sendMail_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MailSend frm=new MailSend();
+            frm.Show();
         }
 
         
