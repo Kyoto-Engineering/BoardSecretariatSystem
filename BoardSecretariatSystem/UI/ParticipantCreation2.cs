@@ -465,7 +465,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctt = "select HostName from MailHost";
+                string ctt = "select GenderName from Gender order by  Gender.GenderId desc";
                 cmd = new SqlCommand(ctt);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -777,8 +777,7 @@ namespace BoardSecretariatSystem.UI
                 cmbDistrict.Focus();
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select RTRIM(Districts.District) from Districts  Where Districts.Division_ID = '" +
-                            divisionId + "' order by Districts.Division_ID desc";
+                string ct = "select RTRIM(Districts.District) from Districts  Where Districts.Division_ID = '" + divisionId + "' order by Districts.Division_ID desc";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -1229,29 +1228,14 @@ namespace BoardSecretariatSystem.UI
         {
             if (cmbGender.Text == "Not In The List")
             {
-                string input = Microsoft.VisualBasic.Interaction.InputBox("Please Input Gender Here", "Input Here", "",
-                    -1, -1);
+                string input = Microsoft.VisualBasic.Interaction.InputBox("Please Input Gender Here", "Input Here", "", -1, -1);
                 if (string.IsNullOrWhiteSpace(input))
                 {
                     cmbGender.SelectedIndex = -1;
                 }
 
                 else
-                {
-                    if (!string.IsNullOrWhiteSpace(input))
-                    {
-                        string emailId = input.Trim();
-                        Regex mRegxExpression;
-                        mRegxExpression =
-                            new Regex(
-                                @"^([a-zA-Z0-9_\-])([a-zA-Z0-9_\-\.]*)@(\[((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}|((([a-zA-Z0-9\-]+)\.)+))([a-zA-Z]{2,}|(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\])$");
-                        if (!mRegxExpression.IsMatch(emailId))
-                        {
-                            MessageBox.Show("Please type a valid gender.", "MojoCRM", MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                            return;
-                        }
-                    }
+                {                                      
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     string ct2 = "select HostName from MailHost where HostName='" + input + "'";
@@ -1259,8 +1243,7 @@ namespace BoardSecretariatSystem.UI
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
                     {
-                        MessageBox.Show("This Gender  Already Exists,Please Select From List", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("This Gender  Already Exists,Please Select From List", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
                         con.Close();
                         cmbGender.SelectedIndex = -1;
                     }
@@ -1270,12 +1253,9 @@ namespace BoardSecretariatSystem.UI
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into  MailHost(HostName) values (@d1)" +
-                                            "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into  MailHost(HostName) values (@d1)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
-                            cmd.Parameters.AddWithValue("@d1", input);
-                            //cmd.Parameters.AddWithValue("@d2", nUserId);
-                            //cmd.Parameters.AddWithValue("@d3", DateTime.UtcNow.ToLocalTime());
+                            cmd.Parameters.AddWithValue("@d1", input);                            
                             cmd.ExecuteNonQuery();
                             con.Close();
                             cmbGender.Items.Clear();

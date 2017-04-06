@@ -206,7 +206,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctt = "select HostName from MailHost";
+                string ctt = "select GenderName from Gender order by GenderId desc";
                 cmd = new SqlCommand(ctt);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();

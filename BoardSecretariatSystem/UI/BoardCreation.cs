@@ -18,8 +18,8 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         ConnectionString cs=new ConnectionString();
-        public string companyId, userId;
-        public int currentBoardId;
+        public string userId;
+        public int currentBoardId, companyId;
         public BoardCreation()
         {
             InitializeComponent();
@@ -80,10 +80,30 @@ namespace BoardSecretariatSystem.UI
                 }
             }
         }
-
+        public void CompanyNameLoad()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query = "SELECT CompanyName FROM Company  ";
+                cmd = new SqlCommand(query, con);
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                   
+                     cmbCompanyName.Items.Add(rdr.GetValue(0).ToString());
+                }              
+                con.Close();                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void BoardCreation_Load(object sender, EventArgs e)
         {
-
+            CompanyNameLoad();
         }
 
         private void BoardCreation_FormClosed(object sender, FormClosedEventArgs e)
@@ -91,6 +111,28 @@ namespace BoardSecretariatSystem.UI
                 this.Hide();
             MainUI frm=new MainUI();
                 frm.Show();
+        }
+
+        private void cmbCompanyName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query2 = "SELECT CompanyId FROM Company where  Company.CompanyName='" + cmbCompanyName.Text + "' ";
+                cmd = new SqlCommand(query2, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    companyId = (rdr.GetInt32(0));
+                }
+
+                con.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
