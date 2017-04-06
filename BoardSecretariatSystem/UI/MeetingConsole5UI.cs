@@ -162,9 +162,13 @@ namespace BoardSecretariatSystem.UI
 
         private void addToListButton_Click(object sender, EventArgs e)
         {
-            UpdateAttendanceTaken();
-            InsertToDatabase();
+            if (ValidateAddtoButton())
+            {
+                UpdateAttendanceTaken();
+                InsertToDatabase();
 
+            }
+            
         }
 
         private void InsertToDatabase()
@@ -332,6 +336,22 @@ namespace BoardSecretariatSystem.UI
                     MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             
+        }
+
+        private bool ValidateAddtoButton()
+        {
+            bool validate = true;
+            if (!invitationSend)
+            {
+                MessageBox.Show(@"Invitation Not Send Yet."+"\n"+"Before Giving Attendance You Must Send Invitation ", "Sorry");
+                validate = false;
+            }
+            else if (attendancecompleted)
+            {
+                MessageBox.Show(@"Already attendace giving is  completed."+"\n"+ "You Cannot give attendance now.","Sorry");
+                validate = false;
+            }
+            return validate;
         }
     }
 }
