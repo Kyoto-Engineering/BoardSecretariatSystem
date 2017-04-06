@@ -46,15 +46,9 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    employees.Add(new Employee2() { Name = "Name" + i, Designation = "Address" + i, Department = "TelephoneNumber" + i });
-
-            //}
-
+      
             this.comboBoxWithGrid_WinformsHost1.Employee2s = employees;
 
-            //this.comboBoxWithGrid_WinformsHost1.SelectedIndex = 6;
         }
 
         private void MeetingConsole4_FormClosed(object sender, FormClosedEventArgs e)
@@ -158,7 +152,7 @@ namespace BoardSecretariatSystem.UI
                 Notice();
                 DeleteXtraParticipants();
                 UpdateMeeting();
-                
+                MessageBox.Show("Posteponed Succesfully");
             }
         }
 

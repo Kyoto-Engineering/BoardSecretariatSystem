@@ -99,7 +99,10 @@ namespace BoardSecretariatSystem.UI
 
         private void GetBody()
         {
-            txtBody.Text = "Notice is hereby given to you that the '"+meetingName+"' of the Company will be held on '"+meetingDate+"' at '"+meetingTime+"' am in Register office, House-64, Road-03, Niketon, Gulshan, Gulshan, Dhaka: 1212 Notice is hereby given to you that the 2nd Board Meeting of the Company will be held on 1st February, 2016 at 10:30 am in Register office, House-64, Road-03, Niketon, Gulshan, Gulshan, Dhaka: 1212";
+            //txtBody.Text = "Notice is hereby given to you that the '" + meetingName +
+            //               "' of the Company will be held on '" + meetingDate + "' at '" + meetingTime +
+            //               "' am in Register office, House-64, Road-03, Niketon, Gulshan, Gulshan, Dhaka: 1212";
+            txtBody.Text = "Notice is hereby given to you that the 2nd Board Meeting of the Company will be held on 1st February, 2016 at 10:30 am in Register office, House-64, Road-03, Niketon, Gulshan, Gulshan, Dhaka: 1212";
         }
         private void GetMeetingNumber()
         {
@@ -119,12 +122,13 @@ namespace BoardSecretariatSystem.UI
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string qr2 = "SELECT MAX(Meeting.MeetingNo) FROM Meeting where Meeting.MeetingTypeId='" + metingTypeId + "'";
+                    string qr2 = "SELECT MAX(Meeting.MeetingNo) Meeting.MeetingDate FROM Meeting where Meeting.MeetingTypeId='" + metingTypeId + "'";
                     cmd = new SqlCommand(qr2, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read())
                     {
                         meetingNum = (rdr.GetInt32(0));
+                        meetingDate = (rdr.GetString(1));
                         if (meetingNum == 1)
                         {
                             meetingNum1 = meetingNum;

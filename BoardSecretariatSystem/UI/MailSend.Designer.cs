@@ -90,7 +90,7 @@
             this.txtSubject.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSubject.Location = new System.Drawing.Point(208, 116);
             this.txtSubject.Name = "txtSubject";
-            this.txtSubject.Size = new System.Drawing.Size(488, 29);
+            this.txtSubject.Size = new System.Drawing.Size(330, 29);
             this.txtSubject.TabIndex = 5;
             // 
             // label4
@@ -115,19 +115,20 @@
             // 
             this.txtBody.Location = new System.Drawing.Point(204, 163);
             this.txtBody.Name = "txtBody";
-            this.txtBody.Size = new System.Drawing.Size(542, 137);
+            this.txtBody.Size = new System.Drawing.Size(732, 137);
             this.txtBody.TabIndex = 9;
             this.txtBody.Text = "";
             // 
             // sendButton
             // 
-            this.sendButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sendButton.Location = new System.Drawing.Point(640, 479);
+            this.sendButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.sendButton.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sendButton.Location = new System.Drawing.Point(728, 410);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(106, 53);
+            this.sendButton.Size = new System.Drawing.Size(108, 52);
             this.sendButton.TabIndex = 10;
             this.sendButton.Text = "Send";
-            this.sendButton.UseVisualStyleBackColor = true;
+            this.sendButton.UseVisualStyleBackColor = false;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
             // 
             // label7
@@ -176,7 +177,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(758, 544);
+            this.ClientSize = new System.Drawing.Size(948, 544);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label7);
