@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,24 +31,29 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                cmd = new SqlCommand(" SELECT        Participant.ParticipantName, AttendenceMeeting.Title, AttendenceMeeting.AttendenceMeetingId FROM      AttendenceMeeting inner join      MeetingParticipant on AttendenceMeeting.MPId=MeetingParticipant.MPId INNER JOIN Participant ON MeetingParticipant.ParticipantId = Participant.ParticipantId INNER JOIN Meeting ON MeetingParticipant.MeetingId = Meeting.MeetingId where Meeting.Statuss='Open'" , con);
+                cmd =
+                    new SqlCommand(
+                        " SELECT        Participant.ParticipantName, AttendenceMeeting.Title, AttendenceMeeting.AttendenceMeetingId FROM      AttendenceMeeting inner join      MeetingParticipant on AttendenceMeeting.MPId=MeetingParticipant.MPId INNER JOIN Participant ON MeetingParticipant.ParticipantId = Participant.ParticipantId INNER JOIN Meeting ON MeetingParticipant.MeetingId = Meeting.MeetingId where Meeting.Statuss='Open'",
+                        con);
                 rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
 
                 while (rdr.Read())
                 {
                     employees.Add(new Employee2() { Name = rdr[0].ToString(), Title = rdr[1].ToString(), Id = rdr[2].ToString() });
-
                 }
                 con.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
             this.comboBoxWithGrid_WinformsHost1.Employee2s = employees;
+            
         }
+
+     
 
         private void MeetingConsole5UI_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -81,7 +87,7 @@ namespace BoardSecretariatSystem.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -112,7 +118,7 @@ namespace BoardSecretariatSystem.UI
         }
         private void LoadUI()
         {
-            meetingNumOrIDTextBox.Text = Ordinal(meetingNo) + " Board Meeting";
+            meetingNumOrIDTextBox.Text = Ordinal(meetingNo) + @" Board Meeting";
             try
             {
                 con = new SqlConnection(cs.DBConn);
@@ -130,7 +136,7 @@ namespace BoardSecretariatSystem.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
              try
             {
@@ -149,7 +155,7 @@ namespace BoardSecretariatSystem.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -190,7 +196,6 @@ namespace BoardSecretariatSystem.UI
                 cmd.Parameters.AddWithValue("@meid", meetingId);
                 cmd.Parameters.AddWithValue("@t", dr.Cells[2].Value.ToString());
                 int attendancMeetingId = (int)cmd.ExecuteScalar();
-                cmd.ExecuteNonQuery();
                 if (con.State == ConnectionState.Open)
                 {
                     con.Close();
@@ -200,7 +205,7 @@ namespace BoardSecretariatSystem.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void invitedParticipantDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -213,33 +218,59 @@ namespace BoardSecretariatSystem.UI
 
         private void saveAllButton_Click(object sender, EventArgs e)
         {
-
-            bool isChairmanExist = false;
-            foreach (DataGridViewRow dr in attendedParticipantDataGridView.Rows)
+            if (ValdateAddAllButton())
             {
-                if (dr.Cells[2].Value.ToString()=="Chairman")
+                bool isChairmanExist = false;
+                foreach (DataGridViewRow dr in attendedParticipantDataGridView.Rows)
                 {
-                    isChairmanExist = true;
-                    break;
+                    if (dr.Cells[2].Value.ToString() == "Chairman")
+                    {
+                        isChairmanExist = true;
+                        break;
+                    }
+                }
+                if (!isChairmanExist)
+                {
+                    LoadCombo();
+                    comboBoxWithGrid_WinformsHost1.Visible = true;
+                    label5.Visible = true;
+                    button1.Visible = true;
+                    MessageBox.Show(@"Select Who chaired The meeting", @"Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    UpdateAttendanceCopmpleted();
                 }
             }
-            if (!isChairmanExist)
-            {
-                LoadCombo();
-                comboBoxWithGrid_WinformsHost1.Visible = true;
-                label5.Visible = true;
-                button1.Visible = true;
-                MessageBox.Show("Select Who chaired The meeting");
-            }
-            else
-            {
-                UpdateAttendanceCopmpleted();
-            }
+            
         }
 
         private void LoadCombo()
         {
-           
+           //GetValue();
+            List<Employee2> employees2 = new List<Employee2>();
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                cmd =
+                    new SqlCommand(
+                        " SELECT        Participant.ParticipantName, AttendenceMeeting.Title, AttendenceMeeting.AttendenceMeetingId FROM      AttendenceMeeting inner join      MeetingParticipant on AttendenceMeeting.MPId=MeetingParticipant.MPId INNER JOIN Participant ON MeetingParticipant.ParticipantId = Participant.ParticipantId INNER JOIN Meeting ON MeetingParticipant.MeetingId = Meeting.MeetingId where Meeting.Statuss='Open'",
+                        con);
+                rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (rdr.Read())
+                {
+                    employees2.Add(new Employee2() { Name = rdr[0].ToString(), Title = rdr[1].ToString(), Id = rdr[2].ToString() });
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            this.comboBoxWithGrid_WinformsHost1.Employee2s.Clear();
+            this.comboBoxWithGrid_WinformsHost1.Employee2s.AddRange(employees2);
           
         }
         private void UpdateAttendanceCopmpleted()
@@ -258,11 +289,11 @@ namespace BoardSecretariatSystem.UI
                     {
                         con.Close();
                     }
-                    MessageBox.Show("All Attendance Given Succesfully","Succes",MessageBoxButtons.OK);
+                    MessageBox.Show(@"All Attendance Given Successfully",@"Success",MessageBoxButtons.OK);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         private void UpdateAttendanceTaken()
@@ -287,7 +318,7 @@ namespace BoardSecretariatSystem.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -304,7 +335,7 @@ namespace BoardSecretariatSystem.UI
             }
             else
             {
-                MessageBox.Show("Select Some One As Chairman");
+                MessageBox.Show(@"Select Some One As Chairman",@"");
             }
         }
 
@@ -343,14 +374,38 @@ namespace BoardSecretariatSystem.UI
             bool validate = true;
             if (!invitationSend)
             {
-                MessageBox.Show(@"Invitation Not Send Yet."+"\n"+"Before Giving Attendance You Must Send Invitation ", "Sorry");
+                MessageBox.Show(@"Invitation Not Send Yet."+@"\n"+@"Before Giving Attendance You Must Send Invitation ", @"Sorry");
                 validate = false;
             }
             else if (attendancecompleted)
             {
-                MessageBox.Show(@"Already attendace giving is  completed."+"\n"+ "You Cannot give attendance now.","Sorry");
+                MessageBox.Show(@"Already attendace giving is  completed."+"\n"+ @"You Cannot give attendance now.",@"Sorry");
                 validate = false;
             }
+            else if (invitedParticipantDataGridView.SelectedRows.Count < 1)
+            {
+                MessageBox.Show(@"No One Is Selected " + "\n" + @"Select Someone from upper grid to give attendance", @"Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                validate = false;
+            }
+            return validate;
+        }
+
+        private bool ValdateAddAllButton()
+        {
+            bool validate = true;
+            if (!attendanceTaken)
+            {
+                MessageBox.Show(@"No attendance Given Yet." + "\n" + @"Before Adding All you must Give Attendance", @"Sorry");
+                validate = false;
+            }
+            else if (attendancecompleted)
+            {
+                MessageBox.Show(@"Attendace Taking Completed." + "\n" + @"No Need To Give Again", @"Not Needed",
+                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                validate = false;
+            }
+         
             return validate;
         }
     }
