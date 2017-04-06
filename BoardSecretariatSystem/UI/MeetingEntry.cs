@@ -31,7 +31,7 @@ namespace BoardSecretariatSystem
         public int boardId,currentMeetingId,  tAgendaId;
         public string v,serialNo,agendaType;
        // public decimal aId,aId1;
-        public Nullable<int> meetingNum, meetingNum1;
+        public int meetingNum, meetingNum1;
 
         public MeetingEntry()
         {
@@ -158,22 +158,10 @@ namespace BoardSecretariatSystem
         private void GetMeetingTitle()
         {
             try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string query = "Select MeetingTypeId From Meeting where MeetingTypeId=1";
-                cmd = new SqlCommand(query, con);
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    metingTypeId = (rdr.GetInt32(0));
-                }
-
-                if (metingTypeId == 1)
-                {
+            {                              
                     con = new SqlConnection(cs.DBConn);
                     con.Open();                   
-                    string qr2 = "SELECT MAX(Meeting.MeetingNo) FROM Meeting where Meeting.MeetingTypeId='" + metingTypeId + "'";
+                    string qr2 = "SELECT MAX(Meeting.MeetingNo) FROM Meeting";
                     cmd = new SqlCommand(qr2, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read())
@@ -181,34 +169,27 @@ namespace BoardSecretariatSystem
                         meetingNum = (rdr.GetInt32(0));
                         if (meetingNum == 1)
                         {
-                            meetingNum1 = meetingNum;
-                            txtMeetingTitle.Text = "2nd Board Meeting";
+                            txtMeetingNumber.Text = meetingNum.ToString();
+                            txtMeetingTitle.Text = "1st Board Meeting";
                         }
                         else if (meetingNum == 2)
                         {
-                            meetingNum1 = meetingNum;
+                            txtMeetingNumber.Text = meetingNum.ToString();
                             txtMeetingTitle.Text = "2nd Board Meeting";
                         }
 
                         else if (meetingNum == 3)
                         {
-                            meetingNum1 = meetingNum;
+                            txtMeetingNumber.Text = meetingNum.ToString();
                             txtMeetingTitle.Text = "3rd Board Meeting";
                         }
 
                         else if (meetingNum >= 4)
                         {
-                            meetingNum1 = meetingNum;
+                            txtMeetingNumber.Text = meetingNum.ToString();
                             txtMeetingTitle.Text = meetingNum + "th Board Meeting";
                         }
-
-                    }
-                }
-                else
-                {
-                    meetingNum1 = meetingNum;
-                    txtMeetingTitle.Text = "1st Board Meeting";
-                }
+                    }                             
             }
             catch (Exception ex)
             {

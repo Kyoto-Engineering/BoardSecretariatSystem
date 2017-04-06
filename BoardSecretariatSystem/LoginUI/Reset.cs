@@ -143,5 +143,12 @@ namespace BoardSecretariatSystem.LoginUI
         {
             FillUserName();
         }
+
+        private void Reset_FormClosed(object sender, FormClosedEventArgs e)
+        {
+                        this.Hide();
+            UserManagementUI frm=new UserManagementUI();
+                        frm.Show();
+        }
     }
 }

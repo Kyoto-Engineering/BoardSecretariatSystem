@@ -44,10 +44,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cmbEmailType = new System.Windows.Forms.ComboBox();
             this.cmbEmailAddress = new System.Windows.Forms.ComboBox();
+            this.cmbEmailType = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +55,7 @@
             // 
             this.contactNoTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contactNoTextBox.Location = new System.Drawing.Point(187, 283);
+            this.contactNoTextBox.MaxLength = 11;
             this.contactNoTextBox.Name = "contactNoTextBox";
             this.contactNoTextBox.Size = new System.Drawing.Size(328, 29);
             this.contactNoTextBox.TabIndex = 15;
@@ -221,36 +222,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(65, 332);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(109, 24);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Email Type";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(31, 378);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(137, 24);
-            this.label9.TabIndex = 20;
-            this.label9.Text = "Email Address";
-            // 
-            // cmbEmailType
-            // 
-            this.cmbEmailType.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbEmailType.FormattingEnabled = true;
-            this.cmbEmailType.Location = new System.Drawing.Point(187, 329);
-            this.cmbEmailType.Name = "cmbEmailType";
-            this.cmbEmailType.Size = new System.Drawing.Size(328, 32);
-            this.cmbEmailType.TabIndex = 21;
-            this.cmbEmailType.SelectedIndexChanged += new System.EventHandler(this.cmbEmailType_SelectedIndexChanged);
-            // 
             // cmbEmailAddress
             // 
             this.cmbEmailAddress.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -262,6 +233,36 @@
             this.cmbEmailAddress.Size = new System.Drawing.Size(328, 30);
             this.cmbEmailAddress.TabIndex = 96;
             this.cmbEmailAddress.SelectedIndexChanged += new System.EventHandler(this.cmbEmailAddress_SelectedIndexChanged);
+            // 
+            // cmbEmailType
+            // 
+            this.cmbEmailType.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEmailType.FormattingEnabled = true;
+            this.cmbEmailType.Location = new System.Drawing.Point(187, 329);
+            this.cmbEmailType.Name = "cmbEmailType";
+            this.cmbEmailType.Size = new System.Drawing.Size(328, 32);
+            this.cmbEmailType.TabIndex = 21;
+            this.cmbEmailType.SelectedIndexChanged += new System.EventHandler(this.cmbEmailType_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(31, 378);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(137, 24);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "Email Address";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(65, 332);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(109, 24);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Email Type";
             // 
             // registrationByAdmin
             // 

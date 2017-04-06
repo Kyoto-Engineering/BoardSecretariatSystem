@@ -364,7 +364,8 @@ namespace BoardSecretariatSystem.UI
             txtCurrentShareHolding.Clear();
             txtFatherName.Clear();
             txtMotherName.Clear();
-            // txtDesignation.Clear();            
+            cmbParticipantType.SelectedIndex = -1;
+            cmbGender.SelectedIndex = -1;
             txtCellNumber.Clear();
             txtProfession.Clear();
 
@@ -1441,7 +1442,7 @@ namespace BoardSecretariatSystem.UI
                 {                    
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string ct2 = "select HostName from MailHost where HostName='" + input + "'";
+                    string ct2 = "select GenderName from Gender where GenderName='" + input + "'";
                     cmd = new SqlCommand(ct2, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
@@ -1456,7 +1457,7 @@ namespace BoardSecretariatSystem.UI
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into  MailHost(HostName) values (@d1)" +"SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into  Gender(GenderName) values (@d1)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", input);                           
                             cmd.ExecuteNonQuery();
@@ -1479,7 +1480,7 @@ namespace BoardSecretariatSystem.UI
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT MailHostId from MailHost WHERE HostName= '" + cmbGender.Text + "'";
+                    cmd.CommandText = "SELECT GenderId from Gender WHERE GenderName= '" + cmbGender.Text + "'";
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read())
                     {
