@@ -20,7 +20,9 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
-        public string userId;
+        private SqlDataAdapter ada;
+        private DataTable dt;
+        public string userId, meetingName, meetingDate, meetingTime;
         public int metingTypeId;
         public Nullable<int> meetingNum, meetingNum1;
         public MailSend()
@@ -31,26 +33,31 @@ namespace BoardSecretariatSystem.UI
         {
             try
             {
-                MailMessage msg = new MailMessage();
-                msg.From = new MailAddress(txtFrom.Text, "Kyoto Engineering & Automation Ltd");
-                msg.To.Add(new MailAddress(txtTo.Text));
-                msg.Subject = txtSubject.Text;
-                msg.Body = txtBody.Text;
-                msg.IsBodyHtml = true;
-                if ((txtBody.Text.Length) > 0)
-                {
-                    if (System.IO.File.Exists(txtBody.Text))
-                    {
-                        msg.Attachments.Add(new Attachment(txtBody.Text));
-                    }
-                    SmtpClient smtp = new SmtpClient();
 
-                    smtp.Host = "smtp.yandex.com";
-                    smtp.Credentials = new NetworkCredential(txtFrom.Text, txtPassword.Text);
-                    smtp.EnableSsl = true;
-                    smtp.Send(msg);
-                    MessageBox.Show("Mail Sending Successfully");
+                for (int i = 0; i <= listView1.Items.Count-1; i++)
+                {
+                    MailMessage msg = new MailMessage();
+                    msg.From = new MailAddress(txtFrom.Text, "Kyoto Engineering & Automation Ltd");
+                    msg.To.Add(new MailAddress(listView1.Items[i].SubItems[1].Text));
+                    msg.Subject = txtSubject.Text;
+                    msg.Body = txtBody.Text;
+                    msg.IsBodyHtml = true;
+                    if ((txtBody.Text.Length) > 0)
+                    {
+                        if (System.IO.File.Exists(txtBody.Text))
+                        {
+                            msg.Attachments.Add(new Attachment(txtBody.Text));
+                        }
+                        SmtpClient smtp = new SmtpClient();
+
+                        smtp.Host = "smtp.yandex.com";
+                        smtp.Credentials = new NetworkCredential(txtFrom.Text, txtPassword.Text);
+                        smtp.EnableSsl = true;
+                        smtp.Send(msg);
+
+                    }
                 }
+                MessageBox.Show("Mail Sending Successfully");
             }
 
             catch
@@ -89,6 +96,11 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void GetBody()
+        {
+            txtBody.Text = "Notice is hereby given to you that the '"+meetingName+"' of the Company will be held on '"+meetingDate+"' at '"+meetingTime+"' am in Register office, House-64, Road-03, Niketon, Gulshan, Gulshan, Dhaka: 1212 Notice is hereby given to you that the 2nd Board Meeting of the Company will be held on 1st February, 2016 at 10:30 am in Register office, House-64, Road-03, Niketon, Gulshan, Gulshan, Dhaka: 1212";
+        }
         private void GetMeetingNumber()
         {
             try
@@ -117,27 +129,27 @@ namespace BoardSecretariatSystem.UI
                         {
                             meetingNum1 = meetingNum;
                             //txtMeetingNumber.Text = meetingNum1.ToString();
-                            txtSubject.Text = "Notice for 1st Board Meeting";
+                            txtSubject.Text = "NOTICE FOR THE 1ST BOARD  MEETING";
                         }
                         else if (meetingNum == 2)
                         {
                             meetingNum1 = meetingNum;
                             //txtMeetingNumber.Text = meetingNum1.ToString();
-                            txtSubject.Text = "Notice for 2nd Board Meeting";
+                            txtSubject.Text = "NOTICE FOR THE 2ND BOARD  MEETING";
                         }
 
                         else if (meetingNum == 3)
                         {
                             meetingNum1 = meetingNum;
                            // txtMeetingNumber.Text = meetingNum1.ToString();
-                            txtSubject.Text = "Notice for 3rd Board Meeting";
+                            txtSubject.Text = "NOTICE FOR THE 3RD BOARD  MEETING";
                         }
 
                         else if (meetingNum >= 4)
                         {
                             meetingNum1 = meetingNum;
                           //  txtMeetingNumber.Text = meetingNum1.ToString();
-                            txtSubject.Text = "Notice for" + meetingNum + "th Board Meeting";
+                            txtSubject.Text = "NOTICE FOR THE" + meetingNum + "th BOARD  MEETING";
                         }
 
                     }
@@ -155,11 +167,33 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void ListOfRecepientEmailAddress()
+        {
+            listView1.View = View.Details;
+            con = new SqlConnection(cs.DBConn);
+            string qry = "SELECT Participant.ParticipantId,EmailBank.Email FROM  Participant INNER JOIN MeetingParticipant ON Participant.ParticipantId = MeetingParticipant.ParticipantId INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId";
+            ada = new SqlDataAdapter(qry, con);
+            dt = new DataTable();
+            ada.Fill(dt);
+
+            for (int b = 0; b < dt.Rows.Count; b++)
+            {
+                DataRow dr = dt.Rows[b];
+                ListViewItem listitem1 = new ListViewItem(dr[0].ToString());
+                listitem1.SubItems.Add(dr[1].ToString());
+                //listitem1.SubItems.Add(dr[2].ToString());
+                listView1.Items.Add(listitem1);
+            }
+        }
+
+
         private void MailSend_Load(object sender, EventArgs e)
         {
+            GetBody();
             GetMeetingNumber();
             userId = frmLogin.uId.ToString();
             LoadSenderEmailAddress();
+            ListOfRecepientEmailAddress();
         }
 
         private void txtFrom_TextChanged(object sender, EventArgs e)
