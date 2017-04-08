@@ -41,7 +41,6 @@
             this.buttonMultiCombo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonLogOut = new System.Windows.Forms.Button();
-            this.sendMail = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +62,7 @@
             this.boardCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.boardCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boardCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.boardCreateButton.Location = new System.Drawing.Point(21, 373);
+            this.boardCreateButton.Location = new System.Drawing.Point(21, 400);
             this.boardCreateButton.Name = "boardCreateButton";
             this.boardCreateButton.Size = new System.Drawing.Size(144, 53);
             this.boardCreateButton.TabIndex = 1;
@@ -76,7 +75,7 @@
             this.agendaCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.agendaCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agendaCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.agendaCreateButton.Location = new System.Drawing.Point(21, 183);
+            this.agendaCreateButton.Location = new System.Drawing.Point(21, 190);
             this.agendaCreateButton.Name = "agendaCreateButton";
             this.agendaCreateButton.Size = new System.Drawing.Size(144, 53);
             this.agendaCreateButton.TabIndex = 3;
@@ -89,7 +88,7 @@
             this.meetingCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.meetingCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meetingCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.meetingCreateButton.Location = new System.Drawing.Point(21, 312);
+            this.meetingCreateButton.Location = new System.Drawing.Point(21, 327);
             this.meetingCreateButton.Name = "meetingCreateButton";
             this.meetingCreateButton.Size = new System.Drawing.Size(144, 53);
             this.meetingCreateButton.TabIndex = 2;
@@ -102,7 +101,7 @@
             this.meetingExecutionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.meetingExecutionButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meetingExecutionButton.ForeColor = System.Drawing.Color.Blue;
-            this.meetingExecutionButton.Location = new System.Drawing.Point(21, 435);
+            this.meetingExecutionButton.Location = new System.Drawing.Point(21, 467);
             this.meetingExecutionButton.Name = "meetingExecutionButton";
             this.meetingExecutionButton.Size = new System.Drawing.Size(144, 53);
             this.meetingExecutionButton.TabIndex = 5;
@@ -115,7 +114,7 @@
             this.participantCreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.participantCreateButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.participantCreateButton.ForeColor = System.Drawing.Color.Blue;
-            this.participantCreateButton.Location = new System.Drawing.Point(21, 67);
+            this.participantCreateButton.Location = new System.Drawing.Point(21, 70);
             this.participantCreateButton.Name = "participantCreateButton";
             this.participantCreateButton.Size = new System.Drawing.Size(144, 53);
             this.participantCreateButton.TabIndex = 4;
@@ -137,7 +136,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.sendMail);
             this.groupBox1.Controls.Add(this.agendaAmendmentButton);
             this.groupBox1.Controls.Add(this.reportButton);
             this.groupBox1.Controls.Add(this.buttonMultiCombo);
@@ -159,7 +157,7 @@
             this.agendaAmendmentButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.agendaAmendmentButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agendaAmendmentButton.ForeColor = System.Drawing.Color.Blue;
-            this.agendaAmendmentButton.Location = new System.Drawing.Point(21, 242);
+            this.agendaAmendmentButton.Location = new System.Drawing.Point(21, 257);
             this.agendaAmendmentButton.Name = "agendaAmendmentButton";
             this.agendaAmendmentButton.Size = new System.Drawing.Size(144, 59);
             this.agendaAmendmentButton.TabIndex = 9;
@@ -172,7 +170,7 @@
             this.reportButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.reportButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportButton.ForeColor = System.Drawing.Color.Blue;
-            this.reportButton.Location = new System.Drawing.Point(21, 493);
+            this.reportButton.Location = new System.Drawing.Point(21, 533);
             this.reportButton.Name = "reportButton";
             this.reportButton.Size = new System.Drawing.Size(144, 53);
             this.reportButton.TabIndex = 8;
@@ -185,7 +183,7 @@
             this.buttonMultiCombo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.buttonMultiCombo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonMultiCombo.ForeColor = System.Drawing.Color.Blue;
-            this.buttonMultiCombo.Location = new System.Drawing.Point(21, 125);
+            this.buttonMultiCombo.Location = new System.Drawing.Point(21, 127);
             this.buttonMultiCombo.Name = "buttonMultiCombo";
             this.buttonMultiCombo.Size = new System.Drawing.Size(144, 53);
             this.buttonMultiCombo.TabIndex = 7;
@@ -198,7 +196,7 @@
             this.button1.BackColor = System.Drawing.Color.Teal;
             this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Yellow;
-            this.button1.Location = new System.Drawing.Point(21, 549);
+            this.button1.Location = new System.Drawing.Point(21, 595);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(144, 57);
             this.button1.TabIndex = 6;
@@ -218,16 +216,6 @@
             this.buttonLogOut.Text = "LogOut";
             this.buttonLogOut.UseVisualStyleBackColor = false;
             this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
-            // 
-            // sendMail
-            // 
-            this.sendMail.Location = new System.Drawing.Point(21, 612);
-            this.sendMail.Name = "sendMail";
-            this.sendMail.Size = new System.Drawing.Size(144, 44);
-            this.sendMail.TabIndex = 10;
-            this.sendMail.Text = "Mail";
-            this.sendMail.UseVisualStyleBackColor = true;
-            this.sendMail.Click += new System.EventHandler(this.sendMail_Click);
             // 
             // MainUI
             // 
@@ -266,6 +254,5 @@
         private System.Windows.Forms.Button buttonMultiCombo;
         private System.Windows.Forms.Button reportButton;
         private System.Windows.Forms.Button agendaAmendmentButton;
-        private System.Windows.Forms.Button sendMail;
     }
 }
