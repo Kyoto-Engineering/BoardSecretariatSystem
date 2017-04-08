@@ -31,25 +31,28 @@ namespace BoardSecretariatSystem.UI
         {
             try
             {
-                MailMessage msg = new MailMessage();
-                msg.From = new MailAddress(txtFrom.Text, "Kyoto Engineering & Automation Ltd");
-                msg.To.Add(new MailAddress(txtTo.Text));
-                msg.Subject = txtSubject.Text;
-                msg.Body = txtBody.Text;
-                msg.IsBodyHtml = true;
-                if ((txtBody.Text.Length) > 0)
+                for (int i = 0; i <= listView1.Items.Count-1; i++)
                 {
-                    if (System.IO.File.Exists(txtBody.Text))
+                    MailMessage msg = new MailMessage();
+                    msg.From = new MailAddress(txtFrom.Text, "Kyoto Engineering & Automation Ltd");
+                    msg.To.Add(new MailAddress(listView1.Items[i].SubItems[2].Text));
+                    msg.Subject = txtSubject.Text;
+                    msg.Body = txtBody.Text;
+                    msg.IsBodyHtml = true;
+                    if ((txtBody.Text.Length) > 0)
                     {
-                        msg.Attachments.Add(new Attachment(txtBody.Text));
-                    }
-                    SmtpClient smtp = new SmtpClient();
+                        if (System.IO.File.Exists(txtBody.Text))
+                        {
+                            msg.Attachments.Add(new Attachment(txtBody.Text));
+                        }
+                        SmtpClient smtp = new SmtpClient();
 
-                    smtp.Host = "smtp.yandex.com";
-                    smtp.Credentials = new NetworkCredential(txtFrom.Text, txtPassword.Text);
-                    smtp.EnableSsl = true;
-                    smtp.Send(msg);
-                    MessageBox.Show("Mail Sending Successfully");
+                        smtp.Host = "smtp.yandex.com";
+                        smtp.Credentials = new NetworkCredential(txtFrom.Text, txtPassword.Text);
+                        smtp.EnableSsl = true;
+                        smtp.Send(msg);
+                        MessageBox.Show("Mail Sending Successfully");
+                    } 
                 }
             }
 
