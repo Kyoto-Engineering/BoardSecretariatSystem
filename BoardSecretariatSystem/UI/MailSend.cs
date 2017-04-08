@@ -122,7 +122,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string qr2 = "SELECT MAX(Meeting.MeetingNo) Meeting.MeetingDate FROM Meeting where Meeting.MeetingTypeId='" + metingTypeId + "'";
+                    string qr2 = "SELECT MAX(Meeting.MeetingNo) FROM Meeting where Meeting.MeetingTypeId='" + metingTypeId + "'";
                     cmd = new SqlCommand(qr2, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read())
@@ -190,9 +190,23 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
+        private int  GetForeach()
+        {
+            int[] intArray = {1,2,3,4,5,6,7,8,9};
+            int[] k = { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+            int[] sum = new int[10];
+            int i = 0;
+          foreach (int num in intArray)
+          {
+              sum[i] = num + k[i];
+              i++;
+          }
+            return sum[i];
+        }
 
         private void MailSend_Load(object sender, EventArgs e)
         {
+           // GetForeach();
             GetBody();
             GetMeetingNumber();
             userId = frmLogin.uId.ToString();

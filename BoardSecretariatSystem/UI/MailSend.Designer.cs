@@ -58,7 +58,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(160, 318);
+            this.label2.Location = new System.Drawing.Point(160, 332);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 22);
             this.label2.TabIndex = 1;
@@ -113,6 +113,7 @@
             // 
             // txtBody
             // 
+            this.txtBody.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBody.Location = new System.Drawing.Point(204, 163);
             this.txtBody.Name = "txtBody";
             this.txtBody.Size = new System.Drawing.Size(732, 137);
@@ -123,9 +124,9 @@
             // 
             this.sendButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.sendButton.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sendButton.Location = new System.Drawing.Point(728, 410);
+            this.sendButton.Location = new System.Drawing.Point(696, 389);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(108, 52);
+            this.sendButton.Size = new System.Drawing.Size(162, 52);
             this.sendButton.TabIndex = 10;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = false;
@@ -158,7 +159,7 @@
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.Location = new System.Drawing.Point(210, 329);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(310, 203);
+            this.listView1.Size = new System.Drawing.Size(351, 203);
             this.listView1.TabIndex = 13;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -170,7 +171,7 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "EmailAddress";
-            this.columnHeader2.Width = 300;
+            this.columnHeader2.Width = 337;
             // 
             // MailSend
             // 
