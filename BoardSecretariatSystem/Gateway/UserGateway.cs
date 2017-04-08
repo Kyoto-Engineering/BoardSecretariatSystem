@@ -14,7 +14,7 @@ namespace BoardSecretariatSystem.Gateway
        public int SaveUser(User aUser)
        {
            connection.Open();
-           string insertquery = " insert into Registration(Username,Usertype,Password,Name,EmailBankId,Designation,Department,ContactNo) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)";
+           string insertquery = " insert into Registration(Username,Usertype,Password,Name,Email,Designation,Department,ContactNo) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)";
 
            SqlCommand cmd = new SqlCommand(insertquery, connection);
            cmd.Parameters.AddWithValue("@d1", aUser.UserName);

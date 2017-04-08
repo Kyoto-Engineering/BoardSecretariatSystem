@@ -70,7 +70,6 @@
             this.cmbCompanyName.Name = "cmbCompanyName";
             this.cmbCompanyName.Size = new System.Drawing.Size(308, 32);
             this.cmbCompanyName.TabIndex = 9;
-            this.cmbCompanyName.SelectedIndexChanged += new System.EventHandler(this.cmbCompanyName_SelectedIndexChanged);
             // 
             // label2
             // 

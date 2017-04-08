@@ -72,10 +72,10 @@ namespace BoardSecretariatSystem.UI
         private void buttonMeetingCreate_Click(object sender, EventArgs e)
         {
 
-           CheckMeeting();
-            //this.Hide();
-            //MeetingCreation frm = new MeetingCreation();
-            //frm.Show();
+           //CheckMeeting();
+            this.Hide();
+            MeetingCreation frm = new MeetingCreation();
+            frm.Show();
             
         }
 

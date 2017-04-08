@@ -129,9 +129,10 @@ namespace BoardSecretariatSystem.LoginUI
                 userButton.Enabled = false;
                 Reset();
 
-                this.Hide();
-                frmLogin frm=new frmLogin();
-                 frm.Show();
+                frmLogin lg = new frmLogin();
+                this.Visible = false;
+                lg.ShowDialog();
+                this.Visible = true;
             }
             catch (FormatException formatException)
             {

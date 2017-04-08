@@ -206,7 +206,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctt = "select GenderName from Gender order by GenderId desc";
+                string ctt = "select HostName from MailHost";
                 cmd = new SqlCommand(ctt);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -364,8 +364,7 @@ namespace BoardSecretariatSystem.UI
             txtCurrentShareHolding.Clear();
             txtFatherName.Clear();
             txtMotherName.Clear();
-            cmbParticipantType.SelectedIndex = -1;
-            cmbGender.SelectedIndex = -1;
+            // txtDesignation.Clear();            
             txtCellNumber.Clear();
             txtProfession.Clear();
 
@@ -1442,7 +1441,7 @@ namespace BoardSecretariatSystem.UI
                 {                    
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string ct2 = "select GenderName from Gender where GenderName='" + input + "'";
+                    string ct2 = "select HostName from MailHost where HostName='" + input + "'";
                     cmd = new SqlCommand(ct2, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
@@ -1457,7 +1456,7 @@ namespace BoardSecretariatSystem.UI
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into  Gender(GenderName) values (@d1)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into  MailHost(HostName) values (@d1)" +"SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", input);                           
                             cmd.ExecuteNonQuery();
@@ -1480,7 +1479,7 @@ namespace BoardSecretariatSystem.UI
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT GenderId from Gender WHERE GenderName= '" + cmbGender.Text + "'";
+                    cmd.CommandText = "SELECT MailHostId from MailHost WHERE HostName= '" + cmbGender.Text + "'";
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read())
                     {

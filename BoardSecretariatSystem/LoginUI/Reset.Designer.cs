@@ -126,7 +126,6 @@
             this.Name = "Reset";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reset";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Reset_FormClosed);
             this.Load += new System.EventHandler(this.Reset_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -112,7 +112,7 @@
             this.txtMeetingNumber.Location = new System.Drawing.Point(228, 59);
             this.txtMeetingNumber.Name = "txtMeetingNumber";
             this.txtMeetingNumber.ReadOnly = true;
-            this.txtMeetingNumber.Size = new System.Drawing.Size(300, 32);
+            this.txtMeetingNumber.Size = new System.Drawing.Size(292, 32);
             this.txtMeetingNumber.TabIndex = 64;
             // 
             // label2
