@@ -21,10 +21,13 @@ namespace BoardSecretariatSystem.UI
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
         public string userId, hostName;
-        public int metingTypeId;
+        public int metingTypeId, psId;
         public Nullable<int> meetingNum, meetingNum1;
         public SqlDataAdapter ada;
         private DataTable dt;
+        public int meetingId22,meetingNo22;
+        public string addHeader, hNo, rNo, area, thana, dist, division;
+        public DateTime dateTimeYears;
 
         public MailSend()
         {
@@ -121,7 +124,7 @@ namespace BoardSecretariatSystem.UI
             }
 
         }
-
+       
         private void GetMeetingNumber()
         {
             try
@@ -140,8 +143,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string qr2 = "SELECT MAX(Meeting.MeetingNo) FROM Meeting where Meeting.MeetingTypeId='" +
-                                 metingTypeId + "'";
+                    string qr2 = "SELECT MAX(Meeting.MeetingNo) FROM Meeting where Meeting.MeetingTypeId='" + metingTypeId + "'";
                     cmd = new SqlCommand(qr2, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read())
@@ -210,13 +212,54 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
+        private void GetBody()
+        {
+            MeetingConsole3 frm55=new MeetingConsole3();
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query = "Select MeetingDate From Meeting where Meeting.MeetingId='" + meetingId22 + "' ";
+            cmd = new SqlCommand(query, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                dateTimeYears = (rdr.GetDateTime(0));
+            }
+            String sDate = dateTimeYears.ToString();
+            DateTime datevalue = (Convert.ToDateTime(sDate.ToString()));
+
+            String dy = datevalue.Day.ToString();
+            String mn = datevalue.Month.ToString();
+            String yy = datevalue.Year.ToString();
+
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query2 = "SELECT  AddressHeader.AHeaderName, CompanyAddresses.HouseNo, CompanyAddresses.RoadNo, CompanyAddresses.Area, Thanas.Thana, Districts.District, Divisions.Division,CompanyAddresses.PostOfficeId FROM   Meeting INNER JOIN AddressHeader ON Meeting.AHeaderId = AddressHeader.AHeaderId INNER JOIN CompanyAddresses ON AddressHeader.AHeaderId = CompanyAddresses.AHeaderId INNER JOIN PostOffice ON CompanyAddresses.PostOfficeId = PostOffice.PostOfficeId INNER JOIN Thanas ON PostOffice.T_ID = Thanas.T_ID INNER JOIN  Districts ON Thanas.D_ID = Districts.D_ID INNER JOIN  Divisions ON Districts.Division_ID = Divisions.Division_ID where Meeting.MeetingId='" + meetingId22 + "' ";
+            cmd = new SqlCommand(query2, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                addHeader = (rdr.GetString(0));
+                hNo = (rdr.GetString(1));
+                rNo = (rdr.GetString(2));
+                area = (rdr.GetString(3));
+                thana = (rdr.GetString(4));
+                dist = (rdr.GetString(5));
+                division = (rdr.GetString(6));
+                psId = (rdr.GetInt32(7));
+            }
+
+            txtBody.Text = "Notice is hereby given to you that the '"+frm55.txtMeetingTitle.Text+"' of the Company will be held on '"+dy+"'/'"+mn+"'/'"+yy+"' at 10:30 am in '"+addHeader+"', House-'"+hNo+"', Road-'"+rNo+"', '"+area+"', '"+thana+"', '"+dist+"', '"+division+"': '"+psId+"'";
+
+        }
         private void MailSend_Load(object sender, EventArgs e)
         {
+           
             GetMailHost();
             GetMeetingNumber();
             userId = frmLogin.uId.ToString();
             LoadSenderEmailAddress();
             SetRecepientMailAddress();
+            GetBody();
         }
 
         private void txtFrom_TextChanged(object sender, EventArgs e)

@@ -459,27 +459,7 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
-        private void GetGender()
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctt = "select HostName from MailHost";
-                cmd = new SqlCommand(ctt);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    cmbGender.Items.Add(rdr.GetValue(0).ToString());
-                }
-                cmbGender.Items.Add("Not In The List");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
 
         private void EmailAddress()
         {
@@ -524,7 +504,27 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        private void GetGender()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctt = "select GenderName from Gender";
+                cmd = new SqlCommand(ctt);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbGender.Items.Add(rdr.GetValue(0).ToString());
+                }
+                cmbGender.Items.Add("Not In The List");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void ParticipantCreation2_Load(object sender, EventArgs e)
         {
             nUserId = frmLogin.uId.ToString();
@@ -1238,29 +1238,14 @@ namespace BoardSecretariatSystem.UI
 
                 else
                 {
-                    if (!string.IsNullOrWhiteSpace(input))
-                    {
-                        string emailId = input.Trim();
-                        Regex mRegxExpression;
-                        mRegxExpression =
-                            new Regex(
-                                @"^([a-zA-Z0-9_\-])([a-zA-Z0-9_\-\.]*)@(\[((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}|((([a-zA-Z0-9\-]+)\.)+))([a-zA-Z]{2,}|(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\])$");
-                        if (!mRegxExpression.IsMatch(emailId))
-                        {
-                            MessageBox.Show("Please type a valid gender.", "MojoCRM", MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                            return;
-                        }
-                    }
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string ct2 = "select HostName from MailHost where HostName='" + input + "'";
+                    string ct2 = "select GenderName from Gender where GenderName='" + input + "'";
                     cmd = new SqlCommand(ct2, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
                     {
-                        MessageBox.Show("This Gender  Already Exists,Please Select From List", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("This Gender  Already Exists,Please Select From List", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         con.Close();
                         cmbGender.SelectedIndex = -1;
                     }
@@ -1270,12 +1255,9 @@ namespace BoardSecretariatSystem.UI
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into  MailHost(HostName) values (@d1)" +
-                                            "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into  Gender(GenderName) values (@d1)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", input);
-                            //cmd.Parameters.AddWithValue("@d2", nUserId);
-                            //cmd.Parameters.AddWithValue("@d3", DateTime.UtcNow.ToLocalTime());
                             cmd.ExecuteNonQuery();
                             con.Close();
                             cmbGender.Items.Clear();
@@ -1296,7 +1278,7 @@ namespace BoardSecretariatSystem.UI
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT MailHostId from MailHost WHERE HostName= '" + cmbGender.Text + "'";
+                    cmd.CommandText = "SELECT GenderId from Gender WHERE GenderName= '" + cmbGender.Text + "'";
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read())
                     {
