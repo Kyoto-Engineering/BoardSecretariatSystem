@@ -137,7 +137,7 @@
             // 
             this.removeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.removeButton.ForeColor = System.Drawing.Color.Blue;
-            this.removeButton.Location = new System.Drawing.Point(574, 185);
+            this.removeButton.Location = new System.Drawing.Point(574, 183);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(118, 48);
             this.removeButton.TabIndex = 61;
@@ -221,7 +221,7 @@
             // addButton
             // 
             this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.addButton.Location = new System.Drawing.Point(570, 110);
+            this.addButton.Location = new System.Drawing.Point(570, 108);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(124, 52);
             this.addButton.TabIndex = 51;

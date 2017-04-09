@@ -20,7 +20,7 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
-        public string userId, hostName;
+        public string userId, hostName,meetingTitle;
         public int metingTypeId, psId;
         public Nullable<int> meetingNum, meetingNum1;
         public SqlDataAdapter ada;
@@ -151,40 +151,37 @@ namespace BoardSecretariatSystem.UI
                         meetingNum = (rdr.GetInt32(0));
                         if (meetingNum == 1)
                         {
-                            meetingNum1 = meetingNum;
-                            //txtMeetingNumber.Text = meetingNum1.ToString();
+                            meetingNum1 = meetingNum;                            
                             txtSubject.Text = "Notice for 1st Board Meeting";
+                            meetingTitle = "1st Board Meeting";
                         }
                         else if (meetingNum == 2)
                         {
-                            meetingNum1 = meetingNum;
-                            //txtMeetingNumber.Text = meetingNum1.ToString();
+                            meetingNum1 = meetingNum;                            
                             txtSubject.Text = "Notice for 2nd Board Meeting";
+                            meetingTitle = "2nd Board Meeting";
                         }
 
                         else if (meetingNum == 3)
                         {
-                            meetingNum1 = meetingNum;
-                            // txtMeetingNumber.Text = meetingNum1.ToString();
+                            meetingNum1 = meetingNum;                            
                             txtSubject.Text = "Notice for 3rd Board Meeting";
+                            meetingTitle = "3rd Board Meeting";
                         }
 
                         else if (meetingNum >= 4)
                         {
-                            meetingNum1 = meetingNum;
-                            //  txtMeetingNumber.Text = meetingNum1.ToString();
+                            meetingNum1 = meetingNum;                            
                             txtSubject.Text = "Notice for" + meetingNum + "th Board Meeting";
+                            meetingTitle = meetingNum + "th Board Meeting";
                         }
 
                     }
                 }
                 else
                 {
-                    MessageBox.Show("You need to Create or Schedule a new Meeting", "error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    //meetingNum1 = meetingNum;
-                    //txtMeetingNumber.Text = meetingNum1.ToString();
-                    //txtMeetingTitle.Text = "1st Board Meeting";
+                    MessageBox.Show("You need to Create or Schedule a new Meeting", "error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                   
                 }
             }
             catch (Exception ex)
@@ -224,7 +221,11 @@ namespace BoardSecretariatSystem.UI
             {
                 dateTimeYears = (rdr.GetDateTime(0));
             }
+           
+
             String sDate = dateTimeYears.ToString();
+           // DateTime Date1 = DateTime.Parse(sDate).ToShortDateString(); // For Date
+           // DateTime Date2 = DateTime.Parse(sDate).ToShortTimeString();
             DateTime datevalue = (Convert.ToDateTime(sDate.ToString()));
 
             String dy = datevalue.Day.ToString();
@@ -248,7 +249,7 @@ namespace BoardSecretariatSystem.UI
                 psId = (rdr.GetInt32(7));
             }
 
-            txtBody.Text = "Notice is hereby given to you that the '"+frm55.txtMeetingTitle.Text+"' of the Company will be held on '"+dy+"'/'"+mn+"'/'"+yy+"' at 10:30 am in '"+addHeader+"', House-'"+hNo+"', Road-'"+rNo+"', '"+area+"', '"+thana+"', '"+dist+"', '"+division+"': '"+psId+"'";
+            txtBody.Text = "Notice is hereby given to you that the "+meetingTitle+" of the Company will be held on "+dy+"/"+mn+"/"+yy+" at 10:30 am in "+addHeader+",House-"+hNo+",Road-"+rNo+", "+area+", "+thana+","+division+":"+psId+" ";
 
         }
         private void MailSend_Load(object sender, EventArgs e)
