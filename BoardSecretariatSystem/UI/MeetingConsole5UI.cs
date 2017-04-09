@@ -201,6 +201,8 @@ namespace BoardSecretariatSystem.UI
                     con.Close();
                 }
                 dr.Cells[3].Value = attendancMeetingId;
+                int x = attendedParticipantDataGridView.Rows.Count;
+                dr.Cells[0].Value = x;
                 attendedParticipantDataGridView.Rows.Add(dr);
             }
             catch (Exception ex)
