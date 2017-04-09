@@ -33,18 +33,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.attendedParticipantDataGridView = new System.Windows.Forms.DataGridView();
-            this.invitedParticipantDataGridView = new System.Windows.Forms.DataGridView();
-            this.meetingNumOrIDTextBox = new System.Windows.Forms.TextBox();
-            this.addToListButton = new System.Windows.Forms.Button();
-            this.saveAllButton = new System.Windows.Forms.Button();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invitedParticipantDataGridView = new System.Windows.Forms.DataGridView();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.meetingNumOrIDTextBox = new System.Windows.Forms.TextBox();
+            this.addToListButton = new System.Windows.Forms.Button();
+            this.saveAllButton = new System.Windows.Forms.Button();
             this.comboBoxWithGrid_WinformsHost1 = new BoardSecretariatSystem.ComboBoxWithGrid_WinformsHost();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -114,6 +114,35 @@
             this.attendedParticipantDataGridView.Size = new System.Drawing.Size(490, 150);
             this.attendedParticipantDataGridView.TabIndex = 4;
             // 
+            // Column1
+            // 
+            this.Column1.FillWeight = 30.45685F;
+            this.Column1.HeaderText = "Sl";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 134.7716F;
+            this.Column2.HeaderText = "Name";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 134.7716F;
+            this.Column3.HeaderText = "Title";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "MPId";
+            this.Column8.MinimumWidth = 2;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Visible = false;
+            // 
             // invitedParticipantDataGridView
             // 
             this.invitedParticipantDataGridView.AllowUserToAddRows = false;
@@ -131,39 +160,6 @@
             this.invitedParticipantDataGridView.Size = new System.Drawing.Size(384, 150);
             this.invitedParticipantDataGridView.TabIndex = 5;
             this.invitedParticipantDataGridView.SelectionChanged += new System.EventHandler(this.invitedParticipantDataGridView_SelectionChanged);
-            // 
-            // meetingNumOrIDTextBox
-            // 
-            this.meetingNumOrIDTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.meetingNumOrIDTextBox.Location = new System.Drawing.Point(228, 142);
-            this.meetingNumOrIDTextBox.Name = "meetingNumOrIDTextBox";
-            this.meetingNumOrIDTextBox.ReadOnly = true;
-            this.meetingNumOrIDTextBox.Size = new System.Drawing.Size(193, 26);
-            this.meetingNumOrIDTextBox.TabIndex = 12;
-            // 
-            // addToListButton
-            // 
-            this.addToListButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addToListButton.ForeColor = System.Drawing.Color.Magenta;
-            this.addToListButton.Location = new System.Drawing.Point(569, 297);
-            this.addToListButton.Name = "addToListButton";
-            this.addToListButton.Size = new System.Drawing.Size(113, 32);
-            this.addToListButton.TabIndex = 13;
-            this.addToListButton.Text = "Add To List";
-            this.addToListButton.UseVisualStyleBackColor = true;
-            this.addToListButton.Click += new System.EventHandler(this.addToListButton_Click);
-            // 
-            // saveAllButton
-            // 
-            this.saveAllButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveAllButton.ForeColor = System.Drawing.Color.Magenta;
-            this.saveAllButton.Location = new System.Drawing.Point(826, 482);
-            this.saveAllButton.Name = "saveAllButton";
-            this.saveAllButton.Size = new System.Drawing.Size(127, 35);
-            this.saveAllButton.TabIndex = 14;
-            this.saveAllButton.Text = "Save All";
-            this.saveAllButton.UseVisualStyleBackColor = true;
-            this.saveAllButton.Click += new System.EventHandler(this.saveAllButton_Click);
             // 
             // Column4
             // 
@@ -203,34 +199,38 @@
             this.Column7.ReadOnly = true;
             this.Column7.Visible = false;
             // 
-            // Column1
+            // meetingNumOrIDTextBox
             // 
-            this.Column1.FillWeight = 30.45685F;
-            this.Column1.HeaderText = "Sl";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.meetingNumOrIDTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.meetingNumOrIDTextBox.Location = new System.Drawing.Point(228, 142);
+            this.meetingNumOrIDTextBox.Name = "meetingNumOrIDTextBox";
+            this.meetingNumOrIDTextBox.ReadOnly = true;
+            this.meetingNumOrIDTextBox.Size = new System.Drawing.Size(193, 26);
+            this.meetingNumOrIDTextBox.TabIndex = 12;
             // 
-            // Column2
+            // addToListButton
             // 
-            this.Column2.FillWeight = 134.7716F;
-            this.Column2.HeaderText = "Name";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.addToListButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addToListButton.ForeColor = System.Drawing.Color.Magenta;
+            this.addToListButton.Location = new System.Drawing.Point(569, 297);
+            this.addToListButton.Name = "addToListButton";
+            this.addToListButton.Size = new System.Drawing.Size(113, 32);
+            this.addToListButton.TabIndex = 13;
+            this.addToListButton.Text = "Add To List";
+            this.addToListButton.UseVisualStyleBackColor = true;
+            this.addToListButton.Click += new System.EventHandler(this.addToListButton_Click);
             // 
-            // Column3
+            // saveAllButton
             // 
-            this.Column3.FillWeight = 134.7716F;
-            this.Column3.HeaderText = "Title";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "MPId";
-            this.Column8.MinimumWidth = 2;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Visible = false;
+            this.saveAllButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveAllButton.ForeColor = System.Drawing.Color.Magenta;
+            this.saveAllButton.Location = new System.Drawing.Point(826, 482);
+            this.saveAllButton.Name = "saveAllButton";
+            this.saveAllButton.Size = new System.Drawing.Size(127, 35);
+            this.saveAllButton.TabIndex = 14;
+            this.saveAllButton.Text = "Save All";
+            this.saveAllButton.UseVisualStyleBackColor = true;
+            this.saveAllButton.Click += new System.EventHandler(this.saveAllButton_Click);
             // 
             // comboBoxWithGrid_WinformsHost1
             // 
@@ -285,7 +285,6 @@
             this.Name = "MeetingConsole5UI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MeetingConsole5";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MeetingConsole5UI_FormClosed);
             this.Load += new System.EventHandler(this.MeetingConsole5UI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.attendedParticipantDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invitedParticipantDataGridView)).EndInit();
