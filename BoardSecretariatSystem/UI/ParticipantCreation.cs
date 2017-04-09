@@ -206,7 +206,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctt = "select HostName from MailHost";
+                string ctt = "select GenderName from Gender";
                 cmd = new SqlCommand(ctt);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -1348,8 +1348,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctk =
-                    "SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
+                string ctk ="SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
                 cmd = new SqlCommand(ctk);
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "PostOfficeName"));
@@ -1441,7 +1440,7 @@ namespace BoardSecretariatSystem.UI
                 {                    
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string ct2 = "select HostName from MailHost where HostName='" + input + "'";
+                    string ct2 = "select GenderName from Gender where GenderName='" + input + "'";
                     cmd = new SqlCommand(ct2, con);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
@@ -1456,7 +1455,7 @@ namespace BoardSecretariatSystem.UI
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into  MailHost(HostName) values (@d1)" +"SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into  Gender(GenderName) values (@d1)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", input);                           
                             cmd.ExecuteNonQuery();
@@ -1479,7 +1478,7 @@ namespace BoardSecretariatSystem.UI
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT MailHostId from MailHost WHERE HostName= '" + cmbGender.Text + "'";
+                    cmd.CommandText = "SELECT GenderId from Gender WHERE GenderName= '" + cmbGender.Text + "'";
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read())
                     {

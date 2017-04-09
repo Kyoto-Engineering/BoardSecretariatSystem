@@ -24,8 +24,8 @@ namespace BoardSecretariatSystem.UI
         ConnectionString cs=new ConnectionString();
         private SqlDataAdapter ada;
         private DataTable dt;
-        public int participantId, metingTypeId;
-        public Nullable<int> meetingNum, meetingNum1;
+        public int participantId, metingTypeId,meetingId;
+        public int meetingNum, meetingNum1;
 
         public MeetingConsole3()
         {
@@ -131,7 +131,18 @@ namespace BoardSecretariatSystem.UI
         //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         //    }
         //}
-
+        private void GetMeetingId()
+        {
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query = "Select Meeting.MeetingId From Meeting where Meeting.MeetingNo='"+meetingNum+"'";
+            cmd = new SqlCommand(query, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                meetingId = (rdr.GetInt32(0));
+            }
+        }
         private void GetMeetingNumber()
         {
             try
@@ -370,7 +381,12 @@ namespace BoardSecretariatSystem.UI
         {
             this.Hide();
             MailSend frm=new MailSend();
+            GetMeetingId();
+            frm.meetingId22 = meetingId;
+            frm.meetingNo22 = meetingNum;
             frm.Show();
+           
+
             //MailAddress from = new MailAddress("it@keal.com.bd", "Kyoto");
             //MailAddress to = new MailAddress("siddiqueiceiu@gmail.com", "AshrafSiddik");
             //List<MailAddress> cc = new List<MailAddress>();

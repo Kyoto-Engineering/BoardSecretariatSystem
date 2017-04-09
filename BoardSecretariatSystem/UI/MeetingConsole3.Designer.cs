@@ -338,7 +338,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.Button buttonComplete;
         private System.Windows.Forms.Button buttonInvitation;
-        private System.Windows.Forms.TextBox txtMeetingTitle;
+        public  System.Windows.Forms.TextBox txtMeetingTitle;
         private System.Windows.Forms.Label label5;
     }
 }
