@@ -449,12 +449,9 @@ namespace BoardSecretariatSystem.UI
             try
             {
                 UpdateAvailableIssuedShare();
-
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 =
-                    "insert into Shareholder(ParticipantId,ShareHolderName,NumberOfCurrentShareHolding) values (@d1,@d2,@d3)" +
-                    "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 = "insert into Shareholder(ParticipantId,ShareHolderName,NumberOfCurrentShareHolding) values (@d1,@d2,@d3)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", currentPerticipantId);
                 cmd.Parameters.AddWithValue("@d2", txtShareHolderName.Text);
@@ -604,17 +601,15 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct3 =
-                    "select Participant.ParticipantName from Participant where  Participant.ParticipantName='" +
-                    txtShareHolderName.Text + "'";
+                string ct3 = "select Participant.ParticipantName from Participant where  Participant.ParticipantName='" + txtShareHolderName.Text + "'";
                 cmd = new SqlCommand(ct3, con);
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read() && !rdr.IsDBNull(0))
                 {
-                    MessageBox.Show("This Share Holder Already Exists,Please Input another one", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    MessageBox.Show("This Share Holder Already Exists,Please Input another one", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
                     con.Close();
+                    return;
+                   
                 }
                 //1. Both Not Applicable
                 if (unKnownRA.Checked && unKnownCheckBox.Checked)

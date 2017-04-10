@@ -31,7 +31,7 @@ namespace BoardSecretariatSystem
         public int boardId,currentMeetingId,  tAgendaId;
         public string v,serialNo,agendaType;
        // public decimal aId,aId1;
-        public Nullable<int> meetingNum, meetingNum1;
+        public int meetingNum, meetingNum1;
 
         public MeetingEntry()
         {
@@ -132,7 +132,31 @@ namespace BoardSecretariatSystem
             }
  
         }
-        
+        public static string Ordinal(int number)
+        {
+            string suffix = String.Empty;
+            if (number == 11 || number == 12 || number == 13 || number % 100 == 11 || number % 100 == 12 || number % 100 == 13)
+            {
+                suffix = "th";
+            }
+            else if (number == 1 || number % 10 == 1)
+            {
+                suffix = "st";
+            }
+            else if (number == 2 || number % 10 == 2)
+            {
+                suffix = "nd";
+            }
+            else if (number == 3 || number % 10 == 3)
+            {
+                suffix = "rd";
+            }
+            else
+            {
+                suffix = "th";
+            }
+            return String.Format("{0}{1}", number, suffix);
+        }
 
         private void GetMeetingTitle()
         {
@@ -158,35 +182,38 @@ namespace BoardSecretariatSystem
                     if (rdr.Read())
                     {
                         meetingNum = (rdr.GetInt32(0));
-                        if (meetingNum == 1)
-                        {
-                            meetingNum1 = meetingNum;
-                            txtMeetingTitle.Text = "2nd Board Meeting";
-                        }
-                        else if (meetingNum == 2)
-                        {
-                            meetingNum1 = meetingNum;
-                            txtMeetingTitle.Text = "2nd Board Meeting";
-                        }
 
-                        else if (meetingNum == 3)
-                        {
-                            meetingNum1 = meetingNum;
-                            txtMeetingTitle.Text = "3rd Board Meeting";
-                        }
+                        //if (meetingNum == 1)
+                        //{
+                        //    meetingNum1 = meetingNum;
+                        //    txtMeetingTitle.Text = "1st Board Meeting";
+                        //}
+                        //else if (meetingNum == 2)
+                        //{
+                        //    meetingNum1 = meetingNum;
+                        //    txtMeetingTitle.Text = "2nd Board Meeting";
+                        //}
 
-                        else if (meetingNum >= 4)
-                        {
-                            meetingNum1 = meetingNum;
-                            txtMeetingTitle.Text = meetingNum + "th Board Meeting";
-                        }
+                        //else if (meetingNum == 3)
+                        //{
+                        //    meetingNum1 = meetingNum;
+                        //    txtMeetingTitle.Text = "3rd Board Meeting";
+                        //}
+
+                        //else if (meetingNum >= 4)
+                        //{
+                        //    meetingNum1 = meetingNum;
+                        //    txtMeetingTitle.Text = meetingNum + "th Board Meeting";
+                        //}
 
                     }
                 }
                 else
                 {
-                    meetingNum1 = meetingNum;
-                    txtMeetingTitle.Text = "1st Board Meeting";
+                    MessageBox.Show("Please Create Meeting First", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                              this.Hide();
+                    MeetingCreation frm=new MeetingCreation();
+                             frm.Show();
                 }
             }
             catch (Exception ex)
@@ -194,12 +221,16 @@ namespace BoardSecretariatSystem
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void MeetingEntry_Load(object sender, EventArgs e)
         {
+
             userId = frmLogin.uId.ToString();
             GetAgendaDetails();
-           
             GetMeetingTitle();
+            txtMeetingNumber.Text = meetingNum.ToString();
+            txtMeetingTitle.Text = Ordinal(meetingNum) + " Board Meeting";
+            
 
         }
         
