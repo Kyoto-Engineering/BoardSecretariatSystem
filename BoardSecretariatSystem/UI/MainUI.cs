@@ -103,11 +103,11 @@ namespace BoardSecretariatSystem
         }
         private void meetingExecutionButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
 
-            MeetingExecutionUI meetingExecution = new MeetingExecutionUI();
+            //MeetingExecutionUI meetingExecution = new MeetingExecutionUI();
 
-            meetingExecution.Show();
+            //meetingExecution.Show();
         }
         private void MainUI_FormClosed(object sender, FormClosedEventArgs e)
         {

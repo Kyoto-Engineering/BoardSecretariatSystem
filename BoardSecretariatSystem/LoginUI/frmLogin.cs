@@ -112,73 +112,8 @@ namespace BoardSecretariatSystem
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //try
-            //{
-            //    SqlConnection myConnection = default(SqlConnection);
-            //    myConnection = new SqlConnection(cs.DBConn);
-
-            //    SqlCommand myCommand = default(SqlCommand);
-
-            //    myCommand = new SqlCommand("SELECT UserName,Password FROM Registration WHERE UserName = @username AND Password = @UserPassword", myConnection);
-            //    SqlParameter uName = new SqlParameter("@username", SqlDbType.VarChar);
-            //    SqlParameter uPassword = new SqlParameter("@UserPassword", SqlDbType.VarChar);
-            //    uName.Value = userNameTextBox.Text;
-            //    uPassword.Value = passwoardTextBox.Text;
-            //    myCommand.Parameters.Add(uName);
-            //    myCommand.Parameters.Add(uPassword);
-
-            //    myCommand.Connection.Open();
-            //    rdr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            //    if (rdr.Read() == true)
-            //    {
-            //        con = new SqlConnection(cs.DBConn);
-            //        con.Open();
-            //        string ct = "select UserType,UserId,Name from Registration where Username='" + userNameTextBox.Text + "'and Password='" + passwoardTextBox.Text + "'";
-            //        cmd = new SqlCommand(ct);
-            //        cmd.Connection = con;
-            //        rdr = cmd.ExecuteReader();
-            //        if (rdr.Read())
-            //        {
-            //            userType = (rdr.GetString(0));
-            //            uId = (rdr.GetInt32(1));
-            //            userName = (rdr.GetString(2));
-            //        }
-            //        if ((rdr != null))
-            //        {
-            //            rdr.Close();
-            //        }
-
-            //        if (userType.Trim() == "Admin")
-            //        {
-            //            this.Hide();
-            //            MainUI frm = new MainUI();
-            //            frm.Show();
-            //            userNameTextBox.Clear();
-            //            userNameTextBox.Clear();
-            //        }
-            //    }
-              
-
-            //    else
-            //    {
-            //        MessageBox.Show("Login is Failed...Try again !", "Login Denied", MessageBoxButtons.OK,
-            //            MessageBoxIcon.Error);
-
-            //        userNameTextBox.Clear();
-            //        passwoardTextBox.Clear();
-            //        userNameTextBox.Focus();
-            //    }
-            //    if (myConnection.State == ConnectionState.Open)
-            //    {
-            //        myConnection.Dispose();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-        }
+            
+     }
 
         private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
