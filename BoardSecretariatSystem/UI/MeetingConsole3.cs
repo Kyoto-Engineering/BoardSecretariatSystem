@@ -229,15 +229,56 @@ namespace BoardSecretariatSystem.UI
         {
 
         }
+        public void ClearApprovedRequisition()
+        {
 
+            Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
+                for (int i = 0; i < selectedRowCount; i++)
+                {
+
+
+                    dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
+                }
+
+            }
+            dataGridView1.Refresh();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            try
             {
-                try
+
+                if (dataGridView1.SelectedRows.Count > 0)
                 {
                     DataGridViewRow dr = dataGridView1.SelectedRows[0];
                     participantId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+
+                    if (listView1.Items.Count > 0)
+                    {
+                        int x = listView1.Items.Count - 1;
+                        for (int i = 0; i <= x; i++)
+                        {
+                            if (participantId == Convert.ToInt32(listView1.Items[i].SubItems[0].Text))
+                            {
+                                MessageBox.Show("You Can Not Add Same Item More than one times", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+
+
+                        }
+                        ListViewItem lst1 = new ListViewItem();
+                        lst1.Text = dr.Cells[0].Value.ToString();
+                        lst1.SubItems.Add(dr.Cells[1].Value.ToString());
+                        lst1.SubItems.Add(dr.Cells[2].Value.ToString());
+                        lst1.SubItems.Add(dr.Cells[3].Value.ToString());
+                        //lst1.SubItems.Add(dr.Cells[4].Value.ToString());
+                        listView1.Items.Add(lst1);
+                        //SaveSelectedAgenda();
+                        ClearApprovedRequisition();
+                    }
+
                     if (listView1.Items.Count == 0)
                     {
                         ListViewItem lst = new ListViewItem();
@@ -245,38 +286,23 @@ namespace BoardSecretariatSystem.UI
                         lst.SubItems.Add(dr.Cells[1].Value.ToString());
                         lst.SubItems.Add(dr.Cells[2].Value.ToString());
                         lst.SubItems.Add(dr.Cells[3].Value.ToString());
-                        lst.SubItems.Add(dr.Cells[4].Value.ToString());
+                        //lst.SubItems.Add(dr.Cells[4].Value.ToString());
                         listView1.Items.Add(lst);
                        // SaveSelectedAgenda();
-                    }
-                    else if (listView1.FindItemWithText(participantId.ToString()) == null)
-                    {
-                        ListViewItem lst1 = new ListViewItem();
-                        lst1.Text = dr.Cells[0].Value.ToString();
-                        lst1.SubItems.Add(dr.Cells[1].Value.ToString());
-                        lst1.SubItems.Add(dr.Cells[2].Value.ToString());
-                        lst1.SubItems.Add(dr.Cells[3].Value.ToString());
-                        lst1.SubItems.Add(dr.Cells[4].Value.ToString());
-                        listView1.Items.Add(lst1);
-                      //  SaveSelectedAgenda();
-                    }
-                    else
-                    {
-                        MessageBox.Show("You Can Not Add Same Item More than one times", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-
+                        ClearApprovedRequisition();
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("There is not any row selected, please select row and Click Add Button!");
+                    MessageBox.Show("There is not any row selected, please select row and Click Add Button!");
 
-            }              
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonComplete_Click(object sender, EventArgs e)

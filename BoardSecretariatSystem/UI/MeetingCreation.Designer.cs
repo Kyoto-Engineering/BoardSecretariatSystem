@@ -45,6 +45,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtNAddressHeader = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.txtBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbPost = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -72,7 +73,6 @@
             this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtBlock = new wmgCMS.WaterMarkTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -91,7 +91,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtMeetingDate);
             this.groupBox1.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox1.Location = new System.Drawing.Point(7, 120);
+            this.groupBox1.Location = new System.Drawing.Point(5, 120);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(647, 365);
             this.groupBox1.TabIndex = 0;
@@ -181,11 +181,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(27, 221);
+            this.label5.Location = new System.Drawing.Point(7, 220);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 26);
+            this.label5.Size = new System.Drawing.Size(277, 26);
             this.label5.TabIndex = 72;
-            this.label5.Text = "Meeting Date :";
+            this.label5.Text = "Meeting Date And  Time :";
             // 
             // label7
             // 
@@ -209,11 +209,12 @@
             // 
             // txtMeetingDate
             // 
+            this.txtMeetingDate.CustomFormat = "MM/dd/yyyy HH:mm:ss";
             this.txtMeetingDate.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMeetingDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtMeetingDate.Location = new System.Drawing.Point(196, 216);
+            this.txtMeetingDate.Location = new System.Drawing.Point(290, 213);
             this.txtMeetingDate.Name = "txtMeetingDate";
-            this.txtMeetingDate.Size = new System.Drawing.Size(423, 41);
+            this.txtMeetingDate.Size = new System.Drawing.Size(329, 41);
             this.txtMeetingDate.TabIndex = 74;
             // 
             // label3
@@ -295,6 +296,16 @@
             this.label8.Size = new System.Drawing.Size(141, 22);
             this.label8.TabIndex = 84;
             this.label8.Text = "Address Header";
+            // 
+            // txtBlock
+            // 
+            this.txtBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBlock.Location = new System.Drawing.Point(151, 188);
+            this.txtBlock.Name = "txtBlock";
+            this.txtBlock.Size = new System.Drawing.Size(146, 26);
+            this.txtBlock.TabIndex = 83;
+            this.txtBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtBlock.WaterMarkText = "if any";
             // 
             // cmbPost
             // 
@@ -569,16 +580,6 @@
             this.label9.Size = new System.Drawing.Size(381, 22);
             this.label9.TabIndex = 69;
             this.label9.Text = "Please Expand this Window on the right Side ";
-            // 
-            // txtBlock
-            // 
-            this.txtBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBlock.Location = new System.Drawing.Point(151, 188);
-            this.txtBlock.Name = "txtBlock";
-            this.txtBlock.Size = new System.Drawing.Size(146, 26);
-            this.txtBlock.TabIndex = 83;
-            this.txtBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtBlock.WaterMarkText = "if any";
             // 
             // MeetingCreation
             // 

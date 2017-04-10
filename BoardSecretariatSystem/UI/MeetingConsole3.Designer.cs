@@ -127,7 +127,7 @@
             this.saveAllButton.ForeColor = System.Drawing.Color.Magenta;
             this.saveAllButton.Location = new System.Drawing.Point(894, 527);
             this.saveAllButton.Name = "saveAllButton";
-            this.saveAllButton.Size = new System.Drawing.Size(162, 93);
+            this.saveAllButton.Size = new System.Drawing.Size(192, 67);
             this.saveAllButton.TabIndex = 14;
             this.saveAllButton.Text = "Save All\r\n";
             this.saveAllButton.UseVisualStyleBackColor = false;
@@ -195,7 +195,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(14, 431);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(561, 219);
+            this.listView1.Size = new System.Drawing.Size(565, 219);
             this.listView1.TabIndex = 16;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
