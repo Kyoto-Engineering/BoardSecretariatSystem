@@ -25,12 +25,41 @@ namespace BoardSecretariatSystem.UI
         {
             InitializeComponent();
         }
+        private void CheckMeetingStatus()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string qr2 = "SELECT MAX(Meeting.MeetingId) FROM Meeting";
+                cmd = new SqlCommand(qr2, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    if (!(rdr.IsDBNull(0)))
+                    {
+                        meetingId = (rdr.GetInt32(0));
+                        this.Hide();
+                        MeetingEntry frm = new MeetingEntry();
+                        frm.Show();
+                       
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Create  or Shedule a meeting First.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
 
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void buttonAgendaSelection_Click(object sender, EventArgs e)
         {
-                      this.Hide();
-            MeetingEntry frm=new MeetingEntry();    
-                       frm.Show();
+            CheckMeetingStatus();
         }
 
         private void CheckMeeting()
@@ -72,10 +101,10 @@ namespace BoardSecretariatSystem.UI
         private void buttonMeetingCreate_Click(object sender, EventArgs e)
         {
 
-           //CheckMeeting();
-            this.Hide();
-            MeetingCreation frm = new MeetingCreation();
-            frm.Show();
+           CheckMeeting();
+            //this.Hide();
+            //MeetingCreation frm = new MeetingCreation();
+            //frm.Show();
             
         }
 
@@ -107,8 +136,7 @@ namespace BoardSecretariatSystem.UI
             else
             {
 
-                MessageBox.Show("Theere is no opened meeting", "Report",
-                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Theere is no opened meeting", "Report", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 
             }

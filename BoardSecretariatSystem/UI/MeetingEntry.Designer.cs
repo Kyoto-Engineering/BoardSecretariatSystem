@@ -109,7 +109,7 @@
             this.txtMeetingNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.txtMeetingNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMeetingNumber.ForeColor = System.Drawing.Color.Blue;
-            this.txtMeetingNumber.Location = new System.Drawing.Point(228, 59);
+            this.txtMeetingNumber.Location = new System.Drawing.Point(228, 57);
             this.txtMeetingNumber.Name = "txtMeetingNumber";
             this.txtMeetingNumber.ReadOnly = true;
             this.txtMeetingNumber.Size = new System.Drawing.Size(292, 32);
@@ -127,7 +127,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(2, 59);
+            this.label1.Location = new System.Drawing.Point(2, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(220, 31);
             this.label1.TabIndex = 62;

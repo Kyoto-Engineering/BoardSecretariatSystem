@@ -19,7 +19,7 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         ConnectionString cs = new ConnectionString();
-
+        public int nationalityId;
         public int affectedRows1,
             affectedRows2,
             affectedRows3,
@@ -61,7 +61,7 @@ namespace BoardSecretariatSystem.UI
             txtPassportNo.Clear();
             txtTINNumber.Clear();
             txtNationalId.Clear();
-            txtNationality.Clear();
+            cmbNationality.SelectedIndex = -1;
             cmbEmailAddress.SelectedIndex = -1;
             cmbParticipantType.SelectedIndex = -1;
 
@@ -138,40 +138,25 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 =
-                    "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,Designation,ContactNumber,Nationality,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16)" +
-                    "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 = "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,Designation,ContactNumber,NationalityId,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,GenderId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16,@d17)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", txtParticipantName.Text);
-                cmd.Parameters.Add(new SqlParameter("@d2",
-                    string.IsNullOrEmpty(txtMotherName.Text) ? (object) DBNull.Value : txtMotherName.Text));
-                cmd.Parameters.Add(new SqlParameter("@d3",
-                    string.IsNullOrEmpty(txtFatherName.Text) ? (object) DBNull.Value : txtFatherName.Text));
-                cmd.Parameters.AddWithValue("@d4",
-                    Convert.ToDateTime(txtDateOfBirth.Value,
-                        System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
-                cmd.Parameters.Add(new SqlParameter("@d5",
-                    string.IsNullOrEmpty(txtDesignation.Text) ? (object) DBNull.Value : txtDesignation.Text));
-                cmd.Parameters.Add(new SqlParameter("@d6",
-                    string.IsNullOrEmpty(boardMemberId.ToString()) ? (object) DBNull.Value : boardMemberId.ToString()));
-                cmd.Parameters.Add(new SqlParameter("@d7",
-                    string.IsNullOrEmpty(txtCellNumber.Text) ? (object) DBNull.Value : txtCellNumber.Text));
-                cmd.Parameters.Add(new SqlParameter("@d8",
-                    string.IsNullOrEmpty(txtNationality.Text) ? (object) DBNull.Value : txtNationality.Text));
-                cmd.Parameters.Add(new SqlParameter("@d9",
-                    string.IsNullOrEmpty(txtNationalId.Text) ? (object) DBNull.Value : txtNationalId.Text));
-                cmd.Parameters.Add(new SqlParameter("@d10",
-                    string.IsNullOrEmpty(txtBirthCertificateNo.Text)
-                        ? (object) DBNull.Value
-                        : txtBirthCertificateNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d11",
-                    string.IsNullOrEmpty(txtPassportNo.Text) ? (object) DBNull.Value : txtPassportNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d12",
-                    string.IsNullOrEmpty(txtTINNumber.Text) ? (object) DBNull.Value : txtTINNumber.Text));
+                cmd.Parameters.Add(new SqlParameter("@d2",string.IsNullOrEmpty(txtMotherName.Text) ? (object) DBNull.Value : txtMotherName.Text));
+                cmd.Parameters.Add(new SqlParameter("@d3",string.IsNullOrEmpty(txtFatherName.Text) ? (object) DBNull.Value : txtFatherName.Text));
+                cmd.Parameters.AddWithValue("@d4", Convert.ToDateTime(txtDateOfBirth.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
+                cmd.Parameters.Add(new SqlParameter("@d5",string.IsNullOrEmpty(txtDesignation.Text) ? (object) DBNull.Value : txtDesignation.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6",string.IsNullOrEmpty(boardMemberId.ToString()) ? (object) DBNull.Value : boardMemberId.ToString()));
+                cmd.Parameters.Add(new SqlParameter("@d7",string.IsNullOrEmpty(txtCellNumber.Text) ? (object) DBNull.Value : txtCellNumber.Text));
+                cmd.Parameters.Add(new SqlParameter("@d8",string.IsNullOrEmpty(nationalityId.ToString()) ? (object)DBNull.Value : nationalityId));
+                cmd.Parameters.Add(new SqlParameter("@d9",string.IsNullOrEmpty(txtNationalId.Text) ? (object) DBNull.Value : txtNationalId.Text));
+                cmd.Parameters.Add(new SqlParameter("@d10",string.IsNullOrEmpty(txtBirthCertificateNo.Text)?(object) DBNull.Value : txtBirthCertificateNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d11",string.IsNullOrEmpty(txtPassportNo.Text) ? (object) DBNull.Value : txtPassportNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d12",string.IsNullOrEmpty(txtTINNumber.Text) ? (object) DBNull.Value : txtTINNumber.Text));
                 cmd.Parameters.AddWithValue("@d13", bankEmailId);
                 cmd.Parameters.AddWithValue("@d14", companyId);
-                cmd.Parameters.AddWithValue("@d15", nUserId);
-                cmd.Parameters.AddWithValue("@d16", DateTime.UtcNow.ToLocalTime());
+                cmd.Parameters.AddWithValue("@d15", genderId);
+                cmd.Parameters.AddWithValue("@d16", nUserId);
+                cmd.Parameters.AddWithValue("@d17", DateTime.UtcNow.ToLocalTime());
                 currentPerticipantId = (int) cmd.ExecuteScalar();
                 con.Close();
 
@@ -190,24 +175,15 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string insertQ = "insert into " + tableName +
-                                 "(PostOfficeId,PFlatNo,PHouseNo,PRoadNo,PBlock,PArea,PContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" +
-                                 "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string insertQ = "insert into " + tableName + "(PostOfficeId,PFlatNo,PHouseNo,PRoadNo,PBlock,PArea,PContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(insertQ, con);
-                cmd.Parameters.Add(new SqlParameter("@d1",
-                    string.IsNullOrEmpty(postofficeIdP) ? (object) DBNull.Value : postofficeIdP));
-                cmd.Parameters.Add(new SqlParameter("@d2",
-                    string.IsNullOrEmpty(txtPFlatName.Text) ? (object) DBNull.Value : txtPFlatName.Text));
-                cmd.Parameters.Add(new SqlParameter("@d3",
-                    string.IsNullOrEmpty(txtPHouseName.Text) ? (object) DBNull.Value : txtPHouseName.Text));
-                cmd.Parameters.Add(new SqlParameter("@d4",
-                    string.IsNullOrEmpty(txtPRoadNo.Text) ? (object) DBNull.Value : txtPRoadNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d5",
-                    string.IsNullOrEmpty(txtPBlock.Text) ? (object) DBNull.Value : txtPBlock.Text));
-                cmd.Parameters.Add(new SqlParameter("@d6",
-                    string.IsNullOrEmpty(txtPArea.Text) ? (object) DBNull.Value : txtPArea.Text));
-                cmd.Parameters.Add(new SqlParameter("@d7",
-                    string.IsNullOrEmpty(txtPContactNo.Text) ? (object) DBNull.Value : txtPContactNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d1",string.IsNullOrEmpty(postofficeIdP) ? (object) DBNull.Value : postofficeIdP));
+                cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(txtPFlatName.Text) ? (object) DBNull.Value : txtPFlatName.Text));
+                cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(txtPHouseName.Text) ? (object) DBNull.Value : txtPHouseName.Text));
+                cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(txtPRoadNo.Text) ? (object) DBNull.Value : txtPRoadNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtPBlock.Text) ? (object) DBNull.Value : txtPBlock.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtPArea.Text) ? (object) DBNull.Value : txtPArea.Text));
+                cmd.Parameters.Add(new SqlParameter("@d7",string.IsNullOrEmpty(txtPContactNo.Text) ? (object) DBNull.Value : txtPContactNo.Text));
                 cmd.Parameters.AddWithValue("@d8", currentPerticipantId);
                 affectedRows1 = (int) cmd.ExecuteScalar();
                 con.Close();
@@ -216,24 +192,15 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string insertQ = "insert into " + tableName +
-                                 "(PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" +
-                                 "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string insertQ = "insert into " + tableName + "(PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" +"SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(insertQ, con);
-                cmd.Parameters.Add(new SqlParameter("@d1",
-                    string.IsNullOrEmpty(postofficeId) ? (object) DBNull.Value : postofficeId));
-                cmd.Parameters.Add(new SqlParameter("@d2",
-                    string.IsNullOrEmpty(txtFlatNo.Text) ? (object) DBNull.Value : txtFlatNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d3",
-                    string.IsNullOrEmpty(txtHouseNo.Text) ? (object) DBNull.Value : txtHouseNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d4",
-                    string.IsNullOrEmpty(txtRoadNo.Text) ? (object) DBNull.Value : txtRoadNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d5",
-                    string.IsNullOrEmpty(txtBlock.Text) ? (object) DBNull.Value : txtBlock.Text));
-                cmd.Parameters.Add(new SqlParameter("@d6",
-                    string.IsNullOrEmpty(txtArea.Text) ? (object) DBNull.Value : txtArea.Text));
-                cmd.Parameters.Add(new SqlParameter("@d7",
-                    string.IsNullOrEmpty(txtContactNo.Text) ? (object) DBNull.Value : txtContactNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d1", string.IsNullOrEmpty(postofficeId) ? (object) DBNull.Value : postofficeId));
+                cmd.Parameters.Add(new SqlParameter("@d2",string.IsNullOrEmpty(txtFlatNo.Text) ? (object) DBNull.Value : txtFlatNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(txtHouseNo.Text) ? (object) DBNull.Value : txtHouseNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(txtRoadNo.Text) ? (object) DBNull.Value : txtRoadNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtBlock.Text) ? (object) DBNull.Value : txtBlock.Text));
+                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtArea.Text) ? (object) DBNull.Value : txtArea.Text));
+                cmd.Parameters.Add(new SqlParameter("@d7",string.IsNullOrEmpty(txtContactNo.Text) ? (object) DBNull.Value : txtContactNo.Text));
                 cmd.Parameters.AddWithValue("@d8", currentPerticipantId);
                 affectedRows1 = (int) cmd.ExecuteScalar();
                 con.Close();
@@ -245,24 +212,15 @@ namespace BoardSecretariatSystem.UI
             string tableName = tblName1;
             con = new SqlConnection(cs.DBConn);
             con.Open();
-            string Qry = "insert into " + tableName +
-                         "(PostOfficeId,PFlatNo,PHouseNo,PRoadNo,PBlock,PArea,PContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" +
-                         "SELECT CONVERT(int, SCOPE_IDENTITY())";
+            string Qry = "insert into " + tableName + "(PostOfficeId,PFlatNo,PHouseNo,PRoadNo,PBlock,PArea,PContactNo,ParticipantId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
             cmd = new SqlCommand(Qry, con);
-            cmd.Parameters.Add(new SqlParameter("@d1",
-                string.IsNullOrEmpty(postofficeIdP) ? (object) DBNull.Value : postofficeIdP));
-            cmd.Parameters.Add(new SqlParameter("@d2",
-                string.IsNullOrEmpty(txtPFlatName.Text) ? (object) DBNull.Value : txtPFlatName.Text));
-            cmd.Parameters.Add(new SqlParameter("@d3",
-                string.IsNullOrEmpty(txtPHouseName.Text) ? (object) DBNull.Value : txtPHouseName.Text));
-            cmd.Parameters.Add(new SqlParameter("@d4",
-                string.IsNullOrEmpty(txtPRoadNo.Text) ? (object) DBNull.Value : txtPRoadNo.Text));
-            cmd.Parameters.Add(new SqlParameter("@d5",
-                string.IsNullOrEmpty(txtPBlock.Text) ? (object) DBNull.Value : txtPBlock.Text));
-            cmd.Parameters.Add(new SqlParameter("@d6",
-                string.IsNullOrEmpty(txtPArea.Text) ? (object) DBNull.Value : txtPArea.Text));
-            cmd.Parameters.Add(new SqlParameter("@d7",
-                string.IsNullOrEmpty(txtPContactNo.Text) ? (object) DBNull.Value : txtPContactNo.Text));
+            cmd.Parameters.Add(new SqlParameter("@d1",string.IsNullOrEmpty(postofficeIdP) ? (object) DBNull.Value : postofficeIdP));
+            cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(txtPFlatName.Text) ? (object) DBNull.Value : txtPFlatName.Text));
+            cmd.Parameters.Add(new SqlParameter("@d3",string.IsNullOrEmpty(txtPHouseName.Text) ? (object) DBNull.Value : txtPHouseName.Text));
+            cmd.Parameters.Add(new SqlParameter("@d4",string.IsNullOrEmpty(txtPRoadNo.Text) ? (object) DBNull.Value : txtPRoadNo.Text));
+            cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtPBlock.Text) ? (object) DBNull.Value : txtPBlock.Text));
+            cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtPArea.Text) ? (object) DBNull.Value : txtPArea.Text));
+            cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtPContactNo.Text) ? (object) DBNull.Value : txtPContactNo.Text));
             cmd.Parameters.AddWithValue("@d8", currentPerticipantId);
             affectedRows2 = (int) cmd.ExecuteScalar();
             con.Close();
@@ -525,6 +483,27 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void NationalityLoad()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctt = "select Nationality from Nationalitys";
+                cmd = new SqlCommand(ctt);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    cmbNationality.Items.Add(rdr.GetValue(0).ToString());
+                }
+                cmbNationality.Items.Add("Not In The List");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void ParticipantCreation2_Load(object sender, EventArgs e)
         {
             nUserId = frmLogin.uId.ToString();
@@ -533,6 +512,7 @@ namespace BoardSecretariatSystem.UI
             FillPresentDivisionCombo();
             GetGender();
             EmailAddress();
+            NationalityLoad();
         }
 
         private void cmbPDivision_SelectedIndexChanged(object sender, EventArgs e)
@@ -542,7 +522,6 @@ namespace BoardSecretariatSystem.UI
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 string ctk = "SELECT  RTRIM(Divisions.Division_ID)  from Divisions WHERE Divisions.Division=@find";
-
                 cmd = new SqlCommand(ctk);
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Division"));
@@ -551,7 +530,6 @@ namespace BoardSecretariatSystem.UI
                 if (rdr.Read())
                 {
                     divisionIdP = (rdr.GetString(0));
-
                 }
 
                 if ((rdr != null))
@@ -562,8 +540,6 @@ namespace BoardSecretariatSystem.UI
                 {
                     con.Close();
                 }
-
-
                 cmbPDivision.Text = cmbPDivision.Text.Trim();
                 cmbPDistrict.Items.Clear();
                 cmbPDistrict.Text = "";
@@ -572,11 +548,9 @@ namespace BoardSecretariatSystem.UI
                 txtPPostCode.Clear();
                 cmbPDistrict.Enabled = true;
                 cmbPDistrict.Focus();
-
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select RTRIM(Districts.District) from Districts  Where Districts.Division_ID = '" +
-                            divisionIdP + "' order by Districts.Division_ID desc";
+                string ct = "select RTRIM(Districts.District) from Districts  Where Districts.Division_ID = '" +divisionIdP + "' order by Districts.Division_ID desc";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -630,8 +604,7 @@ namespace BoardSecretariatSystem.UI
                 cmbPThana.Focus();
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select RTRIM(Thanas.Thana) from Thanas  Where Thanas.D_ID = '" + districtIdP +
-                            "' order by Thanas.D_ID desc";
+                string ct = "select RTRIM(Thanas.Thana) from Thanas  Where Thanas.D_ID = '" + districtIdP +"' order by Thanas.D_ID desc";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -684,12 +657,10 @@ namespace BoardSecretariatSystem.UI
                 cmbPPost.Focus();
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select RTRIM(PostOffice.PostOfficeName) from PostOffice  Where PostOffice.T_ID = '" +
-                            thanaIdP + "' order by PostOffice.T_ID desc";
+                string ct = "select RTRIM(PostOffice.PostOfficeName) from PostOffice  Where PostOffice.T_ID = '" + thanaIdP + "' order by PostOffice.T_ID desc";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
-
                 while (rdr.Read())
                 {
                     cmbPPost.Items.Add(rdr[0]);
@@ -709,8 +680,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctk =
-                    "SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
+                string ctk = "SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
                 cmd = new SqlCommand(ctk);
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "PostOfficeName"));
@@ -731,8 +701,6 @@ namespace BoardSecretariatSystem.UI
                 {
                     con.Close();
                 }
-
-
             }
 
             catch (Exception ex)
@@ -777,8 +745,7 @@ namespace BoardSecretariatSystem.UI
                 cmbDistrict.Focus();
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select RTRIM(Districts.District) from Districts  Where Districts.Division_ID = '" +
-                            divisionId + "' order by Districts.Division_ID desc";
+                string ct = "select RTRIM(Districts.District) from Districts  Where Districts.Division_ID = '" + divisionId + "' order by Districts.Division_ID desc";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -831,8 +798,7 @@ namespace BoardSecretariatSystem.UI
                 cmbThana.Focus();
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select RTRIM(Thanas.Thana) from Thanas  Where Thanas.D_ID = '" + districtId +
-                            "' order by Thanas.D_ID desc";
+                string ct = "select RTRIM(Thanas.Thana) from Thanas  Where Thanas.D_ID = '" + districtId + "' order by Thanas.D_ID desc";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -884,8 +850,7 @@ namespace BoardSecretariatSystem.UI
                 cmbPost.Focus();
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select RTRIM(PostOffice.PostOfficeName) from PostOffice  Where PostOffice.T_ID = '" +
-                            thanaId + "' order by PostOffice.T_ID desc";
+                string ct = "select RTRIM(PostOffice.PostOfficeName) from PostOffice  Where PostOffice.T_ID = '" +thanaId + "' order by PostOffice.T_ID desc";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -908,8 +873,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctk =
-                    "SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
+                string ctk = "SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
                 cmd = new SqlCommand(ctk);
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "PostOfficeName"));
@@ -982,8 +946,7 @@ namespace BoardSecretariatSystem.UI
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into  EmailBank(Email, UserId,DateAndTime) values (@d1,@d2,@d3)" +
-                                            "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into  EmailBank(Email, UserId,DateAndTime) values (@d1,@d2,@d3)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", input);
                             cmd.Parameters.AddWithValue("@d2", nUserId);
@@ -1038,9 +1001,7 @@ namespace BoardSecretariatSystem.UI
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 cmd = con.CreateCommand();
-                cmd.CommandText =
-                    "SELECT BoardMemberTypeId from BoardMemberTypes WHERE BoardMemberTypes.BoardMemberType= '" +
-                    cmbParticipantType.Text + "'";
+                cmd.CommandText = "SELECT BoardMemberTypeId from BoardMemberTypes WHERE BoardMemberTypes.BoardMemberType= '" + cmbParticipantType.Text + "'";
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
@@ -1229,8 +1190,7 @@ namespace BoardSecretariatSystem.UI
         {
             if (cmbGender.Text == "Not In The List")
             {
-                string input = Microsoft.VisualBasic.Interaction.InputBox("Please Input Gender Here", "Input Here", "",
-                    -1, -1);
+                string input = Microsoft.VisualBasic.Interaction.InputBox("Please Input Gender Here", "Input Here", "", -1, -1);
                 if (string.IsNullOrWhiteSpace(input))
                 {
                     cmbGender.SelectedIndex = -1;
@@ -1283,6 +1243,81 @@ namespace BoardSecretariatSystem.UI
                     if (rdr.Read())
                     {
                         genderId = rdr.GetInt32(0);
+                    }
+                    if ((rdr != null))
+                    {
+                        rdr.Close();
+                    }
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void cmbNationality_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbNationality.Text == "Not In The List")
+            {
+                string input = Microsoft.VisualBasic.Interaction.InputBox("Please Input Nationality Here", "Input Here", "", -1, -1);
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    cmbNationality.SelectedIndex = -1;
+                }
+
+                else
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string ct2 = "select Nationality from Nationalitys where Nationality='" + input + "'";
+                    cmd = new SqlCommand(ct2, con);
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read() && !rdr.IsDBNull(0))
+                    {
+                        MessageBox.Show("This Nationality  Already Exists,Please Select From List", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        con.Close();
+                        cmbNationality.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            con = new SqlConnection(cs.DBConn);
+                            con.Open();
+                            string query1 = "insert into Nationalitys(Nationality) values (@d1)";
+                            cmd = new SqlCommand(query1, con);
+                            cmd.Parameters.AddWithValue("@d1", input);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            cmbNationality.Items.Clear();
+                            NationalityLoad();
+                            cmbNationality.SelectedText = input;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "SELECT NationalityId from Nationalitys WHERE Nationality= '" + cmbNationality.Text + "'";
+
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        nationalityId = rdr.GetInt32(0);
                     }
                     if ((rdr != null))
                     {
