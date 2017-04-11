@@ -97,12 +97,12 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                cmd = new SqlCommand("SELECT MeetingMinutes.AgendaSerialForMeeting, Agenda.AgendaTitle, MeetingMinutes.Resolution FROM Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId INNER JOIN SelectedAgenda ON Agenda.AgendaId = SelectedAgenda.AgendaId INNER JOIN MeetingMinutes ON SelectedAgenda.MeetingAgendaId = MeetingMinutes.MeetingAgendaId where MeetingMinutes.MeetingId=" + meetingId + " ", con);
+                cmd = new SqlCommand("SELECT MeetingMinutes.AgendaSerialForMeeting, Agenda.AgendaTitle, MeetingMinutes.Resolution, MeetingMinutes.MeetingMinuteId FROM Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId INNER JOIN SelectedAgenda ON Agenda.AgendaId = SelectedAgenda.AgendaId INNER JOIN MeetingMinutes ON SelectedAgenda.MeetingAgendaId = MeetingMinutes.MeetingAgendaId where MeetingMinutes.MeetingId=" + meetingId + " ", con);
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
                     string x = Ordinal(int.Parse(rdr[0].ToString())) + @" Agenda";
-                    minutedDataGridView.Rows.Add(x, rdr[1], rdr[2]);
+                    minutedDataGridView.Rows.Add(x, rdr[1], rdr[2],rdr[3]);
                 }
                 if (con.State == ConnectionState.Open)
                 {
@@ -154,18 +154,17 @@ namespace BoardSecretariatSystem.UI
         {
             try
             {
-                DataGridViewRow dr = new DataGridViewRow();
+                //DataGridViewRow dr = new DataGridViewRow();
                 //dr = invitedParticipantDataGridView.SelectedRows[0];
                 //invitedParticipantDataGridView.Rows.Remove(dr);
 
                 //string x=dr.Cells[3].ToString();
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query = "INSERT INTO AttendenceMeeting (MPId,MeetingId,Title) VALUES(@mid,@meid,@t)" +
-                            "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query = "UPDATE MeetingMinutes SET Resolution = @res WHERE  MeetingMinuteId= @mmid)" ;
                 cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@mid", int.Parse(dr.Cells[3].Value.ToString()));
-                cmd.Parameters.AddWithValue("@meid", meetingId);
+                cmd.Parameters.AddWithValue("@res", textWithSpellCheck1.Text);
+                cmd.Parameters.AddWithValue("@mmid", meetingId);
                 cmd.Parameters.AddWithValue("@t", dr.Cells[2].Value.ToString());
                 int attendancMeetingId = (int)cmd.ExecuteScalar();
                 if (con.State == ConnectionState.Open)
@@ -173,9 +172,9 @@ namespace BoardSecretariatSystem.UI
                     con.Close();
                 }
                 dr.Cells[3].Value = attendancMeetingId;
-                int x = a.Rows.Count;
-                dr.Cells[0].Value = x;
-                attendedParticipantDataGridView.Rows.Add(dr);
+                //int x = a.Rows.Count;
+                //dr.Cells[0].Value = x;
+                //attendedParticipantDataGridView.Rows.Add(dr);
             }
             catch (Exception ex)
             {
