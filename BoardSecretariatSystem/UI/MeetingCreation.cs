@@ -132,7 +132,7 @@ namespace BoardSecretariatSystem.UI
                 }
                 else
                 {
-                      meetingNum1 = meetingNum;
+                      meetingNum1 = 1;
                       txtMeetingName.Text = "1st Board Meeting";
                 }             
             }
@@ -363,7 +363,7 @@ namespace BoardSecretariatSystem.UI
         
         private void buttonMeetingCreation_Click(object sender, EventArgs e)
         {
-            SaveMeetingParticipant();
+            
             if (string.IsNullOrEmpty(cmbVenue.Text))
             {
                 MessageBox.Show("Please Select Vanue for the Meeting", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
