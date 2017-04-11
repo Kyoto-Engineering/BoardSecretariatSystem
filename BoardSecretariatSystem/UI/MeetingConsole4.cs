@@ -121,7 +121,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                cmd = new SqlCommand("SELECT       Participant.ParticipantName, MeetingParticipant.Title   FROM            MeetingParticipant INNER JOIN Participant ON MeetingParticipant.ParticipantId = Participant.ParticipantId INNER JOIN Meeting on  MeetingParticipant.MeetingId = Meeting.MeetingId where Meeting.Statuss ='Open'", con);
+                cmd = new SqlCommand("SELECT  Participant.ParticipantName, MeetingParticipant.Title   FROM            MeetingParticipant INNER JOIN Participant ON MeetingParticipant.ParticipantId = Participant.ParticipantId INNER JOIN Meeting on  MeetingParticipant.MeetingId = Meeting.MeetingId where Meeting.Statuss ='Open'", con);
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {

@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbGender = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
             this.addButton = new System.Windows.Forms.Button();
             this.cmbParticipantType = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,7 +51,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtDateOfBirth = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtNationality = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtMotherName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -120,9 +122,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.cmbGender = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
+            this.cmbNationality = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -133,6 +133,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LimeGreen;
+            this.groupBox1.Controls.Add(this.cmbNationality);
             this.groupBox1.Controls.Add(this.cmbGender);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label27);
@@ -155,7 +156,6 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtDateOfBirth);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.txtNationality);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.txtMotherName);
             this.groupBox1.Controls.Add(this.label9);
@@ -172,6 +172,39 @@
             this.groupBox1.Size = new System.Drawing.Size(1254, 576);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // cmbGender
+            // 
+            this.cmbGender.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbGender.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbGender.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbGender.FormattingEnabled = true;
+            this.cmbGender.Location = new System.Drawing.Point(233, 468);
+            this.cmbGender.Name = "cmbGender";
+            this.cmbGender.Size = new System.Drawing.Size(278, 30);
+            this.cmbGender.TabIndex = 125;
+            this.cmbGender.SelectedIndexChanged += new System.EventHandler(this.cmbGender_SelectedIndexChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Blue;
+            this.label11.Location = new System.Drawing.Point(146, 472);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(71, 22);
+            this.label11.TabIndex = 124;
+            this.label11.Text = "Gender";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.Color.Blue;
+            this.label27.Location = new System.Drawing.Point(148, 476);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(0, 22);
+            this.label27.TabIndex = 123;
             // 
             // addButton
             // 
@@ -363,14 +396,6 @@
             this.label13.Size = new System.Drawing.Size(127, 22);
             this.label13.TabIndex = 104;
             this.label13.Text = "Date Of Birth:";
-            // 
-            // txtNationality
-            // 
-            this.txtNationality.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNationality.Location = new System.Drawing.Point(233, 260);
-            this.txtNationality.Name = "txtNationality";
-            this.txtNationality.Size = new System.Drawing.Size(278, 29);
-            this.txtNationality.TabIndex = 103;
             // 
             // label12
             // 
@@ -1132,38 +1157,17 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Participant Creation";
             // 
-            // cmbGender
+            // cmbNationality
             // 
-            this.cmbGender.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbGender.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbGender.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbGender.FormattingEnabled = true;
-            this.cmbGender.Location = new System.Drawing.Point(233, 468);
-            this.cmbGender.Name = "cmbGender";
-            this.cmbGender.Size = new System.Drawing.Size(278, 30);
-            this.cmbGender.TabIndex = 125;
-            this.cmbGender.SelectedIndexChanged += new System.EventHandler(this.cmbGender_SelectedIndexChanged);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Blue;
-            this.label11.Location = new System.Drawing.Point(146, 472);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(71, 22);
-            this.label11.TabIndex = 124;
-            this.label11.Text = "Gender";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.ForeColor = System.Drawing.Color.Blue;
-            this.label27.Location = new System.Drawing.Point(148, 476);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(0, 22);
-            this.label27.TabIndex = 123;
+            this.cmbNationality.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbNationality.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbNationality.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbNationality.FormattingEnabled = true;
+            this.cmbNationality.Location = new System.Drawing.Point(234, 258);
+            this.cmbNationality.Name = "cmbNationality";
+            this.cmbNationality.Size = new System.Drawing.Size(278, 30);
+            this.cmbNationality.TabIndex = 130;
+            this.cmbNationality.SelectedIndexChanged += new System.EventHandler(this.cmbNationality_SelectedIndexChanged);
             // 
             // ParticipantCreation2
             // 
@@ -1208,7 +1212,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker txtDateOfBirth;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtNationality;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtMotherName;
         private System.Windows.Forms.Label label9;
@@ -1288,5 +1291,6 @@
         private System.Windows.Forms.ComboBox cmbGender;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.ComboBox cmbNationality;
     }
 }

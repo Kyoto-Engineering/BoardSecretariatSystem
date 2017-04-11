@@ -59,47 +59,15 @@ namespace BoardSecretariatSystem
             AgendaEntryUI agendaEntry = new AgendaEntryUI();
             agendaEntry.Show();
         }
-        private void CheckAvailableIssuedShare()
-        {
-
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string qry2 = "SELECT Company.AvailableIssuedShare from  Company";
-                cmd = new SqlCommand(qry2, con);
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    availableIssuedShare = (rdr.GetInt32(0));
-                }
-                con.Close();
-                if (availableIssuedShare == 0)
-                {
-                    MessageBox.Show("There is no Available Issued Share", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else
-                {
-                              this.Hide();
-                    ParticipantCreation frm = new ParticipantCreation();
-                               frm.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
+        
 
 
         private void participantCreateButton_Click(object sender, EventArgs e)
         {
-            CheckAvailableIssuedShare();
-            //this.Hide();
-            //ParticipantCreation participantEntry = new ParticipantCreation();
-            //participantEntry.Show();
+           
+            this.Hide();
+            ParticipantCreation participantEntry = new ParticipantCreation();
+            participantEntry.Show();
         }
         private void meetingExecutionButton_Click(object sender, EventArgs e)
         {

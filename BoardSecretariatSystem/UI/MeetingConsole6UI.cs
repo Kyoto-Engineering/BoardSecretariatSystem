@@ -19,8 +19,9 @@ namespace BoardSecretariatSystem.UI
         private SqlDataReader rdr;
         private SqlDataAdapter ada;
         ConnectionString cs=new ConnectionString();
-        public int metingTypeId, meetingNum, meetingNum1,currentMeetingminutesId,meetingId;
-        public string userId, labelk, labelg, agendaSl, meetingAgendaId, agendaSerialForMeeting,memo;
+        public int metingTypeId, meetingNum, meetingNum1, currentMeetingminutesId, meetingId, agendaSerialForMeeting;
+        public string userId, labelk, labelg, agendaSl, meetingAgendaId,memo;
+        private DataTable dt;
 
 
         public MeetingConsole6UI()
@@ -38,21 +39,9 @@ namespace BoardSecretariatSystem.UI
         {
             try
             {
-                //con = new SqlConnection(cs.DBConn);
-                //con.Open();
-                //string query = "Select MeetingTypeId From Meeting where MeetingTypeId=1";
-                //cmd = new SqlCommand(query, con);
-                //rdr = cmd.ExecuteReader();
-                //if (rdr.Read())
-                //{
-                //    metingTypeId = (rdr.GetInt32(0));
-                //}
-
-                //if (metingTypeId == 1)
-                //{
+               
                     con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                   // string qr2 = "SELECT MAX(Meeting.MeetingNo) FROM Meeting where Meeting.MeetingTypeId='" + metingTypeId + "'";
+                    con.Open();                   
                     string qr2 = "SELECT MAX(Meeting.MeetingNo) FROM Meeting";
                     cmd = new SqlCommand(qr2, con);
                     rdr = cmd.ExecuteReader();
@@ -111,7 +100,7 @@ namespace BoardSecretariatSystem.UI
             try
             {
                 con = new SqlConnection(cs.DBConn);
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT  Participant.ParticipantId,Participant.ParticipantName, Participant.Designation FROM   Participant where  Participant.ParticipantId not in (Select Shareholder.ParticipantId from Shareholder)", con);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT Participant.ParticipantId,Participant.ParticipantName, Participant.Designation FROM   Participant where  Participant.ParticipantId not in (Select Shareholder.ParticipantId from Shareholder)", con);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 dataGridView1.Rows.Clear();
@@ -138,7 +127,7 @@ namespace BoardSecretariatSystem.UI
             try
             {
                 con = new SqlConnection(cs.DBConn);
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT Agenda.AgendaNo, Agenda.AgendaTitle,SelectedAgenda.MeetingAgendaId,Agenda.Memo FROM   Meeting INNER JOIN SelectedAgenda ON Meeting.MeetingId = SelectedAgenda.MeetingId INNER JOIN Agenda ON SelectedAgenda.AgendaId = Agenda.AgendaId  order by  SelectedAgenda.MeetingAgendaId asc", con);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT Agenda.AgendaNo, Agenda.AgendaTitle,SelectedAgenda.MeetingAgendaId,Agenda.Memo FROM   Meeting INNER JOIN SelectedAgenda ON Meeting.MeetingId = SelectedAgenda.MeetingId INNER JOIN Agenda ON SelectedAgenda.AgendaId = Agenda.AgendaId  where SelectedAgenda.MeetingAgendaId not in(Select MeetingMinutes.MeetingAgendaId from MeetingMinutes)  order by  SelectedAgenda.MeetingAgendaId asc", con);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 dataGridView1.Rows.Clear();
@@ -160,8 +149,8 @@ namespace BoardSecretariatSystem.UI
 
         private void GetSerialNumber()
         {
-            //try
-            //{
+            try
+            {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     string qr = "SELECT MAX(Meeting.MeetingId) FROM Meeting where Meeting.MeetingNo='" +meetingNum + "'";
@@ -174,30 +163,32 @@ namespace BoardSecretariatSystem.UI
                    con.Close();
                    con = new SqlConnection(cs.DBConn);
                    con.Open();
-                   string qr2 = "SELECT MAX(SelectedAgenda.AgendaSerialForMeeting) FROM MeetingMinutes where MeetingMinutes.MeetingId='" + meetingId + "'";
+                   string qr2 = "SELECT MAX(MeetingMinutes.AgendaSerialForMeeting)  FROM MeetingMinutes where MeetingMinutes.MeetingId='" + meetingId + "'";
                    cmd = new SqlCommand(qr2, con);
                    rdr = cmd.ExecuteReader();
                    if (rdr.Read())
                    {
-                       if (!(rdr.IsDBNull(0)))
+                        if (!(rdr.IsDBNull(0)))
                        {
-                           agendaSerialForMeeting = (rdr.GetString(0));
+                           agendaSerialForMeeting = (rdr.GetInt32(0));
+                           agendaSerialForMeeting = agendaSerialForMeeting + 1;
+
                        }
                        else
                        {
-                           agendaSerialForMeeting = 1.ToString();
+                           agendaSerialForMeeting = 1;
                        }
                    }
                    else
                    {
-                       agendaSerialForMeeting = 1.ToString();
+                       agendaSerialForMeeting = 1;
                    }
                   con.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ResetDBNull()
@@ -217,17 +208,38 @@ namespace BoardSecretariatSystem.UI
 
             }
         }
+        private void ListOfMinutedAgenda()
+        {
+            listView1.View = View.Details;
+            con = new SqlConnection(cs.DBConn);
+            string qry = "SELECT  MeetingMinutes.AgendaSerialForMeeting, Agenda.AgendaTitle, MeetingMinutes.Discussion, MeetingMinutes.Resolution FROM  Agenda INNER JOIN SelectedAgenda ON Agenda.AgendaId = SelectedAgenda.AgendaId INNER JOIN MeetingMinutes ON SelectedAgenda.MeetingAgendaId = MeetingMinutes.MeetingAgendaId";
+            ada = new SqlDataAdapter(qry, con);
+            dt = new DataTable();
+            ada.Fill(dt);
+            for (int b = 0; b < dt.Rows.Count; b++)
+            {
+                DataRow dr = dt.Rows[b];
+                ListViewItem listitem1 = new ListViewItem();
+                listitem1.SubItems.Add(dr[0].ToString());
+                listitem1.SubItems.Add(dr[1].ToString());
+                listitem1.SubItems.Add(dr[2].ToString());
+                listitem1.SubItems.Add(dr[3].ToString());
+                //listitem1.SubItems.Add(dr[4].ToString());
+                listView1.Items.Add(listitem1);
+            }
+        }
         private void MeetingConsole6UI_Load(object sender, EventArgs e)
         {
+            ListOfMinutedAgenda();
             GetAllSelectedAgenda();
             userId = frmLogin.uId.ToString();
             GetMeetingNumber();
         }
-        private void SaveSelectedAgenda()
+        private void SaveMeetingMinutes()
         {
-            //try
-            //{
-                GetSerialNumber();
+            try
+            {
+                
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 string query2 = "insert into MeetingMinutes(MeetingId,MeetingAgendaId,AgendaSerialForMeeting,Memo,Discussion,Resolution,UserId,DateAndTime) values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
@@ -242,26 +254,61 @@ namespace BoardSecretariatSystem.UI
                 cmd.Parameters.AddWithValue("@d8", DateTime.UtcNow.ToLocalTime());               
                 currentMeetingminutesId = (int)cmd.ExecuteScalar();
                 con.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void UpdateMeetingStarted()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query2 = "Update  Meeting Set MeetingStarted=@d1 where  Meeting.MeetingId='" + meetingId + "' ";
+                cmd = new SqlCommand(query2, con);
+                cmd.Parameters.AddWithValue("@d1", 1);
+                cmd.ExecuteReader();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void addToListButton_Click(object sender, EventArgs e)
         {
-            //try
-            //{               
+            if (string.IsNullOrWhiteSpace(txtAgendaTitle.Text))
+            {
+                MessageBox.Show("Please select agenda title from the Grid.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtDiscussion.Text))
+            {
+                MessageBox.Show("Please type discussion", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtDraftResolution.Text))
+            {
+                MessageBox.Show("Please type draft resolution", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try
+            {               
                 if (listView1.Items.Count == 0)
                 {
+                    GetSerialNumber();
+                    SaveMeetingMinutes();
+                    UpdateMeetingStarted();
                     ListViewItem lst = new ListViewItem();
-                    lst.SubItems.Add(agendaSl);
+                    lst.SubItems.Add(agendaSerialForMeeting.ToString());
                     lst.SubItems.Add(txtAgendaTitle.Text);                   
                     lst.SubItems.Add(txtDiscussion.Text);
                     lst.SubItems.Add(txtDraftResolution.Text); 
                                      
-                    listView1.Items.Add(lst);
-                    SaveSelectedAgenda();
+                    listView1.Items.Add(lst);                    
                     txtAgendaTitle.Clear();
                     txtDiscussion.Clear();
                     txtDraftResolution.Clear();
@@ -270,24 +317,23 @@ namespace BoardSecretariatSystem.UI
                 }
 
                 ListViewItem lst1 = new ListViewItem();
-                lst1.SubItems.Add(agendaSl);
+                GetSerialNumber();
+                SaveMeetingMinutes();
+                lst1.SubItems.Add(agendaSerialForMeeting.ToString());
                 lst1.SubItems.Add(txtAgendaTitle.Text);
                 lst1.SubItems.Add(txtDiscussion.Text);
                 lst1.SubItems.Add(txtDraftResolution.Text);
 
-                listView1.Items.Add(lst1);
-                SaveSelectedAgenda();
+                listView1.Items.Add(lst1);                
                 txtAgendaTitle.Clear();
                 txtDiscussion.Clear();
                 txtDraftResolution.Clear();                
                 return;
-              
-               
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
                
         }
         public void ClearDiscussedAgenda()
@@ -329,7 +375,7 @@ namespace BoardSecretariatSystem.UI
                
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query2 = "Update  Meeting Set AllDiscussionCompleted=@d1 where  Meeting.MeetingId='"+meetingId+"' )";
+                string query2 = "Update  Meeting Set AllDiscussionCompleted=@d1 where  Meeting.MeetingId='"+meetingId+"' ";
                 cmd = new SqlCommand(query2, con);
                 cmd.Parameters.AddWithValue("@d1", 1);
                 cmd.ExecuteReader();
