@@ -20,6 +20,7 @@ namespace BoardSecretariatSystem.UI
         private ConnectionString cs = new ConnectionString();
         private int meetingId, meetingNo, agendaId = 0;
         private int postponeid;
+        DataGridViewRow dr = new DataGridViewRow();
         private bool invitationSend, attendanceTaken, agendaSelected, attendancecompleted;
         public MeetingConsole7UI()
         {
@@ -101,7 +102,7 @@ namespace BoardSecretariatSystem.UI
                 while (rdr.Read())
                 {
                     string x = Ordinal(int.Parse(rdr[0].ToString())) + @" Agenda";
-                    minutedDataGridView.Rows.Add(x, rdr[1], rdr[2], rdr[3]);
+                    minutedDataGridView.Rows.Add(x, rdr[1], rdr[2]);
                 }
                 if (con.State == ConnectionState.Open)
                 {
@@ -138,6 +139,48 @@ namespace BoardSecretariatSystem.UI
         {
             MeetingInfo();
             LoadUI();
+        }
+
+        private void minutedDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+            dr = minutedDataGridView.SelectedRows[0];
+
+            agendumTextBox.Text = dr.Cells[0].Value.ToString() + @". " + dr.Cells[1].Value.ToString();
+            textWithSpellCheck1.Text = dr.Cells[2].Value.ToString();
+        }
+
+        private void addToListButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataGridViewRow dr = new DataGridViewRow();
+                //dr = invitedParticipantDataGridView.SelectedRows[0];
+                //invitedParticipantDataGridView.Rows.Remove(dr);
+
+                //string x=dr.Cells[3].ToString();
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query = "INSERT INTO AttendenceMeeting (MPId,MeetingId,Title) VALUES(@mid,@meid,@t)" +
+                            "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@mid", int.Parse(dr.Cells[3].Value.ToString()));
+                cmd.Parameters.AddWithValue("@meid", meetingId);
+                cmd.Parameters.AddWithValue("@t", dr.Cells[2].Value.ToString());
+                int attendancMeetingId = (int)cmd.ExecuteScalar();
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                dr.Cells[3].Value = attendancMeetingId;
+                int x = a.Rows.Count;
+                dr.Cells[0].Value = x;
+                attendedParticipantDataGridView.Rows.Add(dr);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
        
     }
