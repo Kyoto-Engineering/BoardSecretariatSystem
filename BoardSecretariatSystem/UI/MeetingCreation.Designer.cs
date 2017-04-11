@@ -418,6 +418,7 @@
             this.txtContactNo.Name = "txtContactNo";
             this.txtContactNo.Size = new System.Drawing.Size(146, 26);
             this.txtContactNo.TabIndex = 41;
+            this.txtContactNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContactNo_KeyPress);
             // 
             // label25
             // 

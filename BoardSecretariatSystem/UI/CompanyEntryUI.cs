@@ -166,6 +166,7 @@ namespace BoardSecretariatSystem
 
             if (aHeaderId == 1)
             {
+                SaveRegAddressHeader();
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 string insertQ = "insert into CompanyAddresses(AHeaderId,PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,CompanyId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8,@d9)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
@@ -185,6 +186,7 @@ namespace BoardSecretariatSystem
             }
             if (aHeaderId == 2)
             {
+                SaveCorporatHQAddHeader();
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 string insertQ = "insert into CompanyAddresses(AHeaderId,PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,CompanyId) Values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8,@d9)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
@@ -279,7 +281,40 @@ namespace BoardSecretariatSystem
             ResetHQAddress();
             listView1.Items.Clear();
         }
-       
+        private void SaveCorporatHQAddHeader()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query2 = "insert into AddressHeader(AHeaderName) values (@d1)";
+                cmd = new SqlCommand(query2, con);
+                cmd.Parameters.AddWithValue("@d1", "Corporate HQ Address");
+                cmd.ExecuteReader();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void SaveRegAddressHeader()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query2 = "insert into AddressHeader(AHeaderName) values (@d1)";
+                cmd = new SqlCommand(query2, con);
+                cmd.Parameters.AddWithValue("@d1", "Registered Address");
+                cmd.ExecuteReader();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(companyNameTextBox.Text))

@@ -10,7 +10,6 @@ namespace BoardSecretariatSystem.DBGateway
   public   class ConnectionGateway
     {
         protected SqlConnection connection;
-
         public ConnectionGateway()
         {
             string connectionString = @"Data Source=tcp:KyotoServer,49172;Initial Catalog=BoardSecretariatDBKD;User=sa;Password=SystemAdministrator;Persist Security Info=True;";
