@@ -35,6 +35,7 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.blockTextBox = new wmgCMS.WaterMarkTextBox();
             this.postOfficeCombo = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
@@ -68,6 +69,7 @@
             this.txtTotalAuthorizedShare = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtHQBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbHQPost = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -99,6 +101,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbAddressHeader = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtOBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbOPost = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -144,9 +147,6 @@
             this.label56 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
             this.txtNumberOfDirector = new System.Windows.Forms.TextBox();
-            this.txtOBlock = new wmgCMS.WaterMarkTextBox();
-            this.txtHQBlock = new wmgCMS.WaterMarkTextBox();
-            this.blockTextBox = new wmgCMS.WaterMarkTextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -255,6 +255,16 @@
             this.groupBox2.TabIndex = 60;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registered Address";
+            // 
+            // blockTextBox
+            // 
+            this.blockTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blockTextBox.Location = new System.Drawing.Point(151, 109);
+            this.blockTextBox.Name = "blockTextBox";
+            this.blockTextBox.Size = new System.Drawing.Size(146, 26);
+            this.blockTextBox.TabIndex = 83;
+            this.blockTextBox.WaterMarkColor = System.Drawing.Color.Gray;
+            this.blockTextBox.WaterMarkText = "if any";
             // 
             // postOfficeCombo
             // 
@@ -623,6 +633,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Corporate HQ Address";
             // 
+            // txtHQBlock
+            // 
+            this.txtHQBlock.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHQBlock.Location = new System.Drawing.Point(151, 105);
+            this.txtHQBlock.Name = "txtHQBlock";
+            this.txtHQBlock.Size = new System.Drawing.Size(146, 25);
+            this.txtHQBlock.TabIndex = 83;
+            this.txtHQBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtHQBlock.WaterMarkText = "if any";
+            // 
             // cmbHQPost
             // 
             this.cmbHQPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -924,7 +944,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.Blue;
             this.groupBox3.Location = new System.Drawing.Point(635, 202);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(677, 253);
+            this.groupBox3.Size = new System.Drawing.Size(677, 258);
             this.groupBox3.TabIndex = 70;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Other Address";
@@ -975,6 +995,16 @@
             this.groupBox5.Size = new System.Drawing.Size(651, 206);
             this.groupBox5.TabIndex = 86;
             this.groupBox5.TabStop = false;
+            // 
+            // txtOBlock
+            // 
+            this.txtOBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOBlock.Location = new System.Drawing.Point(158, 113);
+            this.txtOBlock.Name = "txtOBlock";
+            this.txtOBlock.Size = new System.Drawing.Size(146, 26);
+            this.txtOBlock.TabIndex = 110;
+            this.txtOBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtOBlock.WaterMarkText = "if any";
             // 
             // cmbOPost
             // 
@@ -1394,36 +1424,6 @@
             this.txtNumberOfDirector.Name = "txtNumberOfDirector";
             this.txtNumberOfDirector.Size = new System.Drawing.Size(100, 29);
             this.txtNumberOfDirector.TabIndex = 76;
-            // 
-            // txtOBlock
-            // 
-            this.txtOBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOBlock.Location = new System.Drawing.Point(158, 113);
-            this.txtOBlock.Name = "txtOBlock";
-            this.txtOBlock.Size = new System.Drawing.Size(146, 26);
-            this.txtOBlock.TabIndex = 110;
-            this.txtOBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtOBlock.WaterMarkText = "if any";
-            // 
-            // txtHQBlock
-            // 
-            this.txtHQBlock.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHQBlock.Location = new System.Drawing.Point(151, 105);
-            this.txtHQBlock.Name = "txtHQBlock";
-            this.txtHQBlock.Size = new System.Drawing.Size(146, 25);
-            this.txtHQBlock.TabIndex = 83;
-            this.txtHQBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtHQBlock.WaterMarkText = "if any";
-            // 
-            // blockTextBox
-            // 
-            this.blockTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blockTextBox.Location = new System.Drawing.Point(151, 109);
-            this.blockTextBox.Name = "blockTextBox";
-            this.blockTextBox.Size = new System.Drawing.Size(146, 26);
-            this.blockTextBox.TabIndex = 83;
-            this.blockTextBox.WaterMarkColor = System.Drawing.Color.Gray;
-            this.blockTextBox.WaterMarkText = "if any";
             // 
             // CompanyEntryUI
             // 
