@@ -44,7 +44,7 @@ namespace BoardSecretariatSystem.UI
         {
             listView1.View = View.Details;
             con = new SqlConnection(cs.DBConn);
-            string qry = "SELECT Participant.ParticipantId As ParticipantId ,Participant.ParticipantName As ParticipantName, 'Chairman' As Title FROM  Chairman INNER JOIN Derector ON Chairman.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where Chairman.DateofRetirement is null Union SELECT  Participant.ParticipantId ,Participant.ParticipantName As ParticipantName, 'Managing Director' As Title FROM   MDerector INNER JOIN Derector ON MDerector.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where MDerector.DateofRetirement is null Union SELECT Participant.ParticipantId,Participant.ParticipantName As ParticipantName, 'Director' As Title FROM   Derector INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId  where Participant.ParticipantId not in (SELECT Participant.ParticipantId FROM  Chairman INNER JOIN Derector ON Chairman.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where Chairman.DateofRetirement is null Union SELECT  Participant.ParticipantId  FROM   MDerector INNER JOIN Derector ON MDerector.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where MDerector.DateofRetirement is null)";
+            string qry = "SELECT Participant.ParticipantId As ParticipantId ,Participant.ParticipantName As ParticipantName, 'Chairman' As Title FROM  Chairman INNER JOIN Derector ON Chairman.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where Chairman.DateofRetirement is null Union SELECT  Participant.ParticipantId ,Participant.ParticipantName As ParticipantName, 'Managing Director' As Title FROM  MDerector INNER JOIN Derector ON MDerector.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where MDerector.DateofRetirement is null Union SELECT Participant.ParticipantId,Participant.ParticipantName As ParticipantName, 'Director' As Title FROM   Derector INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId  where Participant.ParticipantId not in (SELECT Participant.ParticipantId FROM  Chairman INNER JOIN Derector ON Chairman.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where Chairman.DateofRetirement is null Union SELECT  Participant.ParticipantId  FROM   MDerector INNER JOIN Derector ON MDerector.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where MDerector.DateofRetirement is null) Union (SELECT  Participant.ParticipantId, Participant.ParticipantName, Participant.Designation  FROM   Meeting INNER JOIN  MeetingParticipant ON Meeting.MeetingId = MeetingParticipant.MeetingId INNER JOIN Participant ON MeetingParticipant.ParticipantId = Participant.ParticipantId  where Participant.ParticipantId not in (Select Shareholder.ParticipantId from Shareholder))";
             ada = new SqlDataAdapter(qry, con);
             dt = new DataTable();
             ada.Fill(dt);
@@ -84,53 +84,7 @@ namespace BoardSecretariatSystem.UI
             }
 
         }
-        //private void GetMeetingTitle()
-        //{
-        //    try
-        //    {
-        //        con = new SqlConnection(cs.DBConn);
-        //        con.Open();
-        //        string ctt = "SELECT IDENT_CURRENT ('Meeting')";
-        //        cmd = new SqlCommand(ctt);
-        //        cmd.Connection = con;
-        //        rdr = cmd.ExecuteReader();
-        //        if (rdr.Read())
-        //        {
-        //            aId = (rdr.GetDecimal(0));
-        //            if (aId == 1)
-        //            {
-        //                txtMeetingNumber.Text = "1";
-        //                txtMeetingTitle.Text = "1st Board Meeting";
-        //            }
-        //            else if (aId == 2)
-        //            {
-        //                txtMeetingNumber.Text = "2";
-        //                txtMeetingTitle.Text = "2nd Board Meeting";
-        //            }
-        //            else if (aId == 3)
-        //            {
-        //                txtMeetingNumber.Text = "3";
-        //                txtMeetingTitle.Text = "3rd Board Meeting";
-        //            }
-        //            else if (aId == 4)
-        //            {
-        //                txtMeetingNumber.Text = "4";
-        //                txtMeetingTitle.Text = "4rth Board Meeting";
-        //            }
-
-        //            else if (aId >= 5)
-        //            {
-        //                txtMeetingNumber.Text = aId.ToString();
-        //                txtMeetingTitle.Text = aId + "th Board Meeting";
-        //            }
-
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
+       
         private void GetMeetingId()
         {
             con = new SqlConnection(cs.DBConn);
@@ -143,78 +97,69 @@ namespace BoardSecretariatSystem.UI
                 meetingId = (rdr.GetInt32(0));
             }
         }
-        private void GetMeetingNumber()
+       
+        public static string Ordinal(int number)
+        {
+            string suffix = String.Empty;
+            if (number == 11 || number == 12 || number == 13 || number % 100 == 11 || number % 100 == 12 || number % 100 == 13)
+            {
+                suffix = "th";
+            }
+            else if (number == 1 || number % 10 == 1)
+            {
+                suffix = "st";
+            }
+            else if (number == 2 || number % 10 == 2)
+            {
+                suffix = "nd";
+            }
+            else if (number == 3 || number % 10 == 3)
+            {
+                suffix = "rd";
+            }
+            else
+            {
+                suffix = "th";
+            }
+            return String.Format("{0}{1}", number, suffix);
+        }
+        private void GetMeetingTitle()
         {
             try
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query = "Select MeetingTypeId From Meeting where MeetingTypeId=1";
-                cmd = new SqlCommand(query, con);
+                string qr2 = "SELECT MAX(Meeting.MeetingId),MAX(Meeting.MeetingNo) FROM Meeting";
+                cmd = new SqlCommand(qr2, con);
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
-                    metingTypeId = (rdr.GetInt32(0));
-                }
-
-                if (metingTypeId == 1)
-                {
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    string qr2 = "SELECT MAX(Meeting.MeetingNo) FROM Meeting where Meeting.MeetingTypeId='" + metingTypeId + "'";
-                    cmd = new SqlCommand(qr2, con);
-                    rdr = cmd.ExecuteReader();
-                    if (rdr.Read())
+                    if (!(rdr.IsDBNull(0)))
                     {
-                        meetingNum = (rdr.GetInt32(0));
-                        if (meetingNum == 1)
-                        {
-                            meetingNum1 = meetingNum;
-                            txtMeetingNumber.Text = meetingNum1.ToString();
-                            txtMeetingTitle.Text = "1st Board Meeting";
-                        }
-                        else if (meetingNum == 2)
-                        {
-                            meetingNum1 = meetingNum;
-                            txtMeetingNumber.Text = meetingNum1.ToString();
-                            txtMeetingTitle.Text = "2nd Board Meeting";
-                        }
-
-                        else if (meetingNum == 3)
-                        {
-                            meetingNum1 = meetingNum;
-                            txtMeetingNumber.Text = meetingNum1.ToString();
-                           txtMeetingTitle.Text = "3rd Board Meeting";
-                        }
-
-                        else if (meetingNum >= 4)
-                        {
-                            meetingNum1 = meetingNum;
-                            txtMeetingNumber.Text = meetingNum1.ToString();
-                            txtMeetingTitle.Text = meetingNum + "th Board Meeting";
-                        }
+                        meetingId = (rdr.GetInt32(0));
+                        meetingNum = (rdr.GetInt32(1));
+                        txtMeetingNumber.Text = meetingNum.ToString();
+                        txtMeetingTitle.Text = Ordinal(meetingNum) + " Board Meeting";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Create  or Shedule a meeting First.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
 
                     }
-                }
-                else
-                {
-                    MessageBox.Show("You need to Create or Schedule a new Meeting", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //meetingNum1 = meetingNum;
-                    //txtMeetingNumber.Text = meetingNum1.ToString();
-                    //txtMeetingTitle.Text = "1st Board Meeting";
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        }      
         private void MeetingConsole3_Load(object sender, EventArgs e)
         {
             buttonInvitation.Visible = false;
             SetExistingMeetingMemberInList();
             GetAdditionalParticipant();
-            GetMeetingNumber();
+            GetMeetingTitle();
         }
 
         private void buttonAdditionalParticipant_Click(object sender, EventArgs e)

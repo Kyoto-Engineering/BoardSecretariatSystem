@@ -55,7 +55,7 @@ namespace BoardSecretariatSystem.UI
             txtMotherName.Clear();
             txtDesignation.Clear();
             txtCellNumber.Clear();
-
+            cmbGender.SelectedIndex = -1;
             txtBirthCertificateNo.Clear();
             txtDateOfBirth.Value = DateTime.Today;
             txtPassportNo.Clear();
