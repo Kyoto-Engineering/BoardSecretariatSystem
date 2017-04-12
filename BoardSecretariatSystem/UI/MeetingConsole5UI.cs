@@ -202,7 +202,7 @@ namespace BoardSecretariatSystem.UI
                 }
                 dr.Cells[3].Value = attendancMeetingId;
                 int x = attendedParticipantDataGridView.Rows.Count;
-                dr.Cells[0].Value = x;
+                dr.Cells[0].Value = x+1;
                 attendedParticipantDataGridView.Rows.Add(dr);
             }
             catch (Exception ex)
@@ -376,7 +376,7 @@ namespace BoardSecretariatSystem.UI
             bool validate = true;
             if (!invitationSend)
             {
-                MessageBox.Show(@"Invitation Not Send Yet."+@"\n"+@"Before Giving Attendance You Must Send Invitation ", @"Sorry");
+                MessageBox.Show(@"Invitation Not Send Yet."+"\n"+@"Before Giving Attendance You Must Send Invitation ", @"Sorry");
                 validate = false;
             }
             else if (attendancecompleted)

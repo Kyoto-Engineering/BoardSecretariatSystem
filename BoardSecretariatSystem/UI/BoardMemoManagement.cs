@@ -147,7 +147,7 @@ namespace BoardSecretariatSystem.UI
                     {
                         if (dr.Cells[0].Value.ToString() == agendaId.ToString())
                         {
-                            dataGridView1.Rows.Remove(dr);
+                                       dataGridView1.Rows.Remove(dr);
                         }
                     }
                     if (con.State == ConnectionState.Open)
