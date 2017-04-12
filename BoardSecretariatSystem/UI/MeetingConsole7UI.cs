@@ -18,10 +18,10 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
-        private int meetingId, meetingNo, agendaId = 0;
-        private int postponeid;
+        private int meetingId, meetingNo, agendaId = 0,gridno=0;
+        private int postponeid,mmid=0;
         DataGridViewRow dr = new DataGridViewRow();
-        private bool invitationSend, attendanceTaken, agendaSelected, attendancecompleted;
+        private bool invitationSend, attendanceTaken, agendaSelected, attendancecompleted,meetingStarted,allDiscussionCompleted;
         public MeetingConsole7UI()
         {
             InitializeComponent();
@@ -41,7 +41,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query = "SELECT MeetingId, MeetingNo, InvitationSend, AttendenceTaken,AttendanceCompleted FROM Meeting where Statuss='Open' and MeetingTypeId=1";
+                string query = "SELECT MeetingId, MeetingNo, InvitationSend, AttendenceTaken,AttendanceCompleted,MeetingStarted,AllDiscussionCompleted FROM Meeting where Statuss='Open' and MeetingTypeId=1";
                 cmd = new SqlCommand(query, con);
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
@@ -51,8 +51,8 @@ namespace BoardSecretariatSystem.UI
                     invitationSend = rdr.GetBoolean(2);
                     attendanceTaken = rdr.GetBoolean(3);
                     attendancecompleted = rdr.GetBoolean(4);
-
-
+                    meetingStarted = rdr.GetBoolean(5);
+                    allDiscussionCompleted = rdr.GetBoolean(6);
                 }
                 if (con.State == ConnectionState.Open)
                 {
@@ -97,12 +97,12 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                cmd = new SqlCommand("SELECT MeetingMinutes.AgendaSerialForMeeting, Agenda.AgendaTitle, MeetingMinutes.Resolution, MeetingMinutes.MeetingMinuteId FROM Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId INNER JOIN SelectedAgenda ON Agenda.AgendaId = SelectedAgenda.AgendaId INNER JOIN MeetingMinutes ON SelectedAgenda.MeetingAgendaId = MeetingMinutes.MeetingAgendaId where MeetingMinutes.MeetingId=" + meetingId + " ", con);
+                cmd = new SqlCommand("SELECT MeetingMinutes.AgendaSerialForMeeting, Agenda.AgendaTitle, MeetingMinutes.Resolution, MeetingMinutes.Discussion, MeetingMinutes.MeetingMinuteId FROM Agenda INNER JOIN AgendaTypes ON Agenda.AgendaTypeId = AgendaTypes.AgendaTypeId INNER JOIN SelectedAgenda ON Agenda.AgendaId = SelectedAgenda.AgendaId INNER JOIN MeetingMinutes ON SelectedAgenda.MeetingAgendaId = MeetingMinutes.MeetingAgendaId where MeetingMinutes.MeetingId=" + meetingId + " ", con);
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
                     string x = Ordinal(int.Parse(rdr[0].ToString())) + @" Agenda";
-                    minutedDataGridView.Rows.Add(x, rdr[1], rdr[2],rdr[3]);
+                    minutedDataGridView.Rows.Add(x, rdr[1], rdr[2],rdr[3],rdr[4]);
                 }
                 if (con.State == ConnectionState.Open)
                 {
@@ -113,26 +113,6 @@ namespace BoardSecretariatSystem.UI
             {
                 MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //try
-            //{
-            //    con = new SqlConnection(cs.DBConn);
-            //    con.Open();
-            //    cmd = new SqlCommand("SELECT row_number() OVER (ORDER BY MeetingParticipant.MPId) n,Participant.ParticipantName, AttendenceMeeting .Title,AttendenceMeeting.MPId FROM AttendenceMeeting join MeetingParticipant on AttendenceMeeting.MPId = MeetingParticipant.MPId  join Participant on MeetingParticipant.ParticipantId=Participant.ParticipantId where AttendenceMeeting.MeetingId=" + meetingId + "", con);
-            //    rdr = cmd.ExecuteReader();
-            //    while (rdr.Read())
-            //    {
-            //        attendedParticipantDataGridView.Rows.Add(rdr[0], rdr[1], rdr[2], rdr[3]);
-            //    }
-            //    if (con.State == ConnectionState.Open)
-            //    {
-            //        con.Close();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-
         }
 
         private void MeetingConsole7UI_Load(object sender, EventArgs e)
@@ -143,44 +123,177 @@ namespace BoardSecretariatSystem.UI
 
         private void minutedDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+            gridno = 1;
             dr = minutedDataGridView.SelectedRows[0];
-
+            mmid = int.Parse(dr.Cells[4].Value.ToString());
             agendumTextBox.Text = dr.Cells[0].Value.ToString() + @". " + dr.Cells[1].Value.ToString();
             textWithSpellCheck1.Text = dr.Cells[2].Value.ToString();
         }
 
         private void addToListButton_Click(object sender, EventArgs e)
         {
+            if (ValidateAddtoListButton())
+            {
+                SaveToDatabase();
+
+                
+                if (gridno==1)
+                {
+                    InsertToGrid();
+                }
+                else if(gridno==2)
+                {
+                    InsertToGrid2();
+                }
+
+                Clear();
+            }
+           
+        }
+
+        private void SaveToDatabase()
+        {
             try
             {
-                //DataGridViewRow dr = new DataGridViewRow();
-                //dr = invitedParticipantDataGridView.SelectedRows[0];
-                //invitedParticipantDataGridView.Rows.Remove(dr);
-
-                //string x=dr.Cells[3].ToString();
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query = "UPDATE MeetingMinutes SET Resolution = @res WHERE  MeetingMinuteId= @mmid)" ;
+                string query = "UPDATE MeetingMinutes SET Resolution = @res WHERE  MeetingMinuteId= @mmid";
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@res", textWithSpellCheck1.Text);
-                cmd.Parameters.AddWithValue("@mmid", meetingId);
-                cmd.Parameters.AddWithValue("@t", dr.Cells[2].Value.ToString());
-                int attendancMeetingId = (int)cmd.ExecuteScalar();
+                cmd.Parameters.AddWithValue("@mmid", mmid);
+                cmd.ExecuteNonQuery();
                 if (con.State == ConnectionState.Open)
                 {
                     con.Close();
                 }
-                dr.Cells[3].Value = attendancMeetingId;
-                //int x = a.Rows.Count;
-                //dr.Cells[0].Value = x;
-                //attendedParticipantDataGridView.Rows.Add(dr);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-       
+
+        private void InsertToGrid()
+        {
+            minutedDataGridView.Rows.Remove(dr);
+            int x = resolvedDataGridView.Rows.Count;
+            dr.Cells[0].Value = (x + 1).ToString();
+            dr.Cells[3].Value = textWithSpellCheck1.Text;
+            resolvedDataGridView.Rows.Add(dr);
+        }
+
+        private bool ValidateAddtoListButton()
+        {
+            bool validate = true;
+            if (!invitationSend)
+            {
+                MessageBox.Show(@"Invitation Not Send Yet." + "\n" + @"Before Completing You Must Send Invitation ", @"Sorry");
+                validate = false;
+            }
+            else if (!attendancecompleted)
+            {
+                MessageBox.Show(@"Attendace giving is not  completed." + "\n" + @"You Must Complete Attendece.", @"Sorry");
+                validate = false;
+            }
+            else if (!meetingStarted)
+            {
+                MessageBox.Show(@"Meeting Not Started Yet"+"\n"+@"You Cannot Save now",@"Sorry",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                validate = false;
+            }
+            else if(!allDiscussionCompleted)
+            {
+                MessageBox.Show(@"All Discussion Not Completed Yet"+"\n"+@"Press Save All Button on Console 6 if Your Discussion Is Finished",@"Error",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                validate = false;
+            }
+            else if (mmid == 0)
+            {
+                MessageBox.Show(@"Nothing Is Selected .Select First" , @"Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                validate = false;
+            }
+            return validate;
+        }
+        private void Clear()
+        {
+            textWithSpellCheck1.Text=String.Empty;
+            mmid = 0;
+            agendumTextBox.Clear();
+        }
+
+        private void resolvedDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void InsertToGrid2()
+        {
+            resolvedDataGridView.Rows.Remove(dr);
+            int x = resolvedDataGridView.Rows.Count;
+            dr.Cells[0].Value = (x + 1).ToString();
+            dr.Cells[3].Value = textWithSpellCheck1.Text;
+            resolvedDataGridView.Rows.Add(dr);
+        }
+
+        private void saveAllButton_Click(object sender, EventArgs e)
+        {
+            if (ValidateSaveAllButton())
+            {
+                try
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string query = "Update Meeting set Statuss=@at where  MeetingId=@id";
+                    cmd = new SqlCommand(query, con);
+
+                    cmd.Parameters.AddWithValue("@at", "Close");
+                    cmd.Parameters.AddWithValue("@id", meetingId);
+                    cmd.ExecuteNonQuery();
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                    MessageBox.Show(@"All Attendance Given Successfully",@"Success",MessageBoxButtons.OK);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private bool ValidateSaveAllButton()
+        {
+            bool validate = true;
+
+              if (!invitationSend)
+            {
+                MessageBox.Show(@"Invitation Not Send Yet." + "\n" + @"Before Completing You Must Send Invitation ", @"Sorry");
+                validate = false;
+            }
+            else if (!attendancecompleted)
+            {
+                MessageBox.Show(@"Attendace giving is not  completed." + "\n" + @"You Must Complete Attendece.", @"Sorry");
+                validate = false;
+            }
+            else if (!meetingStarted)
+            {
+                MessageBox.Show(@"Meeting Not Started Yet" + "\n" + @"You Cannot Save now", @"Sorry", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                validate = false;
+            }
+            else if (!allDiscussionCompleted)
+            {
+                MessageBox.Show(@"All Discussion Not Completed Yet" + "\n" + @"Press Save All Button on Console 6 if Your Discussion Is Finished", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                validate = false;
+            }
+         
+            return validate;
+        }
+
+        private void resolvedDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            gridno = 2;
+            dr = resolvedDataGridView.SelectedRows[0];
+            mmid = int.Parse(dr.Cells[4].Value.ToString());
+            agendumTextBox.Text = dr.Cells[0].Value.ToString() + @". " + dr.Cells[1].Value.ToString();
+            textWithSpellCheck1.Text = dr.Cells[2].Value.ToString();
+        }
     }
+
 }
