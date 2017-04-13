@@ -22,7 +22,7 @@ namespace BoardSecretariatSystem.UI
         public int metingTypeId, meetingNum, meetingNum1, currentMeetingminutesId, meetingId, agendaSerialForMeeting;
         public string userId, labelk, labelg, agendaSl, meetingAgendaId,memo;
         private DataTable dt;
-
+         DataGridViewRow dr=new DataGridViewRow();
 
         public MeetingConsole6UI()
         {
@@ -310,9 +310,9 @@ namespace BoardSecretariatSystem.UI
                                      
                     listView1.Items.Add(lst);                    
                     txtAgendaTitle.Clear();
-                    txtDiscussion.Clear();
-                    txtDraftResolution.Clear();
-                    
+                    txtDiscussion.Text=string.Empty;
+                    txtDraftResolution.Text=String.Empty;
+                    dataGridView1.Rows.Remove(dr);
                     return;
                 }
 
@@ -326,8 +326,9 @@ namespace BoardSecretariatSystem.UI
 
                 listView1.Items.Add(lst1);                
                 txtAgendaTitle.Clear();
-                txtDiscussion.Clear();
-                txtDraftResolution.Clear();                
+                txtDiscussion.Text=String.Empty;
+                txtDraftResolution.Text=String.Empty;
+                dataGridView1.Rows.Remove(dr);
                 return;
             }
             catch (Exception ex)
@@ -354,13 +355,13 @@ namespace BoardSecretariatSystem.UI
         {
             try
             {
-                DataGridViewRow dr = dataGridView1.CurrentRow;
+               dr = dataGridView1.CurrentRow;
                  agendaSl = dr.Cells[0].Value.ToString();             
                  txtAgendaTitle.Text = dr.Cells[1].Value.ToString();
                  meetingAgendaId = dr.Cells[2].Value.ToString();
                  memo = dr.Cells[3].Value.ToString();
                  labelg = labelk;
-                 ClearDiscussedAgenda();
+                 //ClearDiscussedAgenda();
             }
             catch (Exception ex)
             {

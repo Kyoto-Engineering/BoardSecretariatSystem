@@ -58,7 +58,7 @@ namespace BoardSecretariatSystem.UI
                         smtp.Credentials = new NetworkCredential(txtFrom.Text, txtPassword.Text);
                         smtp.EnableSsl = true;
                         smtp.Send(msg);
-                       
+                        UpdateMeeting();
                     }
                 }
                 MessageBox.Show("Mail Sending Successfully");
@@ -72,7 +72,13 @@ namespace BoardSecretariatSystem.UI
 
         private void sendButton_Click(object sender, EventArgs e)
         {
-            NewMailMessage();
+            if (CheckForInternetConnection())
+            {
+                NewMailMessage();
+                
+            }
+            
+
         }
 
         private void MailSend_FormClosed(object sender, FormClosedEventArgs e)
@@ -118,6 +124,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     cmbDomainHostName.Items.Add(rdr[0]);
                 }
+                cmbDomainHostName.Items.Add("Not In The List");
             }
             catch (Exception ex)
             {
@@ -126,70 +133,6 @@ namespace BoardSecretariatSystem.UI
 
         }
        
-        //private void GetMeetingNumber()
-        //{
-        //    try
-        //    {
-        //        con = new SqlConnection(cs.DBConn);
-        //        con.Open();
-        //        string query = "Select MeetingTypeId From Meeting where MeetingTypeId=1";
-        //        cmd = new SqlCommand(query, con);
-        //        rdr = cmd.ExecuteReader();
-        //        if (rdr.Read())
-        //        {
-        //            metingTypeId = (rdr.GetInt32(0));
-        //        }
-
-        //        if (metingTypeId == 1)
-        //        {
-        //            con = new SqlConnection(cs.DBConn);
-        //            con.Open();
-        //            string qr2 = "SELECT MAX(Meeting.MeetingNo) FROM Meeting where Meeting.MeetingTypeId='" + metingTypeId + "'";
-        //            cmd = new SqlCommand(qr2, con);
-        //            rdr = cmd.ExecuteReader();
-        //            if (rdr.Read())
-        //            {
-        //                meetingNum = (rdr.GetInt32(0));
-        //                if (meetingNum == 1)
-        //                {
-        //                    meetingNum1 = meetingNum;                            
-        //                    txtSubject.Text = "Notice for 1st Board Meeting";
-        //                    meetingTitle = "1st Board Meeting";
-        //                }
-        //                else if (meetingNum == 2)
-        //                {
-        //                    meetingNum1 = meetingNum;                            
-        //                    txtSubject.Text = "Notice for 2nd Board Meeting";
-        //                    meetingTitle = "2nd Board Meeting";
-        //                }
-
-        //                else if (meetingNum == 3)
-        //                {
-        //                    meetingNum1 = meetingNum;                            
-        //                    txtSubject.Text = "Notice for 3rd Board Meeting";
-        //                    meetingTitle = "3rd Board Meeting";
-        //                }
-
-        //                else if (meetingNum >= 4)
-        //                {
-        //                    meetingNum1 = meetingNum;                            
-        //                    txtSubject.Text = "Notice for" + meetingNum + "th Board Meeting";
-        //                    meetingTitle = meetingNum + "th Board Meeting";
-        //                }
-
-        //            }
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("You need to Create or Schedule a new Meeting", "error", MessageBoxButtons.OK,MessageBoxIcon.Error);
-                   
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
 
         private void SetRecepientMailAddress()
         {
@@ -225,16 +168,6 @@ namespace BoardSecretariatSystem.UI
 
             dateValue = dateTimeYears.ToString("yyyy-MMMM-dd");
             timeValue = dateTimeYears.ToString("HH:mm");
-
-           // String sDate = dateTimeYears.ToString();
-           //// DateTime Date1 = DateTime.Parse(sDate).ToShortDateString(); // For Date
-           //// DateTime Date2 = DateTime.Parse(sDate).ToShortTimeString();
-           // DateTime datevalue = (Convert.ToDateTime(sDate.ToString()));
-
-           // String dy = datevalue.Day.ToString();
-           // String mn = datevalue.Month.ToString();
-           // String yy = datevalue.Year.ToString();
-
             con = new SqlConnection(cs.DBConn);
             con.Open();
             string query2 = "SELECT  AddressHeader.AHeaderName, CompanyAddresses.HouseNo, CompanyAddresses.RoadNo, CompanyAddresses.Area, Thanas.Thana, Districts.District, Divisions.Division,CompanyAddresses.PostOfficeId FROM   Meeting INNER JOIN AddressHeader ON Meeting.AHeaderId = AddressHeader.AHeaderId INNER JOIN CompanyAddresses ON AddressHeader.AHeaderId = CompanyAddresses.AHeaderId INNER JOIN PostOffice ON CompanyAddresses.PostOfficeId = PostOffice.PostOfficeId INNER JOIN Thanas ON PostOffice.T_ID = Thanas.T_ID INNER JOIN  Districts ON Thanas.D_ID = Districts.D_ID INNER JOIN  Divisions ON Districts.Division_ID = Divisions.Division_ID where Meeting.MeetingId='" + meetingId22 + "' ";
@@ -414,6 +347,47 @@ namespace BoardSecretariatSystem.UI
                 
             }  
         }
+
+        private void UpdateMeeting()
+        {
+             try
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string query = "UPDATE Meeting SET InvitationSend =1 where MeetingId=@mid";
+                    cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@mid", meetingId);
+                    cmd.ExecuteNonQuery();
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                    MessageBox.Show(@"All Attendance Given Successfully",@"Success",MessageBoxButtons.OK);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+        }
+        public static bool CheckForInternetConnection()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                {
+                    using (var stream = client.OpenRead("http://www.google.com"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch 
+            {
+                MessageBox.Show(@"There Is  No Internet Connectivity Now." + "\n" + @"Please Try Later", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        
     }
 }
 

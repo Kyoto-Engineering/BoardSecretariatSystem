@@ -225,11 +225,14 @@ namespace BoardSecretariatSystem.UI
         }
         private void InsertToGrid2()
         {
-            resolvedDataGridView.Rows.Remove(dr);
-            int x = resolvedDataGridView.Rows.Count;
-            dr.Cells[0].Value = (x + 1).ToString();
-            dr.Cells[3].Value = textWithSpellCheck1.Text;
-            resolvedDataGridView.Rows.Add(dr);
+            foreach (DataGridViewRow x in resolvedDataGridView.Rows)
+            {
+                if (dr==x)
+                {
+                    x.Cells[3].Value = textWithSpellCheck1.Text;
+                }
+            }
+          
         }
 
         private void saveAllButton_Click(object sender, EventArgs e)

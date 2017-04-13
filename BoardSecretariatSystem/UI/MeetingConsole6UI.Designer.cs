@@ -42,8 +42,6 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtDraftResolution = new System.Windows.Forms.RichTextBox();
-            this.txtDiscussion = new System.Windows.Forms.RichTextBox();
             this.txtAgendaTitle = new System.Windows.Forms.TextBox();
             this.txtMeetingNumber = new System.Windows.Forms.TextBox();
             this.addToListButton = new System.Windows.Forms.Button();
@@ -54,6 +52,10 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+            this.txtDiscussion = new BoardSecretariatSystem.TextWithSpellCheck();
+            this.elementHost2 = new System.Windows.Forms.Integration.ElementHost();
+            this.txtDraftResolution = new BoardSecretariatSystem.TextWithSpellCheck();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,7 +86,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Magenta;
-            this.label6.Location = new System.Drawing.Point(37, 283);
+            this.label6.Location = new System.Drawing.Point(44, 312);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(196, 26);
             this.label6.TabIndex = 5;
@@ -190,30 +192,11 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(91, 412);
+            this.label3.Location = new System.Drawing.Point(319, 457);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(483, 52);
+            this.label3.Size = new System.Drawing.Size(183, 26);
             this.label3.TabIndex = 11;
-            this.label3.Text = "                        Minuted Agenda\r\n(List of all Discussed Agenda for viewing" +
-    " only)\r\n";
-            // 
-            // txtDraftResolution
-            // 
-            this.txtDraftResolution.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDraftResolution.Location = new System.Drawing.Point(246, 282);
-            this.txtDraftResolution.Name = "txtDraftResolution";
-            this.txtDraftResolution.Size = new System.Drawing.Size(328, 123);
-            this.txtDraftResolution.TabIndex = 14;
-            this.txtDraftResolution.Text = "";
-            // 
-            // txtDiscussion
-            // 
-            this.txtDiscussion.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDiscussion.Location = new System.Drawing.Point(246, 158);
-            this.txtDiscussion.Name = "txtDiscussion";
-            this.txtDiscussion.Size = new System.Drawing.Size(328, 106);
-            this.txtDiscussion.TabIndex = 15;
-            this.txtDiscussion.Text = "";
+            this.label3.Text = "Minuted Agenda";
             // 
             // txtAgendaTitle
             // 
@@ -300,18 +283,36 @@
             this.columnHeader5.Text = "Draft Resolution";
             this.columnHeader5.Width = 294;
             // 
+            // elementHost1
+            // 
+            this.elementHost1.Location = new System.Drawing.Point(244, 155);
+            this.elementHost1.Name = "elementHost1";
+            this.elementHost1.Size = new System.Drawing.Size(328, 142);
+            this.elementHost1.TabIndex = 21;
+            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Child = this.txtDiscussion;
+            // 
+            // elementHost2
+            // 
+            this.elementHost2.Location = new System.Drawing.Point(246, 303);
+            this.elementHost2.Name = "elementHost2";
+            this.elementHost2.Size = new System.Drawing.Size(328, 151);
+            this.elementHost2.TabIndex = 22;
+            this.elementHost2.Text = "elementHost2";
+            this.elementHost2.Child = this.txtDraftResolution;
+            // 
             // MeetingConsole6UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1231, 705);
+            this.Controls.Add(this.elementHost2);
+            this.Controls.Add(this.elementHost1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.saveAllButton);
             this.Controls.Add(this.addToListButton);
             this.Controls.Add(this.txtMeetingNumber);
             this.Controls.Add(this.txtAgendaTitle);
-            this.Controls.Add(this.txtDiscussion);
-            this.Controls.Add(this.txtDraftResolution);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView1);
@@ -342,8 +343,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RichTextBox txtDraftResolution;
-        private System.Windows.Forms.RichTextBox txtDiscussion;
         private System.Windows.Forms.TextBox txtAgendaTitle;
         private System.Windows.Forms.TextBox txtMeetingNumber;
         private System.Windows.Forms.Button addToListButton;
@@ -358,5 +357,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Integration.ElementHost elementHost1;
+        private TextWithSpellCheck txtDiscussion;
+        private System.Windows.Forms.Integration.ElementHost elementHost2;
+        private TextWithSpellCheck txtDraftResolution;
     }
 }
