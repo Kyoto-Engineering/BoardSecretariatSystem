@@ -16,14 +16,14 @@ namespace BoardSecretariatSystem.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class BMFeeReport : ReportClass {
+    public class MeetingPostponedReport : ReportClass {
         
-        public BMFeeReport() {
+        public MeetingPostponedReport() {
         }
         
         public override string ResourceName {
             get {
-                return "BMFeeReport.rpt";
+                return "MeetingPostponedReport.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace BoardSecretariatSystem.Reports {
         
         public override string FullResourceName {
             get {
-                return "BoardSecretariatSystem.Reports.BMFeeReport.rpt";
+                return "BoardSecretariatSystem.Reports.MeetingPostponedReport.rpt";
             }
             set {
                 // Do nothing
@@ -90,7 +90,7 @@ namespace BoardSecretariatSystem.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Meeting_No {
+        public CrystalDecisions.Shared.IParameterField Parameter_Postponed_Meeting_No {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -98,9 +98,9 @@ namespace BoardSecretariatSystem.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedBMFeeReport : Component, ICachedReport {
+    public class CachedMeetingPostponedReport : Component, ICachedReport {
         
-        public CachedBMFeeReport() {
+        public CachedMeetingPostponedReport() {
         }
         
         [Browsable(false)]
@@ -137,7 +137,7 @@ namespace BoardSecretariatSystem.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            BMFeeReport rpt = new BMFeeReport();
+            MeetingPostponedReport rpt = new MeetingPostponedReport();
             rpt.Site = this.Site;
             return rpt;
         }
