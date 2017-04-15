@@ -49,29 +49,6 @@ namespace BoardSecretariatSystem.UI
         {
             InitializeComponent();
         }
-
-        //public void CompanyNameLoad()
-        //{
-        //    try
-        //    {
-        //        con = new SqlConnection(cs.DBConn);
-        //        con.Open();
-        //        string query = "SELECT CompanyName FROM Company ";
-        //        cmd = new SqlCommand(query, con);
-        //        rdr = cmd.ExecuteReader();
-        //        while (rdr.Read())
-        //        {
-        //            companyNameComboBox.Items.Add(rdr[0]);
-        //        }
-        //        con.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-
-        //}
-
         public void FillPermanantDivisionCombo()
         {
             try
@@ -164,30 +141,6 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
-        private void GetParticipantType()
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctt = "select BoardMemberType from BoardMemberTypes";
-                cmd = new SqlCommand(ctt);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    cmbParticipantType.Items.Add(rdr.GetValue(0).ToString());
-                }
-                cmbParticipantType.Items.Add("Not In The List");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-      
-
         private void GetGender()
         {
             try
@@ -213,7 +166,6 @@ namespace BoardSecretariatSystem.UI
         private void SecretaryCreation_Load(object sender, EventArgs e)
         {
             nUserId = frmLogin.uId.ToString();
-            GetParticipantType();
             EmailAddress();
             GetGender();
             FillPresentDivisionCombo();
@@ -221,36 +173,7 @@ namespace BoardSecretariatSystem.UI
             NationalityLoad();
         }
 
-        //private void companyNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        con = new SqlConnection(cs.DBConn);
-        //        con.Open();
-        //        string ctk = "SELECT  RTRIM(Company.CompanyId)  from  Company  WHERE Company.CompanyName=@find";
-        //        cmd = new SqlCommand(ctk);
-        //        cmd.Connection = con;
-        //        cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Company"));
-        //        cmd.Parameters["@find"].Value = companyNameComboBox.Text;
-        //        rdr = cmd.ExecuteReader();
-        //        if (rdr.Read())
-        //        {
-        //            companyId = (rdr.GetString(0));
-        //        }
-        //        if ((rdr != null))
-        //        {
-        //            rdr.Close();
-        //        }
-        //        if (con.State == ConnectionState.Open)
-        //        {
-        //            con.Close();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
+        
 
         private void SecretaryCreation_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -352,7 +275,7 @@ namespace BoardSecretariatSystem.UI
             
             txtFatherName.Clear();
             txtMotherName.Clear();
-            cmbParticipantType.SelectedIndex = -1;          
+                
             txtCellNumber.Clear();
             txtProfession.Clear();
             cmbGender.SelectedIndex = -1;
@@ -432,28 +355,6 @@ namespace BoardSecretariatSystem.UI
 
         }
 
-        //private void SaveShareHolder()
-        //{
-        //    try
-        //    {
-               
-        //        con = new SqlConnection(cs.DBConn);
-        //        con.Open();
-        //        string query1 = "insert into Shareholder(ParticipantId,ShareHolderName,NumberOfCurrentShareHolding) values (@d1,@d2,@d3)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
-        //        cmd = new SqlCommand(query1, con);
-        //        cmd.Parameters.AddWithValue("@d1", currentPerticipantId);
-        //        cmd.Parameters.AddWithValue("@d2", txtShareHolderName.Text);
-        //        cmd.Parameters.AddWithValue("@d3", txtCurrentShareHolding.Text);
-        //        currentShareHolderId = (int) cmd.ExecuteScalar();
-        //        con.Close();
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
         private void SaveParticipant()
         {
             try
@@ -481,65 +382,18 @@ namespace BoardSecretariatSystem.UI
                 cmd.Parameters.AddWithValue("@d17", DateTime.UtcNow.ToLocalTime());
                 currentPerticipantId = (int) cmd.ExecuteScalar();
                 con.Close();
-                //SaveShareHolder();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void CheckAvailableIssuedShare()
-        {
 
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string qry2 = "SELECT Company.AvailableIssuedShare from  Company";
-                cmd = new SqlCommand(qry2, con);
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    availableIssuedShare = (rdr.GetInt32(0));
-                }
-                con.Close();
-                if (availableIssuedShare == 0)
-                {
-                    MessageBox.Show("There is no Available Issued Share", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-               
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
         private void button1_Click(object sender, EventArgs e)
         {
-            con = new SqlConnection(cs.DBConn);
-            con.Open();
-            string qry2 = "SELECT Company.AvailableIssuedShare from  Company";
-            cmd = new SqlCommand(qry2, con);
-            rdr = cmd.ExecuteReader();
-            if (rdr.Read())
-            {
-                availableIssuedShare = (rdr.GetInt32(0));
-            }
-            con.Close();
-            if (availableIssuedShare == 0)
-            {
-                MessageBox.Show("There is no Available Issued Share", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
-          
-
             if (string.IsNullOrEmpty(txtShareHolderName.Text))
             {
-                MessageBox.Show("Please enter Share Holder  name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"Please enter Secretary  name", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -547,31 +401,31 @@ namespace BoardSecretariatSystem.UI
             {
                 if (string.IsNullOrWhiteSpace(cmbPDivision.Text))
                 {
-                    MessageBox.Show("Please select Present Address division", "Error", MessageBoxButtons.OK,
+                    MessageBox.Show(@"Please select Present Address division", @"Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(cmbPDistrict.Text))
                 {
-                    MessageBox.Show("Please Select Present Address district", "Error", MessageBoxButtons.OK,
+                    MessageBox.Show(@"Please Select Present Address district", "Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(cmbPThana.Text))
                 {
-                    MessageBox.Show("Please select Present Address Thana", "Error", MessageBoxButtons.OK,
+                    MessageBox.Show(@"Please select Present Address Thana", "Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(cmbPPost.Text))
                 {
-                    MessageBox.Show("Please Select Present Address Post Name", "Error", MessageBoxButtons.OK,
+                    MessageBox.Show(@"Please Select Present Address Post Name", "Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(txtPPostCode.Text))
                 {
-                    MessageBox.Show("Please select Present Address Post Code", "Error", MessageBoxButtons.OK,
+                    MessageBox.Show(@"Please select Present Address Post Code", "Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
@@ -580,31 +434,31 @@ namespace BoardSecretariatSystem.UI
             {
                 if (string.IsNullOrWhiteSpace(cmbDivision.Text))
                 {
-                    MessageBox.Show("Please select Permanant Address division", "Error", MessageBoxButtons.OK,
+                    MessageBox.Show(@"Please select Permanant Address division", "Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(cmbDistrict.Text))
                 {
-                    MessageBox.Show("Please Select Permanant Address district", "Error", MessageBoxButtons.OK,
+                    MessageBox.Show(@"Please Select Permanant Address district", "Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(cmbThana.Text))
                 {
-                    MessageBox.Show("Please select Permanant Address Thana", "Error", MessageBoxButtons.OK,
+                    MessageBox.Show(@"Please select Permanant Address Thana", "Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(cmbPost.Text))
                 {
-                    MessageBox.Show("Please Select Permanant Address Post Name", "Error", MessageBoxButtons.OK,
+                    MessageBox.Show(@"Please Select Permanant Address Post Name", "Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(txtPostCode.Text))
                 {
-                    MessageBox.Show("Please select Permanant Address Post Code", "Error", MessageBoxButtons.OK,
+                    MessageBox.Show(@"Please select Permanant Address Post Code", "Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
@@ -619,7 +473,7 @@ namespace BoardSecretariatSystem.UI
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read() && !rdr.IsDBNull(0))
                 {
-                    MessageBox.Show("This Share Holder Already Exists,Please Input another one", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(@"This Share Holder Already Exists,Please Input another one", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
                     con.Close();
                     return;
                    
