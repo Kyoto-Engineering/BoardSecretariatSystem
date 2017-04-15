@@ -52,7 +52,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtFatherName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cmbEmailAddress = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -121,6 +120,7 @@
             this.txtShareHolderName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.cmbEmailAddress = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -131,6 +131,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LimeGreen;
+            this.groupBox1.Controls.Add(this.cmbEmailAddress);
             this.groupBox1.Controls.Add(this.cmbNationality);
             this.groupBox1.Controls.Add(this.cmbGender);
             this.groupBox1.Controls.Add(this.label4);
@@ -154,7 +155,6 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtFatherName);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.cmbEmailAddress);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
@@ -398,18 +398,6 @@
             this.label2.Size = new System.Drawing.Size(133, 22);
             this.label2.TabIndex = 96;
             this.label2.Text = "Father  Name :";
-            // 
-            // cmbEmailAddress
-            // 
-            this.cmbEmailAddress.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbEmailAddress.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbEmailAddress.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbEmailAddress.FormattingEnabled = true;
-            this.cmbEmailAddress.Location = new System.Drawing.Point(242, 424);
-            this.cmbEmailAddress.Name = "cmbEmailAddress";
-            this.cmbEmailAddress.Size = new System.Drawing.Size(278, 30);
-            this.cmbEmailAddress.TabIndex = 95;
-            this.cmbEmailAddress.SelectedIndexChanged += new System.EventHandler(this.cmbEmailAddress_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -808,7 +796,6 @@
             this.groupBox5.Size = new System.Drawing.Size(671, 203);
             this.groupBox5.TabIndex = 87;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
             // 
             // txtPBlock
             // 
@@ -1143,6 +1130,15 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "Secretary Creation";
             // 
+            // cmbEmailAddress
+            // 
+            this.cmbEmailAddress.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEmailAddress.Location = new System.Drawing.Point(241, 425);
+            this.cmbEmailAddress.Name = "cmbEmailAddress";
+            this.cmbEmailAddress.Size = new System.Drawing.Size(279, 29);
+            this.cmbEmailAddress.TabIndex = 130;
+            this.cmbEmailAddress.TextChanged += new System.EventHandler(this.cmbEmailAddress_TextChanged);
+            // 
             // SecretaryCreation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1186,7 +1182,6 @@
         private System.Windows.Forms.CheckBox unKnownRA;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox cmbEmailAddress;
         private System.Windows.Forms.GroupBox groupBox4;
         private wmgCMS.WaterMarkTextBox txtBlock;
         private System.Windows.Forms.ComboBox cmbPost;
@@ -1266,5 +1261,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ComboBox cmbNationality;
+        private System.Windows.Forms.TextBox cmbEmailAddress;
     }
 }
