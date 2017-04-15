@@ -21,7 +21,8 @@ namespace BoardSecretariatSystem
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
         public string userId, postofficeId, thanaId, districtId, divisionId, districtIdC, districtIdO,districtIdHQ, divisionIdC, divisionIdO,divisionIdHQ, thanaIdC, thanaIdC2, thanaIdO,thanaIdHQ, postofficeIdC, postofficeIdO, postofficeIdHQ;
-        public int currentCompanyId, affectedRows1,affectedRows2, addHeaderId,availableAuthorizedShare;
+        public int currentCompanyId, affectedRows1, affectedRows2, addHeaderId, availableAuthorizedShare, companyId;
+        private bool companyCreated;
 
         public CompanyEntryUI()
         {
@@ -124,10 +125,10 @@ namespace BoardSecretariatSystem
         private void CompanyEntryUI_Load(object sender, EventArgs e)
         {
             userId = frmLogin.uId.ToString();
+            companyCreated=LoadCompany();
             FillHQDivisionCombo();
             FillODivisionCombo();
             groupBox5.Enabled = false;
-           // GetAllCompany();
             FillDivisionCombo();
             AddressHeader();
         }
@@ -317,9 +318,15 @@ namespace BoardSecretariatSystem
         }
         private void saveButton_Click(object sender, EventArgs e)
         {
+            if (companyCreated)
+            {
+                MessageBox.Show(@"Already a Company Created", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                return;
+            }
             if (string.IsNullOrEmpty(companyNameTextBox.Text))
             {
-                MessageBox.Show("Please enter company name", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                MessageBox.Show("Please enter company name", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             if (string.IsNullOrWhiteSpace(divisionCombo.Text))
@@ -352,6 +359,16 @@ namespace BoardSecretariatSystem
                 MessageBox.Show("Please type Registration No:", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (string.IsNullOrWhiteSpace(txtCorum.Text))
+            {
+                MessageBox.Show(@"Please type Corum Value:", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtMeetingAlowance.Text))
+            {
+                MessageBox.Show(@"Please type Meeting Allowance:", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
                 if (!string.IsNullOrEmpty(companyNameTextBox.Text))
                 {
                     con = new SqlConnection(cs.DBConn);
@@ -361,7 +378,7 @@ namespace BoardSecretariatSystem
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
                     {
-                        MessageBox.Show("This Company Name Already Exists,Please Input another one", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(@"This Company Name Already Exists,Please Input another one", @"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
                         companyNameTextBox.ResetText();
                         companyNameTextBox.Focus();
                         con.Close();
@@ -376,7 +393,7 @@ namespace BoardSecretariatSystem
                             availableAuthorizedShare = x - y;
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into Company(CompanyName,TotalAuthorizedShare,AvailableAuthorizedShare,ValueofEachShare,TotalIssuedShare,AvailableIssuedShare,Corum,NumberOfDirector,VacantPostofDirector,VacantPostofMDirector,VacantPostofChairman,RegiNumber,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d5,@d6,@d7,@d7,@d8,@d9,@d10,@d11,@d12)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into Company(CompanyName,TotalAuthorizedShare,AvailableAuthorizedShare,ValueofEachShare,TotalIssuedShare,AvailableIssuedShare,Corum,NumberOfDirector,VacantPostofDirector,VacantPostofMDirector,VacantPostofChairman,RegiNumber,MeetingAllowance,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d5,@d6,@d7,@d7,@d8,@d9,@d10,@d11,@d12,@13)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);
                             cmd.Parameters.AddWithValue("@d2", txtTotalAuthorizedShare.Text);
@@ -388,8 +405,9 @@ namespace BoardSecretariatSystem
                             cmd.Parameters.AddWithValue("@d8", "1");
                             cmd.Parameters.AddWithValue("@d9", "1");
                             cmd.Parameters.AddWithValue("@d10", regNoTextBox.Text);
-                            cmd.Parameters.AddWithValue("@d11", userId);
-                            cmd.Parameters.AddWithValue("@d12", creatingDateTimePicker.Value);
+                            cmd.Parameters.AddWithValue("@d11", txtMeetingAlowance.Text);
+                            cmd.Parameters.AddWithValue("@d12", userId);
+                            cmd.Parameters.AddWithValue("@d13", creatingDateTimePicker.Value);
                             currentCompanyId = (int) cmd.ExecuteScalar();
                             con.Close();
                             SaveCompanyAddress(1);
@@ -1219,7 +1237,23 @@ namespace BoardSecretariatSystem
             return;
 
         }
+        private bool LoadCompany()
+        {
+            bool x = false;
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query = "SELECT CompanyId FROM Company";
+            cmd = new SqlCommand(query, con);
+            cmd.ExecuteReader();
+            if (rdr.Read() && !rdr.IsDBNull(0))
+            {
+                companyId = Convert.ToInt32(rdr["CompanyId"]);
+                x = true;
+            }
+            return x;
 
+
+        }
         private void removeButton_Click(object sender, EventArgs e)
         {
             for (int i = listView1.Items.Count - 1; i >= 0; i--)
