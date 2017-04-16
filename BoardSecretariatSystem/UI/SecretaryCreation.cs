@@ -164,7 +164,7 @@ namespace BoardSecretariatSystem.UI
             con.Open();
             string query = "SELECT CompanyId FROM Company";
             cmd =new SqlCommand(query,con);
-            cmd.ExecuteReader();
+            rdr=cmd.ExecuteReader();
             if (rdr.Read() && !rdr.IsDBNull(0))
             {
                 companyId = Convert.ToInt32(rdr["CompanyId"]);
@@ -391,78 +391,7 @@ namespace BoardSecretariatSystem.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtShareHolderName.Text))
-            {
-                MessageBox.Show(@"Please enter Secretary  name", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (unKnownRA.Checked == false)
-            {
-                if (string.IsNullOrWhiteSpace(cmbPDivision.Text))
-                {
-                    MessageBox.Show(@"Please select Present Address division", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(cmbPDistrict.Text))
-                {
-                    MessageBox.Show(@"Please Select Present Address district", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(cmbPThana.Text))
-                {
-                    MessageBox.Show(@"Please select Present Address Thana", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(cmbPPost.Text))
-                {
-                    MessageBox.Show(@"Please Select Present Address Post Name", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txtPPostCode.Text))
-                {
-                    MessageBox.Show(@"Please select Present Address Post Code", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            if (unKnownCheckBox.Checked == false && sameAsRACheckBox.Checked == false)
-            {
-                if (string.IsNullOrWhiteSpace(cmbDivision.Text))
-                {
-                    MessageBox.Show(@"Please select Permanent Address division", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(cmbDistrict.Text))
-                {
-                    MessageBox.Show(@"Please Select Permanent Address district", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(cmbThana.Text))
-                {
-                    MessageBox.Show(@"Please select Permanent Address Thana", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(cmbPost.Text))
-                {
-                    MessageBox.Show(@"Please Select Permanent Address Post Name", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txtPostCode.Text))
-                {
-                    MessageBox.Show(@"Please select Permanent Address Post Code", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-            }
+            if (ValidateControlls()) return;
 
             try
             {
@@ -494,7 +423,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     if (p.Name==txtShareHolderName.Text && p.Email==cmbEmailAddress.Text)
                     {
-                        MessageBox.Show(@"This Secretary Already Exists,Please Input another one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(@"This Person Exists,Please Input another one"+"\n"+@"Or Use another Email", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         con.Close();
                         return;
                     }
@@ -538,6 +467,84 @@ namespace BoardSecretariatSystem.UI
             {
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private bool ValidateControlls()
+        {
+            bool validate = true;
+            
+            if (string.IsNullOrEmpty(txtShareHolderName.Text))
+            {
+                MessageBox.Show(@"Please enter Secretary  name", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
+            }
+
+            else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(cmbPDivision.Text))
+                {
+                    MessageBox.Show(@"Please select Present Address division", @"Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    validate = false;
+                }
+     else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(cmbPDistrict.Text))
+                {
+                    MessageBox.Show(@"Please Select Present Address district", @"Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    validate = false;
+                }
+      else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(cmbPThana.Text))
+                {
+                    MessageBox.Show(@"Please select Present Address Thana", @"Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    validate = false;
+                }
+   else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(cmbPPost.Text))
+                {
+                    MessageBox.Show(@"Please Select Present Address Post Name", @"Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    validate = false;
+                }
+  else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(txtPPostCode.Text))
+                {
+                    MessageBox.Show(@"Please select Present Address Post Code", @"Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    validate = false;
+                }
+            
+            else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbDivision.Text))
+                {
+                    MessageBox.Show(@"Please select Permanent Address division", @"Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    validate = false;
+                }
+       else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbDistrict.Text))
+                {
+                    MessageBox.Show(@"Please Select Permanent Address district", @"Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    validate = false;
+                }
+                else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbThana.Text))
+                {
+                    MessageBox.Show(@"Please select Permanent Address Thana", @"Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                   validate = false;
+                }
+                else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbPost.Text))
+                {
+                    MessageBox.Show(@"Please Select Permanent Address Post Name", @"Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    validate = false;
+                }
+               else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(txtPostCode.Text))
+                {
+                    MessageBox.Show(@"Please select Permanent Address Post Code", @"Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    validate = false;
+                }
+               else if (!Email())
+               {
+                   
+               }
+            return validate;
         }
 
 
@@ -694,72 +701,59 @@ namespace BoardSecretariatSystem.UI
         //    Email();
         //}
 
-        //private void Email()
-        //{
-        //    con = new SqlConnection(cs.DBConn);
-        //    con.Open();
-        //    string ct2 = "select Email from EmailBank where Email='" + cmbEmailAddress.Text + "'";
-        //    cmd = new SqlCommand(ct2, con);
-        //    rdr = cmd.ExecuteReader();
-        //    if (rdr.Read() && !rdr.IsDBNull(0))
-        //    {
-        //        MessageBox.Show(@"This Email  Already Exists", "Error",
-        //            MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        con.Close();
-        //    }
-        //    else
-        //    {
-        //        try
-        //        {
-        //            con = new SqlConnection(cs.DBConn);
-        //            con.Open();
-        //            string query1 = "insert into EmailBank (Email, UserId,DateAndTime) values (@d1,@d2,@d3)" +
-        //                            "SELECT CONVERT(int, SCOPE_IDENTITY())";
-        //            cmd = new SqlCommand(query1, con);
-        //            cmd.Parameters.AddWithValue("@d1", input);
-        //            cmd.Parameters.AddWithValue("@d2", nUserId);
-        //            cmd.Parameters.AddWithValue("@d3", DateTime.UtcNow.ToLocalTime());
-        //            cmd.ExecuteNonQuery();
-        //            con.Close();
+        private bool Email()
+        {
+            bool validate = true;
+            if (string.IsNullOrWhiteSpace(cmbEmailAddress.Text))
+            {
+                MessageBox.Show(@"You Must Give the Email Address", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                con.Close();
+                validate = false;
+            }
+            else
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct2 = "select Email from EmailBank where Email='" + cmbEmailAddress.Text + "'";
+                cmd = new SqlCommand(ct2, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read() && !rdr.IsDBNull(0))
+                {
+                    MessageBox.Show(@"This Email  Already Exists" + "\n" + @"You Can Not Use same email again", @"Sorry",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    con.Close();
+                    validate = false;
+                }
+                else
+                {
+                    try
+                    {
+                        con = new SqlConnection(cs.DBConn);
+                        con.Open();
+                        string query1 = "insert into EmailBank (Email, UserId,DateAndTime) values (@d1,@d2,@d3)" +
+                                        "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                        cmd = new SqlCommand(query1, con);
+                        cmd.Parameters.AddWithValue("@d1", cmbEmailAddress.Text);
+                        cmd.Parameters.AddWithValue("@d2", nUserId);
+                        cmd.Parameters.AddWithValue("@d3", DateTime.UtcNow.ToLocalTime());
+                        bankEmailId = (int)cmd.ExecuteScalar();
+                        con.Close();
+
+                        validate = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        validate = false;
+                    }
+                }
+            }
+          
+            return validate;
+        }
 
 
-        //            cmbEmailAddress.SelectedText = input;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        }
-        //    }
-        //}
-
-        //}
-            //else
-            //{
-            //    try
-            //    {
-            //        con = new SqlConnection(cs.DBConn);
-            //        con.Open();
-            //        cmd = con.CreateCommand();
-            //        cmd.CommandText = "SELECT EmailBankId from EmailBank WHERE Email= '" + cmbEmailAddress.Text + "'";
-
-            //        rdr = cmd.ExecuteReader();
-            //        if (rdr.Read())
-            //        {
-            //            bankEmailId = rdr.GetInt32(0);
-            //        }
-            //        if ((rdr != null))
-            //        {
-            //            rdr.Close();
-            //        }
-            //        if (con.State == ConnectionState.Open)
-            //        {
-            //            con.Close();
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
            
         
 
