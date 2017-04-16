@@ -1265,6 +1265,11 @@ namespace BoardSecretariatSystem
             }
         }
 
+        private void txtValueOfEachShare_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
           
     }
 }
