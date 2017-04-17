@@ -174,6 +174,7 @@
             this.companyNameTextBox.Name = "companyNameTextBox";
             this.companyNameTextBox.Size = new System.Drawing.Size(424, 29);
             this.companyNameTextBox.TabIndex = 1;
+            this.companyNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.companyNameTextBox_KeyDown);
             // 
             // regNoTextBox
             // 
@@ -182,6 +183,7 @@
             this.regNoTextBox.Name = "regNoTextBox";
             this.regNoTextBox.Size = new System.Drawing.Size(424, 29);
             this.regNoTextBox.TabIndex = 7;
+            this.regNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.regNoTextBox_KeyDown);
             this.regNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.contactNoTextBox_KeyPress);
             // 
             // label2
@@ -268,6 +270,7 @@
             this.postOfficeCombo.Size = new System.Drawing.Size(168, 27);
             this.postOfficeCombo.TabIndex = 10;
             this.postOfficeCombo.SelectedIndexChanged += new System.EventHandler(this.postOfficeCombo_SelectedIndexChanged);
+            this.postOfficeCombo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.postOfficeCombo_KeyDown);
             // 
             // label44
             // 
@@ -312,6 +315,7 @@
             this.divisionCombo.Size = new System.Drawing.Size(168, 27);
             this.divisionCombo.TabIndex = 7;
             this.divisionCombo.SelectedIndexChanged += new System.EventHandler(this.divisionCombo_SelectedIndexChanged);
+            this.divisionCombo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.divisionCombo_KeyDown);
             // 
             // label41
             // 
@@ -367,6 +371,7 @@
             this.thanaCombo.Size = new System.Drawing.Size(168, 27);
             this.thanaCombo.TabIndex = 9;
             this.thanaCombo.SelectedIndexChanged += new System.EventHandler(this.thanaCombo_SelectedIndexChanged);
+            this.thanaCombo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.thanaCombo_KeyDown);
             // 
             // contactNoTextBox
             // 
@@ -376,6 +381,7 @@
             this.contactNoTextBox.Name = "contactNoTextBox";
             this.contactNoTextBox.Size = new System.Drawing.Size(146, 26);
             this.contactNoTextBox.TabIndex = 6;
+            this.contactNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.contactNoTextBox_KeyDown);
             this.contactNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.contactNoTextBox_KeyPress_1);
             // 
             // label26
@@ -385,9 +391,9 @@
             this.label26.ForeColor = System.Drawing.Color.Blue;
             this.label26.Location = new System.Drawing.Point(3, 170);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(158, 19);
+            this.label26.Size = new System.Drawing.Size(154, 19);
             this.label26.TabIndex = 0;
-            this.label26.Text = "Contact No                : ";
+            this.label26.Text = "Contact No               : ";
             // 
             // distCombo
             // 
@@ -399,6 +405,7 @@
             this.distCombo.Size = new System.Drawing.Size(169, 27);
             this.distCombo.TabIndex = 8;
             this.distCombo.SelectedIndexChanged += new System.EventHandler(this.distCombo_SelectedIndexChanged);
+            this.distCombo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.distCombo_KeyDown);
             // 
             // label21
             // 
@@ -419,6 +426,7 @@
             this.postCodeTextBox.ReadOnly = true;
             this.postCodeTextBox.Size = new System.Drawing.Size(168, 26);
             this.postCodeTextBox.TabIndex = 11;
+            this.postCodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.postCodeTextBox_KeyDown);
             // 
             // areaTextBox
             // 
@@ -427,6 +435,7 @@
             this.areaTextBox.Name = "areaTextBox";
             this.areaTextBox.Size = new System.Drawing.Size(146, 26);
             this.areaTextBox.TabIndex = 5;
+            this.areaTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.areaTextBox_KeyDown);
             // 
             // label20
             // 
@@ -468,6 +477,7 @@
             this.roadNoTextBox.Name = "roadNoTextBox";
             this.roadNoTextBox.Size = new System.Drawing.Size(146, 26);
             this.roadNoTextBox.TabIndex = 3;
+            this.roadNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.roadNoTextBox_KeyDown);
             // 
             // houseNoTextBox
             // 
@@ -476,6 +486,7 @@
             this.houseNoTextBox.Name = "houseNoTextBox";
             this.houseNoTextBox.Size = new System.Drawing.Size(146, 26);
             this.houseNoTextBox.TabIndex = 2;
+            this.houseNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.houseNoTextBox_KeyDown);
             // 
             // flatNoTextBox
             // 
@@ -484,6 +495,7 @@
             this.flatNoTextBox.Name = "flatNoTextBox";
             this.flatNoTextBox.Size = new System.Drawing.Size(146, 26);
             this.flatNoTextBox.TabIndex = 1;
+            this.flatNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.flatNoTextBox_KeyDown);
             // 
             // label14
             // 
@@ -537,6 +549,7 @@
             this.txtValueOfEachShare.Size = new System.Drawing.Size(106, 29);
             this.txtValueOfEachShare.TabIndex = 2;
             this.txtValueOfEachShare.TextChanged += new System.EventHandler(this.txtValueOfEachShare_TextChanged);
+            this.txtValueOfEachShare.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValueOfEachShare_KeyDown);
             // 
             // label3
             // 
@@ -556,6 +569,7 @@
             this.txtTotalIssuedShare.Name = "txtTotalIssuedShare";
             this.txtTotalIssuedShare.Size = new System.Drawing.Size(216, 29);
             this.txtTotalIssuedShare.TabIndex = 4;
+            this.txtTotalIssuedShare.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTotalIssuedShare_KeyDown);
             // 
             // label8
             // 
@@ -575,6 +589,7 @@
             this.txtTotalAuthorizedShare.Name = "txtTotalAuthorizedShare";
             this.txtTotalAuthorizedShare.Size = new System.Drawing.Size(424, 29);
             this.txtTotalAuthorizedShare.TabIndex = 6;
+            this.txtTotalAuthorizedShare.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTotalAuthorizedShare_KeyDown);
             // 
             // label9
             // 
@@ -636,6 +651,7 @@
             this.cmbHQPost.Size = new System.Drawing.Size(168, 27);
             this.cmbHQPost.TabIndex = 10;
             this.cmbHQPost.SelectedIndexChanged += new System.EventHandler(this.cmbHQPost_SelectedIndexChanged);
+            this.cmbHQPost.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbHQPost_KeyDown);
             // 
             // label10
             // 
@@ -680,6 +696,7 @@
             this.cmbHQDivision.Size = new System.Drawing.Size(168, 27);
             this.cmbHQDivision.TabIndex = 7;
             this.cmbHQDivision.SelectedIndexChanged += new System.EventHandler(this.cmbHQDivision_SelectedIndexChanged);
+            this.cmbHQDivision.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbHQDivision_KeyDown);
             // 
             // label13
             // 
@@ -735,6 +752,7 @@
             this.cmbHQThana.Size = new System.Drawing.Size(168, 27);
             this.cmbHQThana.TabIndex = 9;
             this.cmbHQThana.SelectedIndexChanged += new System.EventHandler(this.cmbHQThana_SelectedIndexChanged);
+            this.cmbHQThana.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbHQThana_KeyDown);
             // 
             // txtHQContactNo
             // 
@@ -744,6 +762,7 @@
             this.txtHQContactNo.Name = "txtHQContactNo";
             this.txtHQContactNo.Size = new System.Drawing.Size(146, 25);
             this.txtHQContactNo.TabIndex = 6;
+            this.txtHQContactNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHQContactNo_KeyDown);
             // 
             // label25
             // 
@@ -766,6 +785,7 @@
             this.cmbHQDistrict.Size = new System.Drawing.Size(168, 27);
             this.cmbHQDistrict.TabIndex = 8;
             this.cmbHQDistrict.SelectedIndexChanged += new System.EventHandler(this.cmbHQDistrict_SelectedIndexChanged);
+            this.cmbHQDistrict.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbHQDistrict_KeyDown);
             // 
             // label27
             // 
@@ -786,6 +806,7 @@
             this.txtHQPostCode.ReadOnly = true;
             this.txtHQPostCode.Size = new System.Drawing.Size(168, 26);
             this.txtHQPostCode.TabIndex = 11;
+            this.txtHQPostCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHQPostCode_KeyDown);
             // 
             // txtHQArea
             // 
@@ -794,6 +815,7 @@
             this.txtHQArea.Name = "txtHQArea";
             this.txtHQArea.Size = new System.Drawing.Size(146, 25);
             this.txtHQArea.TabIndex = 5;
+            this.txtHQArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHQArea_KeyDown);
             // 
             // label28
             // 
@@ -835,6 +857,7 @@
             this.txtHQRoadNo.Name = "txtHQRoadNo";
             this.txtHQRoadNo.Size = new System.Drawing.Size(146, 25);
             this.txtHQRoadNo.TabIndex = 3;
+            this.txtHQRoadNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHQRoadNo_KeyDown);
             // 
             // txtHQHouseNo
             // 
@@ -843,6 +866,7 @@
             this.txtHQHouseNo.Name = "txtHQHouseNo";
             this.txtHQHouseNo.Size = new System.Drawing.Size(146, 25);
             this.txtHQHouseNo.TabIndex = 2;
+            this.txtHQHouseNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHQHouseNo_KeyDown);
             // 
             // txtHQFlatNo
             // 
@@ -851,6 +875,7 @@
             this.txtHQFlatNo.Name = "txtHQFlatNo";
             this.txtHQFlatNo.Size = new System.Drawing.Size(146, 25);
             this.txtHQFlatNo.TabIndex = 1;
+            this.txtHQFlatNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHQFlatNo_KeyDown);
             // 
             // label31
             // 
@@ -905,6 +930,7 @@
             this.creatingDateTimePicker.Name = "creatingDateTimePicker";
             this.creatingDateTimePicker.Size = new System.Drawing.Size(120, 29);
             this.creatingDateTimePicker.TabIndex = 8;
+            this.creatingDateTimePicker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.creatingDateTimePicker_KeyDown);
             // 
             // label5
             // 
@@ -932,6 +958,7 @@
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Other Address";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // cmbAddressHeader
             // 
@@ -990,6 +1017,7 @@
             this.cmbOPost.Size = new System.Drawing.Size(168, 32);
             this.cmbOPost.TabIndex = 10;
             this.cmbOPost.SelectedIndexChanged += new System.EventHandler(this.cmbOPost_SelectedIndexChanged);
+            this.cmbOPost.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbOPost_KeyDown);
             // 
             // label6
             // 
@@ -1031,6 +1059,7 @@
             this.cmbODivision.Size = new System.Drawing.Size(168, 32);
             this.cmbODivision.TabIndex = 7;
             this.cmbODivision.SelectedIndexChanged += new System.EventHandler(this.cmbODivision_SelectedIndexChanged);
+            this.cmbODivision.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbODivision_KeyDown);
             // 
             // label39
             // 
@@ -1082,6 +1111,7 @@
             this.cmbOThana.Size = new System.Drawing.Size(168, 32);
             this.cmbOThana.TabIndex = 9;
             this.cmbOThana.SelectedIndexChanged += new System.EventHandler(this.cmbOThana_SelectedIndexChanged);
+            this.cmbOThana.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbOThana_KeyDown);
             // 
             // txtOContactNo
             // 
@@ -1091,6 +1121,7 @@
             this.txtOContactNo.Name = "txtOContactNo";
             this.txtOContactNo.Size = new System.Drawing.Size(146, 26);
             this.txtOContactNo.TabIndex = 6;
+            this.txtOContactNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOContactNo_KeyDown);
             // 
             // label47
             // 
@@ -1113,6 +1144,7 @@
             this.cmbODistrict.Size = new System.Drawing.Size(169, 32);
             this.cmbODistrict.TabIndex = 8;
             this.cmbODistrict.SelectedIndexChanged += new System.EventHandler(this.cmbODistrict_SelectedIndexChanged);
+            this.cmbODistrict.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbODistrict_KeyDown);
             // 
             // label48
             // 
@@ -1133,6 +1165,7 @@
             this.txtOPostCode.ReadOnly = true;
             this.txtOPostCode.Size = new System.Drawing.Size(168, 29);
             this.txtOPostCode.TabIndex = 11;
+            this.txtOPostCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOPostCode_KeyDown);
             // 
             // txtOArea
             // 
@@ -1141,6 +1174,7 @@
             this.txtOArea.Name = "txtOArea";
             this.txtOArea.Size = new System.Drawing.Size(146, 26);
             this.txtOArea.TabIndex = 5;
+            this.txtOArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOArea_KeyDown);
             // 
             // label49
             // 
@@ -1182,6 +1216,7 @@
             this.txtORoad.Name = "txtORoad";
             this.txtORoad.Size = new System.Drawing.Size(146, 26);
             this.txtORoad.TabIndex = 3;
+            this.txtORoad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtORoad_KeyDown);
             // 
             // txtOHouse
             // 
@@ -1190,6 +1225,7 @@
             this.txtOHouse.Name = "txtOHouse";
             this.txtOHouse.Size = new System.Drawing.Size(146, 26);
             this.txtOHouse.TabIndex = 2;
+            this.txtOHouse.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOHouse_KeyDown);
             // 
             // txtOFlat
             // 
@@ -1198,6 +1234,7 @@
             this.txtOFlat.Name = "txtOFlat";
             this.txtOFlat.Size = new System.Drawing.Size(146, 26);
             this.txtOFlat.TabIndex = 1;
+            this.txtOFlat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOFlat_KeyDown);
             // 
             // label52
             // 
@@ -1368,6 +1405,7 @@
             this.txtCorum.Name = "txtCorum";
             this.txtCorum.Size = new System.Drawing.Size(74, 29);
             this.txtCorum.TabIndex = 5;
+            this.txtCorum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCorum_KeyDown);
             // 
             // label56
             // 
@@ -1398,6 +1436,7 @@
             this.txtNumberOfDirector.Name = "txtNumberOfDirector";
             this.txtNumberOfDirector.Size = new System.Drawing.Size(100, 29);
             this.txtNumberOfDirector.TabIndex = 9;
+            this.txtNumberOfDirector.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumberOfDirector_KeyDown);
             // 
             // label58
             // 
@@ -1417,6 +1456,7 @@
             this.txtMeetingAlowance.Name = "txtMeetingAlowance";
             this.txtMeetingAlowance.Size = new System.Drawing.Size(139, 29);
             this.txtMeetingAlowance.TabIndex = 3;
+            this.txtMeetingAlowance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMeetingAlowance_KeyDown);
             // 
             // txtOBlock
             // 
@@ -1427,6 +1467,7 @@
             this.txtOBlock.TabIndex = 4;
             this.txtOBlock.WaterMarkColor = System.Drawing.Color.Gray;
             this.txtOBlock.WaterMarkText = "if any";
+            this.txtOBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOBlock_KeyDown);
             // 
             // txtHQBlock
             // 
@@ -1437,6 +1478,7 @@
             this.txtHQBlock.TabIndex = 4;
             this.txtHQBlock.WaterMarkColor = System.Drawing.Color.Gray;
             this.txtHQBlock.WaterMarkText = "if any";
+            this.txtHQBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHQBlock_KeyDown);
             // 
             // blockTextBox
             // 
@@ -1447,6 +1489,7 @@
             this.blockTextBox.TabIndex = 4;
             this.blockTextBox.WaterMarkColor = System.Drawing.Color.Gray;
             this.blockTextBox.WaterMarkText = "if any";
+            this.blockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.blockTextBox_KeyDown);
             // 
             // CompanyEntryUI
             // 
