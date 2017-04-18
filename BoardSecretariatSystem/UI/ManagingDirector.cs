@@ -128,7 +128,7 @@ namespace BoardSecretariatSystem.UI
                     {
                         mDirectorId = (rdr.GetInt32(0));
                         MessageBox.Show("This Managing Director Already Exists,Please Select another one.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtMDirectorName.Text = "";
+                        txtMDirectorName.Clear();
                         txtMDirectorName.Focus();
                         if ((rdr != null))
                         {
