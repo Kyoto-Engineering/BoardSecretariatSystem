@@ -13,7 +13,7 @@ namespace BoardSecretariatSystem.DBGateway
         public ConnectionGateway()
         {
 
-            string connectionString = @"Data Source=tcp:KyotoServer,49172;Initial Catalog=BoardSecretariatDBKD66;User=sa;Password=SystemAdministrator;Persist Security Info=True;";
+            string connectionString = @"Data Source=tcp:KyotoServer,49172;Initial Catalog=BoardSecretariatDBKD;User=sa;Password=SystemAdministrator;Persist Security Info=True;";
          
             connection = new SqlConnection(connectionString);
         }

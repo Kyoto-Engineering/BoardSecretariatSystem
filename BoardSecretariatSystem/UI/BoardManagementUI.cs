@@ -44,5 +44,26 @@ namespace BoardSecretariatSystem.UI
             MainUI frm=new MainUI();
                  frm.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+                               this.Hide();
+            DirectorResignationGrid frm = new DirectorResignationGrid();
+                               frm.Show();
+        }
+
+        private void buttonManagingDirector_Click(object sender, EventArgs e)
+        {
+                                                    this.Hide();
+                              MDirectorResignationGrid frm = new MDirectorResignationGrid();
+                                                     frm.Show();
+        }
+
+        private void buttonChairmanResignation_Click(object sender, EventArgs e)
+        {
+                                                  this.Hide();
+                             ChairmanResignationGrid frm = new ChairmanResignationGrid();
+                                                  frm.Show();
+        }
     }
 }
