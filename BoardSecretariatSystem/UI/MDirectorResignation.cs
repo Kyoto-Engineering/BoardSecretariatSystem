@@ -18,7 +18,7 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         ConnectionString cs = new ConnectionString();
-        public int vacantPostOfDirector, vacantPostOfDirector1, companyId=1;
+        public int vacantPostOfMDirector, vacantPostOfMDirector1, companyId=1;
        
         public MDirectorResignation()
         {
@@ -50,29 +50,37 @@ namespace BoardSecretariatSystem.UI
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
-                    vacantPostOfDirector = (rdr.GetInt32(0));
+                    vacantPostOfMDirector = (rdr.GetInt32(0));
 
                 }
                 con.Close();
-
-                vacantPostOfDirector1 = vacantPostOfDirector + 1;
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string qry = "Update Company Set VacantPostofMDirector=@d1 where Company.CompanyId='" + companyId + "'";
-                cmd = new SqlCommand(qry, con);
-                cmd.Parameters.AddWithValue("@d1", vacantPostOfDirector1);
-                cmd.ExecuteReader();
-                con.Close();
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string qrk = "Update MDerector  Set DateofRetirement=@d1,CouseOfRetirement=@d2 where MDerector.MDerectorId='" + txtManagingDirectorId.Text + "'";
-                cmd = new SqlCommand(qrk, con);
-                cmd.Parameters.AddWithValue("@d1", Convert.ToDateTime(txtDateOfRetirement.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
-                cmd.Parameters.AddWithValue("@d2", txtResignationCause.Text);
-                cmd.ExecuteReader();
-                con.Close();
-                MessageBox.Show("Successfully Resigned", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Reset();
+                if (vacantPostOfMDirector == 1)
+                {
+                    MessageBox.Show("please Appoint first Some one as Managing Director", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    vacantPostOfMDirector1 = vacantPostOfMDirector + 1;
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string qry = "Update Company Set VacantPostofMDirector=@d1 where Company.CompanyId='" + companyId + "'";
+                    cmd = new SqlCommand(qry, con);
+                    cmd.Parameters.AddWithValue("@d1", vacantPostOfMDirector1);
+                    cmd.ExecuteReader();
+                    con.Close();
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string qrk = "Update MDerector  Set DateofRetirement=@d1,CouseOfRetirement=@d2 where MDerector.MDerectorId='" + txtManagingDirectorId.Text + "'";
+                    cmd = new SqlCommand(qrk, con);
+                    cmd.Parameters.AddWithValue("@d1", Convert.ToDateTime(txtDateOfRetirement.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
+                    cmd.Parameters.AddWithValue("@d2", txtResignationCause.Text);
+                    cmd.ExecuteReader();
+                    con.Close();
+                    MessageBox.Show("Successfully Resigned", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Reset();
+                }
+               
             }
             catch (Exception ex)
             {

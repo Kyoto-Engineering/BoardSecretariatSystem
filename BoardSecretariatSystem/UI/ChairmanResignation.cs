@@ -53,25 +53,36 @@ namespace BoardSecretariatSystem.UI
                 }
                 con.Close();
 
-                vacantPostOfChairman1 = vacantPostOfChairman + 1;
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string qry = "Update Company Set VacantPostofChairman=@d1 where Company.CompanyId='" + companyId + "'";
-                cmd = new SqlCommand(qry, con);
-                cmd.Parameters.AddWithValue("@d1", vacantPostOfChairman1);
-                cmd.ExecuteReader();
-                con.Close();
 
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string qrk = "Update Chairman  Set DateofRetirement=@d1,CouseOfRetirement=@d2 where Chairman.ChairmanId='" + textChairmanId.Text + "'";
-                cmd = new SqlCommand(qrk, con);
-                cmd.Parameters.AddWithValue("@d1", Convert.ToDateTime(txtDateOfRetirement.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
-                cmd.Parameters.AddWithValue("@d2", txtResignationCause.Text);
-                cmd.ExecuteReader();
-                con.Close();
-                MessageBox.Show("Successfully Resigned", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Reset();
+                if (vacantPostOfChairman == 1)
+                {
+                    MessageBox.Show("please Appoint first Some one as Chairman", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    vacantPostOfChairman1 = vacantPostOfChairman + 1;
+
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string qry = "Update Company Set VacantPostofChairman=@d1 where Company.CompanyId='" + companyId + "'";
+                    cmd = new SqlCommand(qry, con);
+                    cmd.Parameters.AddWithValue("@d1", vacantPostOfChairman1);
+                    cmd.ExecuteReader();
+                    con.Close();
+
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string qrk = "Update Chairman  Set DateofRetirement=@d1,CouseOfRetirement=@d2 where Chairman.ChairmanId='" + textChairmanId.Text + "'";
+                    cmd = new SqlCommand(qrk, con);
+                    cmd.Parameters.AddWithValue("@d1", Convert.ToDateTime(txtDateOfRetirement.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
+                    cmd.Parameters.AddWithValue("@d2", txtResignationCause.Text);
+                    cmd.ExecuteReader();
+                    con.Close();
+                    MessageBox.Show("Successfully Resigned", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Reset();
+                }
+               
             }
             catch (Exception ex)
             {
