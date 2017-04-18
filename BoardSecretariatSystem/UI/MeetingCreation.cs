@@ -72,19 +72,7 @@ namespace BoardSecretariatSystem.UI
         }
 
         private void SaveMeetingParticipant()
-        {
-        //   con=new SqlConnection(cs.DBConn);
-        //   string commandText = "sPMeetingParticipant";
-
-        // cmd = new SqlCommand(commandText,con);
-         
-        // cmd.CommandType = CommandType.StoredProcedure;
-        // cmd.CommandTimeout = 600;
-        //        con.Open();
-        //int affectedRows = cmd.ExecuteNonQuery();
-        //   con.Close();
-
-
+        {      
            con = new SqlConnection(cs.DBConn);
            con.Open();
            string qry = "insert into MeetingParticipant(MeetingId,ParticipantId,Title) SELECT  @d1,Participant.ParticipantId As ParticipantId , 'Chairman' As Title FROM   Chairman INNER JOIN Derector ON Chairman.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where Chairman.DateofRetirement is null Union SELECT @d1, Participant.ParticipantId , 'Managing Director' As Title FROM  MDerector INNER JOIN  Derector ON MDerector.DerectorId = Derector.DerectorId INNER JOIN  Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where MDerector.DateofRetirement is null Union SELECT @d1, Participant.ParticipantId , 'Director' As Title FROM  Derector INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId  where Participant.ParticipantId not in (SELECT Participant.ParticipantId FROM  Chairman INNER JOIN Derector ON Chairman.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN  Participant ON Shareholder.ParticipantId = Participant.ParticipantId where Chairman.DateofRetirement is null Union SELECT  Participant.ParticipantId FROM  MDerector INNER JOIN Derector ON MDerector.DerectorId = Derector.DerectorId INNER JOIN Shareholder ON Derector.ShareholderId = Shareholder.ShareholderId INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId where MDerector.DateofRetirement is null)";
@@ -156,21 +144,7 @@ namespace BoardSecretariatSystem.UI
             {
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void ChangedPositioned()
-        {
-            label7.Visible = false;
-           // textBox1.Visible = false;
-           // textBox1.Clear();
-            label7.Location = new Point(46, 444);
-           // textBox1.Location = new Point(200, 437);
-
-            label12.Location = new Point(81, 217);
-           // txtC1DM2Particulars.Location = new Point(200, 217);
-            label13.Location = new Point(56, 397);
-           // txtC1DM2DebitBalance.Location = new Point(200, 394);
-        }
+        }       
         public void MeetingVanueLoad()
         {
             try
@@ -240,7 +214,7 @@ namespace BoardSecretariatSystem.UI
             groupBox2.Visible = false;
             label4.Visible = false;
             label9.Visible = false;
-            this.Size= new Size(700, 1080);            
+            this.Size= new Size(700, 550);            
             BoardNameLoad();
             CompanyNameLoad();
             MeetingVanueLoad();
@@ -274,8 +248,7 @@ namespace BoardSecretariatSystem.UI
             else
             {
                 serialNo = yy + "-" + boardId + "-" + count + "-" + currentMeetingId;
-            }
-            
+            }            
         }
 
         private void SaveAddressHeader()
@@ -551,7 +524,6 @@ namespace BoardSecretariatSystem.UI
                     divisionId = (rdr.GetString(0));
 
                 }
-
                 if ((rdr != null))
                 {
                     rdr.Close();
@@ -560,8 +532,6 @@ namespace BoardSecretariatSystem.UI
                 {
                     con.Close();
                 }
-
-
                 cmbDivision.Text = cmbDivision.Text.Trim();
                 cmbDistrict.SelectedIndex = -1;
                 cmbDistrict.Items.Clear();

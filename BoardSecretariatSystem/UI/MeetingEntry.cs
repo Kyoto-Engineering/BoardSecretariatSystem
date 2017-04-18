@@ -242,12 +242,7 @@ namespace BoardSecretariatSystem
             {
              MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {            
-        }
-
+        }       
         private void meetingListGroupBox_Enter(object sender, EventArgs e)
         {
 
@@ -265,9 +260,6 @@ namespace BoardSecretariatSystem
             }
         }
 
-        private void txtMeetingName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 }

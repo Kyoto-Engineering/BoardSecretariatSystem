@@ -49,6 +49,7 @@
             this.buttonDone.TabIndex = 13;
             this.buttonDone.Text = "Done";
             this.buttonDone.UseVisualStyleBackColor = false;
+            this.buttonDone.Click += new System.EventHandler(this.buttonDone_Click);
             // 
             // txtResignationCause
             // 

@@ -95,7 +95,6 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtAgendaTitle.Text))
@@ -107,9 +106,7 @@ namespace BoardSecretariatSystem.UI
             {
                 MessageBox.Show("Please select agenda type", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
-
-          //  ++aId;
+            }         
             if (listView1.Items.Count == 0)
             {
                 ListViewItem list = new ListViewItem();
@@ -191,13 +188,12 @@ namespace BoardSecretariatSystem.UI
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string query1 = "Update Agenda  Set AgendaTitle=@d1,AgendaTypeId=@d2,UserId=@d5,DateTime=@d6 where Agenda.AgendaId='"+listView1.Items[i].SubItems[1].Text+"'";
+                    string query1 = "Update Agenda  Set AgendaTitle=@d1,AgendaTypeId=@d2,UserId=@d3,DateTime=@d4 where Agenda.AgendaId='"+listView1.Items[i].SubItems[1].Text+"'";
                     cmd = new SqlCommand(query1, con);
                     cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[2].Text);
-                    cmd.Parameters.AddWithValue("@d2", listView1.Items[i].SubItems[4].Text);
-                   // cmd.Parameters.AddWithValue("@d4", listView1.Items[i].SubItems[4].Text);
-                    cmd.Parameters.AddWithValue("@d5", userId);
-                    cmd.Parameters.AddWithValue("@d6", DateTime.UtcNow.ToLocalTime());
+                    cmd.Parameters.AddWithValue("@d2", listView1.Items[i].SubItems[4].Text);                   
+                    cmd.Parameters.AddWithValue("@d3", userId);
+                    cmd.Parameters.AddWithValue("@d4", DateTime.UtcNow.ToLocalTime());
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }

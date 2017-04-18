@@ -425,11 +425,11 @@ namespace BoardSecretariatSystem
                         {
                             MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }                    
+               
                     }
-
-                } 
-            
-            
+             
+                }                         
+          
         }
 
         private void contactNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -453,25 +453,7 @@ namespace BoardSecretariatSystem
                 MessageBox.Show("Creation Date Time should not excced from current date time", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 creatingDateTimePicker.ResetText(); 
             }
-        }
-
-        private void searchTextBox_TextChanged(object sender, EventArgs e)
-        {
-            //SqlDataAdapter sda = new SqlDataAdapter("SELECT CompanyId,CompanyName,CompanyAddress,RegiNumber,DateTime FROM Company WHERE (CompanyName LIKE '" + searchTextBox.Text + "%')", con);
-            //DataTable dataTable = new DataTable();
-            //sda.Fill(dataTable);
-            //allCompanyListDataGridView.Rows.Clear();
-            //foreach (DataRow item in dataTable.Rows)
-            //{
-            //    int n = allCompanyListDataGridView.Rows.Add();
-            //    allCompanyListDataGridView.Rows[n].Cells[0].Value = item[0].ToString();
-            //    allCompanyListDataGridView.Rows[n].Cells[1].Value = item[1].ToString();
-            //    allCompanyListDataGridView.Rows[n].Cells[2].Value = item[2].ToString();
-            //    allCompanyListDataGridView.Rows[n].Cells[3].Value = item[3].ToString();
-            //    allCompanyListDataGridView.Rows[n].Cells[4].Value = item[4].ToString();
-            //}
-        }
-
+        }        
         private void divisionCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -666,8 +648,6 @@ namespace BoardSecretariatSystem
                 {
                     con.Close();
                 }
-
-
             }
 
             catch (Exception ex)
@@ -680,13 +660,7 @@ namespace BoardSecretariatSystem
         {
             if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
                 e.Handled = true;
-        }
-        
-        private void cmbAddressHeadline_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-        }
-
+        }                
         private void cmbHQDivision_SelectedIndexChanged(object sender, EventArgs e)
         {
             try

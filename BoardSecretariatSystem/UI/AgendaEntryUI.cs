@@ -162,17 +162,9 @@ namespace BoardSecretariatSystem
                 {
                     aId = (rdr.GetDecimal(0));
                     aId = 1;
-                   // string[] tokens = agendaId1.Split('-');
-                    //aId = Convert.ToInt32(tokens[1]);
-                    txtAgendaHeader.Text = "Agenda-" +aId;
-                }
-                //if (!rdr.Read())
-                //{
                    
-                //    txtAgendaHeader.Text = "Agenda-1";
-                //}
-                
-
+                    txtAgendaHeader.Text = "Agenda-" +aId;
+                }                              
             }
             catch (Exception ex)
             {
@@ -264,13 +256,11 @@ namespace BoardSecretariatSystem
             {
                 ListViewItem list = new ListViewItem();
                 list.SubItems.Add(txtAgendaHeader.Text);
-                list.SubItems.Add(txtAgendaTitle.Text);
-               // list.SubItems.Add(txtMemoName.Text);
+                list.SubItems.Add(txtAgendaTitle.Text);               
                 list.SubItems.Add(cmbAgendaType.Text);
                 list.SubItems.Add(agendaTypeId.ToString());
                 aIdK = aId - 1;
                 list.SubItems.Add(aIdK.ToString());
-
                 listView1.Items.Add(list);            
                 txtAgendaHeader.Text = "Agenda-" + aId;
                 txtAgendaTitle.Clear();
@@ -302,8 +292,7 @@ namespace BoardSecretariatSystem
                 }
 
                 else
-                {
-                    
+                {                    
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     string ct2 = "select AgendaType from AgendaTypes where AgendaType='" + input + "'";
