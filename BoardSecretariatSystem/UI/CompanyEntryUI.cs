@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -424,11 +425,11 @@ namespace BoardSecretariatSystem
                         {
                             MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }                    
+               
                     }
-
-                } 
-            
-            
+             
+                }                         
+          
         }
 
         private void contactNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -452,25 +453,7 @@ namespace BoardSecretariatSystem
                 MessageBox.Show("Creation Date Time should not excced from current date time", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 creatingDateTimePicker.ResetText(); 
             }
-        }
-
-        private void searchTextBox_TextChanged(object sender, EventArgs e)
-        {
-            //SqlDataAdapter sda = new SqlDataAdapter("SELECT CompanyId,CompanyName,CompanyAddress,RegiNumber,DateTime FROM Company WHERE (CompanyName LIKE '" + searchTextBox.Text + "%')", con);
-            //DataTable dataTable = new DataTable();
-            //sda.Fill(dataTable);
-            //allCompanyListDataGridView.Rows.Clear();
-            //foreach (DataRow item in dataTable.Rows)
-            //{
-            //    int n = allCompanyListDataGridView.Rows.Add();
-            //    allCompanyListDataGridView.Rows[n].Cells[0].Value = item[0].ToString();
-            //    allCompanyListDataGridView.Rows[n].Cells[1].Value = item[1].ToString();
-            //    allCompanyListDataGridView.Rows[n].Cells[2].Value = item[2].ToString();
-            //    allCompanyListDataGridView.Rows[n].Cells[3].Value = item[3].ToString();
-            //    allCompanyListDataGridView.Rows[n].Cells[4].Value = item[4].ToString();
-            //}
-        }
-
+        }        
         private void divisionCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -665,8 +648,6 @@ namespace BoardSecretariatSystem
                 {
                     con.Close();
                 }
-
-
             }
 
             catch (Exception ex)
@@ -679,13 +660,7 @@ namespace BoardSecretariatSystem
         {
             if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
                 e.Handled = true;
-        }
-        
-        private void cmbAddressHeadline_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-        }
-
+        }                
         private void cmbHQDivision_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -885,6 +860,8 @@ namespace BoardSecretariatSystem
             {
                 groupBox5.Enabled = true;
                 FillStar();
+                cmbAddressHeader.Focus();
+                
             }
             else
             {
@@ -1177,6 +1154,7 @@ namespace BoardSecretariatSystem
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            txtOFlat.Focus();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -1244,7 +1222,8 @@ namespace BoardSecretariatSystem
             con.Open();
             string query = "SELECT CompanyId FROM Company";
             cmd = new SqlCommand(query, con);
-            cmd.ExecuteReader();
+            rdr = cmd.ExecuteReader();
+
             if (rdr.Read() && !rdr.IsDBNull(0))
             {
                 companyId = Convert.ToInt32(rdr["CompanyId"]);
@@ -1266,6 +1245,385 @@ namespace BoardSecretariatSystem
         }
 
         private void txtValueOfEachShare_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void companyNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtValueOfEachShare.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtValueOfEachShare_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtMeetingAlowance.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtMeetingAlowance_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtTotalIssuedShare.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtTotalIssuedShare_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtCorum.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtCorum_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtTotalAuthorizedShare.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtTotalAuthorizedShare_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                regNoTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void regNoTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                creatingDateTimePicker.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void creatingDateTimePicker_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtNumberOfDirector.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtNumberOfDirector_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                flatNoTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void flatNoTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                houseNoTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void houseNoTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                roadNoTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void roadNoTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                blockTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void blockTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                areaTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void areaTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                contactNoTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void contactNoTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                divisionCombo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void divisionCombo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                distCombo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void distCombo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                thanaCombo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void thanaCombo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                postOfficeCombo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void postOfficeCombo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                postCodeTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void postCodeTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtHQFlatNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtHQFlatNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtHQHouseNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtHQHouseNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtHQRoadNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtHQRoadNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtHQBlock.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtHQBlock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtHQArea.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtHQArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtHQContactNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtHQContactNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbHQDivision.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbHQDivision_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbHQDistrict.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbHQDistrict_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbHQThana.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbHQThana_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbHQPost.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbHQPost_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtHQPostCode.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtHQPostCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtOFlat.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtOFlat_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtOHouse.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtOHouse_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtORoad.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtORoad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtOBlock.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtOBlock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtOArea.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtOArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtOContactNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtOContactNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbODivision.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbODivision_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbODistrict.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbODistrict_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbOThana.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbOThana_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbOPost.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbOPost_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtOPostCode.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtOPostCode_KeyDown(object sender, KeyEventArgs e)
         {
 
         }

@@ -80,14 +80,7 @@ namespace BoardSecretariatSystem.UI
                         
 
                     }
-                //}
-                //else
-                //{
-                //    MessageBox.Show("You need to Create or Schedule a new Meeting", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    //meetingNum1 = meetingNum;
-                //    //txtMeetingNumber.Text = meetingNum1.ToString();
-                //    //txtMeetingTitle.Text = "1st Board Meeting";
-                //}
+               
             }
             catch (Exception ex)
             {
@@ -109,9 +102,7 @@ namespace BoardSecretariatSystem.UI
                     int n = dataGridView1.Rows.Add();
                     dataGridView1.Rows[n].Cells[0].Value = item[0].ToString();
                     dataGridView1.Rows[n].Cells[1].Value = item[1].ToString();
-                    dataGridView1.Rows[n].Cells[2].Value = item[2].ToString();
-                    // dataGridView1.Rows[n].Cells[3].Value = item[3].ToString();
-
+                    dataGridView1.Rows[n].Cells[2].Value = item[2].ToString();                    
                 }
             }
             catch (Exception ex)
@@ -190,24 +181,7 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void ResetDBNull()
-        {
-            if (!rdr.IsDBNull(0))
-            {
-
-
-                MessageBox.Show("The Balance Carry Forwarding is Already has  Approved  for this Year", "Report",MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else
-            {
-
-                this.Hide();
-               
-
-            }
-        }
+       
         private void ListOfMinutedAgenda()
         {
             listView1.View = View.Details;
@@ -223,8 +197,7 @@ namespace BoardSecretariatSystem.UI
                 listitem1.SubItems.Add(dr[0].ToString());
                 listitem1.SubItems.Add(dr[1].ToString());
                 listitem1.SubItems.Add(dr[2].ToString());
-                listitem1.SubItems.Add(dr[3].ToString());
-                //listitem1.SubItems.Add(dr[4].ToString());
+                listitem1.SubItems.Add(dr[3].ToString());               
                 listView1.Items.Add(listitem1);
             }
         }
@@ -238,8 +211,7 @@ namespace BoardSecretariatSystem.UI
         private void SaveMeetingMinutes()
         {
             try
-            {
-                
+            {                
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 string query2 = "insert into MeetingMinutes(MeetingId,MeetingAgendaId,AgendaSerialForMeeting,Memo,Discussion,Resolution,UserId,DateAndTime) values(@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";

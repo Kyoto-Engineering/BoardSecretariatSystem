@@ -10,16 +10,13 @@ using System.Windows.Forms;
 
 namespace BoardSecretariatSystem.UI
 {
-    public partial class ChairmanResignation : Form
+    public partial class ShareTransferUI : Form
     {
-        public ChairmanResignation()
+        public ShareTransferUI()
         {
             InitializeComponent();
         }
 
-        private void buttonDone_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

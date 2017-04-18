@@ -73,9 +73,7 @@ namespace BoardSecretariatSystem.UI
                     int n = dataGridView1.Rows.Add();
                     dataGridView1.Rows[n].Cells[0].Value = item[0].ToString();
                     dataGridView1.Rows[n].Cells[1].Value = item[1].ToString();
-                   dataGridView1.Rows[n].Cells[2].Value = item[2].ToString();
-                   // dataGridView1.Rows[n].Cells[3].Value = item[3].ToString();
-
+                   dataGridView1.Rows[n].Cells[2].Value = item[2].ToString();                  
                 }
             }
             catch (Exception ex)
@@ -216,11 +214,8 @@ namespace BoardSecretariatSystem.UI
                         ListViewItem lst1 = new ListViewItem();
                         lst1.Text = dr.Cells[0].Value.ToString();
                         lst1.SubItems.Add(dr.Cells[1].Value.ToString());
-                        lst1.SubItems.Add(dr.Cells[2].Value.ToString());
-                        lst1.SubItems.Add(dr.Cells[3].Value.ToString());
-                        //lst1.SubItems.Add(dr.Cells[4].Value.ToString());
-                        listView1.Items.Add(lst1);
-                        //SaveSelectedAgenda();
+                        lst1.SubItems.Add(dr.Cells[2].Value.ToString());                       
+                        listView1.Items.Add(lst1);                       
                         ClearApprovedRequisition();
                     }
 
@@ -229,11 +224,8 @@ namespace BoardSecretariatSystem.UI
                         ListViewItem lst = new ListViewItem();
                         lst.Text = dr.Cells[0].Value.ToString();
                         lst.SubItems.Add(dr.Cells[1].Value.ToString());
-                        lst.SubItems.Add(dr.Cells[2].Value.ToString());
-                        lst.SubItems.Add(dr.Cells[3].Value.ToString());
-                        //lst.SubItems.Add(dr.Cells[4].Value.ToString());
-                        listView1.Items.Add(lst);
-                       // SaveSelectedAgenda();
+                        lst.SubItems.Add(dr.Cells[2].Value.ToString());                       
+                        listView1.Items.Add(lst);                      
                         ClearApprovedRequisition();
                     }
                 }
@@ -254,9 +246,6 @@ namespace BoardSecretariatSystem.UI
         {
             buttonInvitation.Visible = true;
         }
-
-
-
         protected void SendEmail(string _subject, MailAddress _from, MailAddress _to, List<MailAddress> _cc, List<MailAddress> _bcc = null)
              {
         string Text = "";
@@ -282,72 +271,7 @@ namespace BoardSecretariatSystem.UI
         msgMail.IsBodyHtml = true;
         mailClient.Send(msgMail);
         msgMail.Dispose();
-    }
-
-
-        private void buttonInvitation_Click(object sender, RoutedEventArgs e)
-        {
-            MailAddress from = new MailAddress("it@keal.com.bd", "Kyoto");
-            MailAddress to = new MailAddress("siddiqueiceiu@gmail.com", "AshrafSiddik");
-            List<MailAddress> cc = new List<MailAddress>();
-            cc.Add(new MailAddress("siddiqueiciu@gmail.com", "Siddik"));
-            SendEmail("Want to test this damn thing", from, to, cc);
-
-
-
-            //try
-            //{
-            //    MailMessage mail = new MailMessage();
-            //    SmtpClient SmtpServer = new SmtpClient("siddique_iceiu@yahoo.com");
-
-            //    mail.From = new MailAddress("siddiqueiceiu@gmail.com");
-            //    mail.To.Add("siddique_iceiu@yahoo.com");
-            //    mail.Subject = "Test Mail";
-            //    mail.Body = "This is for testing SMTP mail from GMAIL";
-
-            //    SmtpServer.Port = 587;
-            //    SmtpServer.Credentials = new System.Net.NetworkCredential("siddique_iceiu@yahoo.com", "a123456789a");
-            //    SmtpServer.EnableSsl = true;
-
-            //    SmtpServer.Send(mail);
-            //    MessageBox.Show("mail Send");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.ToString());
-            //}
-        }
-
-        private void NewMailMessage()
-        {
-            //try
-            //{
-            //    MailMessage msg = new MailMessage();
-            //    msg.From = new MailAddress(fromMailTextBox.Text, "gethealthTips");
-            //    msg.To.Add(new MailAddress(toTextBox.Text));
-            //    msg.Subject = subjectTextBox.Text;
-            //    msg.Body = listBox1.Text;
-            //    msg.IsBodyHtml = true;
-            //    if ((labelpath.Text.Length) > 0)
-            //    {
-            //        if (System.IO.File.Exists(labelpath.Text))
-            //        {
-            //            msg.Attachments.Add(new Attachment(labelpath.Text));
-            //        }
-            //        SmtpClient smtp = new SmtpClient();
-            //        smtp.Host = "smtp.gmail.com";
-            //        smtp.Credentials = new NetworkCredential(fromMailTextBox.Text, passwordTextBox.Text);
-            //        smtp.EnableSsl = true;
-            //        smtp.Send(msg);
-            //        MessageBox.Show("Mail Sending Successfully");
-            //    }
-            //}
-
-            //catch
-            //{
-            //    MessageBox.Show("Please check your UserName & Password");
-            //}
-        }
+    }               
         private void buttonInvitation_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -355,14 +279,7 @@ namespace BoardSecretariatSystem.UI
             GetMeetingId();
             frm.meetingId22 = meetingId;
             frm.meetingNo22 = meetingNum;
-            frm.Show();
-           
-
-            //MailAddress from = new MailAddress("it@keal.com.bd", "Kyoto");
-            //MailAddress to = new MailAddress("siddiqueiceiu@gmail.com", "AshrafSiddik");
-            //List<MailAddress> cc = new List<MailAddress>();
-            //cc.Add(new MailAddress("siddiqueiciu@gmail.com", "Siddik"));
-            //SendEmail("Want to test this damn thing", from, to, cc);
+            frm.Show();                     
         }
     }
 }
