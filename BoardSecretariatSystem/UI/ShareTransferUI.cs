@@ -17,6 +17,13 @@ namespace BoardSecretariatSystem.UI
             InitializeComponent();
         }
 
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
        
     }
 }
