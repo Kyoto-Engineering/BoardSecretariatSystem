@@ -35,6 +35,7 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.blockTextBox = new wmgCMS.WaterMarkTextBox();
             this.postOfficeCombo = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
@@ -68,6 +69,7 @@
             this.txtTotalAuthorizedShare = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtHQBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbHQPost = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -99,6 +101,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbAddressHeader = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtOBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbOPost = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -146,9 +149,9 @@
             this.txtNumberOfDirector = new System.Windows.Forms.TextBox();
             this.label58 = new System.Windows.Forms.Label();
             this.txtMeetingAlowance = new System.Windows.Forms.TextBox();
-            this.txtOBlock = new wmgCMS.WaterMarkTextBox();
-            this.txtHQBlock = new wmgCMS.WaterMarkTextBox();
-            this.blockTextBox = new wmgCMS.WaterMarkTextBox();
+            this.certificateNoTextBox = new System.Windows.Forms.TextBox();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -172,7 +175,7 @@
             this.companyNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.companyNameTextBox.Location = new System.Drawing.Point(205, 29);
             this.companyNameTextBox.Name = "companyNameTextBox";
-            this.companyNameTextBox.Size = new System.Drawing.Size(424, 29);
+            this.companyNameTextBox.Size = new System.Drawing.Size(1113, 29);
             this.companyNameTextBox.TabIndex = 1;
             this.companyNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.companyNameTextBox_KeyDown);
             // 
@@ -202,9 +205,9 @@
             this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.saveButton.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.ForeColor = System.Drawing.Color.Blue;
-            this.saveButton.Location = new System.Drawing.Point(1204, 531);
+            this.saveButton.Location = new System.Drawing.Point(1205, 603);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(108, 55);
+            this.saveButton.Size = new System.Drawing.Size(108, 46);
             this.saveButton.TabIndex = 14;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = false;
@@ -253,12 +256,23 @@
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox2.Location = new System.Drawing.Point(5, 260);
+            this.groupBox2.Location = new System.Drawing.Point(12, 346);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(611, 200);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registered Address";
+            // 
+            // blockTextBox
+            // 
+            this.blockTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blockTextBox.Location = new System.Drawing.Point(151, 109);
+            this.blockTextBox.Name = "blockTextBox";
+            this.blockTextBox.Size = new System.Drawing.Size(146, 26);
+            this.blockTextBox.TabIndex = 4;
+            this.blockTextBox.WaterMarkColor = System.Drawing.Color.Gray;
+            this.blockTextBox.WaterMarkText = "if any";
+            this.blockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.blockTextBox_KeyDown);
             // 
             // postOfficeCombo
             // 
@@ -634,12 +648,23 @@
             this.groupBox1.Controls.Add(this.label37);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox1.Location = new System.Drawing.Point(635, 4);
+            this.groupBox1.Location = new System.Drawing.Point(641, 86);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(677, 195);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Corporate HQ Address";
+            // 
+            // txtHQBlock
+            // 
+            this.txtHQBlock.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHQBlock.Location = new System.Drawing.Point(151, 105);
+            this.txtHQBlock.Name = "txtHQBlock";
+            this.txtHQBlock.Size = new System.Drawing.Size(146, 25);
+            this.txtHQBlock.TabIndex = 4;
+            this.txtHQBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtHQBlock.WaterMarkText = "if any";
+            this.txtHQBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHQBlock_KeyDown);
             // 
             // cmbHQPost
             // 
@@ -952,7 +977,7 @@
             this.groupBox3.Controls.Add(this.addButton);
             this.groupBox3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox3.Location = new System.Drawing.Point(635, 202);
+            this.groupBox3.Location = new System.Drawing.Point(641, 287);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(677, 258);
             this.groupBox3.TabIndex = 12;
@@ -1006,6 +1031,17 @@
             this.groupBox5.Size = new System.Drawing.Size(651, 206);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
+            // 
+            // txtOBlock
+            // 
+            this.txtOBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOBlock.Location = new System.Drawing.Point(158, 113);
+            this.txtOBlock.Name = "txtOBlock";
+            this.txtOBlock.Size = new System.Drawing.Size(146, 26);
+            this.txtOBlock.TabIndex = 4;
+            this.txtOBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtOBlock.WaterMarkText = "if any";
+            this.txtOBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOBlock_KeyDown);
             // 
             // cmbOPost
             // 
@@ -1306,9 +1342,9 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.listView1);
-            this.groupBox4.Location = new System.Drawing.Point(12, 461);
+            this.groupBox4.Location = new System.Drawing.Point(5, 551);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1175, 188);
+            this.groupBox4.Size = new System.Drawing.Size(1172, 98);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             // 
@@ -1328,9 +1364,9 @@
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(6, 17);
+            this.listView1.Location = new System.Drawing.Point(9, 9);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1163, 165);
+            this.listView1.Size = new System.Drawing.Size(1163, 85);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -1390,7 +1426,7 @@
             this.removeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.removeButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.removeButton.ForeColor = System.Drawing.Color.Blue;
-            this.removeButton.Location = new System.Drawing.Point(1204, 478);
+            this.removeButton.Location = new System.Drawing.Point(1204, 551);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(108, 47);
             this.removeButton.TabIndex = 13;
@@ -1458,38 +1494,36 @@
             this.txtMeetingAlowance.TabIndex = 3;
             this.txtMeetingAlowance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMeetingAlowance_KeyDown);
             // 
-            // txtOBlock
+            // certificateNoTextBox
             // 
-            this.txtOBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOBlock.Location = new System.Drawing.Point(158, 113);
-            this.txtOBlock.Name = "txtOBlock";
-            this.txtOBlock.Size = new System.Drawing.Size(146, 26);
-            this.txtOBlock.TabIndex = 4;
-            this.txtOBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtOBlock.WaterMarkText = "if any";
-            this.txtOBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOBlock_KeyDown);
+            this.certificateNoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.certificateNoTextBox.Location = new System.Drawing.Point(318, 257);
+            this.certificateNoTextBox.Name = "certificateNoTextBox";
+            this.certificateNoTextBox.Size = new System.Drawing.Size(241, 29);
+            this.certificateNoTextBox.TabIndex = 16;
+            this.certificateNoTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.certificateNoTextBox_Validating);
             // 
-            // txtHQBlock
+            // label59
             // 
-            this.txtHQBlock.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHQBlock.Location = new System.Drawing.Point(151, 105);
-            this.txtHQBlock.Name = "txtHQBlock";
-            this.txtHQBlock.Size = new System.Drawing.Size(146, 25);
-            this.txtHQBlock.TabIndex = 4;
-            this.txtHQBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtHQBlock.WaterMarkText = "if any";
-            this.txtHQBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHQBlock_KeyDown);
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.ForeColor = System.Drawing.Color.Blue;
+            this.label59.Location = new System.Drawing.Point(0, 259);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(312, 22);
+            this.label59.TabIndex = 15;
+            this.label59.Text = "Share Certificate Provided For Per  :";
             // 
-            // blockTextBox
+            // label60
             // 
-            this.blockTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blockTextBox.Location = new System.Drawing.Point(151, 109);
-            this.blockTextBox.Name = "blockTextBox";
-            this.blockTextBox.Size = new System.Drawing.Size(146, 26);
-            this.blockTextBox.TabIndex = 4;
-            this.blockTextBox.WaterMarkColor = System.Drawing.Color.Gray;
-            this.blockTextBox.WaterMarkText = "if any";
-            this.blockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.blockTextBox_KeyDown);
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label60.ForeColor = System.Drawing.Color.Blue;
+            this.label60.Location = new System.Drawing.Point(563, 264);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(66, 22);
+            this.label60.TabIndex = 17;
+            this.label60.Text = "Shares";
             // 
             // CompanyEntryUI
             // 
@@ -1497,6 +1531,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1325, 649);
+            this.Controls.Add(this.label60);
+            this.Controls.Add(this.certificateNoTextBox);
+            this.Controls.Add(this.label59);
             this.Controls.Add(this.txtMeetingAlowance);
             this.Controls.Add(this.label58);
             this.Controls.Add(this.txtNumberOfDirector);
@@ -1665,5 +1702,8 @@
         private System.Windows.Forms.TextBox txtNumberOfDirector;
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.TextBox txtMeetingAlowance;
+        private System.Windows.Forms.TextBox certificateNoTextBox;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Label label60;
     }
 }

@@ -22,7 +22,7 @@ namespace BoardSecretariatSystem
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
         public string userId, postofficeId, thanaId, districtId, divisionId, districtIdC, districtIdO,districtIdHQ, divisionIdC, divisionIdO,divisionIdHQ, thanaIdC, thanaIdC2, thanaIdO,thanaIdHQ, postofficeIdC, postofficeIdO, postofficeIdHQ;
-        public int currentCompanyId, affectedRows1, affectedRows2, addHeaderId, availableAuthorizedShare, companyId;
+        public int currentCompanyId, affectedRows1, affectedRows2, addHeaderId, availableAuthorizedShare, companyId,totalCertificates;
         private bool companyCreated;
 
         public CompanyEntryUI()
@@ -394,7 +394,7 @@ namespace BoardSecretariatSystem
                             availableAuthorizedShare = x - y;
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into Company(CompanyName,TotalAuthorizedShare,AvailableAuthorizedShare,ValueofEachShare,TotalIssuedShare,AvailableIssuedShare,Corum,NumberOfDirector,VacantPostofDirector,VacantPostofMDirector,VacantPostofChairman,RegiNumber,MeetingAllowance,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d5,@d6,@d7,@d7,@d8,@d9,@d10,@d11,@d12,@13)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into Company(CompanyName,TotalAuthorizedShare,AvailableAuthorizedShare,ValueofEachShare,TotalIssuedShare,AvailableIssuedShare,Corum,NumberOfDirector,VacantPostofDirector,VacantPostofMDirector,VacantPostofChairman,RegiNumber,MeetingAllowance,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d5,@d6,@d7,@d7,@d8,@d9,@d10,@d11,@d12,@d13)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
                             cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);
                             cmd.Parameters.AddWithValue("@d2", txtTotalAuthorizedShare.Text);
@@ -408,7 +408,7 @@ namespace BoardSecretariatSystem
                             cmd.Parameters.AddWithValue("@d10", regNoTextBox.Text);
                             cmd.Parameters.AddWithValue("@d11", txtMeetingAlowance.Text);
                             cmd.Parameters.AddWithValue("@d12", userId);
-                            cmd.Parameters.AddWithValue("@d13", creatingDateTimePicker.Value);
+                            cmd.Parameters.AddWithValue("@d13", creatingDateTimePicker.Value.ToUniversalTime().ToLocalTime());
                             currentCompanyId = (int) cmd.ExecuteScalar();
                             con.Close();
                             SaveCompanyAddress(1);
@@ -417,7 +417,7 @@ namespace BoardSecretariatSystem
                             {
                                 SaveOtherAddress();
                             }
-                           
+                            SaveShare();
                             MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);                            
                             Reset();
                         }
@@ -1628,6 +1628,61 @@ namespace BoardSecretariatSystem
 
         }
 
-          
+        private void certificateNoTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            decimal share = decimal.Parse(txtTotalIssuedShare.Text);
+            decimal certificate = decimal.Parse(certificateNoTextBox.Text);
+            if (share%certificate != 0m)
+            {
+                MessageBox.Show(@"Share and Certificate are not multiple of each other Please check and correct");
+              certificateNoTextBox.Clear();
+                certificateNoTextBox.Focus();
+            }
+        }
+
+        private int Certificates(int issuedshare, int certificaterange)
+        {
+            return issuedshare/certificaterange;
+        }
+
+        private void SaveShare()
+        {
+            totalCertificates = Certificates(int.Parse(txtTotalIssuedShare.Text), int.Parse(certificateNoTextBox.Text));
+            int shareno=1;
+            int sharerange = int.Parse(certificateNoTextBox.Text);
+            for (int i = 1; i < totalCertificates; i++)
+            {
+                int shareid;
+                
+                try
+                {
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    string query1 = "INSERT INTO Certificate (CertificateNumber) VALUES (@d1)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                    cmd = new SqlCommand(query1, con);
+                    cmd.Parameters.AddWithValue("@d1", i);
+                    shareid = (int) cmd.ExecuteScalar();
+                    con.Close();
+                    for (int j = 0; j < sharerange; j++)
+                    {
+                        con = new SqlConnection(cs.DBConn);
+                        con.Open();
+                        string query2 = "INSERT INTO Share (ShareNumber, CertificateId) VALUES (@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                        cmd = new SqlCommand(query2, con);
+                        cmd.Parameters.AddWithValue("@d1", i);
+                        cmd.Parameters.AddWithValue("@d2", shareno);
+                        cmd.ExecuteScalar();
+
+                        con.Close();
+                        shareno++;
+                    }
+                   
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
