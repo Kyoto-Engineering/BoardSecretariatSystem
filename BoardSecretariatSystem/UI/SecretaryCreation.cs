@@ -31,7 +31,8 @@ namespace BoardSecretariatSystem.UI
             thanaIdP,
             postofficeId,
             postofficeIdP,
-            memberTypeId;
+            memberTypeId,
+            countryid;
 
         public int companyId,
             affectedRows1,
@@ -46,7 +47,7 @@ namespace BoardSecretariatSystem.UI
             availableIssuedShare1,
             genderId;
 
-        private bool companyCreated,secretaryExist;
+        private bool companyCreated, secretaryExist;
 
         public SecretaryCreation()
         {
@@ -122,7 +123,7 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-      
+
 
         private void GetGender()
         {
@@ -145,15 +146,60 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
+
+        public void FillCountry()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctx = "select RTRIM(Countries.CountryName) from Countries  order by Countries.CountryId";
+                cmd = new SqlCommand(ctx);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    CountryNamecomboBox.Items.Add(rdr[0]);
+                }
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctt = "select RTRIM(CountryId) from Countries  where  Countries.CountryName='" +
+                             CountryNamecomboBox.Text + "' ";
+                cmd = new SqlCommand(ctt);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+
+                if (rdr.Read())
+                {
+                    countryid = (rdr.GetString(0));
+                    //countryid = rdr.GetInt32(0);
+
+                }
+
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
         private void SecretaryCreation_Load(object sender, EventArgs e)
         {
+            FillCountry();
+            CountryNamecomboBox.SelectedItem = "Bangladesh";
             nUserId = frmLogin.uId.ToString();
-            companyCreated=LoadCompany();
+            companyCreated = LoadCompany();
             GetGender();
             FillPresentDivisionCombo();
             FillPermanantDivisionCombo();
             NationalityLoad();
             secretaryExist = LoadSecretary();
+            groupBox6.Hide();
+            button1.Location = new Point(871, 570);
         }
 
         private bool LoadSecretary()
@@ -166,7 +212,7 @@ namespace BoardSecretariatSystem.UI
             rdr = cmd.ExecuteReader();
             if (rdr.Read() && !rdr.IsDBNull(0))
             {
-                
+
                 x = true;
             }
             return x;
@@ -175,11 +221,11 @@ namespace BoardSecretariatSystem.UI
         private bool LoadCompany()
         {
             bool x = false;
-            con =new SqlConnection(cs.DBConn);
+            con = new SqlConnection(cs.DBConn);
             con.Open();
             string query = "SELECT CompanyId FROM Company";
-            cmd =new SqlCommand(query,con);
-            rdr=cmd.ExecuteReader();
+            cmd = new SqlCommand(query, con);
+            rdr = cmd.ExecuteReader();
             if (rdr.Read() && !rdr.IsDBNull(0))
             {
                 companyId = Convert.ToInt32(rdr["CompanyId"]);
@@ -189,7 +235,7 @@ namespace BoardSecretariatSystem.UI
 
 
         }
-        
+
 
         private void SecretaryCreation_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -208,21 +254,21 @@ namespace BoardSecretariatSystem.UI
                          "SELECT CONVERT(int, SCOPE_IDENTITY())";
             cmd = new SqlCommand(Qry, con);
             cmd.Parameters.Add(new SqlParameter("@d1",
-                string.IsNullOrEmpty(postofficeIdP) ? (object) DBNull.Value : postofficeIdP));
+                string.IsNullOrEmpty(postofficeIdP) ? (object)DBNull.Value : postofficeIdP));
             cmd.Parameters.Add(new SqlParameter("@d2",
-                string.IsNullOrEmpty(txtPFlatName.Text) ? (object) DBNull.Value : txtPFlatName.Text));
+                string.IsNullOrEmpty(txtPFlatName.Text) ? (object)DBNull.Value : txtPFlatName.Text));
             cmd.Parameters.Add(new SqlParameter("@d3",
-                string.IsNullOrEmpty(txtPHouseName.Text) ? (object) DBNull.Value : txtPHouseName.Text));
+                string.IsNullOrEmpty(txtPHouseName.Text) ? (object)DBNull.Value : txtPHouseName.Text));
             cmd.Parameters.Add(new SqlParameter("@d4",
-                string.IsNullOrEmpty(txtPRoadNo.Text) ? (object) DBNull.Value : txtPRoadNo.Text));
+                string.IsNullOrEmpty(txtPRoadNo.Text) ? (object)DBNull.Value : txtPRoadNo.Text));
             cmd.Parameters.Add(new SqlParameter("@d5",
-                string.IsNullOrEmpty(txtPBlock.Text) ? (object) DBNull.Value : txtPBlock.Text));
+                string.IsNullOrEmpty(txtPBlock.Text) ? (object)DBNull.Value : txtPBlock.Text));
             cmd.Parameters.Add(new SqlParameter("@d6",
-                string.IsNullOrEmpty(txtPArea.Text) ? (object) DBNull.Value : txtPArea.Text));
+                string.IsNullOrEmpty(txtPArea.Text) ? (object)DBNull.Value : txtPArea.Text));
             cmd.Parameters.Add(new SqlParameter("@d7",
-                string.IsNullOrEmpty(txtPContactNo.Text) ? (object) DBNull.Value : txtPContactNo.Text));
+                string.IsNullOrEmpty(txtPContactNo.Text) ? (object)DBNull.Value : txtPContactNo.Text));
             cmd.Parameters.AddWithValue("@d8", currentPerticipantId);
-            affectedRows2 = (int) cmd.ExecuteScalar();
+            affectedRows2 = (int)cmd.ExecuteScalar();
             con.Close();
         }
 
@@ -239,21 +285,21 @@ namespace BoardSecretariatSystem.UI
                                  "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(insertQ, con);
                 cmd.Parameters.Add(new SqlParameter("@d1",
-                    string.IsNullOrEmpty(postofficeIdP) ? (object) DBNull.Value : postofficeIdP));
+                    string.IsNullOrEmpty(postofficeIdP) ? (object)DBNull.Value : postofficeIdP));
                 cmd.Parameters.Add(new SqlParameter("@d2",
-                    string.IsNullOrEmpty(txtPFlatName.Text) ? (object) DBNull.Value : txtPFlatName.Text));
+                    string.IsNullOrEmpty(txtPFlatName.Text) ? (object)DBNull.Value : txtPFlatName.Text));
                 cmd.Parameters.Add(new SqlParameter("@d3",
-                    string.IsNullOrEmpty(txtPHouseName.Text) ? (object) DBNull.Value : txtPHouseName.Text));
+                    string.IsNullOrEmpty(txtPHouseName.Text) ? (object)DBNull.Value : txtPHouseName.Text));
                 cmd.Parameters.Add(new SqlParameter("@d4",
-                    string.IsNullOrEmpty(txtPRoadNo.Text) ? (object) DBNull.Value : txtPRoadNo.Text));
+                    string.IsNullOrEmpty(txtPRoadNo.Text) ? (object)DBNull.Value : txtPRoadNo.Text));
                 cmd.Parameters.Add(new SqlParameter("@d5",
-                    string.IsNullOrEmpty(txtPBlock.Text) ? (object) DBNull.Value : txtPBlock.Text));
+                    string.IsNullOrEmpty(txtPBlock.Text) ? (object)DBNull.Value : txtPBlock.Text));
                 cmd.Parameters.Add(new SqlParameter("@d6",
-                    string.IsNullOrEmpty(txtPArea.Text) ? (object) DBNull.Value : txtPArea.Text));
+                    string.IsNullOrEmpty(txtPArea.Text) ? (object)DBNull.Value : txtPArea.Text));
                 cmd.Parameters.Add(new SqlParameter("@d7",
-                    string.IsNullOrEmpty(txtPContactNo.Text) ? (object) DBNull.Value : txtPContactNo.Text));
+                    string.IsNullOrEmpty(txtPContactNo.Text) ? (object)DBNull.Value : txtPContactNo.Text));
                 cmd.Parameters.AddWithValue("@d8", currentPerticipantId);
-                affectedRows1 = (int) cmd.ExecuteScalar();
+                affectedRows1 = (int)cmd.ExecuteScalar();
                 con.Close();
             }
             else if (tableName == "PPermanantAddresses")
@@ -265,39 +311,61 @@ namespace BoardSecretariatSystem.UI
                                  "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(insertQ, con);
                 cmd.Parameters.Add(new SqlParameter("@d1",
-                    string.IsNullOrEmpty(postofficeId) ? (object) DBNull.Value : postofficeId));
+                    string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
                 cmd.Parameters.Add(new SqlParameter("@d2",
-                    string.IsNullOrEmpty(txtFlatNo.Text) ? (object) DBNull.Value : txtFlatNo.Text));
+                    string.IsNullOrEmpty(txtFlatNo.Text) ? (object)DBNull.Value : txtFlatNo.Text));
                 cmd.Parameters.Add(new SqlParameter("@d3",
-                    string.IsNullOrEmpty(txtHouseNo.Text) ? (object) DBNull.Value : txtHouseNo.Text));
+                    string.IsNullOrEmpty(txtHouseNo.Text) ? (object)DBNull.Value : txtHouseNo.Text));
                 cmd.Parameters.Add(new SqlParameter("@d4",
-                    string.IsNullOrEmpty(txtRoadNo.Text) ? (object) DBNull.Value : txtRoadNo.Text));
+                    string.IsNullOrEmpty(txtRoadNo.Text) ? (object)DBNull.Value : txtRoadNo.Text));
                 cmd.Parameters.Add(new SqlParameter("@d5",
-                    string.IsNullOrEmpty(txtBlock.Text) ? (object) DBNull.Value : txtBlock.Text));
+                    string.IsNullOrEmpty(txtBlock.Text) ? (object)DBNull.Value : txtBlock.Text));
                 cmd.Parameters.Add(new SqlParameter("@d6",
-                    string.IsNullOrEmpty(txtArea.Text) ? (object) DBNull.Value : txtArea.Text));
+                    string.IsNullOrEmpty(txtArea.Text) ? (object)DBNull.Value : txtArea.Text));
                 cmd.Parameters.Add(new SqlParameter("@d7",
-                    string.IsNullOrEmpty(txtContactNo.Text) ? (object) DBNull.Value : txtContactNo.Text));
+                    string.IsNullOrEmpty(txtContactNo.Text) ? (object)DBNull.Value : txtContactNo.Text));
                 cmd.Parameters.AddWithValue("@d8", currentPerticipantId);
-                affectedRows1 = (int) cmd.ExecuteScalar();
+                affectedRows1 = (int)cmd.ExecuteScalar();
                 con.Close();
             }
         }
 
+        private void ForeignAddresses(string tblName1)
+        {
+            string tableName = tblName1;
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string Qury = "insert into " + tableName + "(ParticipantId,Street,State,PostalCode) Values(@d1,@d2,@d3,@d4)" +
+                          "SELECT CONVERT(int, SCOPE_IDENTITY())";
+            cmd = new SqlCommand(Qury);
+            cmd.Connection = con;
+            cmd.Parameters.AddWithValue("@d1", currentPerticipantId);
+            cmd.Parameters.Add(new SqlParameter("@d2",
+                string.IsNullOrEmpty(StreettextBox.Text) ? (object)DBNull.Value : StreettextBox.Text));
+            cmd.Parameters.Add(new SqlParameter("@d3",
+                string.IsNullOrEmpty(StatetextBox.Text) ? (object)DBNull.Value : StatetextBox.Text));
+            cmd.Parameters.Add(new SqlParameter("@d4",
+                string.IsNullOrEmpty(PostalCodetextBox.Text) ? (object)DBNull.Value : PostalCodetextBox.Text));
+            affectedRows3 = (int)cmd.ExecuteScalar();
+            con.Close();
+        }
+
+
         private void Reset()
         {
-         
+            CountryNamecomboBox.SelectedIndex = -1;
+            CountryCodetextBox.Clear();
             txtShareHolderName.Clear();
-            
+
             txtFatherName.Clear();
             txtMotherName.Clear();
-                
+
             txtCellNumber.Clear();
-         
+
             cmbGender.SelectedIndex = -1;
             txtBirthCertificateNo.Clear();
             txtDateOfBirth.Value = DateTime.Today;
-            
+
             txtPassportNo.Clear();
             txtTINNumber.Clear();
             txtNationalId.Clear();
@@ -334,6 +402,37 @@ namespace BoardSecretariatSystem.UI
 
 
 
+        }
+
+        private void Reset2()
+        {
+            CountryNamecomboBox.SelectedIndex = -1;
+            CountryCodetextBox.Clear();
+            txtShareHolderName.Clear();
+
+            txtFatherName.Clear();
+            txtMotherName.Clear();
+
+            txtCellNumber.Clear();
+
+            cmbGender.SelectedIndex = -1;
+            txtBirthCertificateNo.Clear();
+            txtDateOfBirth.Value = DateTime.Today;
+
+            txtPassportNo.Clear();
+            txtTINNumber.Clear();
+            txtNationalId.Clear();
+            cmbNationality.SelectedIndex = -1;
+            cmbEmailAddress.Clear();
+            ResetForeignAddress();
+        }
+
+
+        public void ResetForeignAddress()
+        {
+            StreettextBox.Clear();
+            StatetextBox.Clear();
+            PostalCodetextBox.Clear();
         }
 
         public void ResetPermanantAddress()
@@ -377,24 +476,25 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 = "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,BoardMemberTypeId,ContactNumber,NationalityId,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,GenderId,UserId,DateTime) values (@d1,@d2,@d3,@d4,2,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16,@d17)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 = "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,BoardMemberTypeId,ContactNumber,NationalityId,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,GenderId,CountryId,UserId,DateTime) values (@d1,@d2,@d3,@d4,2,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16,@d17,@d18)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", txtShareHolderName.Text);
-                cmd.Parameters.Add(new SqlParameter("@d2",string.IsNullOrEmpty(txtMotherName.Text) ? (object) DBNull.Value : txtMotherName.Text));
-                cmd.Parameters.Add(new SqlParameter("@d3",string.IsNullOrEmpty(txtFatherName.Text) ? (object) DBNull.Value : txtFatherName.Text));
-                cmd.Parameters.AddWithValue("@d4",Convert.ToDateTime(txtDateOfBirth.Value,System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
-                cmd.Parameters.Add(new SqlParameter("@d7",string.IsNullOrEmpty(txtCellNumber.Text) ? (object) DBNull.Value : txtCellNumber.Text));
-                cmd.Parameters.Add(new SqlParameter("@d8",string.IsNullOrEmpty(nationalityId.ToString()) ? (object) DBNull.Value : nationalityId));
-                cmd.Parameters.Add(new SqlParameter("@d9",string.IsNullOrEmpty(txtNationalId.Text) ? (object) DBNull.Value : txtNationalId.Text));
-                cmd.Parameters.Add(new SqlParameter("@d10",string.IsNullOrEmpty(txtBirthCertificateNo.Text)?(object) DBNull.Value: txtBirthCertificateNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d11",string.IsNullOrEmpty(txtPassportNo.Text) ? (object) DBNull.Value : txtPassportNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d12",string.IsNullOrEmpty(txtTINNumber.Text) ? (object) DBNull.Value : txtTINNumber.Text));
+                cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(txtMotherName.Text) ? (object)DBNull.Value : txtMotherName.Text));
+                cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(txtFatherName.Text) ? (object)DBNull.Value : txtFatherName.Text));
+                cmd.Parameters.AddWithValue("@d4", Convert.ToDateTime(txtDateOfBirth.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
+                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtCellNumber.Text) ? (object)DBNull.Value : txtCellNumber.Text));
+                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(nationalityId.ToString()) ? (object)DBNull.Value : nationalityId));
+                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtNationalId.Text) ? (object)DBNull.Value : txtNationalId.Text));
+                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtBirthCertificateNo.Text) ? (object)DBNull.Value : txtBirthCertificateNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d11", string.IsNullOrEmpty(txtPassportNo.Text) ? (object)DBNull.Value : txtPassportNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d12", string.IsNullOrEmpty(txtTINNumber.Text) ? (object)DBNull.Value : txtTINNumber.Text));
                 cmd.Parameters.AddWithValue("@d13", bankEmailId);
                 cmd.Parameters.AddWithValue("@d14", companyId);
                 cmd.Parameters.AddWithValue("@d15", genderId);
-                cmd.Parameters.AddWithValue("@d16", nUserId);
-                cmd.Parameters.AddWithValue("@d17", DateTime.UtcNow.ToLocalTime());
-                currentPerticipantId = (int) cmd.ExecuteScalar();
+                cmd.Parameters.AddWithValue("@d16", countryid);
+                cmd.Parameters.AddWithValue("@d17", nUserId);
+                cmd.Parameters.AddWithValue("@d18", DateTime.UtcNow.ToLocalTime());
+                currentPerticipantId = (int)cmd.ExecuteScalar();
                 con.Close();
                 SaveSecretary();
             }
@@ -406,50 +506,91 @@ namespace BoardSecretariatSystem.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (ValidateControlls())
+            if (CountryNamecomboBox.Text == "Bangladesh")
             {
-
-                try
+                if (ValidateControlls())
                 {
 
+                    try
+                    {
 
-                    //1. Both Not Applicable
-                    if (unKnownRA.Checked && unKnownCheckBox.Checked)
-                    {
-                        SaveParticipant();
+
+                        //1. Both Not Applicable
+                        if (unKnownRA.Checked && unKnownCheckBox.Checked)
+                        {
+                            SaveParticipant();
+                        }
+                        //2.Present Address  Applicable & Permanant Address not  Applicable
+                        if (unKnownRA.Checked == false & unKnownCheckBox.Checked)
+                        {
+                            SaveParticipant();
+                            SaveParticipantAddress("PPresentAddresses");
+                        }
+                        //3.Permanant Address Applicable  & Present Address  Applicable
+                        if (sameAsRACheckBox.Checked == false && unKnownCheckBox.Checked == false)
+                        {
+                            SaveParticipant();
+                            SaveParticipantAddress("PPermanantAddresses");
+                            SaveParticipantAddress("PPresentAddresses");
+                        }
+                        //4.Permanant Address Applicable  & Present Address Same as Permanant Address                                        
+                        if (sameAsRACheckBox.Checked & unKnownRA.Checked == false & unKnownCheckBox.Checked == false)
+                        {
+                            SaveParticipant();
+                            SaveParticipantAddress("PPermanantAddresses");
+                            PermanantSameAsPresent("PPresentAddresses");
+                        }
+                        //5.Present Address not  Applicable  & Permanant Address  Applicable
+                        if (unKnownRA.Checked & sameAsRACheckBox.Checked == false & unKnownCheckBox.Checked == false)
+                        {
+                            SaveParticipant();
+                            SaveParticipantAddress("PPermanantAddresses");
+                        }
+                        MessageBox.Show(@"Successfully Created", "Record", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                        Reset();
+                        CountryNamecomboBox.SelectedItem = "Bangladesh";
                     }
-                    //2.Present Address  Applicable & Permanant Address not  Applicable
-                    if (unKnownRA.Checked == false & unKnownCheckBox.Checked)
+                    catch (Exception ex)
                     {
-                        SaveParticipant();
-                        SaveParticipantAddress("PPresentAddresses");
+                        MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    //3.Permanant Address Applicable  & Present Address  Applicable
-                    if (sameAsRACheckBox.Checked == false && unKnownCheckBox.Checked == false)
-                    {
+                }
+            }
+            else
+            {
+                try
+                {
+                    //if (CountryNamecomboBox.Text != "Bangladesh")
+                    //{
+                        if (ValidateControlls2())
+                        {
+                            if (string.IsNullOrWhiteSpace(StreettextBox.Text) &&
+                                string.IsNullOrWhiteSpace(StatetextBox.Text) &&
+                                string.IsNullOrWhiteSpace(PostalCodetextBox.Text))
+                            {
+                                MessageBox.Show("Please enter Addresses!", "Error", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                                return;
+
+                            }
+                        //}
+                        else
+                        {
+                            
+                       
                         SaveParticipant();
-                        SaveParticipantAddress("PPermanantAddresses");
-                        SaveParticipantAddress("PPresentAddresses");
+                        ForeignAddresses("ForeignAddress");
+                        MessageBox.Show("Saved successfully", "Record", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                        Reset2();
+                        CountryNamecomboBox.SelectedItem = "Bangladesh";
+                        }
                     }
-                    //4.Permanant Address Applicable  & Present Address Same as Permanant Address                                        
-                    if (sameAsRACheckBox.Checked & unKnownRA.Checked == false & unKnownCheckBox.Checked == false)
-                    {
-                        SaveParticipant();
-                        SaveParticipantAddress("PPermanantAddresses");
-                        PermanantSameAsPresent("PPresentAddresses");
-                    }
-                    //5.Present Address not  Applicable  & Permanant Address  Applicable
-                    if (unKnownRA.Checked & sameAsRACheckBox.Checked == false & unKnownCheckBox.Checked == false)
-                    {
-                        SaveParticipant();
-                        SaveParticipantAddress("PPermanantAddresses");
-                    }
-                    MessageBox.Show(@"Successfully Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Reset();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -491,9 +632,10 @@ namespace BoardSecretariatSystem.UI
             return false;
         }
 
-        private bool ValidateControlls()
+        private bool ValidateControlls2()
         {
             bool validate = true;
+
             if (!companyCreated)
             {
                 MessageBox.Show(@"Company is not created Yet" + "\n" + @"Please Create Company First", @"Error",
@@ -502,14 +644,14 @@ namespace BoardSecretariatSystem.UI
             }
             else if (secretaryExist)
             {
-                MessageBox.Show(@"Already One Secretary Exist"+"\n"+@"Retire The Existing  One then Create New Secretary", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"Already One Secretary Exist" + "\n" + @"Retire The Existing  One then Create New Secretary", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 validate = false;
             }
             else if (string.IsNullOrEmpty(txtShareHolderName.Text))
             {
                 MessageBox.Show(@"Please enter Secretary  name", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-              
+
                 validate = false;
                 txtShareHolderName.Focus();
             }
@@ -527,73 +669,121 @@ namespace BoardSecretariatSystem.UI
                 validate = false;
                 txtMotherName.Focus();
             }
-            else if (cmbGender.SelectedIndex==-1)
+            else if (cmbGender.SelectedIndex == -1)
             {
                 MessageBox.Show(@"Select Gender", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 validate = false;
                 cmbGender.Focus();
             }
+            return validate;
+        }
+
+
+        private bool ValidateControlls()
+        {
+            bool validate = true;
+
+            if (!companyCreated)
+            {
+                MessageBox.Show(@"Company is not created Yet" + "\n" + @"Please Create Company First", @"Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                validate = false;
+            }
+            else if (secretaryExist)
+            {
+                MessageBox.Show(@"Already One Secretary Exist" + "\n" + @"Retire The Existing  One then Create New Secretary", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                validate = false;
+            }
+            else if (string.IsNullOrEmpty(txtShareHolderName.Text))
+            {
+                MessageBox.Show(@"Please enter Secretary  name", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                validate = false;
+                txtShareHolderName.Focus();
+            }
+            else if (string.IsNullOrEmpty(txtFatherName.Text))
+            {
+                MessageBox.Show(@"Please enter Secretary's Father Name", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                validate = false;
+                txtFatherName.Focus();
+            }
+            else if (string.IsNullOrEmpty(txtMotherName.Text))
+            {
+                MessageBox.Show(@"Please enter Secretary's Mother Name", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                validate = false;
+                txtMotherName.Focus();
+            }
+            else if (cmbGender.SelectedIndex == -1)
+            {
+                MessageBox.Show(@"Select Gender", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                validate = false;
+                cmbGender.Focus();
+            }
+
             else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(cmbPDivision.Text))
-                {
-                    MessageBox.Show(@"Please select Present Address division", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    validate = false;
-                }
-     else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(cmbPDistrict.Text))
-                {
-                    MessageBox.Show(@"Please Select Present Address district", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    validate = false;
-                }
-      else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(cmbPThana.Text))
-                {
-                    MessageBox.Show(@"Please select Present Address Thana", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    validate = false;
-                }
-   else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(cmbPPost.Text))
-                {
-                    MessageBox.Show(@"Please Select Present Address Post Name", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    validate = false;
-                }
-  else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(txtPPostCode.Text))
-                {
-                    MessageBox.Show(@"Please select Present Address Post Code", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    validate = false;
-                }
-            
+            {
+                MessageBox.Show(@"Please select Present Address division", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                validate = false;
+            }
+            else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(cmbPDistrict.Text))
+            {
+                MessageBox.Show(@"Please Select Present Address district", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                validate = false;
+            }
+            else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(cmbPThana.Text))
+            {
+                MessageBox.Show(@"Please select Present Address Thana", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                validate = false;
+            }
+            else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(cmbPPost.Text))
+            {
+                MessageBox.Show(@"Please Select Present Address Post Name", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                validate = false;
+            }
+            else if (!unKnownRA.Checked && string.IsNullOrWhiteSpace(txtPPostCode.Text))
+            {
+                MessageBox.Show(@"Please select Present Address Post Code", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                validate = false;
+            }
+
             else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbDivision.Text))
-                {
-                    MessageBox.Show(@"Please select Permanent Address division", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    validate = false;
-                }
-       else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbDistrict.Text))
-                {
-                    MessageBox.Show(@"Please Select Permanent Address district", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    validate = false;
-                }
-                else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbThana.Text))
-                {
-                    MessageBox.Show(@"Please select Permanent Address Thana", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                   validate = false;
-                }
-                else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbPost.Text))
-                {
-                    MessageBox.Show(@"Please Select Permanent Address Post Name", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    validate = false;
-                }
-               else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(txtPostCode.Text))
-                {
-                    MessageBox.Show(@"Please select Permanent Address Post Code", @"Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    validate = false;
-                }
+            {
+                MessageBox.Show(@"Please select Permanent Address division", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                validate = false;
+            }
+            else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbDistrict.Text))
+            {
+                MessageBox.Show(@"Please Select Permanent Address district", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                validate = false;
+            }
+            else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbThana.Text))
+            {
+                MessageBox.Show(@"Please select Permanent Address Thana", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                validate = false;
+            }
+            else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbPost.Text))
+            {
+                MessageBox.Show(@"Please Select Permanent Address Post Name", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                validate = false;
+            }
+            else if (!unKnownCheckBox.Checked && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(txtPostCode.Text))
+            {
+                MessageBox.Show(@"Please select Permanent Address Post Code", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                validate = false;
+            }
             else if (!Email())
             {
                 validate = false;
@@ -602,7 +792,7 @@ namespace BoardSecretariatSystem.UI
             {
                 validate = false;
             }
-        
+
             return validate;
         }
 
@@ -648,7 +838,7 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
-     
+
         private void FillStar()
         {
             label37.Visible = true;
@@ -710,7 +900,7 @@ namespace BoardSecretariatSystem.UI
 
         private void participantContactNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char) Keys.Back)))
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
                 e.Handled = true;
         }
 
@@ -808,15 +998,15 @@ namespace BoardSecretariatSystem.UI
                     }
                 }
             }
-          
+
             return validate;
         }
 
 
-           
-        
 
-     
+
+
+
         private void cmbPDivision_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1212,7 +1402,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctk ="SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
+                string ctk = "SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
                 cmd = new SqlCommand(ctk);
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "PostOfficeName"));
@@ -1245,26 +1435,27 @@ namespace BoardSecretariatSystem.UI
 
         private void txtPContactNo_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char) Keys.Back)))
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
                 e.Handled = true;
         }
 
         private void txtContactNo_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char) Keys.Back)))
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
                 e.Handled = true;
         }
 
         private void txtCellNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char) Keys.Back)))
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
                 e.Handled = true;
         }
 
 
         private void cmbGender_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbGender.SelectedIndex == -1) {
+            if (cmbGender.SelectedIndex == -1)
+            {
                 try
                 {
                     con = new SqlConnection(cs.DBConn);
@@ -1290,7 +1481,7 @@ namespace BoardSecretariatSystem.UI
                     MessageBox.Show(ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            
+
         }
 
         private void cmbNationality_SelectedIndexChanged(object sender, EventArgs e)
@@ -1304,7 +1495,7 @@ namespace BoardSecretariatSystem.UI
                 }
 
                 else
-                {                    
+                {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     string ct2 = "select Nationality from Nationalitys where Nationality='" + input + "'";
@@ -1312,7 +1503,7 @@ namespace BoardSecretariatSystem.UI
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
                     {
-                        MessageBox.Show("This Nationality  Already Exists,Please Select From List", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("This Nationality  Already Exists,Please Select From List", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         con.Close();
                         cmbNationality.SelectedIndex = -1;
                     }
@@ -1324,7 +1515,7 @@ namespace BoardSecretariatSystem.UI
                             con.Open();
                             string query1 = "insert into Nationalitys(Nationality) values (@d1)";
                             cmd = new SqlCommand(query1, con);
-                            cmd.Parameters.AddWithValue("@d1",input);
+                            cmd.Parameters.AddWithValue("@d1", input);
                             cmd.ExecuteNonQuery();
                             con.Close();
                             cmbNationality.Items.Clear();
@@ -1370,22 +1561,22 @@ namespace BoardSecretariatSystem.UI
 
         private void cmbEmailAddress_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void SaveSecretary()
         {
             try
             {
-              
+
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 string query1 = "INSERT INTO Secretary (ParticipantId, DateOfJoin) VALUES (@d1,@d2)";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", currentPerticipantId);
                 cmd.Parameters.AddWithValue("@d2", joinDateTimePicker.Value.ToUniversalTime().ToLocalTime());
-                
-                  cmd.ExecuteScalar();
+
+                cmd.ExecuteScalar();
                 con.Close();
 
             }
@@ -1416,6 +1607,62 @@ namespace BoardSecretariatSystem.UI
 
                 }
             }
+        }
+
+        private void CountryNamecomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CountryNamecomboBox.Text == "Bangladesh")
+            {
+
+                groupBox6.Hide();
+                groupBox2.Show();
+                groupBox3.Show();
+                button1.Location = new Point(871, 570);
+            }
+            else
+            {
+
+                groupBox2.Hide();
+                groupBox3.Hide();
+                groupBox6.Show();
+                groupBox6.Location = new Point(566, 18);
+                button1.Location = new Point(780, 157);
+            }
+
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Countries.CountryId),RTRIM(Countries.CountryCode) from Countries WHERE Countries.CountryName=@find";
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "CountryName"));
+                cmd.Parameters["@find"].Value = CountryNamecomboBox.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    countryid = (rdr.GetString(0));
+                    CountryCodetextBox.Text = (rdr.GetString(1));
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
+
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

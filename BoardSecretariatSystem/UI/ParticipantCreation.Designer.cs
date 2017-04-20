@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbNationality = new System.Windows.Forms.ComboBox();
             this.cmbGender = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -126,18 +127,35 @@
             this.companyNameComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.cmbNationality = new System.Windows.Forms.ComboBox();
+            this.CountryNamecomboBox = new System.Windows.Forms.ComboBox();
+            this.CountryCodetextBox = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.PostalCodetextBox = new System.Windows.Forms.TextBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.StatetextBox = new System.Windows.Forms.TextBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.StreettextBox = new System.Windows.Forms.TextBox();
+            this.label57 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LimeGreen;
+            this.groupBox1.Controls.Add(this.groupBox6);
+            this.groupBox1.Controls.Add(this.CountryNamecomboBox);
+            this.groupBox1.Controls.Add(this.CountryCodetextBox);
+            this.groupBox1.Controls.Add(this.label30);
+            this.groupBox1.Controls.Add(this.label31);
             this.groupBox1.Controls.Add(this.cmbNationality);
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.cmbGender);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label29);
@@ -165,7 +183,6 @@
             this.groupBox1.Controls.Add(this.txtFatherName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cmbEmailAddress);
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.label7);
@@ -177,9 +194,21 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(4, 36);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1254, 649);
+            this.groupBox1.Size = new System.Drawing.Size(1254, 679);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // cmbNationality
+            // 
+            this.cmbNationality.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbNationality.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbNationality.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbNationality.FormattingEnabled = true;
+            this.cmbNationality.Location = new System.Drawing.Point(243, 395);
+            this.cmbNationality.Name = "cmbNationality";
+            this.cmbNationality.Size = new System.Drawing.Size(278, 30);
+            this.cmbNationality.TabIndex = 129;
+            this.cmbNationality.SelectedIndexChanged += new System.EventHandler(this.cmbNationality_SelectedIndexChanged);
             // 
             // cmbGender
             // 
@@ -187,7 +216,7 @@
             this.cmbGender.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbGender.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGender.FormattingEnabled = true;
-            this.cmbGender.Location = new System.Drawing.Point(242, 535);
+            this.cmbGender.Location = new System.Drawing.Point(242, 606);
             this.cmbGender.Name = "cmbGender";
             this.cmbGender.Size = new System.Drawing.Size(278, 30);
             this.cmbGender.TabIndex = 128;
@@ -198,7 +227,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(153, 539);
+            this.label4.Location = new System.Drawing.Point(153, 610);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 22);
             this.label4.TabIndex = 127;
@@ -209,7 +238,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.Color.Blue;
-            this.label29.Location = new System.Drawing.Point(157, 543);
+            this.label29.Location = new System.Drawing.Point(157, 614);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(0, 22);
             this.label29.TabIndex = 126;
@@ -220,7 +249,7 @@
             this.cmbParticipantType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbParticipantType.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbParticipantType.FormattingEnabled = true;
-            this.cmbParticipantType.Location = new System.Drawing.Point(242, 248);
+            this.cmbParticipantType.Location = new System.Drawing.Point(242, 319);
             this.cmbParticipantType.Name = "cmbParticipantType";
             this.cmbParticipantType.Size = new System.Drawing.Size(278, 30);
             this.cmbParticipantType.TabIndex = 123;
@@ -231,7 +260,7 @@
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.Color.Blue;
-            this.label28.Location = new System.Drawing.Point(90, 251);
+            this.label28.Location = new System.Drawing.Point(90, 322);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(146, 22);
             this.label28.TabIndex = 122;
@@ -240,7 +269,7 @@
             // txtCurrentShareHolding
             // 
             this.txtCurrentShareHolding.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCurrentShareHolding.Location = new System.Drawing.Point(306, 80);
+            this.txtCurrentShareHolding.Location = new System.Drawing.Point(306, 151);
             this.txtCurrentShareHolding.Name = "txtCurrentShareHolding";
             this.txtCurrentShareHolding.Size = new System.Drawing.Size(214, 29);
             this.txtCurrentShareHolding.TabIndex = 119;
@@ -250,7 +279,7 @@
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.ForeColor = System.Drawing.Color.Blue;
-            this.label27.Location = new System.Drawing.Point(6, 83);
+            this.label27.Location = new System.Drawing.Point(6, 154);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(294, 22);
             this.label27.TabIndex = 118;
@@ -259,7 +288,7 @@
             // txtCellNumber
             // 
             this.txtCellNumber.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCellNumber.Location = new System.Drawing.Point(243, 289);
+            this.txtCellNumber.Location = new System.Drawing.Point(243, 360);
             this.txtCellNumber.MaxLength = 11;
             this.txtCellNumber.Name = "txtCellNumber";
             this.txtCellNumber.Size = new System.Drawing.Size(278, 29);
@@ -271,7 +300,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Blue;
-            this.label10.Location = new System.Drawing.Point(105, 293);
+            this.label10.Location = new System.Drawing.Point(105, 364);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(124, 22);
             this.label10.TabIndex = 116;
@@ -280,7 +309,7 @@
             // txtTINNumber
             // 
             this.txtTINNumber.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTINNumber.Location = new System.Drawing.Point(242, 463);
+            this.txtTINNumber.Location = new System.Drawing.Point(242, 534);
             this.txtTINNumber.Name = "txtTINNumber";
             this.txtTINNumber.Size = new System.Drawing.Size(279, 29);
             this.txtTINNumber.TabIndex = 115;
@@ -290,7 +319,7 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.Blue;
-            this.label25.Location = new System.Drawing.Point(182, 467);
+            this.label25.Location = new System.Drawing.Point(182, 538);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(49, 22);
             this.label25.TabIndex = 114;
@@ -299,7 +328,7 @@
             // txtPassportNo
             // 
             this.txtPassportNo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassportNo.Location = new System.Drawing.Point(242, 429);
+            this.txtPassportNo.Location = new System.Drawing.Point(242, 500);
             this.txtPassportNo.Name = "txtPassportNo";
             this.txtPassportNo.Size = new System.Drawing.Size(279, 29);
             this.txtPassportNo.TabIndex = 113;
@@ -309,7 +338,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Blue;
-            this.label16.Location = new System.Drawing.Point(115, 432);
+            this.label16.Location = new System.Drawing.Point(115, 503);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(116, 22);
             this.label16.TabIndex = 112;
@@ -318,7 +347,7 @@
             // txtBirthCertificateNo
             // 
             this.txtBirthCertificateNo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBirthCertificateNo.Location = new System.Drawing.Point(243, 394);
+            this.txtBirthCertificateNo.Location = new System.Drawing.Point(243, 465);
             this.txtBirthCertificateNo.Name = "txtBirthCertificateNo";
             this.txtBirthCertificateNo.Size = new System.Drawing.Size(278, 29);
             this.txtBirthCertificateNo.TabIndex = 111;
@@ -328,7 +357,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Blue;
-            this.label15.Location = new System.Drawing.Point(48, 396);
+            this.label15.Location = new System.Drawing.Point(48, 467);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(181, 22);
             this.label15.TabIndex = 110;
@@ -337,7 +366,7 @@
             // txtNationalId
             // 
             this.txtNationalId.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNationalId.Location = new System.Drawing.Point(242, 360);
+            this.txtNationalId.Location = new System.Drawing.Point(242, 431);
             this.txtNationalId.Name = "txtNationalId";
             this.txtNationalId.Size = new System.Drawing.Size(279, 29);
             this.txtNationalId.TabIndex = 109;
@@ -347,7 +376,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Blue;
-            this.label14.Location = new System.Drawing.Point(124, 363);
+            this.label14.Location = new System.Drawing.Point(124, 434);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(102, 22);
             this.label14.TabIndex = 108;
@@ -357,7 +386,7 @@
             // 
             this.txtDateOfBirth.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDateOfBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtDateOfBirth.Location = new System.Drawing.Point(242, 182);
+            this.txtDateOfBirth.Location = new System.Drawing.Point(242, 253);
             this.txtDateOfBirth.Name = "txtDateOfBirth";
             this.txtDateOfBirth.Size = new System.Drawing.Size(278, 26);
             this.txtDateOfBirth.TabIndex = 105;
@@ -367,7 +396,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Blue;
-            this.label13.Location = new System.Drawing.Point(104, 185);
+            this.label13.Location = new System.Drawing.Point(104, 256);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(127, 22);
             this.label13.TabIndex = 104;
@@ -378,7 +407,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Blue;
-            this.label12.Location = new System.Drawing.Point(122, 330);
+            this.label12.Location = new System.Drawing.Point(122, 401);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(105, 22);
             this.label12.TabIndex = 102;
@@ -387,7 +416,7 @@
             // txtProfession
             // 
             this.txtProfession.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProfession.Location = new System.Drawing.Point(242, 213);
+            this.txtProfession.Location = new System.Drawing.Point(242, 284);
             this.txtProfession.Name = "txtProfession";
             this.txtProfession.Size = new System.Drawing.Size(278, 29);
             this.txtProfession.TabIndex = 101;
@@ -397,7 +426,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Blue;
-            this.label11.Location = new System.Drawing.Point(122, 216);
+            this.label11.Location = new System.Drawing.Point(122, 287);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(106, 22);
             this.label11.TabIndex = 100;
@@ -406,7 +435,7 @@
             // txtMotherName
             // 
             this.txtMotherName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMotherName.Location = new System.Drawing.Point(242, 150);
+            this.txtMotherName.Location = new System.Drawing.Point(242, 221);
             this.txtMotherName.Name = "txtMotherName";
             this.txtMotherName.Size = new System.Drawing.Size(278, 29);
             this.txtMotherName.TabIndex = 99;
@@ -416,7 +445,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Blue;
-            this.label9.Location = new System.Drawing.Point(91, 153);
+            this.label9.Location = new System.Drawing.Point(91, 224);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(139, 22);
             this.label9.TabIndex = 98;
@@ -425,7 +454,7 @@
             // txtFatherName
             // 
             this.txtFatherName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFatherName.Location = new System.Drawing.Point(242, 117);
+            this.txtFatherName.Location = new System.Drawing.Point(242, 188);
             this.txtFatherName.Name = "txtFatherName";
             this.txtFatherName.Size = new System.Drawing.Size(278, 29);
             this.txtFatherName.TabIndex = 97;
@@ -435,7 +464,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Blue;
-            this.label2.Location = new System.Drawing.Point(96, 121);
+            this.label2.Location = new System.Drawing.Point(96, 192);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(133, 22);
             this.label2.TabIndex = 96;
@@ -447,7 +476,7 @@
             this.cmbEmailAddress.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbEmailAddress.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEmailAddress.FormattingEnabled = true;
-            this.cmbEmailAddress.Location = new System.Drawing.Point(242, 499);
+            this.cmbEmailAddress.Location = new System.Drawing.Point(242, 570);
             this.cmbEmailAddress.Name = "cmbEmailAddress";
             this.cmbEmailAddress.Size = new System.Drawing.Size(278, 30);
             this.cmbEmailAddress.TabIndex = 95;
@@ -458,7 +487,7 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Blue;
-            this.button1.Location = new System.Drawing.Point(551, 577);
+            this.button1.Location = new System.Drawing.Point(1111, 549);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(134, 62);
             this.button1.TabIndex = 94;
@@ -474,7 +503,7 @@
             this.groupBox3.Controls.Add(this.unKnownCheckBox);
             this.groupBox3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.Yellow;
-            this.groupBox3.Location = new System.Drawing.Point(538, 292);
+            this.groupBox3.Location = new System.Drawing.Point(538, 277);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(696, 255);
             this.groupBox3.TabIndex = 93;
@@ -807,7 +836,7 @@
             this.groupBox2.Controls.Add(this.unKnownRA);
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Yellow;
-            this.groupBox2.Location = new System.Drawing.Point(539, 18);
+            this.groupBox2.Location = new System.Drawing.Point(539, 14);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(695, 259);
             this.groupBox2.TabIndex = 92;
@@ -1129,7 +1158,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Blue;
-            this.label7.Location = new System.Drawing.Point(154, 479);
+            this.label7.Location = new System.Drawing.Point(154, 550);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(0, 22);
             this.label7.TabIndex = 59;
@@ -1139,7 +1168,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Blue;
-            this.label8.Location = new System.Drawing.Point(156, 504);
+            this.label8.Location = new System.Drawing.Point(156, 575);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(73, 22);
             this.label8.TabIndex = 57;
@@ -1150,7 +1179,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Blue;
-            this.label6.Location = new System.Drawing.Point(154, 507);
+            this.label6.Location = new System.Drawing.Point(154, 578);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 22);
             this.label6.TabIndex = 56;
@@ -1158,7 +1187,7 @@
             // txtShareHolderName
             // 
             this.txtShareHolderName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtShareHolderName.Location = new System.Drawing.Point(242, 45);
+            this.txtShareHolderName.Location = new System.Drawing.Point(242, 116);
             this.txtShareHolderName.Name = "txtShareHolderName";
             this.txtShareHolderName.Size = new System.Drawing.Size(278, 29);
             this.txtShareHolderName.TabIndex = 53;
@@ -1168,7 +1197,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(42, 48);
+            this.label3.Location = new System.Drawing.Point(42, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(187, 22);
             this.label3.TabIndex = 52;
@@ -1180,7 +1209,7 @@
             this.companyNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.companyNameComboBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.companyNameComboBox.FormattingEnabled = true;
-            this.companyNameComboBox.Location = new System.Drawing.Point(242, 12);
+            this.companyNameComboBox.Location = new System.Drawing.Point(242, 83);
             this.companyNameComboBox.Name = "companyNameComboBox";
             this.companyNameComboBox.Size = new System.Drawing.Size(278, 30);
             this.companyNameComboBox.TabIndex = 50;
@@ -1191,7 +1220,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(80, 15);
+            this.label1.Location = new System.Drawing.Point(80, 86);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(151, 22);
             this.label1.TabIndex = 48;
@@ -1208,23 +1237,125 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "Share Holder Creation";
             // 
-            // cmbNationality
+            // CountryNamecomboBox
             // 
-            this.cmbNationality.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbNationality.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbNationality.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbNationality.FormattingEnabled = true;
-            this.cmbNationality.Location = new System.Drawing.Point(243, 324);
-            this.cmbNationality.Name = "cmbNationality";
-            this.cmbNationality.Size = new System.Drawing.Size(278, 30);
-            this.cmbNationality.TabIndex = 129;
-            this.cmbNationality.SelectedIndexChanged += new System.EventHandler(this.cmbNationality_SelectedIndexChanged);
+            this.CountryNamecomboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CountryNamecomboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CountryNamecomboBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountryNamecomboBox.FormattingEnabled = true;
+            this.CountryNamecomboBox.Location = new System.Drawing.Point(242, 13);
+            this.CountryNamecomboBox.Name = "CountryNamecomboBox";
+            this.CountryNamecomboBox.Size = new System.Drawing.Size(278, 30);
+            this.CountryNamecomboBox.TabIndex = 149;
+            this.CountryNamecomboBox.SelectedIndexChanged += new System.EventHandler(this.CountryNamecomboBox_SelectedIndexChanged);
+            // 
+            // CountryCodetextBox
+            // 
+            this.CountryCodetextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountryCodetextBox.Location = new System.Drawing.Point(242, 49);
+            this.CountryCodetextBox.Name = "CountryCodetextBox";
+            this.CountryCodetextBox.ReadOnly = true;
+            this.CountryCodetextBox.Size = new System.Drawing.Size(278, 29);
+            this.CountryCodetextBox.TabIndex = 148;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ForeColor = System.Drawing.Color.Blue;
+            this.label30.Location = new System.Drawing.Point(95, 54);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(135, 22);
+            this.label30.TabIndex = 147;
+            this.label30.Text = "Country Code :";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.ForeColor = System.Drawing.Color.Blue;
+            this.label31.Location = new System.Drawing.Point(89, 18);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(140, 22);
+            this.label31.TabIndex = 146;
+            this.label31.Text = "Country Name :";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.groupBox6.Controls.Add(this.PostalCodetextBox);
+            this.groupBox6.Controls.Add(this.label55);
+            this.groupBox6.Controls.Add(this.StatetextBox);
+            this.groupBox6.Controls.Add(this.label56);
+            this.groupBox6.Controls.Add(this.StreettextBox);
+            this.groupBox6.Controls.Add(this.label57);
+            this.groupBox6.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox6.Location = new System.Drawing.Point(536, 538);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(565, 129);
+            this.groupBox6.TabIndex = 151;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Address For Foreigner";
+            // 
+            // PostalCodetextBox
+            // 
+            this.PostalCodetextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PostalCodetextBox.Location = new System.Drawing.Point(168, 89);
+            this.PostalCodetextBox.Name = "PostalCodetextBox";
+            this.PostalCodetextBox.Size = new System.Drawing.Size(214, 26);
+            this.PostalCodetextBox.TabIndex = 14;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(53, 92);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(94, 19);
+            this.label55.TabIndex = 13;
+            this.label55.Text = "Postal Code:";
+            // 
+            // StatetextBox
+            // 
+            this.StatetextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatetextBox.Location = new System.Drawing.Point(168, 57);
+            this.StatetextBox.Name = "StatetextBox";
+            this.StatetextBox.Size = new System.Drawing.Size(214, 26);
+            this.StatetextBox.TabIndex = 12;
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(98, 64);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(49, 19);
+            this.label56.TabIndex = 11;
+            this.label56.Text = "State:";
+            // 
+            // StreettextBox
+            // 
+            this.StreettextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StreettextBox.Location = new System.Drawing.Point(168, 25);
+            this.StreettextBox.Name = "StreettextBox";
+            this.StreettextBox.Size = new System.Drawing.Size(214, 26);
+            this.StreettextBox.TabIndex = 10;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Location = new System.Drawing.Point(48, 31);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(99, 19);
+            this.label57.TabIndex = 9;
+            this.label57.Text = "Street Name:";
             // 
             // ParticipantCreation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1275, 687);
+            this.ClientSize = new System.Drawing.Size(1275, 719);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
@@ -1243,6 +1374,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1349,5 +1482,16 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ComboBox cmbNationality;
+        private System.Windows.Forms.ComboBox CountryNamecomboBox;
+        private System.Windows.Forms.TextBox CountryCodetextBox;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox PostalCodetextBox;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.TextBox StatetextBox;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.TextBox StreettextBox;
+        private System.Windows.Forms.Label label57;
     }
 }
