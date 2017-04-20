@@ -152,6 +152,8 @@
             this.certificateNoTextBox = new System.Windows.Forms.TextBox();
             this.label59 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1525,6 +1527,18 @@
             this.label60.TabIndex = 17;
             this.label60.Text = "Shares";
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(969, 533);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.TabIndex = 18;
+            this.progressBar1.Visible = false;
+            // 
             // CompanyEntryUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1559,6 +1573,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.companyNameTextBox);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.progressBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "CompanyEntryUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1705,5 +1720,7 @@
         private System.Windows.Forms.TextBox certificateNoTextBox;
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

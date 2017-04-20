@@ -1669,8 +1669,8 @@ namespace BoardSecretariatSystem
                         con.Open();
                         string query2 = "INSERT INTO Share (ShareNumber, CertificateId) VALUES (@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                         cmd = new SqlCommand(query2, con);
-                        cmd.Parameters.AddWithValue("@d1", i);
-                        cmd.Parameters.AddWithValue("@d2", shareno);
+                        cmd.Parameters.AddWithValue("@d1", shareno);
+                        cmd.Parameters.AddWithValue("@d2", i);
                         cmd.ExecuteScalar();
 
                         con.Close();
