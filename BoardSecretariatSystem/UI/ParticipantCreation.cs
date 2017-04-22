@@ -22,7 +22,7 @@ namespace BoardSecretariatSystem.UI
         ConnectionString cs = new ConnectionString();
 
         public string countryid,
-            companyId,
+            
             nUserId,
             divisionId,
             divisionIdP,
@@ -44,32 +44,53 @@ namespace BoardSecretariatSystem.UI
             boardMemberId,
             availableIssuedShare,
             availableIssuedShare1,
-            genderId;
+            genderId,
+            companyId;
+
+        private bool companyCreated;
 
         public ParticipantCreation()
         {
             InitializeComponent();
         }
 
-        public void CompanyNameLoad()
+        //public void CompanyNameLoad()
+        //{
+        //    try
+        //    {
+        //        con = new SqlConnection(cs.DBConn);
+        //        con.Open();
+        //        string query = "SELECT CompanyName FROM Company ";
+        //        cmd = new SqlCommand(query, con);
+        //        rdr = cmd.ExecuteReader();
+        //        while (rdr.Read())
+        //        {
+        //            companyNameComboBox.Items.Add(rdr[0]);
+        //        }
+        //        con.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+
+        //}
+
+        private bool LoadCompany()
         {
-            try
+            bool x = false;
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query = "SELECT CompanyId FROM Company";
+            cmd = new SqlCommand(query, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read() && !rdr.IsDBNull(0))
             {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string query = "SELECT CompanyName FROM Company ";
-                cmd = new SqlCommand(query, con);
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    companyNameComboBox.Items.Add(rdr[0]);
-                }
-                con.Close();
+                companyId = Convert.ToInt32(rdr["CompanyId"]);
+                x = true;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            return x;
+
 
         }
 
@@ -165,27 +186,27 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
-        private void GetParticipantType()
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctt = "select BoardMemberType from BoardMemberTypes";
-                cmd = new SqlCommand(ctt);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    cmbParticipantType.Items.Add(rdr.GetValue(0).ToString());
-                }
-                cmbParticipantType.Items.Add("Not In The List");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //private void GetParticipantType()
+        //{
+        //    try
+        //    {
+        //        con = new SqlConnection(cs.DBConn);
+        //        con.Open();
+        //        string ctt = "select BoardMemberType from BoardMemberTypes";
+        //        cmd = new SqlCommand(ctt);
+        //        cmd.Connection = con;
+        //        rdr = cmd.ExecuteReader();
+        //        while (rdr.Read())
+        //        {
+        //            cmbParticipantType.Items.Add(rdr.GetValue(0).ToString());
+        //        }
+        //        cmbParticipantType.Items.Add("Not In The List");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
         private void UpdateAvailableIssuedShare()
         {
@@ -287,8 +308,11 @@ namespace BoardSecretariatSystem.UI
             FillCountry();
             CountryNamecomboBox.SelectedItem = "Bangladesh";
             nUserId = frmLogin.uId.ToString();
-            CompanyNameLoad();
-            GetParticipantType();
+            //CompanyNameLoad();
+
+            companyCreated = LoadCompany();
+
+            //GetParticipantType();
             EmailAddress();
             GetGender();
             FillPresentDivisionCombo();
@@ -298,36 +322,36 @@ namespace BoardSecretariatSystem.UI
             button1.Location = new Point(871, 570);
         }
 
-        private void companyNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctk = "SELECT  RTRIM(Company.CompanyId)  from  Company  WHERE Company.CompanyName=@find";
-                cmd = new SqlCommand(ctk);
-                cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Company"));
-                cmd.Parameters["@find"].Value = companyNameComboBox.Text;
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    companyId = (rdr.GetString(0));
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //private void companyNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        con = new SqlConnection(cs.DBConn);
+        //        con.Open();
+        //        string ctk = "SELECT  RTRIM(Company.CompanyId)  from  Company  WHERE Company.CompanyName=@find";
+        //        cmd = new SqlCommand(ctk);
+        //        cmd.Connection = con;
+        //        cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Company"));
+        //        cmd.Parameters["@find"].Value = companyNameComboBox.Text;
+        //        rdr = cmd.ExecuteReader();
+        //        if (rdr.Read())
+        //        {
+        //            companyId = (rdr.GetString(0));
+        //        }
+        //        if ((rdr != null))
+        //        {
+        //            rdr.Close();
+        //        }
+        //        if (con.State == ConnectionState.Open)
+        //        {
+        //            con.Close();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
         private void ParticipantCreation_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -447,12 +471,12 @@ namespace BoardSecretariatSystem.UI
         {
             CountryNamecomboBox.SelectedIndex = -1;
             CountryCodetextBox.Clear();
-            companyNameComboBox.SelectedIndex = -1;
+            //companyNameComboBox.SelectedIndex = -1;
             txtShareHolderName.Clear();
             txtCurrentShareHolding.Clear();
             txtFatherName.Clear();
             txtMotherName.Clear();
-            cmbParticipantType.SelectedIndex = -1;          
+            //cmbParticipantType.SelectedIndex = -1;          
             txtCellNumber.Clear();
             txtProfession.Clear();
             cmbGender.SelectedIndex = -1;
@@ -498,12 +522,12 @@ namespace BoardSecretariatSystem.UI
         {
             CountryNamecomboBox.SelectedIndex = -1;
             CountryCodetextBox.Clear();
-            companyNameComboBox.SelectedIndex = -1;
+            //companyNameComboBox.SelectedIndex = -1;
             txtShareHolderName.Clear();
             txtCurrentShareHolding.Clear();
             txtFatherName.Clear();
             txtMotherName.Clear();
-            cmbParticipantType.SelectedIndex = -1;
+            //cmbParticipantType.SelectedIndex = -1;
             txtCellNumber.Clear();
             txtProfession.Clear();
             cmbGender.SelectedIndex = -1;
@@ -589,14 +613,14 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 = "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,Profession,BoardMemberTypeId,ContactNumber,NationalityId,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,GenderId,CountryId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16,@d17,@d18)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 = "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,Profession,BoardMemberTypeId,ContactNumber,NationalityId,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,GenderId,CountryId,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,4,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16,@d17,@d18)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", txtShareHolderName.Text);
                 cmd.Parameters.Add(new SqlParameter("@d2",string.IsNullOrEmpty(txtMotherName.Text) ? (object) DBNull.Value : txtMotherName.Text));
                 cmd.Parameters.Add(new SqlParameter("@d3",string.IsNullOrEmpty(txtFatherName.Text) ? (object) DBNull.Value : txtFatherName.Text));
                 cmd.Parameters.AddWithValue("@d4",Convert.ToDateTime(txtDateOfBirth.Value,System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
                 cmd.Parameters.Add(new SqlParameter("@d5",string.IsNullOrEmpty(txtProfession.Text) ? (object) DBNull.Value : txtProfession.Text));
-                cmd.Parameters.Add(new SqlParameter("@d6",string.IsNullOrEmpty(boardMemberId.ToString()) ? (object) DBNull.Value : boardMemberId.ToString()));
+                //cmd.Parameters.Add(new SqlParameter("@d6",string.IsNullOrEmpty(boardMemberId.ToString()) ? (object) DBNull.Value : boardMemberId.ToString()));
                 cmd.Parameters.Add(new SqlParameter("@d7",string.IsNullOrEmpty(txtCellNumber.Text) ? (object) DBNull.Value : txtCellNumber.Text));
                 cmd.Parameters.Add(new SqlParameter("@d8",string.IsNullOrEmpty(nationalityId.ToString()) ? (object) DBNull.Value : nationalityId));
                 cmd.Parameters.Add(new SqlParameter("@d9",string.IsNullOrEmpty(txtNationalId.Text) ? (object) DBNull.Value : txtNationalId.Text));
@@ -667,11 +691,11 @@ namespace BoardSecretariatSystem.UI
             }
 
 
-            if (string.IsNullOrEmpty(companyNameComboBox.Text))
-            {
-                MessageBox.Show("Please select company name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            //if (string.IsNullOrEmpty(companyNameComboBox.Text))
+            //{
+            //    MessageBox.Show("Please select company name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
 
             if (string.IsNullOrEmpty(txtShareHolderName.Text))
             {
@@ -1579,33 +1603,33 @@ namespace BoardSecretariatSystem.UI
                 e.Handled = true;
         }
 
-        private void cmbParticipantType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT BoardMemberTypeId from BoardMemberTypes WHERE BoardMemberTypes.BoardMemberType= '" + cmbParticipantType.Text + "'";
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    boardMemberId = rdr.GetInt32(0);
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //private void cmbParticipantType_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        con = new SqlConnection(cs.DBConn);
+        //        con.Open();
+        //        cmd = con.CreateCommand();
+        //        cmd.CommandText = "SELECT BoardMemberTypeId from BoardMemberTypes WHERE BoardMemberTypes.BoardMemberType= '" + cmbParticipantType.Text + "'";
+        //        rdr = cmd.ExecuteReader();
+        //        if (rdr.Read())
+        //        {
+        //            boardMemberId = rdr.GetInt32(0);
+        //        }
+        //        if ((rdr != null))
+        //        {
+        //            rdr.Close();
+        //        }
+        //        if (con.State == ConnectionState.Open)
+        //        {
+        //            con.Close();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
         private void cmbGender_SelectedIndexChanged(object sender, EventArgs e)
         {

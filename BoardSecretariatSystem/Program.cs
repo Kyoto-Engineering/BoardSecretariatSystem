@@ -17,10 +17,10 @@ namespace BoardSecretariatSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmLogin());
+            Application.Run(new frmLogin());
            // Application.Run(new MemberList());
             //Application.Run(new MeetingEntry());
-            Application.Run(new SecretaryCreation());
+            //Application.Run(new SecretaryCreation());
             //Application.Run(new ParticipantCreation2());
         }
     }

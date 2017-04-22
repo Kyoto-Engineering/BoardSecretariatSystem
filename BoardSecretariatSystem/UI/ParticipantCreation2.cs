@@ -499,7 +499,8 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ctt = "select BoardMemberType from BoardMemberTypes";
+                //string ctt = "select BoardMemberType from BoardMemberTypes";
+                string ctt = "SELECT BoardMemberType FROM BoardMemberTypes where BoardMemberTypeId<>1 and BoardMemberTypeId<>4";
                 cmd = new SqlCommand(ctt);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -1639,7 +1640,7 @@ namespace BoardSecretariatSystem.UI
 
                     SaveParticipant();
                     ForeignAddresses("ForeignAddress");
-                    MessageBox.Show("Saved successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Reset2();
                     CountryNamecomboBox.SelectedItem = "Bangladesh";
 

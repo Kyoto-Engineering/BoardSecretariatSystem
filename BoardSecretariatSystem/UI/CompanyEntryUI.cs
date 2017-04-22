@@ -418,7 +418,7 @@ namespace BoardSecretariatSystem
                                 SaveOtherAddress();
                             }
                             SaveShare();
-                            MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);                            
+                            MessageBox.Show("Saved Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);                            
                             Reset();
                         }
                         catch (Exception ex)
