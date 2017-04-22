@@ -154,6 +154,7 @@
             this.label60 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label61 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1366,9 +1367,9 @@
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(9, 9);
+            this.listView1.Location = new System.Drawing.Point(-1, 9);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1163, 85);
+            this.listView1.Size = new System.Drawing.Size(1045, 85);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -1426,6 +1427,7 @@
             // removeButton
             // 
             this.removeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.removeButton.CausesValidation = false;
             this.removeButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.removeButton.ForeColor = System.Drawing.Color.Blue;
             this.removeButton.Location = new System.Drawing.Point(1204, 551);
@@ -1503,7 +1505,7 @@
             this.certificateNoTextBox.Name = "certificateNoTextBox";
             this.certificateNoTextBox.Size = new System.Drawing.Size(241, 29);
             this.certificateNoTextBox.TabIndex = 16;
-            this.certificateNoTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.certificateNoTextBox_Validating);
+            this.certificateNoTextBox.Leave += new System.EventHandler(this.certificateNoTextBox_Leave);
             // 
             // label59
             // 
@@ -1529,15 +1531,30 @@
             // 
             // backgroundWorker1
             // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
             this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(969, 533);
+            this.progressBar1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.progressBar1.Location = new System.Drawing.Point(901, 553);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.Size = new System.Drawing.Size(368, 27);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 18;
             this.progressBar1.Visible = false;
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label61.Location = new System.Drawing.Point(897, 583);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(372, 24);
+            this.label61.TabIndex = 19;
+            this.label61.Text = "Please Wait While Company is Created";
             // 
             // CompanyEntryUI
             // 
@@ -1545,6 +1562,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1325, 649);
+            this.Controls.Add(this.removeButton);
             this.Controls.Add(this.label60);
             this.Controls.Add(this.certificateNoTextBox);
             this.Controls.Add(this.label59);
@@ -1554,8 +1572,6 @@
             this.Controls.Add(this.label57);
             this.Controls.Add(this.txtCorum);
             this.Controls.Add(this.label56);
-            this.Controls.Add(this.removeButton);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.creatingDateTimePicker);
             this.Controls.Add(this.label5);
@@ -1573,7 +1589,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.companyNameTextBox);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.label61);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "CompanyEntryUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1722,5 +1740,6 @@
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label label61;
     }
 }
