@@ -1826,6 +1826,7 @@ namespace BoardSecretariatSystem
             listView1.Visible = false;
             removeButton.Visible = false;
             label61.BringToFront();
+            label61.Visible = true;
             backgroundWorker1.RunWorkerAsync();
             progressBar1.Visible = true;
             progressBar1.BringToFront();
@@ -1847,6 +1848,7 @@ namespace BoardSecretariatSystem
             listView1.Visible = true;
             removeButton.Visible = true;
             label61.SendToBack();
+            label61.Visible = false;
             button.Enabled = true;
         }
 
