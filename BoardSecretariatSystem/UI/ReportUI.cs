@@ -13,28 +13,28 @@ using CrystalDecisions.Shared;
 
 namespace BoardSecretariatSystem.UI
 {
-
     public partial class ReportUI : Form
     {
         public int x;
+        //public int y;
         public ReportUI()
         {
             InitializeComponent();
         }
 
-        private void bmFeeButton_Click(object sender, EventArgs e)
+        private void attendenceSlipButton_Click(object sender, EventArgs e)
         {
             //creating an object of ParameterField class
             ParameterField paramField = new ParameterField();
 
             //creating an object of ParameterFields class
-           //ParameterFields paramFields = new ParameterFields();
+            ParameterFields paramFields = new ParameterFields();
 
             //creating an object of ParameterDiscreteValue class
             ParameterDiscreteValue paramDiscreteValue = new ParameterDiscreteValue();
 
             //set the parameter field name
-            paramField.Name = "ParticipantName";
+            paramField.Name = "Meeting No.";
 
             //set the parameter value
             paramDiscreteValue.Value = x;
@@ -43,7 +43,62 @@ namespace BoardSecretariatSystem.UI
             paramField.CurrentValues.Add(paramDiscreteValue);
 
             //add the parameter in the ParameterFields object
-            //paramFields.Add(paramField);
+            paramFields.Add(paramField);
+
+            //set the parameterfield information in the crystal report
+
+
+
+            ReportViewer f2 = new ReportViewer();
+            TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
+            TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
+            ConnectionInfo reportConInfo = new ConnectionInfo();
+            Tables tables = default(Tables);
+            //	Table table = default(Table);
+            var with1 = reportConInfo;
+            with1.ServerName = "tcp:KyotoServer,49172";
+            with1.DatabaseName = "BoardSecretariatDBDemo";
+            with1.UserID = "sa";
+            with1.Password = "SystemAdministrator";
+            AttendenceSlipReport cr = new AttendenceSlipReport();
+            tables = cr.Database.Tables;
+            foreach (Table table in tables)
+            {
+                reportLogonInfo = table.LogOnInfo;
+                reportLogonInfo.ConnectionInfo = reportConInfo;
+                table.ApplyLogOnInfo(reportLogonInfo);
+            }
+            f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
+            //set the parameterfield information in the crystal report
+            f2.crystalReportViewer1.ReportSource = cr;
+            this.Visible = false;
+
+            f2.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void boardMeetingFeeButton_Click(object sender, EventArgs e)
+        {
+            //creating an object of ParameterField class
+            ParameterField paramField = new ParameterField();
+
+            //creating an object of ParameterFields class
+            ParameterFields paramFields = new ParameterFields();
+
+            //creating an object of ParameterDiscreteValue class
+            ParameterDiscreteValue paramDiscreteValue = new ParameterDiscreteValue();
+
+            //set the parameter field name
+            paramField.Name = "Meeting No";
+
+            //set the parameter value
+            paramDiscreteValue.Value = x;
+
+            //add the parameter value in the ParameterField object
+            paramField.CurrentValues.Add(paramDiscreteValue);
+
+            //add the parameter in the ParameterFields object
+            paramFields.Add(paramField);
 
             //set the parameterfield information in the crystal report
 
@@ -68,29 +123,28 @@ namespace BoardSecretariatSystem.UI
                 reportLogonInfo.ConnectionInfo = reportConInfo;
                 table.ApplyLogOnInfo(reportLogonInfo);
             }
-            //f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
+            f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
             //set the parameterfield information in the crystal report
             f2.crystalReportViewer1.ReportSource = cr;
-           
             this.Visible = false;
 
             f2.ShowDialog();
             this.Visible = true;
         }
 
-        private void noticeButton_Click(object sender, EventArgs e)
+        private void participantAttendenceReportButton_Click(object sender, EventArgs e)
         {
             //creating an object of ParameterField class
             ParameterField paramField = new ParameterField();
 
             //creating an object of ParameterFields class
-            //ParameterFields paramFields = new ParameterFields();
+            ParameterFields paramFields = new ParameterFields();
 
             //creating an object of ParameterDiscreteValue class
             ParameterDiscreteValue paramDiscreteValue = new ParameterDiscreteValue();
 
             //set the parameter field name
-            paramField.Name = "ParticipantName";
+            paramField.Name = "Meeting No";
 
             //set the parameter value
             paramDiscreteValue.Value = x;
@@ -99,7 +153,62 @@ namespace BoardSecretariatSystem.UI
             paramField.CurrentValues.Add(paramDiscreteValue);
 
             //add the parameter in the ParameterFields object
-            //paramFields.Add(paramField);
+            paramFields.Add(paramField);
+
+            //set the parameterfield information in the crystal report
+
+
+
+            ReportViewer f2 = new ReportViewer();
+            TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
+            TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
+            ConnectionInfo reportConInfo = new ConnectionInfo();
+            Tables tables = default(Tables);
+            //	Table table = default(Table);
+            var with1 = reportConInfo;
+            with1.ServerName = "tcp:KyotoServer,49172";
+            with1.DatabaseName = "BoardSecretariatDBDemo";
+            with1.UserID = "sa";
+            with1.Password = "SystemAdministrator";
+            ParticipantAttendenceReport cr = new ParticipantAttendenceReport();
+            tables = cr.Database.Tables;
+            foreach (Table table in tables)
+            {
+                reportLogonInfo = table.LogOnInfo;
+                reportLogonInfo.ConnectionInfo = reportConInfo;
+                table.ApplyLogOnInfo(reportLogonInfo);
+            }
+            f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
+            //set the parameterfield information in the crystal report
+            f2.crystalReportViewer1.ReportSource = cr;
+            this.Visible = false;
+
+            f2.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void noticeOfAMeetingButton_Click(object sender, EventArgs e)
+        {
+            //creating an object of ParameterField class
+            ParameterField paramField = new ParameterField();
+
+            //creating an object of ParameterFields class
+            ParameterFields paramFields = new ParameterFields();
+
+            //creating an object of ParameterDiscreteValue class
+            ParameterDiscreteValue paramDiscreteValue = new ParameterDiscreteValue();
+
+            //set the parameter field name
+            paramField.Name = "Meeting No";
+
+            //set the parameter value
+            paramDiscreteValue.Value = x;
+
+            //add the parameter value in the ParameterField object
+            paramField.CurrentValues.Add(paramDiscreteValue);
+
+            //add the parameter in the ParameterFields object
+            paramFields.Add(paramField);
 
             //set the parameterfield information in the crystal report
 
@@ -124,29 +233,29 @@ namespace BoardSecretariatSystem.UI
                 reportLogonInfo.ConnectionInfo = reportConInfo;
                 table.ApplyLogOnInfo(reportLogonInfo);
             }
-            //f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
+            f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
             //set the parameterfield information in the crystal report
             f2.crystalReportViewer1.ReportSource = cr;
-
             this.Visible = false;
 
             f2.ShowDialog();
             this.Visible = true;
+
         }
 
-        private void participantAttenButton_Click(object sender, EventArgs e)
+        private void meetingPostponedButton_Click(object sender, EventArgs e)
         {
             //creating an object of ParameterField class
             ParameterField paramField = new ParameterField();
 
             //creating an object of ParameterFields class
-            //ParameterFields paramFields = new ParameterFields();
+            ParameterFields paramFields = new ParameterFields();
 
             //creating an object of ParameterDiscreteValue class
             ParameterDiscreteValue paramDiscreteValue = new ParameterDiscreteValue();
 
             //set the parameter field name
-            paramField.Name = "ParticipantName";
+            paramField.Name = "Postponed Meeting No";
 
             //set the parameter value
             paramDiscreteValue.Value = x;
@@ -155,9 +264,11 @@ namespace BoardSecretariatSystem.UI
             paramField.CurrentValues.Add(paramDiscreteValue);
 
             //add the parameter in the ParameterFields object
-            //paramFields.Add(paramField);
+            paramFields.Add(paramField);
 
             //set the parameterfield information in the crystal report
+
+
 
             ReportViewer f2 = new ReportViewer();
             TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
@@ -170,7 +281,7 @@ namespace BoardSecretariatSystem.UI
             with1.DatabaseName = "BoardSecretariatDBDemo";
             with1.UserID = "sa";
             with1.Password = "SystemAdministrator";
-            ParticipantAttendenceReport cr = new ParticipantAttendenceReport();
+            MeetingPostponedReport cr = new MeetingPostponedReport();
             tables = cr.Database.Tables;
             foreach (Table table in tables)
             {
@@ -178,68 +289,15 @@ namespace BoardSecretariatSystem.UI
                 reportLogonInfo.ConnectionInfo = reportConInfo;
                 table.ApplyLogOnInfo(reportLogonInfo);
             }
-            //f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
+            f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
             //set the parameterfield information in the crystal report
             f2.crystalReportViewer1.ReportSource = cr;
-
             this.Visible = false;
 
             f2.ShowDialog();
             this.Visible = true;
         }
 
-        private void meetingMinutesButton_Click(object sender, EventArgs e)
-        {
-            //creating an object of ParameterField class
-            ParameterField paramField = new ParameterField();
-
-            //creating an object of ParameterFields class
-            //ParameterFields paramFields = new ParameterFields();
-
-            //creating an object of ParameterDiscreteValue class
-            ParameterDiscreteValue paramDiscreteValue = new ParameterDiscreteValue();
-
-            //set the parameter field name
-            paramField.Name = "ParticipantName";
-
-            //set the parameter value
-            paramDiscreteValue.Value = x;
-
-            //add the parameter value in the ParameterField object
-            paramField.CurrentValues.Add(paramDiscreteValue);
-
-            //add the parameter in the ParameterFields object
-            //paramFields.Add(paramField);
-
-            //set the parameterfield information in the crystal report
-
-            ReportViewer f2 = new ReportViewer();
-            TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
-            TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
-            ConnectionInfo reportConInfo = new ConnectionInfo();
-            Tables tables = default(Tables);
-            //	Table table = default(Table);
-            var with1 = reportConInfo;
-            with1.ServerName = "tcp:KyotoServer,49172";
-            with1.DatabaseName = "BoardSecretariatDBDemo";
-            with1.UserID = "sa";
-            with1.Password = "SystemAdministrator";
-            MeetingMinutesReport cr = new MeetingMinutesReport();
-            tables = cr.Database.Tables;
-            foreach (Table table in tables)
-            {
-                reportLogonInfo = table.LogOnInfo;
-                reportLogonInfo.ConnectionInfo = reportConInfo;
-                table.ApplyLogOnInfo(reportLogonInfo);
-            }
-            //f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
-            //set the parameterfield information in the crystal report
-            f2.crystalReportViewer1.ReportSource = cr;
-
-            this.Visible = false;
-
-            f2.ShowDialog();
-            this.Visible = true;
-        }
+       
     }
 }
