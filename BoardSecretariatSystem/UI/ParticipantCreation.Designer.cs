@@ -38,7 +38,6 @@
             this.label57 = new System.Windows.Forms.Label();
             this.CountryNamecomboBox = new System.Windows.Forms.ComboBox();
             this.CountryCodetextBox = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.cmbNationality = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -148,7 +147,6 @@
             this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.CountryNamecomboBox);
             this.groupBox1.Controls.Add(this.CountryCodetextBox);
-            this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.label31);
             this.groupBox1.Controls.Add(this.cmbNationality);
             this.groupBox1.Controls.Add(this.button1);
@@ -280,23 +278,12 @@
             // CountryCodetextBox
             // 
             this.CountryCodetextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountryCodetextBox.Location = new System.Drawing.Point(242, 51);
+            this.CountryCodetextBox.Location = new System.Drawing.Point(242, 309);
             this.CountryCodetextBox.Name = "CountryCodetextBox";
             this.CountryCodetextBox.ReadOnly = true;
-            this.CountryCodetextBox.Size = new System.Drawing.Size(278, 29);
+            this.CountryCodetextBox.Size = new System.Drawing.Size(90, 29);
             this.CountryCodetextBox.TabIndex = 2;
             this.CountryCodetextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CountryCodetextBox_KeyDown);
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.ForeColor = System.Drawing.Color.Blue;
-            this.label30.Location = new System.Drawing.Point(95, 56);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(135, 22);
-            this.label30.TabIndex = 147;
-            this.label30.Text = "Country Code :";
             // 
             // label31
             // 
@@ -392,10 +379,10 @@
             // txtCellNumber
             // 
             this.txtCellNumber.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCellNumber.Location = new System.Drawing.Point(243, 308);
+            this.txtCellNumber.Location = new System.Drawing.Point(338, 308);
             this.txtCellNumber.MaxLength = 11;
             this.txtCellNumber.Name = "txtCellNumber";
-            this.txtCellNumber.Size = new System.Drawing.Size(278, 29);
+            this.txtCellNumber.Size = new System.Drawing.Size(183, 29);
             this.txtCellNumber.TabIndex = 9;
             this.txtCellNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCellNumber_KeyDown);
             this.txtCellNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCellNumber_KeyPress);
@@ -1468,7 +1455,6 @@
         private System.Windows.Forms.ComboBox cmbNationality;
         private System.Windows.Forms.ComboBox CountryNamecomboBox;
         private System.Windows.Forms.TextBox CountryCodetextBox;
-        private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox PostalCodetextBox;
