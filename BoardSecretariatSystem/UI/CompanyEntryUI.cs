@@ -1823,19 +1823,19 @@ namespace BoardSecretariatSystem
         private void ProgressbarStart(Button button)
         {
             button.Enabled = false;
+            button.Visible = false;
             listView1.Visible = false;
             removeButton.Visible = false;
             label61.BringToFront();
             label61.Visible = true;
+            label62.Visible = true;
+            label62.BringToFront();
             backgroundWorker1.RunWorkerAsync();
             progressBar1.Visible = true;
             progressBar1.BringToFront();
 
-            // To report progress from the background worker we need to set this property
             backgroundWorker1.WorkerReportsProgress = true;
-            // This event will be raised on the worker thread when the worker starts
             backgroundWorker1.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
-            // This event will be raised when we call ReportProgress
             backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
         }
 
@@ -1849,6 +1849,8 @@ namespace BoardSecretariatSystem
             removeButton.Visible = true;
             label61.SendToBack();
             label61.Visible = false;
+            label62.Visible = false;
+            button.Visible = true;
             button.Enabled = true;
         }
 
