@@ -127,7 +127,7 @@ namespace BoardSecretariatSystem
 
         private void userNameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if(e.KeyCode == Keys.Enter)
             {
                 passwoardTextBox.Focus();
                 e.Handled = true;
@@ -136,7 +136,7 @@ namespace BoardSecretariatSystem
 
         private void passwoardTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if(e.KeyCode == Keys.Enter)
             {
                 loginButton.Focus();
                 e.Handled = true;
