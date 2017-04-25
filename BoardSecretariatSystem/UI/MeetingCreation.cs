@@ -711,5 +711,158 @@ namespace BoardSecretariatSystem.UI
             }
             return validate;
         }
+
+        private void txtCompanyName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtBoardName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtBoardName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtMeetingName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtMeetingName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbVenue.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbVenue_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtMeetingDate.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtMeetingDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtNAddressHeader.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtNAddressHeader_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtFlatNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtFlatNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtHouseNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtHouseNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtRoadNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtRoadNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtBlock.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtBlock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtArea.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtContactNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtContactNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbDivision.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbDivision_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbDistrict.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbDistrict_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbThana.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbThana_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbPost.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbPost_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPostCode.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPostCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonMeetingCreation.Focus();
+                e.Handled = true;
+            }
+        }
     }
 }

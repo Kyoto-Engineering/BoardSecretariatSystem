@@ -143,5 +143,23 @@ namespace BoardSecretariatSystem.LoginUI
         {
             FillUserName();
         }
+
+        private void cmbUserName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPassword.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonCreate.Focus();
+                e.Handled = true;
+            }
+        }
     }
 }

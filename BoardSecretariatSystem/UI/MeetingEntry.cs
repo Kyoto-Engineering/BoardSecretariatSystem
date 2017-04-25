@@ -260,6 +260,33 @@ namespace BoardSecretariatSystem
             }
         }
 
+        private void txtMeetingNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtMeetingTitle.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtMeetingTitle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                addButton.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void addButton_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                saveButton.Focus();
+                e.Handled = true;
+            }
+        }
+
       
     }
 }

@@ -59,6 +59,7 @@
             this.txtBoardName.Name = "txtBoardName";
             this.txtBoardName.Size = new System.Drawing.Size(308, 32);
             this.txtBoardName.TabIndex = 10;
+            this.txtBoardName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBoardName_KeyDown);
             // 
             // cmbCompanyName
             // 
@@ -71,6 +72,7 @@
             this.cmbCompanyName.Size = new System.Drawing.Size(308, 32);
             this.cmbCompanyName.TabIndex = 9;
             this.cmbCompanyName.SelectedIndexChanged += new System.EventHandler(this.cmbCompanyName_SelectedIndexChanged);
+            this.cmbCompanyName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbCompanyName_KeyDown);
             // 
             // label2
             // 

@@ -144,5 +144,28 @@ namespace BoardSecretariatSystem.UI
             BoardManagementUI frm = new BoardManagementUI();
              frm.Show();
         }
+
+        private void txtDirectorName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtJoiningDate.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtJoiningDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonCreate.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void buttonCreate_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

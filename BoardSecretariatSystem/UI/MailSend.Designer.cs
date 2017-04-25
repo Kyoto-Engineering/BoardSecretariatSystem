@@ -86,8 +86,9 @@
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.ReadOnly = true;
             this.txtFrom.Size = new System.Drawing.Size(453, 32);
-            this.txtFrom.TabIndex = 3;
+            this.txtFrom.TabIndex = 1;
             this.txtFrom.TextChanged += new System.EventHandler(this.txtFrom_TextChanged);
+            this.txtFrom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFrom_KeyDown);
             // 
             // txtSubject
             // 
@@ -96,7 +97,8 @@
             this.txtSubject.Name = "txtSubject";
             this.txtSubject.ReadOnly = true;
             this.txtSubject.Size = new System.Drawing.Size(453, 39);
-            this.txtSubject.TabIndex = 5;
+            this.txtSubject.TabIndex = 4;
+            this.txtSubject.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSubject_KeyDown);
             // 
             // label4
             // 
@@ -115,8 +117,9 @@
             this.txtBody.Location = new System.Drawing.Point(221, 228);
             this.txtBody.Name = "txtBody";
             this.txtBody.Size = new System.Drawing.Size(637, 140);
-            this.txtBody.TabIndex = 9;
+            this.txtBody.TabIndex = 5;
             this.txtBody.Text = "";
+            this.txtBody.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBody_KeyDown);
             // 
             // sendButton
             // 
@@ -126,7 +129,7 @@
             this.sendButton.Location = new System.Drawing.Point(687, 503);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(147, 68);
-            this.sendButton.TabIndex = 10;
+            this.sendButton.TabIndex = 7;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = false;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
@@ -149,7 +152,8 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(453, 35);
-            this.txtPassword.TabIndex = 12;
+            this.txtPassword.TabIndex = 3;
+            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // cmbDomainHostName
             // 
@@ -158,8 +162,9 @@
             this.cmbDomainHostName.Location = new System.Drawing.Point(223, 81);
             this.cmbDomainHostName.Name = "cmbDomainHostName";
             this.cmbDomainHostName.Size = new System.Drawing.Size(453, 39);
-            this.cmbDomainHostName.TabIndex = 14;
+            this.cmbDomainHostName.TabIndex = 2;
             this.cmbDomainHostName.SelectedIndexChanged += new System.EventHandler(this.cmbDomainHostName_SelectedIndexChanged);
+            this.cmbDomainHostName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbDomainHostName_KeyDown);
             // 
             // label5
             // 
@@ -181,9 +186,10 @@
             this.listView1.Location = new System.Drawing.Point(220, 383);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(381, 268);
-            this.listView1.TabIndex = 16;
+            this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyDown);
             // 
             // columnHeader1
             // 

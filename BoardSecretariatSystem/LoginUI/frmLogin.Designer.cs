@@ -54,7 +54,7 @@
             this.label2.Location = new System.Drawing.Point(103, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 31);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Password :";
             // 
             // userNameTextBox
@@ -63,7 +63,8 @@
             this.userNameTextBox.Location = new System.Drawing.Point(253, 60);
             this.userNameTextBox.Name = "userNameTextBox";
             this.userNameTextBox.Size = new System.Drawing.Size(282, 32);
-            this.userNameTextBox.TabIndex = 2;
+            this.userNameTextBox.TabIndex = 1;
+            this.userNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userNameTextBox_KeyDown);
             // 
             // passwoardTextBox
             // 
@@ -72,7 +73,8 @@
             this.passwoardTextBox.Name = "passwoardTextBox";
             this.passwoardTextBox.PasswordChar = '*';
             this.passwoardTextBox.Size = new System.Drawing.Size(282, 32);
-            this.passwoardTextBox.TabIndex = 3;
+            this.passwoardTextBox.TabIndex = 2;
+            this.passwoardTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passwoardTextBox_KeyDown);
             // 
             // loginButton
             // 
@@ -82,7 +84,7 @@
             this.loginButton.Location = new System.Drawing.Point(302, 171);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(155, 81);
-            this.loginButton.TabIndex = 4;
+            this.loginButton.TabIndex = 3;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = false;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);

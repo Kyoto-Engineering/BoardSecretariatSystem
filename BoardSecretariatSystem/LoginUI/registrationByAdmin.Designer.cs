@@ -44,10 +44,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cmbEmailType = new System.Windows.Forms.ComboBox();
             this.cmbEmailAddress = new System.Windows.Forms.ComboBox();
+            this.cmbEmailType = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +57,9 @@
             this.contactNoTextBox.Location = new System.Drawing.Point(187, 283);
             this.contactNoTextBox.Name = "contactNoTextBox";
             this.contactNoTextBox.Size = new System.Drawing.Size(328, 29);
-            this.contactNoTextBox.TabIndex = 15;
+            this.contactNoTextBox.TabIndex = 7;
+            this.contactNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.contactNoTextBox_KeyDown);
+            this.contactNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.contactNoTextBox_KeyPress);
             // 
             // label7
             // 
@@ -75,7 +77,8 @@
             this.departmentTextBox.Location = new System.Drawing.Point(187, 237);
             this.departmentTextBox.Name = "departmentTextBox";
             this.departmentTextBox.Size = new System.Drawing.Size(328, 29);
-            this.departmentTextBox.TabIndex = 13;
+            this.departmentTextBox.TabIndex = 6;
+            this.departmentTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.departmentTextBox_KeyDown);
             // 
             // label6
             // 
@@ -93,7 +96,8 @@
             this.designationTextBox.Location = new System.Drawing.Point(187, 198);
             this.designationTextBox.Name = "designationTextBox";
             this.designationTextBox.Size = new System.Drawing.Size(328, 29);
-            this.designationTextBox.TabIndex = 11;
+            this.designationTextBox.TabIndex = 5;
+            this.designationTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.designationTextBox_KeyDown);
             // 
             // label5
             // 
@@ -111,7 +115,8 @@
             this.userNameTextBox.Location = new System.Drawing.Point(187, 32);
             this.userNameTextBox.Name = "userNameTextBox";
             this.userNameTextBox.Size = new System.Drawing.Size(328, 29);
-            this.userNameTextBox.TabIndex = 8;
+            this.userNameTextBox.TabIndex = 1;
+            this.userNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userNameTextBox_KeyDown);
             // 
             // passwordTextBox
             // 
@@ -120,7 +125,8 @@
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(328, 29);
-            this.passwordTextBox.TabIndex = 7;
+            this.passwordTextBox.TabIndex = 2;
+            this.passwordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passwordTextBox_KeyDown);
             // 
             // txtUserComboBox
             // 
@@ -132,7 +138,8 @@
             this.txtUserComboBox.Location = new System.Drawing.Point(187, 109);
             this.txtUserComboBox.Name = "txtUserComboBox";
             this.txtUserComboBox.Size = new System.Drawing.Size(328, 29);
-            this.txtUserComboBox.TabIndex = 6;
+            this.txtUserComboBox.TabIndex = 3;
+            this.txtUserComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserComboBox_KeyDown);
             // 
             // nameTextBox
             // 
@@ -140,7 +147,8 @@
             this.nameTextBox.Location = new System.Drawing.Point(187, 150);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(328, 29);
-            this.nameTextBox.TabIndex = 5;
+            this.nameTextBox.TabIndex = 4;
+            this.nameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nameTextBox_KeyDown);
             // 
             // userButton
             // 
@@ -149,7 +157,7 @@
             this.userButton.Location = new System.Drawing.Point(356, 431);
             this.userButton.Name = "userButton";
             this.userButton.Size = new System.Drawing.Size(159, 60);
-            this.userButton.TabIndex = 4;
+            this.userButton.TabIndex = 10;
             this.userButton.Text = "Create  User";
             this.userButton.UseVisualStyleBackColor = false;
             this.userButton.Click += new System.EventHandler(this.userButton_Click);
@@ -218,18 +226,33 @@
             this.groupBox1.Location = new System.Drawing.Point(21, 9);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(611, 514);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // label8
+            // cmbEmailAddress
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(65, 332);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(109, 24);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Email Type";
+            this.cmbEmailAddress.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbEmailAddress.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbEmailAddress.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEmailAddress.FormattingEnabled = true;
+            this.cmbEmailAddress.Location = new System.Drawing.Point(187, 372);
+            this.cmbEmailAddress.Name = "cmbEmailAddress";
+            this.cmbEmailAddress.Size = new System.Drawing.Size(328, 30);
+            this.cmbEmailAddress.TabIndex = 9;
+            this.cmbEmailAddress.SelectedIndexChanged += new System.EventHandler(this.cmbEmailAddress_SelectedIndexChanged);
+            this.cmbEmailAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbEmailAddress_KeyDown);
+            this.cmbEmailAddress.Validating += new System.ComponentModel.CancelEventHandler(this.cmbEmailAddress_Validating);
+            // 
+            // cmbEmailType
+            // 
+            this.cmbEmailType.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEmailType.FormattingEnabled = true;
+            this.cmbEmailType.Location = new System.Drawing.Point(187, 329);
+            this.cmbEmailType.Name = "cmbEmailType";
+            this.cmbEmailType.Size = new System.Drawing.Size(328, 32);
+            this.cmbEmailType.TabIndex = 8;
+            this.cmbEmailType.SelectedIndexChanged += new System.EventHandler(this.cmbEmailType_SelectedIndexChanged);
+            this.cmbEmailType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbEmailType_KeyDown);
             // 
             // label9
             // 
@@ -241,27 +264,15 @@
             this.label9.TabIndex = 20;
             this.label9.Text = "Email Address";
             // 
-            // cmbEmailType
+            // label8
             // 
-            this.cmbEmailType.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbEmailType.FormattingEnabled = true;
-            this.cmbEmailType.Location = new System.Drawing.Point(187, 329);
-            this.cmbEmailType.Name = "cmbEmailType";
-            this.cmbEmailType.Size = new System.Drawing.Size(328, 32);
-            this.cmbEmailType.TabIndex = 21;
-            this.cmbEmailType.SelectedIndexChanged += new System.EventHandler(this.cmbEmailType_SelectedIndexChanged);
-            // 
-            // cmbEmailAddress
-            // 
-            this.cmbEmailAddress.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbEmailAddress.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbEmailAddress.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbEmailAddress.FormattingEnabled = true;
-            this.cmbEmailAddress.Location = new System.Drawing.Point(187, 372);
-            this.cmbEmailAddress.Name = "cmbEmailAddress";
-            this.cmbEmailAddress.Size = new System.Drawing.Size(328, 30);
-            this.cmbEmailAddress.TabIndex = 96;
-            this.cmbEmailAddress.SelectedIndexChanged += new System.EventHandler(this.cmbEmailAddress_SelectedIndexChanged);
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(65, 332);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(109, 24);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Email Type";
             // 
             // registrationByAdmin
             // 

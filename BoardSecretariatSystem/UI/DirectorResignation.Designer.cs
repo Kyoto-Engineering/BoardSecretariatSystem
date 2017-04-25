@@ -66,6 +66,7 @@
             this.txtCauseOfResignation.Name = "txtCauseOfResignation";
             this.txtCauseOfResignation.Size = new System.Drawing.Size(371, 32);
             this.txtCauseOfResignation.TabIndex = 5;
+            this.txtCauseOfResignation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCauseOfResignation_KeyDown);
             // 
             // buttonDone
             // 
@@ -88,6 +89,7 @@
             this.textDirectorName.ReadOnly = true;
             this.textDirectorName.Size = new System.Drawing.Size(371, 32);
             this.textDirectorName.TabIndex = 7;
+            this.textDirectorName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textDirectorName_KeyDown);
             // 
             // textDirectorId
             // 
@@ -97,6 +99,7 @@
             this.textDirectorId.ReadOnly = true;
             this.textDirectorId.Size = new System.Drawing.Size(371, 32);
             this.textDirectorId.TabIndex = 9;
+            this.textDirectorId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textDirectorId_KeyDown);
             // 
             // label4
             // 
@@ -116,6 +119,7 @@
             this.txtResignationDate.Name = "txtResignationDate";
             this.txtResignationDate.Size = new System.Drawing.Size(371, 29);
             this.txtResignationDate.TabIndex = 11;
+            this.txtResignationDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtResignationDate_KeyDown);
             // 
             // label2
             // 

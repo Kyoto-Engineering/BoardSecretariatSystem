@@ -275,5 +275,46 @@ namespace BoardSecretariatSystem.UI
             }
             return validity;
         }
+
+        private void meetingNumIDTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                reasonForCancelRichTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void reasonForCancelRichTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                probableNextMeetingDateTimePicker.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void probableNextMeetingDateTimePicker_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cancelButton.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cancelButton_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                sendNoticeButton.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void sendNoticeButton_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

@@ -137,5 +137,23 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void cmbCompanyName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtBoardName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtBoardName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                saveButton.Focus();
+                e.Handled = true;
+            }
+        }
     }
 }

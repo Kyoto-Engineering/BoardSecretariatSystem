@@ -129,16 +129,13 @@ namespace BoardSecretariatSystem
 
         private void button2_Click(object sender, EventArgs e)
         {
-SecretaryCreation frm =new SecretaryCreation();
+            SecretaryCreation frm = new SecretaryCreation();
             this.Visible = false;
             frm.ShowDialog();
             this.Visible = true;
         }
 
-        
+     
 
-        
-
-       
     }
 }

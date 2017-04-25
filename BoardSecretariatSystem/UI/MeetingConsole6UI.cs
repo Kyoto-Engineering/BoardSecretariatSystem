@@ -363,5 +363,32 @@ namespace BoardSecretariatSystem.UI
         {
             SetStatusForMeetingMinutes();
         }
+
+        private void txtMeetingNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtAgendaTitle.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtAgendaTitle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                addToListButton.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void addToListButton_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                saveAllButton.Focus();
+                e.Handled = true;
+            }
+        }
     }
 }
