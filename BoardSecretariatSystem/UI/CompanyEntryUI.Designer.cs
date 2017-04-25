@@ -156,6 +156,9 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label61 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
+            this.txtOBlock = new wmgCMS.WaterMarkTextBox();
+            this.txtHQBlock = new wmgCMS.WaterMarkTextBox();
+            this.blockTextBox = new wmgCMS.WaterMarkTextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -179,7 +182,7 @@
             this.companyNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.companyNameTextBox.Location = new System.Drawing.Point(205, 29);
             this.companyNameTextBox.Name = "companyNameTextBox";
-            this.companyNameTextBox.Size = new System.Drawing.Size(1113, 29);
+            this.companyNameTextBox.Size = new System.Drawing.Size(424, 29);
             this.companyNameTextBox.TabIndex = 1;
             this.companyNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.companyNameTextBox_KeyDown);
             // 
@@ -263,7 +266,7 @@
             this.groupBox2.Location = new System.Drawing.Point(12, 346);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(611, 200);
-            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registered Address";
             // 
@@ -652,10 +655,10 @@
             this.groupBox1.Controls.Add(this.label37);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox1.Location = new System.Drawing.Point(641, 86);
+            this.groupBox1.Location = new System.Drawing.Point(641, 29);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(677, 195);
-            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Corporate HQ Address";
             // 
@@ -792,6 +795,7 @@
             this.txtHQContactNo.Size = new System.Drawing.Size(146, 25);
             this.txtHQContactNo.TabIndex = 6;
             this.txtHQContactNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHQContactNo_KeyDown);
+            this.txtHQContactNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHQContactNo_KeyPress);
             // 
             // label25
             // 
@@ -981,10 +985,10 @@
             this.groupBox3.Controls.Add(this.addButton);
             this.groupBox3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox3.Location = new System.Drawing.Point(641, 287);
+            this.groupBox3.Location = new System.Drawing.Point(641, 234);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(677, 258);
-            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Other Address";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
@@ -1162,6 +1166,7 @@
             this.txtOContactNo.Size = new System.Drawing.Size(146, 26);
             this.txtOContactNo.TabIndex = 6;
             this.txtOContactNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOContactNo_KeyDown);
+            this.txtOContactNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOContactNo_KeyPress);
             // 
             // label47
             // 
@@ -1342,6 +1347,7 @@
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = false;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.addButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.addButton_KeyDown);
             // 
             // groupBox4
             // 
@@ -1434,7 +1440,7 @@
             this.removeButton.Location = new System.Drawing.Point(1204, 551);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(108, 47);
-            this.removeButton.TabIndex = 13;
+            this.removeButton.TabIndex = 15;
             this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = false;
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
@@ -1505,7 +1511,8 @@
             this.certificateNoTextBox.Location = new System.Drawing.Point(318, 257);
             this.certificateNoTextBox.Name = "certificateNoTextBox";
             this.certificateNoTextBox.Size = new System.Drawing.Size(241, 29);
-            this.certificateNoTextBox.TabIndex = 16;
+            this.certificateNoTextBox.TabIndex = 10;
+            this.certificateNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.certificateNoTextBox_KeyDown);
             this.certificateNoTextBox.Leave += new System.EventHandler(this.certificateNoTextBox_Leave);
             // 
             // label59
@@ -1515,9 +1522,9 @@
             this.label59.ForeColor = System.Drawing.Color.Blue;
             this.label59.Location = new System.Drawing.Point(0, 259);
             this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(312, 22);
-            this.label59.TabIndex = 15;
-            this.label59.Text = "Share Certificate Provided For Per  :";
+            this.label59.Size = new System.Drawing.Size(322, 22);
+            this.label59.TabIndex = 0;
+            this.label59.Text = "Share Certificate Provided For Per    :";
             // 
             // label60
             // 
@@ -1540,9 +1547,9 @@
             // progressBar1
             // 
             this.progressBar1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.progressBar1.Location = new System.Drawing.Point(901, 553);
+            this.progressBar1.Location = new System.Drawing.Point(1021, 580);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(368, 27);
+            this.progressBar1.Size = new System.Drawing.Size(297, 27);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 18;
             this.progressBar1.Visible = false;
@@ -1551,7 +1558,7 @@
             // 
             this.label61.AutoSize = true;
             this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.Location = new System.Drawing.Point(897, 583);
+            this.label61.Location = new System.Drawing.Point(890, 601);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(372, 24);
             this.label61.TabIndex = 19;
@@ -1569,6 +1576,40 @@
             this.label62.Text = "Please Dont Turn Off This Software or Your PC";
             this.label62.Visible = false;
             // 
+            // txtOBlock
+            // 
+            this.txtOBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOBlock.Location = new System.Drawing.Point(158, 113);
+            this.txtOBlock.Name = "txtOBlock";
+            this.txtOBlock.Size = new System.Drawing.Size(146, 26);
+            this.txtOBlock.TabIndex = 4;
+            this.txtOBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtOBlock.WaterMarkText = "if any";
+            this.txtOBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOBlock_KeyDown);
+            // 
+            // txtHQBlock
+            // 
+            this.txtHQBlock.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHQBlock.Location = new System.Drawing.Point(151, 105);
+            this.txtHQBlock.Name = "txtHQBlock";
+            this.txtHQBlock.Size = new System.Drawing.Size(146, 25);
+            this.txtHQBlock.TabIndex = 4;
+            this.txtHQBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtHQBlock.WaterMarkText = "if any";
+            this.txtHQBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHQBlock_KeyDown);
+            // 
+            // blockTextBox
+            // 
+            this.blockTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blockTextBox.Location = new System.Drawing.Point(151, 109);
+            this.blockTextBox.Name = "blockTextBox";
+            this.blockTextBox.Size = new System.Drawing.Size(146, 26);
+            this.blockTextBox.TabIndex = 4;
+            this.blockTextBox.WaterMarkColor = System.Drawing.Color.Gray;
+            this.blockTextBox.WaterMarkText = "if any";
+            this.blockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.blockTextBox_KeyDown);
+            // 
+
             // CompanyEntryUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

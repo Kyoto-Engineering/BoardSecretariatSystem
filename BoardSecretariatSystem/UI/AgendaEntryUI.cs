@@ -355,6 +355,33 @@ namespace BoardSecretariatSystem
             }
         }
 
+        private void txtAgendaTitle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbAgendaType.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbAgendaType_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void button1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                agendaSaveButton.Focus();
+                e.Handled = true;
+            }
+        }
+
         }
     }
 

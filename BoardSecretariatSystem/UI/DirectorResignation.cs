@@ -137,5 +137,41 @@ namespace BoardSecretariatSystem.UI
             BoardManagementUI frm=new BoardManagementUI();
                          frm.Show();
         }
+
+        private void txtResignationDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                textDirectorId.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void textDirectorId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                textDirectorName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void textDirectorName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtCauseOfResignation.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtCauseOfResignation_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonDone.Focus();
+                e.Handled = true;
+            }
+        }
     }
 }

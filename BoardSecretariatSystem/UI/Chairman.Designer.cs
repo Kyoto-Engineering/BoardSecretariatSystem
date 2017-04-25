@@ -82,6 +82,7 @@
             this.txtChairmanJoiningDate.Name = "txtChairmanJoiningDate";
             this.txtChairmanJoiningDate.Size = new System.Drawing.Size(287, 32);
             this.txtChairmanJoiningDate.TabIndex = 44;
+            this.txtChairmanJoiningDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChairmanJoiningDate_KeyDown);
             // 
             // label1
             // 
@@ -101,6 +102,7 @@
             this.txtChairmanName.Name = "txtChairmanName";
             this.txtChairmanName.Size = new System.Drawing.Size(287, 32);
             this.txtChairmanName.TabIndex = 42;
+            this.txtChairmanName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChairmanName_KeyDown);
             // 
             // label2
             // 

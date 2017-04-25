@@ -281,5 +281,50 @@ namespace BoardSecretariatSystem.UI
             frm.meetingNo22 = meetingNum;
             frm.Show();                     
         }
+
+        private void txtMeetingNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtMeetingTitle.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtMeetingTitle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonAdditionalParticipant.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void buttonAdditionalParticipant_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                addButton.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void addButton_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonComplete.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void buttonComplete_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonInvitation.Focus();
+                e.Handled = true;
+            }
+        }
     }
 }

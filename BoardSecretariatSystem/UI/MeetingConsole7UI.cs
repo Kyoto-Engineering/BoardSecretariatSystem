@@ -297,6 +297,38 @@ namespace BoardSecretariatSystem.UI
             agendumTextBox.Text = dr.Cells[0].Value.ToString() + @". " + dr.Cells[1].Value.ToString();
             textWithSpellCheck1.Text = dr.Cells[2].Value.ToString();
         }
+
+        private void meetingNumOrIDTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                agendumTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void agendumTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                addToListButton.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void addToListButton_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                saveAllButton.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void saveAllButton_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 
 }

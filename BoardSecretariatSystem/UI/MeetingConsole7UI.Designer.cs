@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,23 +42,23 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.resolvedDataGridView = new System.Windows.Forms.DataGridView();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.minutedDataGridView = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addToListButton = new System.Windows.Forms.Button();
             this.saveAllButton = new System.Windows.Forms.Button();
             this.meetingNumOrIDTextBox = new System.Windows.Forms.TextBox();
             this.agendumTextBox = new System.Windows.Forms.TextBox();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.textWithSpellCheck1 = new BoardSecretariatSystem.TextWithSpellCheck();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.resolvedDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minutedDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -133,14 +133,14 @@
             // 
             this.resolvedDataGridView.AllowUserToAddRows = false;
             this.resolvedDataGridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.resolvedDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.resolvedDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.resolvedDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.resolvedDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column3,
@@ -156,19 +156,65 @@
             this.resolvedDataGridView.TabIndex = 6;
             this.resolvedDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.resolvedDataGridView_CellClick);
             // 
+            // Column3
+            // 
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle23;
+            this.Column3.FillWeight = 10.15228F;
+            this.Column3.HeaderText = "Agendum Si";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle24;
+            this.Column4.FillWeight = 10.15228F;
+            this.Column4.HeaderText = "Agenda Title";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 135;
+            // 
+            // Column5
+            // 
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle25;
+            this.Column5.FillWeight = 10.15228F;
+            this.Column5.HeaderText = "Discussion";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 315;
+            // 
+            // Column6
+            // 
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle26;
+            this.Column6.FillWeight = 369.5432F;
+            this.Column6.HeaderText = "Resolution";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 410;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Column10";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Visible = false;
+            // 
             // minutedDataGridView
             // 
             this.minutedDataGridView.AllowUserToAddRows = false;
             this.minutedDataGridView.AllowUserToDeleteRows = false;
             this.minutedDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.minutedDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.minutedDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
             this.minutedDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.minutedDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -185,58 +231,6 @@
             this.minutedDataGridView.TabIndex = 7;
             this.minutedDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.minutedDataGridView_CellClick);
             // 
-            // addToListButton
-            // 
-            this.addToListButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addToListButton.ForeColor = System.Drawing.Color.Fuchsia;
-            this.addToListButton.Location = new System.Drawing.Point(739, 399);
-            this.addToListButton.Name = "addToListButton";
-            this.addToListButton.Size = new System.Drawing.Size(124, 37);
-            this.addToListButton.TabIndex = 8;
-            this.addToListButton.Text = "Add to List\r\n";
-            this.addToListButton.UseVisualStyleBackColor = true;
-            this.addToListButton.Click += new System.EventHandler(this.addToListButton_Click);
-            // 
-            // saveAllButton
-            // 
-            this.saveAllButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveAllButton.ForeColor = System.Drawing.Color.Fuchsia;
-            this.saveAllButton.Location = new System.Drawing.Point(1049, 546);
-            this.saveAllButton.Name = "saveAllButton";
-            this.saveAllButton.Size = new System.Drawing.Size(103, 32);
-            this.saveAllButton.TabIndex = 9;
-            this.saveAllButton.Text = "Save All\r\n";
-            this.saveAllButton.UseVisualStyleBackColor = true;
-            this.saveAllButton.Click += new System.EventHandler(this.saveAllButton_Click);
-            // 
-            // meetingNumOrIDTextBox
-            // 
-            this.meetingNumOrIDTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.meetingNumOrIDTextBox.Location = new System.Drawing.Point(258, 108);
-            this.meetingNumOrIDTextBox.Name = "meetingNumOrIDTextBox";
-            this.meetingNumOrIDTextBox.ReadOnly = true;
-            this.meetingNumOrIDTextBox.Size = new System.Drawing.Size(475, 26);
-            this.meetingNumOrIDTextBox.TabIndex = 10;
-            // 
-            // agendumTextBox
-            // 
-            this.agendumTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agendumTextBox.Location = new System.Drawing.Point(166, 140);
-            this.agendumTextBox.Multiline = true;
-            this.agendumTextBox.Name = "agendumTextBox";
-            this.agendumTextBox.ReadOnly = true;
-            this.agendumTextBox.Size = new System.Drawing.Size(567, 67);
-            this.agendumTextBox.TabIndex = 11;
-            // 
-            // elementHost1
-            // 
-            this.elementHost1.Location = new System.Drawing.Point(164, 213);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(569, 194);
-            this.elementHost1.TabIndex = 12;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.textWithSpellCheck1;
-            // 
             // Column1
             // 
             this.Column1.FillWeight = 5.076141F;
@@ -247,8 +241,8 @@
             // 
             // Column2
             // 
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle28;
             this.Column2.FillWeight = 194.9239F;
             this.Column2.HeaderText = "Agendum Title";
             this.Column2.Name = "Column2";
@@ -277,51 +271,61 @@
             this.Column9.ReadOnly = true;
             this.Column9.Visible = false;
             // 
-            // Column3
+            // addToListButton
             // 
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column3.FillWeight = 10.15228F;
-            this.Column3.HeaderText = "Agendum Si";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.addToListButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addToListButton.ForeColor = System.Drawing.Color.Fuchsia;
+            this.addToListButton.Location = new System.Drawing.Point(739, 399);
+            this.addToListButton.Name = "addToListButton";
+            this.addToListButton.Size = new System.Drawing.Size(124, 37);
+            this.addToListButton.TabIndex = 8;
+            this.addToListButton.Text = "Add to List\r\n";
+            this.addToListButton.UseVisualStyleBackColor = true;
+            this.addToListButton.Click += new System.EventHandler(this.addToListButton_Click);
+            this.addToListButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.addToListButton_KeyDown);
             // 
-            // Column4
+            // saveAllButton
             // 
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column4.FillWeight = 10.15228F;
-            this.Column4.HeaderText = "Agenda Title";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 135;
+            this.saveAllButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveAllButton.ForeColor = System.Drawing.Color.Fuchsia;
+            this.saveAllButton.Location = new System.Drawing.Point(1049, 546);
+            this.saveAllButton.Name = "saveAllButton";
+            this.saveAllButton.Size = new System.Drawing.Size(103, 32);
+            this.saveAllButton.TabIndex = 9;
+            this.saveAllButton.Text = "Save All\r\n";
+            this.saveAllButton.UseVisualStyleBackColor = true;
+            this.saveAllButton.Click += new System.EventHandler(this.saveAllButton_Click);
+            this.saveAllButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.saveAllButton_KeyDown);
             // 
-            // Column5
+            // meetingNumOrIDTextBox
             // 
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column5.FillWeight = 10.15228F;
-            this.Column5.HeaderText = "Discussion";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 315;
+            this.meetingNumOrIDTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.meetingNumOrIDTextBox.Location = new System.Drawing.Point(258, 108);
+            this.meetingNumOrIDTextBox.Name = "meetingNumOrIDTextBox";
+            this.meetingNumOrIDTextBox.ReadOnly = true;
+            this.meetingNumOrIDTextBox.Size = new System.Drawing.Size(475, 26);
+            this.meetingNumOrIDTextBox.TabIndex = 10;
+            this.meetingNumOrIDTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.meetingNumOrIDTextBox_KeyDown);
             // 
-            // Column6
+            // agendumTextBox
             // 
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Column6.FillWeight = 369.5432F;
-            this.Column6.HeaderText = "Resolution";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 410;
+            this.agendumTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.agendumTextBox.Location = new System.Drawing.Point(166, 140);
+            this.agendumTextBox.Multiline = true;
+            this.agendumTextBox.Name = "agendumTextBox";
+            this.agendumTextBox.ReadOnly = true;
+            this.agendumTextBox.Size = new System.Drawing.Size(567, 67);
+            this.agendumTextBox.TabIndex = 11;
+            this.agendumTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.agendumTextBox_KeyDown);
             // 
-            // Column10
+            // elementHost1
             // 
-            this.Column10.HeaderText = "Column10";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Visible = false;
+            this.elementHost1.Location = new System.Drawing.Point(164, 213);
+            this.elementHost1.Name = "elementHost1";
+            this.elementHost1.Size = new System.Drawing.Size(569, 194);
+            this.elementHost1.TabIndex = 12;
+            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Child = this.textWithSpellCheck1;
             // 
             // MeetingConsole7UI
             // 

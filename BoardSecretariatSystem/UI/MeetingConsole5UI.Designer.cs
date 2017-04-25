@@ -45,9 +45,9 @@
             this.meetingNumOrIDTextBox = new System.Windows.Forms.TextBox();
             this.addToListButton = new System.Windows.Forms.Button();
             this.saveAllButton = new System.Windows.Forms.Button();
-            this.comboBoxWithGrid_WinformsHost1 = new BoardSecretariatSystem.ComboBoxWithGrid_WinformsHost();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.comboBoxWithGrid_WinformsHost1 = new BoardSecretariatSystem.ComboBoxWithGrid_WinformsHost();
             ((System.ComponentModel.ISupportInitialize)(this.attendedParticipantDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invitedParticipantDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -207,6 +207,7 @@
             this.meetingNumOrIDTextBox.ReadOnly = true;
             this.meetingNumOrIDTextBox.Size = new System.Drawing.Size(193, 26);
             this.meetingNumOrIDTextBox.TabIndex = 12;
+            this.meetingNumOrIDTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.meetingNumOrIDTextBox_KeyDown);
             // 
             // addToListButton
             // 
@@ -219,6 +220,7 @@
             this.addToListButton.Text = "Add To List";
             this.addToListButton.UseVisualStyleBackColor = true;
             this.addToListButton.Click += new System.EventHandler(this.addToListButton_Click);
+            this.addToListButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.addToListButton_KeyDown);
             // 
             // saveAllButton
             // 
@@ -231,18 +233,6 @@
             this.saveAllButton.Text = "Save All";
             this.saveAllButton.UseVisualStyleBackColor = true;
             this.saveAllButton.Click += new System.EventHandler(this.saveAllButton_Click);
-            // 
-            // comboBoxWithGrid_WinformsHost1
-            // 
-            this.comboBoxWithGrid_WinformsHost1.Employee2s = null;
-            this.comboBoxWithGrid_WinformsHost1.Location = new System.Drawing.Point(228, 185);
-            this.comboBoxWithGrid_WinformsHost1.Name = "comboBoxWithGrid_WinformsHost1";
-            this.comboBoxWithGrid_WinformsHost1.SelectedIndex = -1;
-            this.comboBoxWithGrid_WinformsHost1.SelectedItem = null;
-            this.comboBoxWithGrid_WinformsHost1.Size = new System.Drawing.Size(335, 45);
-            this.comboBoxWithGrid_WinformsHost1.TabIndex = 15;
-            this.comboBoxWithGrid_WinformsHost1.Text = "comboBoxWithGrid_WinformsHost1";
-            this.comboBoxWithGrid_WinformsHost1.Visible = false;
             // 
             // label5
             // 
@@ -263,6 +253,18 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // comboBoxWithGrid_WinformsHost1
+            // 
+            this.comboBoxWithGrid_WinformsHost1.Employee2s = null;
+            this.comboBoxWithGrid_WinformsHost1.Location = new System.Drawing.Point(228, 185);
+            this.comboBoxWithGrid_WinformsHost1.Name = "comboBoxWithGrid_WinformsHost1";
+            this.comboBoxWithGrid_WinformsHost1.SelectedIndex = -1;
+            this.comboBoxWithGrid_WinformsHost1.SelectedItem = null;
+            this.comboBoxWithGrid_WinformsHost1.Size = new System.Drawing.Size(335, 45);
+            this.comboBoxWithGrid_WinformsHost1.TabIndex = 15;
+            this.comboBoxWithGrid_WinformsHost1.Text = "comboBoxWithGrid_WinformsHost1";
+            this.comboBoxWithGrid_WinformsHost1.Visible = false;
             // 
             // MeetingConsole5UI
             // 

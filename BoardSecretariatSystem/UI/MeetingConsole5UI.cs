@@ -410,5 +410,23 @@ namespace BoardSecretariatSystem.UI
          
             return validate;
         }
+
+        private void meetingNumOrIDTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                addToListButton.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void addToListButton_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                saveAllButton.Focus();
+                e.Handled = true;
+            }
+        }
     }
 }

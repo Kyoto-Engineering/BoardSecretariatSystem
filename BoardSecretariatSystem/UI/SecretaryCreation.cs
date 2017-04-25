@@ -1662,7 +1662,377 @@ namespace BoardSecretariatSystem.UI
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
+        
+        }
 
+        private void cmbEmailAddress_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CountryNamecomboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CountryCodetextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void CountryCodetextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtShareHolderName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtShareHolderName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtFatherName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtFatherName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtMotherName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtMotherName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtDateOfBirth.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtDateOfBirth_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtCellNumber.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtCellNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbNationality.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbNationality_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtNationalId.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtNationalId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtBirthCertificateNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtBirthCertificateNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPassportNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPassportNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtTINNumber.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtTINNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbEmailAddress.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbEmailAddress_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbGender.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbGender_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                joinDateTimePicker.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void joinDateTimePicker_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPFlatName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPFlatName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPHouseName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPHouseName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPRoadNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPRoadNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPBlock.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPBlock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPArea.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPContactNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPContactNo_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtPContactNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbPDivision.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbPDivision_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbPDistrict.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbPDistrict_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbPThana.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbPThana_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbPPost.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbPPost_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPPostCode.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPPostCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+               txtFlatNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtFlatNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtHouseNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtHouseNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtRoadNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtRoadNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtBlock.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtBlock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtArea.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtContactNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtContactNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbDivision.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbDivision_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbDistrict.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbDistrict_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbThana.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbThana_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbPost.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbPost_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPostCode.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPostCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                StreettextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void StreettextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                StatetextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void StatetextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                PostalCodetextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void PostalCodetextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.Focus();
+                e.Handled = true;
+            }
         }
     }
 }

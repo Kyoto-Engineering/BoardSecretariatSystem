@@ -1369,7 +1369,7 @@ namespace BoardSecretariatSystem
 
         private void txtValueOfEachShare_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void companyNameTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -1448,11 +1448,20 @@ namespace BoardSecretariatSystem
         {
             if (e.KeyCode == Keys.Enter)
             {
-                flatNoTextBox.Focus();
+                certificateNoTextBox.Focus();
                 e.Handled = true;
             }
         }
 
+
+        private void certificateNoTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                flatNoTextBox.Focus();
+                e.Handled = true;
+            }
+        }
         private void flatNoTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -1748,7 +1757,11 @@ namespace BoardSecretariatSystem
 
         private void txtOPostCode_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                addButton.Focus();
+                e.Handled = true;
+            }
         }
 
         private void certificateNoTextBox_Validating(object sender, CancelEventArgs e)
@@ -1877,6 +1890,29 @@ namespace BoardSecretariatSystem
                 }
             }
         }
+
+        private void txtHQContactNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
+                e.Handled = true;
+        }
+
+        private void txtOContactNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
+                e.Handled = true;
+        }
+
+        private void addButton_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                saveButton.Focus();
+                e.Handled = true;
+            }
+        }
+
+        
 
     }
 }

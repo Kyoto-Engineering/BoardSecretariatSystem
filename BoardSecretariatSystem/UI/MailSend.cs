@@ -387,6 +387,60 @@ namespace BoardSecretariatSystem.UI
                 return false;
             }
         }
+
+        private void txtFrom_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbDomainHostName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbDomainHostName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPassword.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtSubject.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtSubject_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtBody.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtBody_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                listView1.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void listView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                sendButton.Focus();
+                e.Handled = true;
+            }
+        }
         
     }
 }

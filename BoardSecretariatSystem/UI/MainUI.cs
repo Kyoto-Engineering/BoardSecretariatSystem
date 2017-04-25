@@ -108,9 +108,9 @@ namespace BoardSecretariatSystem
 
         private void reportButton_Click(object sender, EventArgs e)
         {
-            //this.Dispose();
-            //ReportUI frm = new ReportUI();
-            //frm.Show();
+            this.Dispose();
+            ReportUI frm = new ReportUI();
+            frm.Show();
         }
 
         private void agendaAmendmentButton_Click(object sender, EventArgs e)
@@ -129,16 +129,13 @@ namespace BoardSecretariatSystem
 
         private void button2_Click(object sender, EventArgs e)
         {
-SecretaryCreation frm =new SecretaryCreation();
+            SecretaryCreation frm = new SecretaryCreation();
             this.Visible = false;
             frm.ShowDialog();
             this.Visible = true;
         }
 
-        
+     
 
-        
-
-       
     }
 }

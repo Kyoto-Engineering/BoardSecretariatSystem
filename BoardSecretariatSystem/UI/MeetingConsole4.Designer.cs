@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -67,7 +67,7 @@
             this.label3.Location = new System.Drawing.Point(89, 107);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(240, 26);
-            this.label3.TabIndex = 2;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Meeting Number/ ID :\r\n";
             // 
             // label4
@@ -78,7 +78,7 @@
             this.label4.Location = new System.Drawing.Point(100, 149);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(229, 26);
-            this.label4.TabIndex = 3;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Reason for Postpone:\r\n";
             // 
             // label5
@@ -89,7 +89,7 @@
             this.label5.Location = new System.Drawing.Point(100, 232);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(224, 26);
-            this.label5.TabIndex = 4;
+            this.label5.TabIndex = 0;
             this.label5.Text = "Postpone Order By :";
             // 
             // label6
@@ -100,7 +100,7 @@
             this.label6.Location = new System.Drawing.Point(4, 286);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(325, 26);
-            this.label6.TabIndex = 5;
+            this.label6.TabIndex = 0;
             this.label6.Text = "Probable Next Meeting Date : \r\n";
             // 
             // label7
@@ -111,20 +111,20 @@
             this.label7.Location = new System.Drawing.Point(104, 357);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(296, 26);
-            this.label7.TabIndex = 6;
+            this.label7.TabIndex = 0;
             this.label7.Text = "Postpone  Notice Recipients\r\n";
             // 
             // cancelationNoticeDataGridView
             // 
             this.cancelationNoticeDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cancelationNoticeDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cancelationNoticeDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.cancelationNoticeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.cancelationNoticeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column2,
@@ -132,7 +132,7 @@
             this.cancelationNoticeDataGridView.Location = new System.Drawing.Point(51, 395);
             this.cancelationNoticeDataGridView.Name = "cancelationNoticeDataGridView";
             this.cancelationNoticeDataGridView.Size = new System.Drawing.Size(495, 150);
-            this.cancelationNoticeDataGridView.TabIndex = 7;
+            this.cancelationNoticeDataGridView.TabIndex = 0;
             // 
             // Column2
             // 
@@ -150,10 +150,11 @@
             this.cancelButton.Location = new System.Drawing.Point(552, 496);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(229, 49);
-            this.cancelButton.TabIndex = 8;
+            this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "Postpone This Meeting ";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cancelButton_KeyDown);
             // 
             // deleteAllButton
             // 
@@ -161,7 +162,7 @@
             this.deleteAllButton.Location = new System.Drawing.Point(802, 496);
             this.deleteAllButton.Name = "deleteAllButton";
             this.deleteAllButton.Size = new System.Drawing.Size(129, 49);
-            this.deleteAllButton.TabIndex = 9;
+            this.deleteAllButton.TabIndex = 6;
             this.deleteAllButton.Text = "Delete All";
             this.deleteAllButton.UseVisualStyleBackColor = true;
             // 
@@ -171,9 +172,10 @@
             this.sendNoticeButton.Location = new System.Drawing.Point(937, 496);
             this.sendNoticeButton.Name = "sendNoticeButton";
             this.sendNoticeButton.Size = new System.Drawing.Size(137, 49);
-            this.sendNoticeButton.TabIndex = 10;
+            this.sendNoticeButton.TabIndex = 7;
             this.sendNoticeButton.Text = "Send Notice\r\n";
             this.sendNoticeButton.UseVisualStyleBackColor = true;
+            this.sendNoticeButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.sendNoticeButton_KeyDown);
             // 
             // meetingNumIDTextBox
             // 
@@ -182,7 +184,8 @@
             this.meetingNumIDTextBox.Name = "meetingNumIDTextBox";
             this.meetingNumIDTextBox.ReadOnly = true;
             this.meetingNumIDTextBox.Size = new System.Drawing.Size(322, 26);
-            this.meetingNumIDTextBox.TabIndex = 11;
+            this.meetingNumIDTextBox.TabIndex = 1;
+            this.meetingNumIDTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.meetingNumIDTextBox_KeyDown);
             // 
             // probableNextMeetingDateTimePicker
             // 
@@ -192,7 +195,8 @@
             this.probableNextMeetingDateTimePicker.Location = new System.Drawing.Point(335, 286);
             this.probableNextMeetingDateTimePicker.Name = "probableNextMeetingDateTimePicker";
             this.probableNextMeetingDateTimePicker.Size = new System.Drawing.Size(211, 26);
-            this.probableNextMeetingDateTimePicker.TabIndex = 14;
+            this.probableNextMeetingDateTimePicker.TabIndex = 4;
+            this.probableNextMeetingDateTimePicker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.probableNextMeetingDateTimePicker_KeyDown);
             // 
             // reasonForCancelRichTextBox
             // 
@@ -200,8 +204,9 @@
             this.reasonForCancelRichTextBox.Location = new System.Drawing.Point(335, 149);
             this.reasonForCancelRichTextBox.Name = "reasonForCancelRichTextBox";
             this.reasonForCancelRichTextBox.Size = new System.Drawing.Size(322, 72);
-            this.reasonForCancelRichTextBox.TabIndex = 16;
+            this.reasonForCancelRichTextBox.TabIndex = 2;
             this.reasonForCancelRichTextBox.Text = "";
+            this.reasonForCancelRichTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.reasonForCancelRichTextBox_KeyDown);
             // 
             // comboBoxWithGrid_WinformsHost1
             // 
@@ -212,7 +217,7 @@
             this.comboBoxWithGrid_WinformsHost1.SelectedIndex = -1;
             this.comboBoxWithGrid_WinformsHost1.SelectedItem = null;
             this.comboBoxWithGrid_WinformsHost1.Size = new System.Drawing.Size(430, 53);
-            this.comboBoxWithGrid_WinformsHost1.TabIndex = 17;
+            this.comboBoxWithGrid_WinformsHost1.TabIndex = 3;
             this.comboBoxWithGrid_WinformsHost1.Text = "comboBoxWithGrid_WinformsHost1";
             // 
             // MeetingConsole4

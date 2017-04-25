@@ -35,12 +35,12 @@
             this.participantCreateButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.agendaAmendmentButton = new System.Windows.Forms.Button();
             this.reportButton = new System.Windows.Forms.Button();
             this.buttonMultiCombo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonLogOut = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,6 +139,19 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Blue;
+            this.button2.Location = new System.Drawing.Point(21, 200);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(144, 53);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Secretary Creation";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // agendaAmendmentButton
             // 
             this.agendaAmendmentButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
@@ -203,19 +216,6 @@
             this.buttonLogOut.Text = "LogOut";
             this.buttonLogOut.UseVisualStyleBackColor = false;
             this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.Blue;
-            this.button2.Location = new System.Drawing.Point(21, 200);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(144, 53);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Secretary Creation";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainUI
             // 
