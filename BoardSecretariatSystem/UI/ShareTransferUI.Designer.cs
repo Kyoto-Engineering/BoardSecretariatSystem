@@ -29,15 +29,21 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.fromContacttextBox = new System.Windows.Forms.TextBox();
+            this.endCertificateNoComboBox = new System.Windows.Forms.ComboBox();
+            this.fromEmailtextBox = new System.Windows.Forms.TextBox();
+            this.startCertificateNoComboBox = new System.Windows.Forms.ComboBox();
+            this.fromNametextBox = new System.Windows.Forms.TextBox();
+            this.label65 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.totalAmountTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.shareHolderDataGridView = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.emailComboBox = new System.Windows.Forms.ComboBox();
             this.personPostComboBox = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
@@ -143,12 +149,8 @@
             this.label55 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
-            this.label65 = new System.Windows.Forms.Label();
-            this.startFolioNoComboBox = new System.Windows.Forms.ComboBox();
-            this.endFolioNoComboBox = new System.Windows.Forms.ComboBox();
-            this.emailComboBox = new System.Windows.Forms.ComboBox();
+            this.btnShareHolderGrid = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.shareHolderDataGridView)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -156,14 +158,19 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.endFolioNoComboBox);
-            this.groupBox1.Controls.Add(this.startFolioNoComboBox);
+            this.groupBox1.Controls.Add(this.label68);
+            this.groupBox1.Controls.Add(this.label67);
+            this.groupBox1.Controls.Add(this.label66);
+            this.groupBox1.Controls.Add(this.fromContacttextBox);
+            this.groupBox1.Controls.Add(this.endCertificateNoComboBox);
+            this.groupBox1.Controls.Add(this.fromEmailtextBox);
+            this.groupBox1.Controls.Add(this.startCertificateNoComboBox);
+            this.groupBox1.Controls.Add(this.fromNametextBox);
             this.groupBox1.Controls.Add(this.label65);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.totalAmountTextBox);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.shareHolderDataGridView);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 39);
             this.groupBox1.Name = "groupBox1";
@@ -172,12 +179,100 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "From";
             // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label68.ForeColor = System.Drawing.Color.Blue;
+            this.label68.Location = new System.Drawing.Point(8, 133);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(156, 22);
+            this.label68.TabIndex = 208;
+            this.label68.Text = "Contact Number :";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label67.ForeColor = System.Drawing.Color.Blue;
+            this.label67.Location = new System.Drawing.Point(95, 85);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(68, 22);
+            this.label67.TabIndex = 207;
+            this.label67.Text = "Email :";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label66.ForeColor = System.Drawing.Color.Blue;
+            this.label66.Location = new System.Drawing.Point(93, 35);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(68, 22);
+            this.label66.TabIndex = 206;
+            this.label66.Text = "Name :";
+            // 
+            // fromContacttextBox
+            // 
+            this.fromContacttextBox.Location = new System.Drawing.Point(168, 130);
+            this.fromContacttextBox.Name = "fromContacttextBox";
+            this.fromContacttextBox.ReadOnly = true;
+            this.fromContacttextBox.Size = new System.Drawing.Size(284, 26);
+            this.fromContacttextBox.TabIndex = 125;
+            // 
+            // endCertificateNoComboBox
+            // 
+            this.endCertificateNoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.endCertificateNoComboBox.FormattingEnabled = true;
+            this.endCertificateNoComboBox.Location = new System.Drawing.Point(351, 257);
+            this.endCertificateNoComboBox.Name = "endCertificateNoComboBox";
+            this.endCertificateNoComboBox.Size = new System.Drawing.Size(101, 28);
+            this.endCertificateNoComboBox.TabIndex = 205;
+            this.endCertificateNoComboBox.SelectedIndexChanged += new System.EventHandler(this.endCertificateNoComboBox_SelectedIndexChanged);
+            // 
+            // fromEmailtextBox
+            // 
+            this.fromEmailtextBox.Location = new System.Drawing.Point(166, 82);
+            this.fromEmailtextBox.Name = "fromEmailtextBox";
+            this.fromEmailtextBox.ReadOnly = true;
+            this.fromEmailtextBox.Size = new System.Drawing.Size(286, 26);
+            this.fromEmailtextBox.TabIndex = 124;
+            // 
+            // startCertificateNoComboBox
+            // 
+            this.startCertificateNoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.startCertificateNoComboBox.FormattingEnabled = true;
+            this.startCertificateNoComboBox.Location = new System.Drawing.Point(202, 259);
+            this.startCertificateNoComboBox.Name = "startCertificateNoComboBox";
+            this.startCertificateNoComboBox.Size = new System.Drawing.Size(101, 28);
+            this.startCertificateNoComboBox.TabIndex = 204;
+            this.startCertificateNoComboBox.SelectedIndexChanged += new System.EventHandler(this.startCertificateNoComboBox_SelectedIndexChanged);
+            // 
+            // fromNametextBox
+            // 
+            this.fromNametextBox.Location = new System.Drawing.Point(166, 35);
+            this.fromNametextBox.Name = "fromNametextBox";
+            this.fromNametextBox.ReadOnly = true;
+            this.fromNametextBox.Size = new System.Drawing.Size(286, 26);
+            this.fromNametextBox.TabIndex = 123;
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label65.ForeColor = System.Drawing.Color.Blue;
+            this.label65.Location = new System.Drawing.Point(319, 261);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(26, 22);
+            this.label65.TabIndex = 127;
+            this.label65.Text = "to";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Blue;
-            this.label5.Location = new System.Drawing.Point(147, 281);
+            this.label5.Location = new System.Drawing.Point(147, 261);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 22);
             this.label5.TabIndex = 125;
@@ -188,17 +283,17 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(10, 280);
+            this.label4.Location = new System.Drawing.Point(11, 231);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(133, 22);
+            this.label4.Size = new System.Drawing.Size(178, 22);
             this.label4.TabIndex = 123;
-            this.label4.Text = "Folio Number :";
+            this.label4.Text = "Certificate Number :";
             // 
             // totalAmountTextBox
             // 
-            this.totalAmountTextBox.Location = new System.Drawing.Point(152, 240);
+            this.totalAmountTextBox.Location = new System.Drawing.Point(166, 179);
             this.totalAmountTextBox.Name = "totalAmountTextBox";
-            this.totalAmountTextBox.Size = new System.Drawing.Size(303, 26);
+            this.totalAmountTextBox.Size = new System.Drawing.Size(289, 26);
             this.totalAmountTextBox.TabIndex = 122;
             // 
             // label3
@@ -206,46 +301,11 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(10, 245);
+            this.label3.Location = new System.Drawing.Point(32, 181);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(130, 22);
             this.label3.TabIndex = 121;
             this.label3.Text = "Total Amount :";
-            // 
-            // shareHolderDataGridView
-            // 
-            this.shareHolderDataGridView.AllowUserToAddRows = false;
-            this.shareHolderDataGridView.AllowUserToDeleteRows = false;
-            this.shareHolderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.shareHolderDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
-            this.shareHolderDataGridView.Location = new System.Drawing.Point(6, 26);
-            this.shareHolderDataGridView.Name = "shareHolderDataGridView";
-            this.shareHolderDataGridView.ReadOnly = true;
-            this.shareHolderDataGridView.Size = new System.Drawing.Size(449, 195);
-            this.shareHolderDataGridView.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column1.HeaderText = "Name";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 206;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Email";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Contact No";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
             // 
             // groupBox2
             // 
@@ -296,6 +356,14 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "To";
+            // 
+            // emailComboBox
+            // 
+            this.emailComboBox.FormattingEnabled = true;
+            this.emailComboBox.Location = new System.Drawing.Point(494, 57);
+            this.emailComboBox.Name = "emailComboBox";
+            this.emailComboBox.Size = new System.Drawing.Size(160, 32);
+            this.emailComboBox.TabIndex = 213;
             // 
             // personPostComboBox
             // 
@@ -1371,42 +1439,16 @@
             this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // label65
+            // btnShareHolderGrid
             // 
-            this.label65.AutoSize = true;
-            this.label65.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label65.ForeColor = System.Drawing.Color.Blue;
-            this.label65.Location = new System.Drawing.Point(322, 286);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(26, 22);
-            this.label65.TabIndex = 127;
-            this.label65.Text = "to";
-            // 
-            // startFolioNoComboBox
-            // 
-            this.startFolioNoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.startFolioNoComboBox.FormattingEnabled = true;
-            this.startFolioNoComboBox.Location = new System.Drawing.Point(208, 280);
-            this.startFolioNoComboBox.Name = "startFolioNoComboBox";
-            this.startFolioNoComboBox.Size = new System.Drawing.Size(101, 28);
-            this.startFolioNoComboBox.TabIndex = 204;
-            // 
-            // endFolioNoComboBox
-            // 
-            this.endFolioNoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.endFolioNoComboBox.FormattingEnabled = true;
-            this.endFolioNoComboBox.Location = new System.Drawing.Point(354, 281);
-            this.endFolioNoComboBox.Name = "endFolioNoComboBox";
-            this.endFolioNoComboBox.Size = new System.Drawing.Size(101, 28);
-            this.endFolioNoComboBox.TabIndex = 205;
-            // 
-            // emailComboBox
-            // 
-            this.emailComboBox.FormattingEnabled = true;
-            this.emailComboBox.Location = new System.Drawing.Point(494, 57);
-            this.emailComboBox.Name = "emailComboBox";
-            this.emailComboBox.Size = new System.Drawing.Size(160, 32);
-            this.emailComboBox.TabIndex = 213;
+            this.btnShareHolderGrid.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShareHolderGrid.Location = new System.Drawing.Point(178, 2);
+            this.btnShareHolderGrid.Name = "btnShareHolderGrid";
+            this.btnShareHolderGrid.Size = new System.Drawing.Size(89, 31);
+            this.btnShareHolderGrid.TabIndex = 6;
+            this.btnShareHolderGrid.Text = ">>";
+            this.btnShareHolderGrid.UseVisualStyleBackColor = true;
+            this.btnShareHolderGrid.Click += new System.EventHandler(this.btnShareHolderGrid_Click);
             // 
             // ShareTransferUI
             // 
@@ -1414,6 +1456,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Turquoise;
             this.ClientSize = new System.Drawing.Size(1207, 741);
+            this.Controls.Add(this.btnShareHolderGrid);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.groupBox4);
@@ -1422,9 +1465,9 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ShareTransferUI";
             this.Text = "ShareTransferUI";
+            this.Load += new System.EventHandler(this.ShareTransferUI_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.shareHolderDataGridView)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1439,7 +1482,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView shareHolderDataGridView;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -1535,9 +1577,6 @@
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.ComboBox personPostComboBox;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label56;
@@ -1553,9 +1592,16 @@
         private System.Windows.Forms.TextBox personPostCodeTextBox;
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.Label label64;
-        private System.Windows.Forms.ComboBox endFolioNoComboBox;
-        private System.Windows.Forms.ComboBox startFolioNoComboBox;
+        private System.Windows.Forms.ComboBox endCertificateNoComboBox;
+        private System.Windows.Forms.ComboBox startCertificateNoComboBox;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.ComboBox emailComboBox;
+        public System.Windows.Forms.TextBox fromNametextBox;
+        public System.Windows.Forms.TextBox fromEmailtextBox;
+        public System.Windows.Forms.TextBox fromContacttextBox;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.Button btnShareHolderGrid;
     }
 }

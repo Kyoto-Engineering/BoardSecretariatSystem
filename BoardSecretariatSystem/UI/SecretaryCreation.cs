@@ -575,17 +575,17 @@ namespace BoardSecretariatSystem.UI
 
                             }
                         //}
-                        else
-                        {
+                        //else
+                        //{
                             
                        
                         SaveParticipant();
                         ForeignAddresses("ForeignAddress");
-                        MessageBox.Show("Saved successfully", "Record", MessageBoxButtons.OK,
+                        MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
                         Reset2();
                         CountryNamecomboBox.SelectedItem = "Bangladesh";
-                        }
+                        //}
                     }
                 }
                 catch (Exception ex)
