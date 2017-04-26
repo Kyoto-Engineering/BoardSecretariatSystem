@@ -50,7 +50,7 @@ namespace BoardSecretariatSystem
             totalCertificates;
 
         private bool companyCreated;
-
+        string x = null;
         public CompanyEntryUI()
         {
             InitializeComponent();
@@ -486,42 +486,14 @@ namespace BoardSecretariatSystem
                 }
                 else
                 {
+                 
+                    
                     try
                     {
-                        int x = Convert.ToInt32(txtTotalAuthorizedShare.Text);
-                        int y = Convert.ToInt32(txtTotalIssuedShare.Text);
-                        availableAuthorizedShare = x - y;
-                        con = new SqlConnection(cs.DBConn);
-                        con.Open();
-                        string query1 =
-                            "insert into Company(CompanyName,TotalAuthorizedShare,AvailableAuthorizedShare,ValueofEachShare,TotalIssuedShare,AvailableIssuedShare,Corum,NumberOfDirector,VacantPostofDirector,VacantPostofMDirector,VacantPostofChairman,RegiNumber,MeetingAllowance,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d5,@d6,@d7,@d7,@d8,@d9,@d10,@d11,@d12,@d13)" +
-                            "SELECT CONVERT(int, SCOPE_IDENTITY())";
-                        cmd = new SqlCommand(query1, con);
-                        cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);
-                        cmd.Parameters.AddWithValue("@d2", txtTotalAuthorizedShare.Text);
-                        cmd.Parameters.AddWithValue("@d3", availableAuthorizedShare);
-                        cmd.Parameters.AddWithValue("@d4", txtValueOfEachShare.Text);
-                        cmd.Parameters.AddWithValue("@d5", txtTotalIssuedShare.Text);
-                        cmd.Parameters.AddWithValue("@d6", txtCorum.Text);
-                        cmd.Parameters.AddWithValue("@d7", txtNumberOfDirector.Text);
-                        cmd.Parameters.AddWithValue("@d8", "1");
-                        cmd.Parameters.AddWithValue("@d9", "1");
-                        cmd.Parameters.AddWithValue("@d10", regNoTextBox.Text);
-                        cmd.Parameters.AddWithValue("@d11", txtMeetingAlowance.Text);
-                        cmd.Parameters.AddWithValue("@d12", userId);
-                        cmd.Parameters.AddWithValue("@d13", creatingDateTimePicker.Value.ToUniversalTime().ToLocalTime());
-                        currentCompanyId = (int) cmd.ExecuteScalar();
-                        con.Close();
-                        SaveCompanyAddress(1);
-                        SaveCompanyAddress(2);
-                        if (otherAddress.Checked)
-                        {
-                            SaveOtherAddress();
-                        }
-                        SaveShare();
-                        MessageBox.Show("Saved Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Reset();
-                        ProgressbarOff(saveButton);
+                        RunTask();
+                        //SaveTODataBase();
+                        
+                      
                     }
                     catch (Exception ex)
                     {
@@ -532,6 +504,78 @@ namespace BoardSecretariatSystem
 
             }
 
+        }
+
+        private async void RunTask()
+        {
+           
+            using (Task<string> task = new Task<string>(new Func<object, string>(SaveTODataBase), x))
+            {
+                //lblStatus.Text = "Started Calculation..."; //Set the status label to signal starting the operation
+                //btnStart.Enabled = false; //Disable the Start button
+               
+
+                try
+                {
+                    task.Start(); //Start the execution of the task
+                    await task; // wait for the task to finish, without blocking the main thread
+                    if (task.IsCompleted)
+                    {
+
+                        //btnStart.Enabled = true; //Re-enable the Start button
+                        Reset();
+                        MessageBox.Show(@"Saved Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ProgressbarOff(saveButton);
+                        //MessageBox.Show(task.Result, "error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                        //        //at this point, the task has finished its background work, and we can take the result
+                        //lblStatus.Text = "Completed."; //Signal the completion of the task
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                  
+                } 
+
+           
+                
+            }
+        }
+
+        private string SaveTODataBase( object state)
+        {
+            int x = Convert.ToInt32(txtTotalAuthorizedShare.Text);
+            int y = Convert.ToInt32(txtTotalIssuedShare.Text);
+            availableAuthorizedShare = x - y;
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query1 =
+                "insert into Company(CompanyName,TotalAuthorizedShare,AvailableAuthorizedShare,ValueofEachShare,TotalIssuedShare,AvailableIssuedShare,Corum,NumberOfDirector,VacantPostofDirector,VacantPostofMDirector,VacantPostofChairman,RegiNumber,MeetingAllowance,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d5,@d6,@d7,@d7,@d8,@d9,@d10,@d11,@d12,@d13)" +
+                "SELECT CONVERT(int, SCOPE_IDENTITY())";
+            cmd = new SqlCommand(query1, con);
+            cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);
+            cmd.Parameters.AddWithValue("@d2", txtTotalAuthorizedShare.Text);
+            cmd.Parameters.AddWithValue("@d3", availableAuthorizedShare);
+            cmd.Parameters.AddWithValue("@d4", txtValueOfEachShare.Text);
+            cmd.Parameters.AddWithValue("@d5", txtTotalIssuedShare.Text);
+            cmd.Parameters.AddWithValue("@d6", txtCorum.Text);
+            cmd.Parameters.AddWithValue("@d7", txtNumberOfDirector.Text);
+            cmd.Parameters.AddWithValue("@d8", "1");
+            cmd.Parameters.AddWithValue("@d9", "1");
+            cmd.Parameters.AddWithValue("@d10", regNoTextBox.Text);
+            cmd.Parameters.AddWithValue("@d11", txtMeetingAlowance.Text);
+            cmd.Parameters.AddWithValue("@d12", userId);
+            cmd.Parameters.AddWithValue("@d13", creatingDateTimePicker.Value.ToUniversalTime().ToLocalTime());
+            currentCompanyId = (int) cmd.ExecuteScalar();
+            con.Close();
+            SaveCompanyAddress(1);
+            SaveCompanyAddress(2);
+            if (otherAddress.Checked)
+            {
+                SaveOtherAddress();
+            }
+            SaveShare();
+            return null;
         }
 
         private void contactNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -1780,7 +1824,7 @@ namespace BoardSecretariatSystem
             totalCertificates = Certificates(int.Parse(txtTotalIssuedShare.Text), int.Parse(certificateNoTextBox.Text));
             int shareno = 1;
             int sharerange = int.Parse(certificateNoTextBox.Text);
-            for (int i = 1; i < totalCertificates; i++)
+            for (int i = 1; i <= totalCertificates; i++)
             {
                 int shareid;
 
@@ -1835,21 +1879,26 @@ namespace BoardSecretariatSystem
 
         private void ProgressbarStart(Button button)
         {
+            backgroundWorker1.RunWorkerAsync();
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
+            backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
             button.Enabled = false;
+            button.Visible = false;
             listView1.Visible = false;
             removeButton.Visible = false;
             label61.BringToFront();
             label61.Visible = true;
-            backgroundWorker1.RunWorkerAsync();
+            label62.Visible = true;
+            label62.BringToFront();
             progressBar1.Visible = true;
             progressBar1.BringToFront();
-
-            // To report progress from the background worker we need to set this property
-            backgroundWorker1.WorkerReportsProgress = true;
-            // This event will be raised on the worker thread when the worker starts
-            backgroundWorker1.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
-            // This event will be raised when we call ReportProgress
-            backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
+            groupBox1.Visible = false;
+            groupBox2.Visible = false;
+            groupBox3.Visible = false;
+            groupBox4.Visible = false;
+            groupBox5.Visible = false;
+            groupBox6.Visible = false;
         }
 
         private void ProgressbarOff(Button button)
@@ -1862,7 +1911,15 @@ namespace BoardSecretariatSystem
             removeButton.Visible = true;
             label61.SendToBack();
             label61.Visible = false;
+            label62.Visible = false;
+            button.Visible = true;
             button.Enabled = true;
+            groupBox1.Visible = true;
+            groupBox2.Visible = true;
+            groupBox3.Visible = true;
+            groupBox4.Visible = true;
+            groupBox5.Visible = true;
+            groupBox6.Visible = true;
         }
 
         private void certificateNoTextBox_Leave(object sender, EventArgs e)
