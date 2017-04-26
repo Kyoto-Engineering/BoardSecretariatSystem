@@ -1804,8 +1804,8 @@ namespace BoardSecretariatSystem
         {
             if (e.KeyCode == Keys.Enter)
             {
-                addButton.Focus();
-                e.Handled = true;
+                addButton_Click(this, new EventArgs());
+                
             }
         }
 
@@ -1963,8 +1963,8 @@ namespace BoardSecretariatSystem
         {
             if (e.KeyCode == Keys.Enter)
             {
-                saveButton.Focus();
-                e.Handled = true;
+                saveButton_Click(this, new EventArgs());
+                
             }
         }
 
