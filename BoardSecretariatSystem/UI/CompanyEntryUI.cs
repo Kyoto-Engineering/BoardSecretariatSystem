@@ -550,7 +550,7 @@ namespace BoardSecretariatSystem
             con = new SqlConnection(cs.DBConn);
             con.Open();
             string query1 =
-                "insert into Company(CompanyName,TotalAuthorizedShare,AvailableAuthorizedShare,ValueofEachShare,TotalIssuedShare,AvailableIssuedShare,Corum,NumberOfDirector,VacantPostofDirector,VacantPostofMDirector,VacantPostofChairman,RegiNumber,MeetingAllowance,UserId,DateTime) values (@d1,@d2,@d3,@d4,@d5,@d5,@d6,@d7,@d7,@d8,@d9,@d10,@d11,@d12,@d13)" +
+                "insert into Company(CompanyName,TotalAuthorizedShare,AvailableAuthorizedShare,ValueofEachShare,TotalIssuedShare,AvailableIssuedShare,Corum,NumberOfDirector,VacantPostofDirector,VacantPostofMDirector,VacantPostofChairman,RegiNumber,MeetingAllowance,UserId,DateTime,CertificateRange) values (@d1,@d2,@d3,@d4,@d5,@d5,@d6,@d7,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14)" +
                 "SELECT CONVERT(int, SCOPE_IDENTITY())";
             cmd = new SqlCommand(query1, con);
             cmd.Parameters.AddWithValue("@d1", companyNameTextBox.Text);
@@ -566,6 +566,7 @@ namespace BoardSecretariatSystem
             cmd.Parameters.AddWithValue("@d11", txtMeetingAlowance.Text);
             cmd.Parameters.AddWithValue("@d12", userId);
             cmd.Parameters.AddWithValue("@d13", creatingDateTimePicker.Value.ToUniversalTime().ToLocalTime());
+            cmd.Parameters.AddWithValue("@d14", certificateNoTextBox.Text);
             currentCompanyId = (int) cmd.ExecuteScalar();
             con.Close();
             SaveCompanyAddress(1);
