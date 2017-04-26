@@ -138,8 +138,7 @@ namespace BoardSecretariatSystem
         {
             if(e.KeyCode == Keys.Enter)
             {
-                loginButton.Focus();
-                e.Handled = true;
+                loginButton_Click(this, new EventArgs());
             }
         }
     }
