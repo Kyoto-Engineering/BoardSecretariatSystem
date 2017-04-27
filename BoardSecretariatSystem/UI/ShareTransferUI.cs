@@ -19,6 +19,7 @@ namespace BoardSecretariatSystem.UI
         private SqlDataReader rdr;
         ConnectionString cs = new ConnectionString();
         public string startCertificateid, endCertificateid;
+        public int shid;
 
         public ShareTransferUI()
         {
@@ -32,8 +33,7 @@ namespace BoardSecretariatSystem.UI
 
         private void ShareTransferUI_Load(object sender, EventArgs e)
         {
-            FillstartCertificateNo();
-            FillendCertificateNo();
+            startCertificateNoComboBox.Enabled = false;
             endCertificateNoComboBox.Enabled = false;
         }
 
@@ -44,7 +44,8 @@ namespace BoardSecretariatSystem.UI
 
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select RTRIM(Certificate.CertificateNumber) from Certificate  order by Certificate.CertificateId";
+                string ct = "SELECT CertificateNumber FROM Certificate where ShareholderId='"+shid+"'";
+                
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -85,7 +86,7 @@ namespace BoardSecretariatSystem.UI
 
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select RTRIM(Certificate.CertificateNumber) from Certificate  order by Certificate.CertificateId";
+                string ct = "SELECT CertificateNumber FROM Certificate where ShareholderId='" + shid + "'";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -113,14 +114,15 @@ namespace BoardSecretariatSystem.UI
         private void startCertificateNoComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             endCertificateNoComboBox.Enabled = true;
-            int x = startCertificateNoComboBox.SelectedIndex;
-            int y = endCertificateNoComboBox.SelectedIndex;
-            if (x < y)
-            {
-                startCertificateNoComboBox.SelectedIndex = -1;
-            }
-            else
-            {
+            //int x = startCertificateNoComboBox.SelectedIndex;
+            //int y = endCertificateNoComboBox.SelectedIndex;
+            //if (x > y)
+            //{
+            //    startCertificateNoComboBox.SelectedIndex = -1;
+             
+            //}
+            //else
+            //{
 
 
                 try
@@ -145,7 +147,7 @@ namespace BoardSecretariatSystem.UI
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
+            //}
         }
 
         private void endCertificateNoComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -153,9 +155,13 @@ namespace BoardSecretariatSystem.UI
             int a = startCertificateNoComboBox.SelectedIndex;
             int b = endCertificateNoComboBox.SelectedIndex;
             if (a > b)
-            {
+            {              
+                //MessageBox.Show("Please select greater than or equal", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 endCertificateNoComboBox.SelectedIndex = -1;
-            }
+                //endCertificateNoComboBox.Focus();
+                
+            }  
+            
             else
             {
                 try

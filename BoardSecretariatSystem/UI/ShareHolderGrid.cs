@@ -18,6 +18,8 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         ConnectionString cs = new ConnectionString();
+       
+
         public ShareHolderGrid()
         {
             InitializeComponent();
@@ -31,13 +33,13 @@ namespace BoardSecretariatSystem.UI
                 con.Open();
                 cmd =
                     new SqlCommand(
-                        "SELECT Shareholder.ShareHolderName, EmailBank.Email, Participant.ContactNumber FROM Shareholder INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId",
+                        "SELECT Shareholder.ShareholderId, Shareholder.ShareHolderName, EmailBank.Email, Participant.ContactNumber FROM Shareholder INNER JOIN Participant ON Shareholder.ParticipantId = Participant.ParticipantId INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId",
                         con);
                 rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 shareHolderDataGridView.Rows.Clear();
                 while (rdr.Read() == true)
                 {
-                    shareHolderDataGridView.Rows.Add(rdr[0], rdr[1], rdr[2]);
+                    shareHolderDataGridView.Rows.Add(rdr[0], rdr[1], rdr[2], rdr[3]);
                 }
                 con.Close();
             }
@@ -56,9 +58,16 @@ namespace BoardSecretariatSystem.UI
                 this.Dispose();
                 ShareTransferUI frm = new ShareTransferUI();
                 frm.Show();
-                frm.fromNametextBox.Text = dr.Cells[0].Value.ToString();
-                frm.fromEmailtextBox.Text = dr.Cells[1].Value.ToString();
-                frm.fromContacttextBox.Text = dr.Cells[2].Value.ToString();
+
+                frm.shid = Convert.ToInt32(dr.Cells[0].Value.ToString()); 
+                frm.fromNametextBox.Text = dr.Cells[1].Value.ToString();
+                frm.fromEmailtextBox.Text = dr.Cells[2].Value.ToString();
+                frm.fromContacttextBox.Text = dr.Cells[3].Value.ToString();
+                frm.FillstartCertificateNo();
+                frm.FillendCertificateNo();
+                frm.startCertificateNoComboBox.Enabled = true;
+                //frm.endCertificateNoComboBox.Enabled = true;
+
                 //frm.BrandcomboBox.Enabled = true;
                 //frm.txtOProductId.Enabled = false;
                 //frm.txtOSProductName.Enabled = false;

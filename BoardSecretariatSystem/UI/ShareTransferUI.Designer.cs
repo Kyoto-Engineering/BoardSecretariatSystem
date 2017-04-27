@@ -1592,8 +1592,8 @@
         private System.Windows.Forms.TextBox personPostCodeTextBox;
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.Label label64;
-        private System.Windows.Forms.ComboBox endCertificateNoComboBox;
-        private System.Windows.Forms.ComboBox startCertificateNoComboBox;
+        public System.Windows.Forms.ComboBox endCertificateNoComboBox;
+        public System.Windows.Forms.ComboBox startCertificateNoComboBox;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.ComboBox emailComboBox;
         public System.Windows.Forms.TextBox fromNametextBox;
