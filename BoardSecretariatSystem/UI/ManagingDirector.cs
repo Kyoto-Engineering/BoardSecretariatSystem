@@ -167,7 +167,7 @@ namespace BoardSecretariatSystem.UI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                buttonCreate.Focus();
+                buttonCreate_Click(this, new EventArgs());
                 e.Handled = true;
             }
         }

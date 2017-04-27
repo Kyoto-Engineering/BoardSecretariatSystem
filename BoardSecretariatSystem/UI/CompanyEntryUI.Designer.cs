@@ -172,9 +172,9 @@
             this.label1.ForeColor = System.Drawing.Color.Fuchsia;
             this.label1.Location = new System.Drawing.Point(6, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(206, 22);
+            this.label1.Size = new System.Drawing.Size(201, 22);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Company Name            :";
+            this.label1.Text = "Company Name           :";
             // 
             // companyNameTextBox
             // 
@@ -202,9 +202,9 @@
             this.label2.ForeColor = System.Drawing.Color.Blue;
             this.label2.Location = new System.Drawing.Point(6, 163);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(207, 22);
+            this.label2.Size = new System.Drawing.Size(202, 22);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Registration Number    :";
+            this.label2.Text = "Registration Number   :";
             // 
             // saveButton
             // 
@@ -570,6 +570,7 @@
             this.txtValueOfEachShare.TabIndex = 2;
             this.txtValueOfEachShare.TextChanged += new System.EventHandler(this.txtValueOfEachShare_TextChanged);
             this.txtValueOfEachShare.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValueOfEachShare_KeyDown);
+            this.txtValueOfEachShare.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValueOfEachShare_KeyPress);
             // 
             // label3
             // 
@@ -578,9 +579,9 @@
             this.label3.ForeColor = System.Drawing.Color.Blue;
             this.label3.Location = new System.Drawing.Point(6, 58);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(206, 22);
+            this.label3.Size = new System.Drawing.Size(201, 22);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Value of Each Share     :";
+            this.label3.Text = "Value of Each Share    :";
             // 
             // txtTotalIssuedShare
             // 
@@ -598,9 +599,9 @@
             this.label8.ForeColor = System.Drawing.Color.Blue;
             this.label8.Location = new System.Drawing.Point(6, 93);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(207, 22);
+            this.label8.Size = new System.Drawing.Size(202, 22);
             this.label8.TabIndex = 0;
-            this.label8.Text = "Total Issued Share        :";
+            this.label8.Text = "Total Issued Share       :";
             // 
             // txtTotalAuthorizedShare
             // 
@@ -618,9 +619,9 @@
             this.label9.ForeColor = System.Drawing.Color.Blue;
             this.label9.Location = new System.Drawing.Point(6, 128);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(208, 22);
+            this.label9.Size = new System.Drawing.Size(203, 22);
             this.label9.TabIndex = 0;
-            this.label9.Text = "Total Authorized Share :";
+            this.label9.Text = "Total Authorized Share:";
             // 
             // groupBox1
             // 
@@ -969,11 +970,11 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Blue;
-            this.label5.Location = new System.Drawing.Point(6, 194);
+            this.label5.Location = new System.Drawing.Point(6, 199);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(207, 22);
+            this.label5.Size = new System.Drawing.Size(202, 22);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Date of Creation           :";
+            this.label5.Text = "Date of Creation          :";
             // 
             // groupBox3
             // 

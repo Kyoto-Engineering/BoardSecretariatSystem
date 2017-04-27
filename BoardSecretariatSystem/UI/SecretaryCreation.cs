@@ -2034,5 +2034,20 @@ namespace BoardSecretariatSystem.UI
                 e.Handled = true;
             }
         }
+
+        private void label23_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label26_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

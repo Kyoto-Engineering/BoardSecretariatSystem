@@ -79,11 +79,11 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Yellow;
-            this.label2.Location = new System.Drawing.Point(46, 70);
+            this.label2.Location = new System.Drawing.Point(11, 73);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 24);
+            this.label2.Size = new System.Drawing.Size(231, 24);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Board Name :";
+            this.label2.Text = "Board Name                    :";
             // 
             // label1
             // 
@@ -92,9 +92,9 @@
             this.label1.ForeColor = System.Drawing.Color.Yellow;
             this.label1.Location = new System.Drawing.Point(11, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(166, 24);
+            this.label1.Size = new System.Drawing.Size(231, 24);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Company Name :";
+            this.label1.Text = "Company Name              :";
             // 
             // saveButton
             // 
