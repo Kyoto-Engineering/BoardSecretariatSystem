@@ -32,7 +32,7 @@ namespace BoardSecretariatSystem.UI
             thanaIdP,
             postofficeId,
             postofficeIdP,
-            memberTypeId;
+            memberTypeId, certificateRange;
 
         public int affectedRows1,
             affectedRows2,
@@ -81,12 +81,13 @@ namespace BoardSecretariatSystem.UI
             bool x = false;
             con = new SqlConnection(cs.DBConn);
             con.Open();
-            string query = "SELECT CompanyId FROM Company";
+            string query = "SELECT CompanyId, CertificateRange FROM Company";
             cmd = new SqlCommand(query, con);
             rdr = cmd.ExecuteReader();
             if (rdr.Read() && !rdr.IsDBNull(0))
             {
                 companyId = Convert.ToInt32(rdr["CompanyId"]);
+                certificateRange = Convert.ToInt32(rdr["CertificateRange"]);
                 x = true;
             }
             return x;
@@ -134,6 +135,31 @@ namespace BoardSecretariatSystem.UI
                 while (rdr.Read())
                 {
                     cmbPDivision.Items.Add(rdr[0]);
+                }
+                con.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void FillCertificate()
+        {
+            try
+            {
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "SELECT        CertificateNumber FROM Certificate WHERE        (ShareholderId IS NULL) order by CertificateNumber asc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    certificateStartComboBox.Items.Add(rdr[0]);
+                    CertificateEndComboBox.Items.Add(rdr[0]);
                 }
                 con.Close();
 
@@ -320,6 +346,7 @@ namespace BoardSecretariatSystem.UI
             NationalityLoad();
             groupBox6.Hide();
             button1.Location = new Point(871, 570);
+            FillCertificate();
         }
 
         //private void companyNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -2224,10 +2251,49 @@ namespace BoardSecretariatSystem.UI
                 e.Handled = true;
             }
         }
+<<<<<<< HEAD
 
         private void label3_Click(object sender, EventArgs e)
         {
 
         }
+||||||| merged common ancestors
+=======
+
+        private void certificateStartComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (var x in certificateStartComboBox.Items)
+            {
+                if (!CertificateEndComboBox.Items.Contains(x))
+                {
+                    CertificateEndComboBox.Items.Add(x);
+                }
+            }
+            if (CertificateEndComboBox.Items.Contains(certificateStartComboBox.SelectedItem))
+            {
+                CertificateEndComboBox.Items.Remove(certificateStartComboBox.SelectedItem);
+            }
+          
+        }
+
+        private void CertificateEndComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CertificateEndComboBox.SelectedIndex!=-1) 
+            {
+                if (Convert.ToUInt64(CertificateEndComboBox.Text) < Convert.ToUInt64(certificateStartComboBox.Text))
+            {
+                MessageBox.Show(@"You Can not Select Less Than Starting Cerificate");
+                CertificateEndComboBox.SelectedIndex = -1;
+            }
+                else
+                {
+                    Int64 diff = Convert.ToInt64(CertificateEndComboBox.Text) - Convert.ToInt64(certificateStartComboBox.Text);
+
+                    
+                }
+            }
+        }
+
+>>>>>>> 22b1e1603e33afd5e722d2aa2eaabf96afd059ee
     }
 }

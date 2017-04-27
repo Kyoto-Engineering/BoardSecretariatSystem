@@ -68,7 +68,6 @@
             this.cmbEmailAddress = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbPost = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
@@ -99,7 +98,6 @@
             this.unKnownCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txtPBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbPPost = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
@@ -133,6 +131,12 @@
             this.txtShareHolderName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.certificateStartComboBox = new System.Windows.Forms.ComboBox();
+            this.CertificateEndComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.txtBlock = new wmgCMS.WaterMarkTextBox();
+            this.txtPBlock = new wmgCMS.WaterMarkTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -144,6 +148,10 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LimeGreen;
+            this.groupBox1.Controls.Add(this.label28);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.CertificateEndComboBox);
+            this.groupBox1.Controls.Add(this.certificateStartComboBox);
             this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.CountryNamecomboBox);
             this.groupBox1.Controls.Add(this.CountryCodetextBox);
@@ -361,6 +369,7 @@
             this.txtCurrentShareHolding.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCurrentShareHolding.Location = new System.Drawing.Point(306, 124);
             this.txtCurrentShareHolding.Name = "txtCurrentShareHolding";
+            this.txtCurrentShareHolding.ReadOnly = true;
             this.txtCurrentShareHolding.Size = new System.Drawing.Size(214, 29);
             this.txtCurrentShareHolding.TabIndex = 4;
             this.txtCurrentShareHolding.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCurrentShareHolding_KeyDown);
@@ -635,17 +644,6 @@
             this.groupBox4.Size = new System.Drawing.Size(668, 209);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
-            // 
-            // txtBlock
-            // 
-            this.txtBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBlock.Location = new System.Drawing.Point(158, 108);
-            this.txtBlock.Name = "txtBlock";
-            this.txtBlock.Size = new System.Drawing.Size(172, 26);
-            this.txtBlock.TabIndex = 4;
-            this.txtBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtBlock.WaterMarkText = "if Any";
-            this.txtBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBlock_KeyDown);
             // 
             // cmbPost
             // 
@@ -981,17 +979,6 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
             // 
-            // txtPBlock
-            // 
-            this.txtPBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPBlock.Location = new System.Drawing.Point(158, 108);
-            this.txtPBlock.Name = "txtPBlock";
-            this.txtPBlock.Size = new System.Drawing.Size(172, 26);
-            this.txtPBlock.TabIndex = 4;
-            this.txtPBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtPBlock.WaterMarkText = "if Any";
-            this.txtPBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPBlock_KeyDown);
-            // 
             // cmbPPost
             // 
             this.cmbPPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1298,7 +1285,7 @@
             // txtShareHolderName
             // 
             this.txtShareHolderName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtShareHolderName.Location = new System.Drawing.Point(242, 87);
+            this.txtShareHolderName.Location = new System.Drawing.Point(243, 46);
             this.txtShareHolderName.Name = "txtShareHolderName";
             this.txtShareHolderName.Size = new System.Drawing.Size(278, 29);
             this.txtShareHolderName.TabIndex = 3;
@@ -1309,7 +1296,13 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
+<<<<<<< HEAD
             this.label3.Location = new System.Drawing.Point(6, 87);
+||||||| merged common ancestors
+            this.label3.Location = new System.Drawing.Point(42, 90);
+=======
+            this.label3.Location = new System.Drawing.Point(43, 49);
+>>>>>>> 22b1e1603e33afd5e722d2aa2eaabf96afd059ee
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(237, 22);
             this.label3.TabIndex = 52;
@@ -1326,6 +1319,74 @@
             this.label5.Size = new System.Drawing.Size(325, 36);
             this.label5.TabIndex = 0;
             this.label5.Text = "Share Holder Creation";
+            // 
+            // certificateStartComboBox
+            // 
+            this.certificateStartComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.certificateStartComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.certificateStartComboBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.certificateStartComboBox.FormattingEnabled = true;
+            this.certificateStartComboBox.Location = new System.Drawing.Point(260, 84);
+            this.certificateStartComboBox.Name = "certificateStartComboBox";
+            this.certificateStartComboBox.Size = new System.Drawing.Size(92, 30);
+            this.certificateStartComboBox.TabIndex = 147;
+            this.certificateStartComboBox.SelectedIndexChanged += new System.EventHandler(this.certificateStartComboBox_SelectedIndexChanged);
+            // 
+            // CertificateEndComboBox
+            // 
+            this.CertificateEndComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CertificateEndComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CertificateEndComboBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CertificateEndComboBox.FormattingEnabled = true;
+            this.CertificateEndComboBox.Location = new System.Drawing.Point(428, 86);
+            this.CertificateEndComboBox.Name = "CertificateEndComboBox";
+            this.CertificateEndComboBox.Size = new System.Drawing.Size(92, 30);
+            this.CertificateEndComboBox.TabIndex = 148;
+            this.CertificateEndComboBox.SelectedIndexChanged += new System.EventHandler(this.CertificateEndComboBox_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.Location = new System.Drawing.Point(1, 92);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(253, 22);
+            this.label1.TabIndex = 149;
+            this.label1.Text = "Certificate Allowcation From:";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.ForeColor = System.Drawing.Color.Blue;
+            this.label28.Location = new System.Drawing.Point(386, 89);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(36, 22);
+            this.label28.TabIndex = 150;
+            this.label28.Text = "To:";
+            // 
+            // txtBlock
+            // 
+            this.txtBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBlock.Location = new System.Drawing.Point(158, 108);
+            this.txtBlock.Name = "txtBlock";
+            this.txtBlock.Size = new System.Drawing.Size(172, 26);
+            this.txtBlock.TabIndex = 4;
+            this.txtBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtBlock.WaterMarkText = "if Any";
+            this.txtBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBlock_KeyDown);
+            // 
+            // txtPBlock
+            // 
+            this.txtPBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPBlock.Location = new System.Drawing.Point(158, 108);
+            this.txtPBlock.Name = "txtPBlock";
+            this.txtPBlock.Size = new System.Drawing.Size(172, 26);
+            this.txtPBlock.TabIndex = 4;
+            this.txtPBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtPBlock.WaterMarkText = "if Any";
+            this.txtPBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPBlock_KeyDown);
             // 
             // ParticipantCreation
             // 
@@ -1464,5 +1525,9 @@
         private System.Windows.Forms.Label label56;
         private System.Windows.Forms.TextBox StreettextBox;
         private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox CertificateEndComboBox;
+        private System.Windows.Forms.ComboBox certificateStartComboBox;
     }
 }
