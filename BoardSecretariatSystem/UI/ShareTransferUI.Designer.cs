@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-<<<<<<< HEAD
+
             this.label68 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
             this.label66 = new System.Windows.Forms.Label();
@@ -151,10 +151,10 @@
             this.label55 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
-<<<<<<< HEAD
+
             this.btnShareHolderGrid = new System.Windows.Forms.Button();
 
->>>>>>> 72dd21b553b5e74a3a08a483b6188a3509d2a663
+
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -184,7 +184,7 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "From";
             // 
-<<<<<<< HEAD
+
             // label68
             // 
             this.label68.AutoSize = true;
@@ -275,7 +275,7 @@
             // 
 
           
->>>>>>> 72dd21b553b5e74a3a08a483b6188a3509d2a663
+
             // label5
             // 
             this.label5.AutoSize = true;
@@ -304,7 +304,7 @@
             this.totalAmountTextBox.Name = "totalAmountTextBox";
             this.totalAmountTextBox.Size = new System.Drawing.Size(289, 26);
             this.totalAmountTextBox.TabIndex = 122;
-            this.totalAmountTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.totalAmountTextBox_KeyDown);
+            //this.totalAmountTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.totalAmountTextBox_KeyDown);
             // 
             // label3
             // 
@@ -367,7 +367,7 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "To";
             // 
-<<<<<<< HEAD
+
             // emailComboBox
             // 
             this.emailComboBox.FormattingEnabled = true;
@@ -377,7 +377,7 @@
             this.emailComboBox.TabIndex = 213;
             // 
 
->>>>>>> 72dd21b553b5e74a3a08a483b6188a3509d2a663
+
             // personPostComboBox
             // 
             this.personPostComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -386,7 +386,7 @@
             this.personPostComboBox.Name = "personPostComboBox";
             this.personPostComboBox.Size = new System.Drawing.Size(160, 32);
             this.personPostComboBox.TabIndex = 212;
-            this.personPostComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personPostComboBox_KeyDown);
+            //this.personPostComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personPostComboBox_KeyDown);
             // 
             // label19
             // 
@@ -427,7 +427,7 @@
             this.personDivisionComboBox.Name = "personDivisionComboBox";
             this.personDivisionComboBox.Size = new System.Drawing.Size(160, 32);
             this.personDivisionComboBox.TabIndex = 208;
-            this.personDivisionComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personDivisionComboBox_KeyDown);
+            //this.personDivisionComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personDivisionComboBox_KeyDown);
             // 
             // label58
             // 
@@ -478,7 +478,7 @@
             this.personThanaComboBox.Name = "personThanaComboBox";
             this.personThanaComboBox.Size = new System.Drawing.Size(160, 32);
             this.personThanaComboBox.TabIndex = 203;
-            this.personThanaComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personThanaComboBox_KeyDown);
+            //this.personThanaComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personThanaComboBox_KeyDown);
             // 
             // personDistrictComboBox
             // 
@@ -489,7 +489,7 @@
             this.personDistrictComboBox.Name = "personDistrictComboBox";
             this.personDistrictComboBox.Size = new System.Drawing.Size(160, 27);
             this.personDistrictComboBox.TabIndex = 202;
-            this.personDistrictComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personDistrictComboBox_KeyDown);
+            //this.personDistrictComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personDistrictComboBox_KeyDown);
             // 
             // label62
             // 
@@ -510,7 +510,7 @@
             this.personPostCodeTextBox.ReadOnly = true;
             this.personPostCodeTextBox.Size = new System.Drawing.Size(160, 29);
             this.personPostCodeTextBox.TabIndex = 200;
-            this.personPostCodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personPostCodeTextBox_KeyDown);
+            //this.personPostCodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personPostCodeTextBox_KeyDown);
             // 
             // label63
             // 
@@ -541,7 +541,7 @@
             this.genderComboBox.Name = "genderComboBox";
             this.genderComboBox.Size = new System.Drawing.Size(160, 32);
             this.genderComboBox.TabIndex = 151;
-            this.genderComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.genderComboBox_KeyDown);
+            //this.genderComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.genderComboBox_KeyDown);
             // 
             // dateOfBirthTextBox
             // 
@@ -552,7 +552,7 @@
             this.dateOfBirthTextBox.Name = "dateOfBirthTextBox";
             this.dateOfBirthTextBox.Size = new System.Drawing.Size(161, 26);
             this.dateOfBirthTextBox.TabIndex = 150;
-            this.dateOfBirthTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateOfBirthTextBox_KeyDown);
+            //this.dateOfBirthTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateOfBirthTextBox_KeyDown);
             // 
             // nameTextBox
             // 
@@ -560,8 +560,8 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(161, 29);
             this.nameTextBox.TabIndex = 149;
-            this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
-            this.nameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nameTextBox_KeyDown);
+            //this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
+            //this.nameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nameTextBox_KeyDown);
             // 
             // fatherNameTextBox
             // 
@@ -569,7 +569,7 @@
             this.fatherNameTextBox.Name = "fatherNameTextBox";
             this.fatherNameTextBox.Size = new System.Drawing.Size(161, 29);
             this.fatherNameTextBox.TabIndex = 148;
-            this.fatherNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fatherNameTextBox_KeyDown);
+            //this.fatherNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fatherNameTextBox_KeyDown);
             // 
             // tinTextBox
             // 
@@ -577,7 +577,7 @@
             this.tinTextBox.Name = "tinTextBox";
             this.tinTextBox.Size = new System.Drawing.Size(160, 29);
             this.tinTextBox.TabIndex = 146;
-            this.tinTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tinTextBox_KeyDown);
+            //this.tinTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tinTextBox_KeyDown);
             // 
             // birthCertificateNoTextBox
             // 
@@ -585,7 +585,7 @@
             this.birthCertificateNoTextBox.Name = "birthCertificateNoTextBox";
             this.birthCertificateNoTextBox.Size = new System.Drawing.Size(161, 29);
             this.birthCertificateNoTextBox.TabIndex = 145;
-            this.birthCertificateNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.birthCertificateNoTextBox_KeyDown);
+            //this.birthCertificateNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.birthCertificateNoTextBox_KeyDown);
             // 
             // cellNumberTextBox
             // 
@@ -594,9 +594,9 @@
             this.cellNumberTextBox.Name = "cellNumberTextBox";
             this.cellNumberTextBox.Size = new System.Drawing.Size(161, 29);
             this.cellNumberTextBox.TabIndex = 144;
-            this.cellNumberTextBox.TextChanged += new System.EventHandler(this.cellNumberTextBox_TextChanged_1);
-            this.cellNumberTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cellNumberTextBox_KeyDown);
-            this.cellNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cellNumberTextBox_KeyPress);
+            //this.cellNumberTextBox.TextChanged += new System.EventHandler(this.cellNumberTextBox_TextChanged_1);
+            //this.cellNumberTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cellNumberTextBox_KeyDown);
+            //this.cellNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cellNumberTextBox_KeyPress);
             // 
             // passportNoTextBox
             // 
@@ -604,7 +604,7 @@
             this.passportNoTextBox.Name = "passportNoTextBox";
             this.passportNoTextBox.Size = new System.Drawing.Size(161, 29);
             this.passportNoTextBox.TabIndex = 143;
-            this.passportNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passportNoTextBox_KeyDown);
+            //this.passportNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passportNoTextBox_KeyDown);
             // 
             // nationalIdTextBox
             // 
@@ -612,7 +612,7 @@
             this.nationalIdTextBox.Name = "nationalIdTextBox";
             this.nationalIdTextBox.Size = new System.Drawing.Size(161, 29);
             this.nationalIdTextBox.TabIndex = 142;
-            this.nationalIdTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nationalIdTextBox_KeyDown);
+            //this.nationalIdTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nationalIdTextBox_KeyDown);
             // 
             // motherNameTextBox
             // 
@@ -620,7 +620,7 @@
             this.motherNameTextBox.Name = "motherNameTextBox";
             this.motherNameTextBox.Size = new System.Drawing.Size(161, 29);
             this.motherNameTextBox.TabIndex = 140;
-            this.motherNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.motherNameTextBox_KeyDown);
+            //this.motherNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.motherNameTextBox_KeyDown);
             // 
             // label11
             // 
@@ -823,7 +823,7 @@
             this.w1PostComboBox.Name = "w1PostComboBox";
             this.w1PostComboBox.Size = new System.Drawing.Size(160, 28);
             this.w1PostComboBox.TabIndex = 164;
-            this.w1PostComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1PostComboBox_KeyDown);
+            //this.w1PostComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1PostComboBox_KeyDown);
             // 
             // label35
             // 
@@ -864,7 +864,7 @@
             this.w1DivisionComboBox.Name = "w1DivisionComboBox";
             this.w1DivisionComboBox.Size = new System.Drawing.Size(160, 28);
             this.w1DivisionComboBox.TabIndex = 160;
-            this.w1DivisionComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1DivisionComboBox_KeyDown);
+            //this.w1DivisionComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1DivisionComboBox_KeyDown);
             // 
             // label38
             // 
@@ -915,7 +915,7 @@
             this.w1ThanaComboBox.Name = "w1ThanaComboBox";
             this.w1ThanaComboBox.Size = new System.Drawing.Size(160, 28);
             this.w1ThanaComboBox.TabIndex = 155;
-            this.w1ThanaComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1ThanaComboBox_KeyDown);
+            //this.w1ThanaComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1ThanaComboBox_KeyDown);
             // 
             // w1DistrictComboBox
             // 
@@ -926,7 +926,7 @@
             this.w1DistrictComboBox.Name = "w1DistrictComboBox";
             this.w1DistrictComboBox.Size = new System.Drawing.Size(160, 27);
             this.w1DistrictComboBox.TabIndex = 154;
-            this.w1DistrictComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1DistrictComboBox_KeyDown);
+            //this.w1DistrictComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1DistrictComboBox_KeyDown);
             // 
             // label47
             // 
@@ -947,7 +947,7 @@
             this.w1PostCodeTextBox.ReadOnly = true;
             this.w1PostCodeTextBox.Size = new System.Drawing.Size(160, 29);
             this.w1PostCodeTextBox.TabIndex = 152;
-            this.w1PostCodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1PostCodeTextBox_KeyDown);
+            //this.w1PostCodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1PostCodeTextBox_KeyDown);
             // 
             // label49
             // 
@@ -978,8 +978,8 @@
             this.w1ContactNoTextBox.Name = "w1ContactNoTextBox";
             this.w1ContactNoTextBox.Size = new System.Drawing.Size(160, 26);
             this.w1ContactNoTextBox.TabIndex = 149;
-            this.w1ContactNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1ContactNoTextBox_KeyDown);
-            this.w1ContactNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.w1ContactNoTextBox_KeyPress);
+            //this.w1ContactNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1ContactNoTextBox_KeyDown);
+            //this.w1ContactNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.w1ContactNoTextBox_KeyPress);
             // 
             // w1AreaTextBox
             // 
@@ -988,7 +988,7 @@
             this.w1AreaTextBox.Name = "w1AreaTextBox";
             this.w1AreaTextBox.Size = new System.Drawing.Size(138, 26);
             this.w1AreaTextBox.TabIndex = 148;
-            this.w1AreaTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1AreaTextBox_KeyDown);
+            //this.w1AreaTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1AreaTextBox_KeyDown);
             // 
             // w1blockTextBox
             // 
@@ -996,7 +996,7 @@
             this.w1blockTextBox.Name = "w1blockTextBox";
             this.w1blockTextBox.Size = new System.Drawing.Size(138, 26);
             this.w1blockTextBox.TabIndex = 147;
-            this.w1blockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1blockTextBox_KeyDown);
+            //this.w1blockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1blockTextBox_KeyDown);
             // 
             // w1roadNoTextBox
             // 
@@ -1004,7 +1004,7 @@
             this.w1roadNoTextBox.Name = "w1roadNoTextBox";
             this.w1roadNoTextBox.Size = new System.Drawing.Size(138, 26);
             this.w1roadNoTextBox.TabIndex = 146;
-            this.w1roadNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1roadNoTextBox_KeyDown);
+            //this.w1roadNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1roadNoTextBox_KeyDown);
             // 
             // w1houseNoTextBox
             // 
@@ -1012,7 +1012,7 @@
             this.w1houseNoTextBox.Name = "w1houseNoTextBox";
             this.w1houseNoTextBox.Size = new System.Drawing.Size(138, 26);
             this.w1houseNoTextBox.TabIndex = 145;
-            this.w1houseNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1houseNoTextBox_KeyDown);
+            //this.w1houseNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1houseNoTextBox_KeyDown);
             // 
             // w1flatNoTextBox
             // 
@@ -1020,7 +1020,7 @@
             this.w1flatNoTextBox.Name = "w1flatNoTextBox";
             this.w1flatNoTextBox.Size = new System.Drawing.Size(138, 26);
             this.w1flatNoTextBox.TabIndex = 144;
-            this.w1flatNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1flatNoTextBox_KeyDown);
+            //this.w1flatNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1flatNoTextBox_KeyDown);
             // 
             // w1occupationTextBox
             // 
@@ -1028,7 +1028,7 @@
             this.w1occupationTextBox.Name = "w1occupationTextBox";
             this.w1occupationTextBox.Size = new System.Drawing.Size(138, 26);
             this.w1occupationTextBox.TabIndex = 143;
-            this.w1occupationTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1occupationTextBox_KeyDown);
+            //this.w1occupationTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1occupationTextBox_KeyDown);
             // 
             // witness1NameTextBox
             // 
@@ -1036,7 +1036,7 @@
             this.witness1NameTextBox.Name = "witness1NameTextBox";
             this.witness1NameTextBox.Size = new System.Drawing.Size(138, 26);
             this.witness1NameTextBox.TabIndex = 141;
-            this.witness1NameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.witness1NameTextBox_KeyDown);
+            //this.witness1NameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.witness1NameTextBox_KeyDown);
             // 
             // label46
             // 
@@ -1176,7 +1176,7 @@
             this.w2PostOfficeComboBox.Name = "w2PostOfficeComboBox";
             this.w2PostOfficeComboBox.Size = new System.Drawing.Size(160, 32);
             this.w2PostOfficeComboBox.TabIndex = 197;
-            this.w2PostOfficeComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2PostOfficeComboBox_KeyDown);
+            //this.w2PostOfficeComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2PostOfficeComboBox_KeyDown);
             // 
             // label20
             // 
@@ -1217,7 +1217,7 @@
             this.w2DivisionComboBox.Name = "w2DivisionComboBox";
             this.w2DivisionComboBox.Size = new System.Drawing.Size(160, 32);
             this.w2DivisionComboBox.TabIndex = 193;
-            this.w2DivisionComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2DivisionComboBox_KeyDown);
+            //this.w2DivisionComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2DivisionComboBox_KeyDown);
             // 
             // label23
             // 
@@ -1268,7 +1268,7 @@
             this.w2ThanaComboBox.Name = "w2ThanaComboBox";
             this.w2ThanaComboBox.Size = new System.Drawing.Size(160, 32);
             this.w2ThanaComboBox.TabIndex = 188;
-            this.w2ThanaComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2ThanaComboBox_KeyDown);
+            //this.w2ThanaComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2ThanaComboBox_KeyDown);
             // 
             // w2DistrictComboBox
             // 
@@ -1279,7 +1279,7 @@
             this.w2DistrictComboBox.Name = "w2DistrictComboBox";
             this.w2DistrictComboBox.Size = new System.Drawing.Size(160, 27);
             this.w2DistrictComboBox.TabIndex = 187;
-            this.w2DistrictComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2DistrictComboBox_KeyDown);
+            //this.w2DistrictComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2DistrictComboBox_KeyDown);
             // 
             // label29
             // 
@@ -1300,7 +1300,7 @@
             this.w2PostCodeTextBox.ReadOnly = true;
             this.w2PostCodeTextBox.Size = new System.Drawing.Size(160, 29);
             this.w2PostCodeTextBox.TabIndex = 185;
-            this.w2PostCodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2PostCodeTextBox_KeyDown);
+            //this.w2PostCodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2PostCodeTextBox_KeyDown);
             // 
             // label30
             // 
@@ -1331,8 +1331,8 @@
             this.w2ContactNoTextBox.Name = "w2ContactNoTextBox";
             this.w2ContactNoTextBox.Size = new System.Drawing.Size(160, 29);
             this.w2ContactNoTextBox.TabIndex = 182;
-            this.w2ContactNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2ContactNoTextBox_KeyDown);
-            this.w2ContactNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.w2ContactNoTextBox_KeyPress);
+            //this.w2ContactNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2ContactNoTextBox_KeyDown);
+            //this.w2ContactNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.w2ContactNoTextBox_KeyPress);
             // 
             // w2AreaTextBox
             // 
@@ -1341,7 +1341,7 @@
             this.w2AreaTextBox.Name = "w2AreaTextBox";
             this.w2AreaTextBox.Size = new System.Drawing.Size(138, 29);
             this.w2AreaTextBox.TabIndex = 181;
-            this.w2AreaTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2AreaTextBox_KeyDown);
+            //this.w2AreaTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2AreaTextBox_KeyDown);
             // 
             // w2BlockTextBox
             // 
@@ -1349,7 +1349,7 @@
             this.w2BlockTextBox.Name = "w2BlockTextBox";
             this.w2BlockTextBox.Size = new System.Drawing.Size(138, 29);
             this.w2BlockTextBox.TabIndex = 180;
-            this.w2BlockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2BlockTextBox_KeyDown);
+            //this.w2BlockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2BlockTextBox_KeyDown);
             // 
             // w2RoadNoTextBox
             // 
@@ -1357,7 +1357,7 @@
             this.w2RoadNoTextBox.Name = "w2RoadNoTextBox";
             this.w2RoadNoTextBox.Size = new System.Drawing.Size(138, 29);
             this.w2RoadNoTextBox.TabIndex = 179;
-            this.w2RoadNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2RoadNoTextBox_KeyDown);
+            //this.w2RoadNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2RoadNoTextBox_KeyDown);
             // 
             // w2HouseNoTextBox
             // 
@@ -1365,7 +1365,7 @@
             this.w2HouseNoTextBox.Name = "w2HouseNoTextBox";
             this.w2HouseNoTextBox.Size = new System.Drawing.Size(138, 29);
             this.w2HouseNoTextBox.TabIndex = 178;
-            this.w2HouseNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2HouseNoTextBox_KeyDown);
+            //this.w2HouseNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2HouseNoTextBox_KeyDown);
             // 
             // w2FlatNoTextBox
             // 
@@ -1373,7 +1373,7 @@
             this.w2FlatNoTextBox.Name = "w2FlatNoTextBox";
             this.w2FlatNoTextBox.Size = new System.Drawing.Size(138, 29);
             this.w2FlatNoTextBox.TabIndex = 177;
-            this.w2FlatNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2FlatNoTextBox_KeyDown);
+            //this.w2FlatNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2FlatNoTextBox_KeyDown);
             // 
             // w2OccupationTextBox
             // 
@@ -1381,7 +1381,7 @@
             this.w2OccupationTextBox.Name = "w2OccupationTextBox";
             this.w2OccupationTextBox.Size = new System.Drawing.Size(138, 29);
             this.w2OccupationTextBox.TabIndex = 176;
-            this.w2OccupationTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2OccupationTextBox_KeyDown);
+            //this.w2OccupationTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2OccupationTextBox_KeyDown);
             // 
             // witness2NameTextBox
             // 
@@ -1389,7 +1389,7 @@
             this.witness2NameTextBox.Name = "witness2NameTextBox";
             this.witness2NameTextBox.Size = new System.Drawing.Size(138, 29);
             this.witness2NameTextBox.TabIndex = 174;
-            this.witness2NameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.witness2NameTextBox_KeyDown);
+            //this.witness2NameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.witness2NameTextBox_KeyDown);
             // 
             // label32
             // 
@@ -1500,7 +1500,7 @@
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-<<<<<<< HEAD
+
             // 
             // btnShareHolderGrid
             // 
@@ -1513,8 +1513,8 @@
             this.btnShareHolderGrid.UseVisualStyleBackColor = true;
             this.btnShareHolderGrid.Click += new System.EventHandler(this.btnShareHolderGrid_Click);
 
-            this.saveButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.saveButton_KeyDown);
->>>>>>> 72dd21b553b5e74a3a08a483b6188a3509d2a663
+            //this.saveButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.saveButton_KeyDown);
+
             // 
             // ShareTransferUI
             // 
@@ -1531,11 +1531,11 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ShareTransferUI";
             this.Text = "ShareTransferUI";
-<<<<<<< HEAD
+
             this.Load += new System.EventHandler(this.ShareTransferUI_Load);
 
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ShareTransferUI_KeyPress);
->>>>>>> 72dd21b553b5e74a3a08a483b6188a3509d2a663
+            //this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ShareTransferUI_KeyPress);
+
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
