@@ -87,7 +87,7 @@ namespace BoardSecretariatSystem.UI
             if (rdr.Read() && !rdr.IsDBNull(0))
             {
                 companyId = Convert.ToInt32(rdr["CompanyId"]);
-                certificateRange = Convert.ToInt32(rdr["CertificateRange"]);
+                //certificateRange = Convert.ToInt32(rdr["CertificateRange"]);
                 x = true;
             }
             return x;
@@ -2251,14 +2251,13 @@ namespace BoardSecretariatSystem.UI
                 e.Handled = true;
             }
         }
-<<<<<<< HEAD
+
 
         private void label3_Click(object sender, EventArgs e)
         {
 
         }
-||||||| merged common ancestors
-=======
+
 
         private void certificateStartComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2293,7 +2292,5 @@ namespace BoardSecretariatSystem.UI
                 }
             }
         }
-
->>>>>>> 22b1e1603e33afd5e722d2aa2eaabf96afd059ee
     }
 }

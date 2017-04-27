@@ -1296,13 +1296,8 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
-<<<<<<< HEAD
             this.label3.Location = new System.Drawing.Point(6, 87);
-||||||| merged common ancestors
-            this.label3.Location = new System.Drawing.Point(42, 90);
-=======
-            this.label3.Location = new System.Drawing.Point(43, 49);
->>>>>>> 22b1e1603e33afd5e722d2aa2eaabf96afd059ee
+
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(237, 22);
             this.label3.TabIndex = 52;
