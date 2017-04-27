@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,7 +33,7 @@ namespace BoardSecretariatSystem.UI
             thanaIdP,
             postofficeId,
             postofficeIdP,
-            memberTypeId, certificateRange;
+            memberTypeId;
 
         public int affectedRows1,
             affectedRows2,
@@ -45,36 +46,16 @@ namespace BoardSecretariatSystem.UI
             availableIssuedShare,
             availableIssuedShare1,
             genderId,
-            companyId;
+            companyId, diff, certificateRange,start,end;
 
+        private List<int> shares = new List<int>();
+        private List<int> availableShares = new List<int>();
         private bool companyCreated;
 
         public ParticipantCreation()
         {
             InitializeComponent();
         }
-
-        //public void CompanyNameLoad()
-        //{
-        //    try
-        //    {
-        //        con = new SqlConnection(cs.DBConn);
-        //        con.Open();
-        //        string query = "SELECT CompanyName FROM Company ";
-        //        cmd = new SqlCommand(query, con);
-        //        rdr = cmd.ExecuteReader();
-        //        while (rdr.Read())
-        //        {
-        //            companyNameComboBox.Items.Add(rdr[0]);
-        //        }
-        //        con.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-
-        //}
 
         private bool LoadCompany()
         {
@@ -158,8 +139,10 @@ namespace BoardSecretariatSystem.UI
 
                 while (rdr.Read())
                 {
-                    certificateStartComboBox.Items.Add(rdr[0]);
-                    CertificateEndComboBox.Items.Add(rdr[0]);
+                    int cert = Convert.ToInt32(rdr[0]);
+                    certificateStartComboBox.Items.Add(cert);
+                    CertificateEndComboBox.Items.Add(cert);
+                    availableShares.Add(cert);
                 }
                 con.Close();
 
@@ -663,12 +646,35 @@ namespace BoardSecretariatSystem.UI
                 currentPerticipantId = (int) cmd.ExecuteScalar();
                 con.Close();
                 SaveShareHolder();
+                UpdateShareCertificates();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void UpdateShareCertificates()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string qry =
+                    "UPDATE       Certificate SET ShareholderId =@si WHERE        CertificateNumber between @st and @ed";
+                cmd = new SqlCommand(qry, con);
+                cmd.Parameters.AddWithValue("@si", currentShareHolderId);
+                cmd.Parameters.AddWithValue("@st", start);
+                cmd.Parameters.AddWithValue("@ed", end);
+                cmd.ExecuteReader();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void CheckAvailableIssuedShare()
         {
 
@@ -700,16 +706,7 @@ namespace BoardSecretariatSystem.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            con = new SqlConnection(cs.DBConn);
-            con.Open();
-            string qry2 = "SELECT Company.AvailableIssuedShare from  Company";
-            cmd = new SqlCommand(qry2, con);
-            rdr = cmd.ExecuteReader();
-            if (rdr.Read())
-            {
-                availableIssuedShare = (rdr.GetInt32(0));
-            }
-            con.Close();
+            AvailableIssuedShare();
             if (availableIssuedShare == 0)
             {
                 MessageBox.Show("There is no Available Issued Share", "error", MessageBoxButtons.OK,
@@ -889,6 +886,20 @@ namespace BoardSecretariatSystem.UI
             }
         }
     }
+
+        private void AvailableIssuedShare()
+        {
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string qry2 = "SELECT Company.AvailableIssuedShare from  Company";
+            cmd = new SqlCommand(qry2, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                availableIssuedShare = (rdr.GetInt32(0));
+            }
+            con.Close();
+        }
 
         private void boardNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2254,23 +2265,51 @@ namespace BoardSecretariatSystem.UI
 
         private void certificateStartComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (var x in certificateStartComboBox.Items)
+            //foreach (var x in certificateStartComboBox.Items)
+            //{
+            //    if (!CertificateEndComboBox.Items.Contains(x))
+            //    {
+            //        CertificateEndComboBox.Items.Add(x);
+            //    }
+            //}
+            
+            //if ( certificateStartComboBox.SelectedIndex != -1 && certificateStartComboBox.SelectedItem!=CertificateEndComboBox.SelectedItem && CertificateEndComboBox.Items.Contains(certificateStartComboBox.SelectedItem))
+            //{
+            //    CertificateEndComboBox.Items.Remove(certificateStartComboBox.SelectedItem);
+            //}
+            if (CertificateEndComboBox.SelectedIndex != -1 && certificateStartComboBox.SelectedIndex != -1)
             {
-                if (!CertificateEndComboBox.Items.Contains(x))
+                if (Convert.ToUInt64(CertificateEndComboBox.Text) < Convert.ToUInt64(certificateStartComboBox.Text))
                 {
-                    CertificateEndComboBox.Items.Add(x);
+                    MessageBox.Show(@"You Can not Select More Than Ending Cerificate");
+                    certificateStartComboBox.SelectedIndex = -1;
                 }
-            }
-            if (CertificateEndComboBox.Items.Contains(certificateStartComboBox.SelectedItem))
-            {
-                CertificateEndComboBox.Items.Remove(certificateStartComboBox.SelectedItem);
+                else
+                {
+                    start = Convert.ToInt32(certificateStartComboBox.Text);
+                    end = Convert.ToInt32(CertificateEndComboBox.Text);
+                    shares.Clear();
+                    for (int i = start; i <= end; i++)
+                    {
+
+                        shares.Add(i);
+                    }
+
+                    if (ValidateShares())
+                    {
+
+                        diff = end - start + 1;
+                        txtCurrentShareHolding.Text = (diff * certificateRange).ToString();
+                    }
+
+                }
             }
           
         }
 
         private void CertificateEndComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CertificateEndComboBox.SelectedIndex!=-1) 
+            if (CertificateEndComboBox.SelectedIndex!=-1 && certificateStartComboBox.SelectedIndex!=-1) 
             {
                 if (Convert.ToUInt64(CertificateEndComboBox.Text) < Convert.ToUInt64(certificateStartComboBox.Text))
             {
@@ -2279,12 +2318,41 @@ namespace BoardSecretariatSystem.UI
             }
                 else
                 {
-                    Int64 diff = Convert.ToInt64(CertificateEndComboBox.Text) - Convert.ToInt64(certificateStartComboBox.Text);
+                    start = Convert.ToInt32(certificateStartComboBox.Text);
+                    end = Convert.ToInt32(CertificateEndComboBox.Text);
+                    shares.Clear();
+                    for (int i = start; i <= end; i++)
+                    {
+                       
+                       shares.Add(i);
+                    }
 
-                    
+                    if (ValidateShares())
+                    {
+
+                        diff = end - start + 1;
+                        txtCurrentShareHolding.Text = (diff * certificateRange).ToString();
+                    }
+                  
+
                 }
             }
         }
 
+        private bool ValidateShares()
+        {
+            bool validate = true;
+            foreach (int certShare in shares)
+            {
+                if (!availableShares.Contains(certShare))
+                {
+                    validate = false;
+                    MessageBox.Show(@"You Can Not Select Distinct Shares");
+                    CertificateEndComboBox.SelectedIndex = -1;
+                    certificateStartComboBox.SelectedIndex = -1;
+                }
+            }
+            return validate;
+        }
     }
 }
