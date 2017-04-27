@@ -37,6 +37,8 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this.txtAgendaHeader = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,13 +47,11 @@
             this.txtAgendaTitle = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -62,11 +62,11 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Magenta;
-            this.label3.Location = new System.Drawing.Point(27, 68);
+            this.label3.Location = new System.Drawing.Point(11, 68);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(187, 26);
+            this.label3.Size = new System.Drawing.Size(211, 26);
             this.label3.TabIndex = 28;
-            this.label3.Text = "Agenda Header :";
+            this.label3.Text = "Agenda Header     :";
             // 
             // agendaSaveButton
             // 
@@ -139,6 +139,15 @@
             this.columnHeader6.Text = "Agenda Type";
             this.columnHeader6.Width = 213;
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Agenda Type Id";
+            this.columnHeader4.Width = 5;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "AgendaId";
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
@@ -151,6 +160,7 @@
             this.button1.Text = "Add";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            this.button1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.button1_KeyDown);
             // 
             // txtAgendaHeader
             // 
@@ -169,11 +179,11 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Magenta;
-            this.label2.Location = new System.Drawing.Point(43, 159);
+            this.label2.Location = new System.Drawing.Point(11, 158);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(165, 26);
+            this.label2.Size = new System.Drawing.Size(213, 26);
             this.label2.TabIndex = 49;
-            this.label2.Text = "Agenda  Type :";
+            this.label2.Text = "Agenda  Type         :";
             // 
             // cmbAgendaType
             // 
@@ -185,17 +195,18 @@
             this.cmbAgendaType.Size = new System.Drawing.Size(377, 32);
             this.cmbAgendaType.TabIndex = 50;
             this.cmbAgendaType.SelectedIndexChanged += new System.EventHandler(this.cmbAgendaType_SelectedIndexChanged);
+            this.cmbAgendaType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbAgendaType_KeyDown);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Magenta;
-            this.label5.Location = new System.Drawing.Point(52, 113);
+            this.label5.Location = new System.Drawing.Point(11, 112);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(158, 26);
+            this.label5.Size = new System.Drawing.Size(212, 26);
             this.label5.TabIndex = 51;
-            this.label5.Text = "Agenda Title :";
+            this.label5.Text = "Agenda Title          :";
             // 
             // txtAgendaTitle
             // 
@@ -204,6 +215,7 @@
             this.txtAgendaTitle.Name = "txtAgendaTitle";
             this.txtAgendaTitle.Size = new System.Drawing.Size(377, 32);
             this.txtAgendaTitle.TabIndex = 52;
+            this.txtAgendaTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAgendaTitle_KeyDown);
             // 
             // groupBox2
             // 
@@ -226,22 +238,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(523, 373);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(769, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(171, 31);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "Agenda Bank";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Agenda Type Id";
-            this.columnHeader4.Width = 5;
             // 
             // Column1
             // 
@@ -266,9 +262,16 @@
             this.Column4.Name = "Column4";
             this.Column4.Width = 5;
             // 
-            // columnHeader2
+            // label1
             // 
-            this.columnHeader2.Text = "AgendaId";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.Location = new System.Drawing.Point(769, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(171, 31);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "Agenda Bank";
             // 
             // AgendaEntryUI
             // 

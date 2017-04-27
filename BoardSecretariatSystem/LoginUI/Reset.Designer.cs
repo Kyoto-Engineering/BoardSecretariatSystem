@@ -46,7 +46,7 @@
             this.buttonCreate.Location = new System.Drawing.Point(479, 210);
             this.buttonCreate.Name = "buttonCreate";
             this.buttonCreate.Size = new System.Drawing.Size(131, 58);
-            this.buttonCreate.TabIndex = 11;
+            this.buttonCreate.TabIndex = 1;
             this.buttonCreate.Text = "Create";
             this.buttonCreate.UseVisualStyleBackColor = false;
             this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
@@ -60,7 +60,7 @@
             this.groupBox1.Location = new System.Drawing.Point(14, 44);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(649, 149);
-            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // cmbUserName
@@ -70,7 +70,8 @@
             this.cmbUserName.Location = new System.Drawing.Point(285, 28);
             this.cmbUserName.Name = "cmbUserName";
             this.cmbUserName.Size = new System.Drawing.Size(311, 34);
-            this.cmbUserName.TabIndex = 45;
+            this.cmbUserName.TabIndex = 1;
+            this.cmbUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbUserName_KeyDown);
             // 
             // txtPassword
             // 
@@ -78,7 +79,8 @@
             this.txtPassword.Location = new System.Drawing.Point(282, 80);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(314, 32);
-            this.txtPassword.TabIndex = 44;
+            this.txtPassword.TabIndex = 2;
+            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // label1
             // 
@@ -110,7 +112,7 @@
             this.label3.Location = new System.Drawing.Point(256, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(151, 24);
-            this.label3.TabIndex = 12;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Reset Password";
             // 
             // Reset

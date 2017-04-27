@@ -363,5 +363,116 @@ namespace BoardSecretariatSystem.LoginUI
                 }
             }
         }
+
+        private void contactNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char) Keys.Back)))
+                e.Handled = true;
+        }
+
+        private void userNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                passwordTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void passwordTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtUserComboBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtUserComboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                nameTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void nameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                designationTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void designationTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                departmentTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void departmentTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                contactNoTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void contactNoTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbEmailType.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbEmailType_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbEmailAddress.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbEmailAddress_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                userButton_Click(this, new EventArgs());
+                
+            }
+        }
+
+        private void cmbEmailAddress_Validating(object sender, CancelEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(cmbEmailAddress.Text))
+            {
+
+
+                string emailId = cmbEmailAddress.Text.Trim();
+                Regex mRegxExpression;
+                mRegxExpression =
+                    new Regex(
+                        @"^([a-zA-Z0-9_\-])([a-zA-Z0-9_\-\.]*)@(\[((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}|((([a-zA-Z0-9\-]+)\.)+))([a-zA-Z]{2,}|(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\])$");
+                if (!mRegxExpression.IsMatch(emailId))
+                {
+
+                    MessageBox.Show("Please type a valid email Address.", "MojoCRM", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    cmbEmailAddress.SelectedIndex = -1;
+                    cmbEmailAddress.ResetText();
+                    cmbEmailAddress.Focus();
+
+                }
+            }
+        }
     }
 }

@@ -234,5 +234,41 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void txtAgendaHeader_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtAgendaTitle.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtAgendaTitle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbAgendaType.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbAgendaType_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonAdd.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void buttonAdd_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonSave.Focus();
+                e.Handled = true;
+            }
+        }
     }
 }

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtJoiningDate = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtDirectorName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonCreate = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtJoiningDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +50,26 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // txtJoiningDate
+            // 
+            this.txtJoiningDate.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtJoiningDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txtJoiningDate.Location = new System.Drawing.Point(262, 109);
+            this.txtJoiningDate.Name = "txtJoiningDate";
+            this.txtJoiningDate.Size = new System.Drawing.Size(287, 32);
+            this.txtJoiningDate.TabIndex = 44;
+            this.txtJoiningDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtJoiningDate_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(69, 113);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(198, 26);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "Joining Date        :";
+            // 
             // txtDirectorName
             // 
             this.txtDirectorName.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -57,6 +77,7 @@
             this.txtDirectorName.Name = "txtDirectorName";
             this.txtDirectorName.Size = new System.Drawing.Size(287, 32);
             this.txtDirectorName.TabIndex = 42;
+            this.txtDirectorName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDirectorName_KeyDown);
             // 
             // label2
             // 
@@ -64,9 +85,9 @@
             this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(69, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(183, 26);
+            this.label2.Size = new System.Drawing.Size(195, 26);
             this.label2.TabIndex = 41;
-            this.label2.Text = "Derector Name :";
+            this.label2.Text = "Derector Name   :";
             // 
             // label3
             // 
@@ -91,25 +112,7 @@
             this.buttonCreate.Text = "Create";
             this.buttonCreate.UseVisualStyleBackColor = false;
             this.buttonCreate.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(96, 113);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 26);
-            this.label1.TabIndex = 43;
-            this.label1.Text = "Joining Date :";
-            // 
-            // txtJoiningDate
-            // 
-            this.txtJoiningDate.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJoiningDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtJoiningDate.Location = new System.Drawing.Point(262, 109);
-            this.txtJoiningDate.Name = "txtJoiningDate";
-            this.txtJoiningDate.Size = new System.Drawing.Size(287, 32);
-            this.txtJoiningDate.TabIndex = 44;
+            this.buttonCreate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.buttonCreate_KeyDown);
             // 
             // DirectorCreation
             // 

@@ -59,6 +59,7 @@
             this.txtResignationCause.Name = "txtResignationCause";
             this.txtResignationCause.Size = new System.Drawing.Size(410, 39);
             this.txtResignationCause.TabIndex = 19;
+            this.txtResignationCause.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtResignationCause_KeyDown);
             // 
             // label3
             // 
@@ -78,6 +79,7 @@
             this.txtDateOfRetirement.Name = "txtDateOfRetirement";
             this.txtDateOfRetirement.Size = new System.Drawing.Size(410, 39);
             this.txtDateOfRetirement.TabIndex = 17;
+            this.txtDateOfRetirement.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDateOfRetirement_KeyDown);
             // 
             // label2
             // 
@@ -116,6 +118,7 @@
             this.txtManagingDirectorId.Name = "txtManagingDirectorId";
             this.txtManagingDirectorId.Size = new System.Drawing.Size(410, 39);
             this.txtManagingDirectorId.TabIndex = 22;
+            this.txtManagingDirectorId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtManagingDirectorId_KeyDown);
             // 
             // txtManagingDirectorName
             // 
@@ -124,6 +127,7 @@
             this.txtManagingDirectorName.Name = "txtManagingDirectorName";
             this.txtManagingDirectorName.Size = new System.Drawing.Size(410, 39);
             this.txtManagingDirectorName.TabIndex = 23;
+            this.txtManagingDirectorName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtManagingDirectorName_KeyDown);
             // 
             // MDirectorResignation
             // 

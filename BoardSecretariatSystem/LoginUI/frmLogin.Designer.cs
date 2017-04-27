@@ -40,22 +40,22 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Yellow;
-            this.label1.Location = new System.Drawing.Point(89, 61);
+            this.label1.Location = new System.Drawing.Point(73, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 31);
+            this.label1.Size = new System.Drawing.Size(181, 31);
             this.label1.TabIndex = 0;
-            this.label1.Text = "User Name :";
+            this.label1.Text = "User Name    :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Yellow;
-            this.label2.Location = new System.Drawing.Point(103, 108);
+            this.label2.Location = new System.Drawing.Point(73, 107);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 31);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Password :";
+            this.label2.Size = new System.Drawing.Size(178, 31);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Password      :";
             // 
             // userNameTextBox
             // 
@@ -63,7 +63,8 @@
             this.userNameTextBox.Location = new System.Drawing.Point(253, 60);
             this.userNameTextBox.Name = "userNameTextBox";
             this.userNameTextBox.Size = new System.Drawing.Size(282, 32);
-            this.userNameTextBox.TabIndex = 2;
+            this.userNameTextBox.TabIndex = 1;
+            this.userNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userNameTextBox_KeyDown);
             // 
             // passwoardTextBox
             // 
@@ -72,7 +73,8 @@
             this.passwoardTextBox.Name = "passwoardTextBox";
             this.passwoardTextBox.PasswordChar = '*';
             this.passwoardTextBox.Size = new System.Drawing.Size(282, 32);
-            this.passwoardTextBox.TabIndex = 3;
+            this.passwoardTextBox.TabIndex = 2;
+            this.passwoardTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passwoardTextBox_KeyDown);
             // 
             // loginButton
             // 
@@ -82,7 +84,7 @@
             this.loginButton.Location = new System.Drawing.Point(302, 171);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(155, 81);
-            this.loginButton.TabIndex = 4;
+            this.loginButton.TabIndex = 3;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = false;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);

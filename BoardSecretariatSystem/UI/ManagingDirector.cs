@@ -153,5 +153,23 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void txtMDirectorName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtMDJoiningDate.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtMDJoiningDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonCreate_Click(this, new EventArgs());
+                e.Handled = true;
+            }
+        }
     }
 }

@@ -101,5 +101,41 @@ namespace BoardSecretariatSystem.UI
         {
 
         }
+
+        private void txtDateOfRetirement_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                textChairmanId.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void textChairmanId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                textChairmanName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void textChairmanName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtResignationCause.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtResignationCause_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonDone_Click(this, new EventArgs());
+                
+            }
+        }
     }
 }

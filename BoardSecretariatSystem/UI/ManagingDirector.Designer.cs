@@ -82,6 +82,7 @@
             this.txtMDJoiningDate.Name = "txtMDJoiningDate";
             this.txtMDJoiningDate.Size = new System.Drawing.Size(287, 32);
             this.txtMDJoiningDate.TabIndex = 44;
+            this.txtMDJoiningDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMDJoiningDate_KeyDown);
             // 
             // label1
             // 
@@ -100,6 +101,7 @@
             this.txtMDirectorName.Name = "txtMDirectorName";
             this.txtMDirectorName.Size = new System.Drawing.Size(287, 32);
             this.txtMDirectorName.TabIndex = 42;
+            this.txtMDirectorName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMDirectorName_KeyDown);
             // 
             // label2
             // 

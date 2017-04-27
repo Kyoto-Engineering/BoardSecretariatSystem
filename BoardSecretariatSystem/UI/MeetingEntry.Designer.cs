@@ -103,6 +103,7 @@
             this.txtMeetingTitle.ReadOnly = true;
             this.txtMeetingTitle.Size = new System.Drawing.Size(294, 32);
             this.txtMeetingTitle.TabIndex = 65;
+            this.txtMeetingTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMeetingTitle_KeyDown);
             // 
             // txtMeetingNumber
             // 
@@ -114,6 +115,7 @@
             this.txtMeetingNumber.ReadOnly = true;
             this.txtMeetingNumber.Size = new System.Drawing.Size(292, 32);
             this.txtMeetingNumber.TabIndex = 64;
+            this.txtMeetingNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMeetingNumber_KeyDown);
             // 
             // label2
             // 
@@ -228,6 +230,7 @@
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = false;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.addButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.addButton_KeyDown);
             // 
             // groupBox2
             // 

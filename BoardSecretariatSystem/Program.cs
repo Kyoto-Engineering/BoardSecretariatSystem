@@ -22,8 +22,11 @@ namespace BoardSecretariatSystem
             //Application.Run(new MeetingEntry());
             //Application.Run(new SecretaryCreation());
             //Application.Run(new ParticipantCreation2());
+
             //Application.Run(new MailSend());
             Application.Run(new ShareTransferUI());
+
+
         }
     }
 }

@@ -124,5 +124,22 @@ namespace BoardSecretariatSystem
         {
 
         }
+
+        private void userNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                passwoardTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void passwoardTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                loginButton_Click(this, new EventArgs());
+            }
+        }
     }
-}
+    }

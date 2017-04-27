@@ -44,15 +44,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.buttonAdd = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -64,18 +64,19 @@
             this.txtAgendaTitle.Location = new System.Drawing.Point(234, 99);
             this.txtAgendaTitle.Name = "txtAgendaTitle";
             this.txtAgendaTitle.Size = new System.Drawing.Size(377, 32);
-            this.txtAgendaTitle.TabIndex = 59;
+            this.txtAgendaTitle.TabIndex = 2;
+            this.txtAgendaTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAgendaTitle_KeyDown);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Magenta;
-            this.label5.Location = new System.Drawing.Point(66, 101);
+            this.label5.Location = new System.Drawing.Point(12, 101);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(158, 26);
+            this.label5.Size = new System.Drawing.Size(218, 26);
             this.label5.TabIndex = 58;
-            this.label5.Text = "Agenda Title :";
+            this.label5.Text = "Agenda Title           :";
             // 
             // cmbAgendaType
             // 
@@ -85,19 +86,20 @@
             this.cmbAgendaType.Location = new System.Drawing.Point(234, 145);
             this.cmbAgendaType.Name = "cmbAgendaType";
             this.cmbAgendaType.Size = new System.Drawing.Size(377, 32);
-            this.cmbAgendaType.TabIndex = 57;
+            this.cmbAgendaType.TabIndex = 3;
             this.cmbAgendaType.SelectedIndexChanged += new System.EventHandler(this.cmbAgendaType_SelectedIndexChanged);
+            this.cmbAgendaType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbAgendaType_KeyDown);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Magenta;
-            this.label2.Location = new System.Drawing.Point(57, 147);
+            this.label2.Location = new System.Drawing.Point(12, 146);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(165, 26);
+            this.label2.Size = new System.Drawing.Size(219, 26);
             this.label2.TabIndex = 56;
-            this.label2.Text = "Agenda  Type :";
+            this.label2.Text = "Agenda  Type          :";
             // 
             // txtAgendaHeader
             // 
@@ -109,8 +111,9 @@
             this.txtAgendaHeader.Name = "txtAgendaHeader";
             this.txtAgendaHeader.ReadOnly = true;
             this.txtAgendaHeader.Size = new System.Drawing.Size(377, 28);
-            this.txtAgendaHeader.TabIndex = 55;
+            this.txtAgendaHeader.TabIndex = 1;
             this.txtAgendaHeader.TextChanged += new System.EventHandler(this.txtAgendaHeader_TextChanged);
+            this.txtAgendaHeader.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAgendaHeader_KeyDown);
             // 
             // groupBox1
             // 
@@ -170,11 +173,11 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Magenta;
-            this.label3.Location = new System.Drawing.Point(41, 56);
+            this.label3.Location = new System.Drawing.Point(9, 56);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(187, 26);
+            this.label3.Size = new System.Drawing.Size(223, 26);
             this.label3.TabIndex = 53;
-            this.label3.Text = "Agenda Header :";
+            this.label3.Text = "Agenda Header       :";
             // 
             // label1
             // 
@@ -211,56 +214,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
-            // buttonAdd
-            // 
-            this.buttonAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.buttonAdd.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd.ForeColor = System.Drawing.Color.Blue;
-            this.buttonAdd.Location = new System.Drawing.Point(629, 51);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(86, 40);
-            this.buttonAdd.TabIndex = 62;
-            this.buttonAdd.Text = "Add";
-            this.buttonAdd.UseVisualStyleBackColor = false;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Blue;
-            this.button1.Location = new System.Drawing.Point(630, 101);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 43);
-            this.button1.TabIndex = 63;
-            this.button1.Text = "Remove";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.buttonSave.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.ForeColor = System.Drawing.Color.Blue;
-            this.buttonSave.Location = new System.Drawing.Point(849, 391);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(183, 77);
-            this.buttonSave.TabIndex = 64;
-            this.buttonSave.Text = "Update";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(930, 30);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 26);
-            this.label4.TabIndex = 65;
-            this.label4.Text = "Agenda Bank";
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "Agenda Id";
@@ -288,6 +241,57 @@
             // 
             this.Column5.HeaderText = "Agenda Type Id";
             this.Column5.Name = "Column5";
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.buttonAdd.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd.ForeColor = System.Drawing.Color.Blue;
+            this.buttonAdd.Location = new System.Drawing.Point(629, 51);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(86, 40);
+            this.buttonAdd.TabIndex = 4;
+            this.buttonAdd.Text = "Add";
+            this.buttonAdd.UseVisualStyleBackColor = false;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            this.buttonAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.buttonAdd_KeyDown);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Blue;
+            this.button1.Location = new System.Drawing.Point(630, 101);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 43);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Remove";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.buttonSave.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSave.ForeColor = System.Drawing.Color.Blue;
+            this.buttonSave.Location = new System.Drawing.Point(849, 391);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(183, 77);
+            this.buttonSave.TabIndex = 6;
+            this.buttonSave.Text = "Update";
+            this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Blue;
+            this.label4.Location = new System.Drawing.Point(930, 30);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(150, 26);
+            this.label4.TabIndex = 65;
+            this.label4.Text = "Agenda Bank";
             // 
             // AgendaConsole2
             // 

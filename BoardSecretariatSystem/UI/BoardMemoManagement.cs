@@ -177,6 +177,24 @@ namespace BoardSecretariatSystem.UI
             txtAgendaTitle.Text = dr.Cells[1].Value.ToString();
             textWithSpellCheck1.Text = dr.Cells[2].Value.ToString();
         }
+
+        private void txtMeetingName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtAgendaTitle.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtAgendaTitle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                saveButton.Focus();
+                e.Handled = true;
+            }
+        }
         
     }
 }

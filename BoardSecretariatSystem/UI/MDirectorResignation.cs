@@ -99,5 +99,41 @@ namespace BoardSecretariatSystem.UI
             BoardManagementUI frm=new BoardManagementUI();
                         frm.Show();
         }
+
+        private void txtDateOfRetirement_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtManagingDirectorId.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtManagingDirectorId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtManagingDirectorName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtManagingDirectorName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtResignationCause.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtResignationCause_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonDone.Focus();
+                e.Handled = true;
+            }
+        }
     }
 }

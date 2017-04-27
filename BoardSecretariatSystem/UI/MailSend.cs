@@ -20,13 +20,13 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
-        public string userId, hostName,meetingTitle;
+        public string userId, hostName, meetingTitle;
         public int metingTypeId, psId;
         public int meetingNum, meetingId;
         public SqlDataAdapter ada;
         private DataTable dt;
-        public int meetingId22,meetingNo22;
-        public string addHeader, hNo, rNo, area, thana, dist, division,dateValue,timeValue;
+        public int meetingId22, meetingNo22;
+        public string addHeader, hNo, rNo, area, thana, dist, division, dateValue, timeValue;
         public DateTime dateTimeYears;
 
         public MailSend()
@@ -75,9 +75,9 @@ namespace BoardSecretariatSystem.UI
             if (CheckForInternetConnection())
             {
                 NewMailMessage();
-                
+
             }
-            
+
 
         }
 
@@ -132,13 +132,14 @@ namespace BoardSecretariatSystem.UI
             }
 
         }
-       
+
 
         private void SetRecepientMailAddress()
         {
             listView1.View = View.Details;
             con = new SqlConnection(cs.DBConn);
-            string qry ="SELECT  Participant.EmailBankId,EmailBank.Email FROM  Participant INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId  INNER JOIN MeetingParticipant ON Participant.ParticipantId = MeetingParticipant.ParticipantId";
+            string qry =
+                "SELECT  Participant.EmailBankId,EmailBank.Email FROM  Participant INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId  INNER JOIN MeetingParticipant ON Participant.ParticipantId = MeetingParticipant.ParticipantId";
             ada = new SqlDataAdapter(qry, con);
             dt = new DataTable();
             ada.Fill(dt);
@@ -155,7 +156,7 @@ namespace BoardSecretariatSystem.UI
 
         private void GetBody()
         {
-            MeetingConsole3 frm55=new MeetingConsole3();
+            MeetingConsole3 frm55 = new MeetingConsole3();
             con = new SqlConnection(cs.DBConn);
             con.Open();
             string query = "Select MeetingDate From Meeting where Meeting.MeetingId='" + meetingId22 + "' ";
@@ -170,7 +171,9 @@ namespace BoardSecretariatSystem.UI
             timeValue = dateTimeYears.ToString("HH:mm");
             con = new SqlConnection(cs.DBConn);
             con.Open();
-            string query2 = "SELECT  AddressHeader.AHeaderName, CompanyAddresses.HouseNo, CompanyAddresses.RoadNo, CompanyAddresses.Area, Thanas.Thana, Districts.District, Divisions.Division,CompanyAddresses.PostOfficeId FROM   Meeting INNER JOIN AddressHeader ON Meeting.AHeaderId = AddressHeader.AHeaderId INNER JOIN CompanyAddresses ON AddressHeader.AHeaderId = CompanyAddresses.AHeaderId INNER JOIN PostOffice ON CompanyAddresses.PostOfficeId = PostOffice.PostOfficeId INNER JOIN Thanas ON PostOffice.T_ID = Thanas.T_ID INNER JOIN  Districts ON Thanas.D_ID = Districts.D_ID INNER JOIN  Divisions ON Districts.Division_ID = Divisions.Division_ID where Meeting.MeetingId='" + meetingId22 + "' ";
+            string query2 =
+                "SELECT  AddressHeader.AHeaderName, CompanyAddresses.HouseNo, CompanyAddresses.RoadNo, CompanyAddresses.Area, Thanas.Thana, Districts.District, Divisions.Division,CompanyAddresses.PostOfficeId FROM   Meeting INNER JOIN AddressHeader ON Meeting.AHeaderId = AddressHeader.AHeaderId INNER JOIN CompanyAddresses ON AddressHeader.AHeaderId = CompanyAddresses.AHeaderId INNER JOIN PostOffice ON CompanyAddresses.PostOfficeId = PostOffice.PostOfficeId INNER JOIN Thanas ON PostOffice.T_ID = Thanas.T_ID INNER JOIN  Districts ON Thanas.D_ID = Districts.D_ID INNER JOIN  Divisions ON Districts.Division_ID = Divisions.Division_ID where Meeting.MeetingId='" +
+                meetingId22 + "' ";
             cmd = new SqlCommand(query2, con);
             rdr = cmd.ExecuteReader();
             if (rdr.Read())
@@ -185,25 +188,28 @@ namespace BoardSecretariatSystem.UI
                 psId = (rdr.GetInt32(7));
             }
 
-            txtBody.Text = "Notice is hereby given to you that the "+meetingTitle+" of the Company will be held on "+dateValue+" at "+timeValue+" am in "+addHeader+",House-"+hNo+",Road-"+rNo+", "+area+", "+thana+","+division+":"+psId+" ";
+            txtBody.Text = "Notice is hereby given to you that the " + meetingTitle + " of the Company will be held on " +
+                           dateValue + " at " + timeValue + " am in " + addHeader + ",House-" + hNo + ",Road-" + rNo +
+                           ", " + area + ", " + thana + "," + division + ":" + psId + " ";
 
         }
+
         public static string Ordinal(int number)
         {
             string suffix = String.Empty;
-            if (number == 11 || number == 12 || number == 13 || number % 100 == 11 || number % 100 == 12 || number % 100 == 13)
+            if (number == 11 || number == 12 || number == 13 || number%100 == 11 || number%100 == 12 || number%100 == 13)
             {
                 suffix = "th";
             }
-            else if (number == 1 || number % 10 == 1)
+            else if (number == 1 || number%10 == 1)
             {
                 suffix = "st";
             }
-            else if (number == 2 || number % 10 == 2)
+            else if (number == 2 || number%10 == 2)
             {
                 suffix = "nd";
             }
-            else if (number == 3 || number % 10 == 3)
+            else if (number == 3 || number%10 == 3)
             {
                 suffix = "rd";
             }
@@ -213,6 +219,7 @@ namespace BoardSecretariatSystem.UI
             }
             return String.Format("{0}{1}", number, suffix);
         }
+
         private void GetMeetingTitle()
         {
             try
@@ -228,12 +235,13 @@ namespace BoardSecretariatSystem.UI
                     {
                         meetingId = (rdr.GetInt32(0));
                         meetingNum = (rdr.GetInt32(1));
-                        meetingTitle = Ordinal(meetingNum) + " Board Meeting";                
+                        meetingTitle = Ordinal(meetingNum) + " Board Meeting";
                         txtSubject.Text = "Notice for" + Ordinal(meetingNum) + " Board Meeting";
                     }
                     else
                     {
-                        MessageBox.Show("Please Create  or Shedule a meeting First.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Please Create  or Shedule a meeting First.", "error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                         return;
 
                     }
@@ -243,10 +251,11 @@ namespace BoardSecretariatSystem.UI
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }      
+        }
+
         private void MailSend_Load(object sender, EventArgs e)
         {
-           
+
             GetMailHost();
             GetMeetingTitle();
             //GetMeetingNumber();
@@ -263,10 +272,11 @@ namespace BoardSecretariatSystem.UI
 
         private void cmbDomainHostName_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
             if (cmbDomainHostName.Text == "Not In The List")
             {
-                string input = Microsoft.VisualBasic.Interaction.InputBox("Please Input Mail Host Name  Here", "Input Here", "", -1, -1);
+                string input = Microsoft.VisualBasic.Interaction.InputBox("Please Input Mail Host Name  Here",
+                    "Input Here", "", -1, -1);
                 if (string.IsNullOrWhiteSpace(input))
                 {
                     cmbDomainHostName.SelectedIndex = -1;
@@ -274,7 +284,7 @@ namespace BoardSecretariatSystem.UI
 
                 else
                 {
-                    
+
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
                     string ct2 = "select HostName from MailHost where HostName='" + input + "'";
@@ -282,7 +292,8 @@ namespace BoardSecretariatSystem.UI
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read() && !rdr.IsDBNull(0))
                     {
-                        MessageBox.Show("This Email  Already Exists,Please Select From List", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("This Email  Already Exists,Please Select From List", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                         con.Close();
                         cmbDomainHostName.SelectedIndex = -1;
                     }
@@ -292,9 +303,10 @@ namespace BoardSecretariatSystem.UI
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
-                            string query1 = "insert into MailHost (HostName) values (@d1)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                            string query1 = "insert into MailHost (HostName) values (@d1)" +
+                                            "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query1, con);
-                            cmd.Parameters.AddWithValue("@d1", input);                           
+                            cmd.Parameters.AddWithValue("@d1", input);
                             cmd.ExecuteNonQuery();
                             con.Close();
                             cmbDomainHostName.Items.Clear();
@@ -310,65 +322,66 @@ namespace BoardSecretariatSystem.UI
             }
             else
             {
-               
-                    if (cmbDomainHostName.Text == "Yandex")
-                    {
-                        hostName = "smtp.yandex.com";
-                    }
-                    if (cmbDomainHostName.Text == "Gmail")
-                    {
-                        hostName = "smtp.gmail.com";
-                    }
-                    if (cmbDomainHostName.Text == "Yahoo")
-                    {
-                        hostName = "smtp.yahoo.com";
-                    }
-                    if (cmbDomainHostName.Text == "Zoho")
-                    {
-                        hostName = "smtp.zoho.com";
-                    }
-                    if (cmbDomainHostName.Text == "Outlook")
-                    {
-                        hostName = "smtp.outlook .com";
-                    }
-                    if (cmbDomainHostName.Text == "ProtonMail")
-                    {
-                        hostName = "smtp.protonmail.com";
-                    }
-                    if (cmbDomainHostName.Text == "AIM")
-                    {
-                        hostName = "smtp.i.aol.com";
-                    }
-                    if (cmbDomainHostName.Text == "icloud")
-                    {
-                        hostName = "smtp.iCloud.com";
-                    }
 
-                
-            }  
+                if (cmbDomainHostName.Text == "Yandex")
+                {
+                    hostName = "smtp.yandex.com";
+                }
+                if (cmbDomainHostName.Text == "Gmail")
+                {
+                    hostName = "smtp.gmail.com";
+                }
+                if (cmbDomainHostName.Text == "Yahoo")
+                {
+                    hostName = "smtp.yahoo.com";
+                }
+                if (cmbDomainHostName.Text == "Zoho")
+                {
+                    hostName = "smtp.zoho.com";
+                }
+                if (cmbDomainHostName.Text == "Outlook")
+                {
+                    hostName = "smtp.outlook .com";
+                }
+                if (cmbDomainHostName.Text == "ProtonMail")
+                {
+                    hostName = "smtp.protonmail.com";
+                }
+                if (cmbDomainHostName.Text == "AIM")
+                {
+                    hostName = "smtp.i.aol.com";
+                }
+                if (cmbDomainHostName.Text == "icloud")
+                {
+                    hostName = "smtp.iCloud.com";
+                }
+
+
+            }
         }
 
         private void UpdateMeeting()
         {
-             try
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query = "UPDATE Meeting SET InvitationSend =1 where MeetingId=@mid";
+                cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@mid", meetingId);
+                cmd.ExecuteNonQuery();
+                if (con.State == ConnectionState.Open)
                 {
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    string query = "UPDATE Meeting SET InvitationSend =1 where MeetingId=@mid";
-                    cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@mid", meetingId);
-                    cmd.ExecuteNonQuery();
-                    if (con.State == ConnectionState.Open)
-                    {
-                        con.Close();
-                    }
-                    MessageBox.Show(@"All Attendance Given Successfully",@"Success",MessageBoxButtons.OK);
+                    con.Close();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show(@"All Attendance Given Successfully", @"Success", MessageBoxButtons.OK);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
         public static bool CheckForInternetConnection()
         {
             try
@@ -381,14 +394,68 @@ namespace BoardSecretariatSystem.UI
                     }
                 }
             }
-            catch 
+            catch
             {
-                MessageBox.Show(@"There Is  No Internet Connectivity Now." + "\n" + @"Please Try Later", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"There Is  No Internet Connectivity Now." + "\n" + @"Please Try Later", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
-        
+
+        private void txtFrom_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbDomainHostName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbDomainHostName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPassword.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtSubject.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtSubject_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtBody.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtBody_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                listView1.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void listView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                sendButton_Click(this, new EventArgs());
+            }
+
+        }
     }
+
+
 }
-
-

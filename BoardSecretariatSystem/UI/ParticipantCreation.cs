@@ -32,7 +32,7 @@ namespace BoardSecretariatSystem.UI
             thanaIdP,
             postofficeId,
             postofficeIdP,
-            memberTypeId;
+            memberTypeId, certificateRange;
 
         public int affectedRows1,
             affectedRows2,
@@ -81,12 +81,13 @@ namespace BoardSecretariatSystem.UI
             bool x = false;
             con = new SqlConnection(cs.DBConn);
             con.Open();
-            string query = "SELECT CompanyId FROM Company";
+            string query = "SELECT CompanyId, CertificateRange FROM Company";
             cmd = new SqlCommand(query, con);
             rdr = cmd.ExecuteReader();
             if (rdr.Read() && !rdr.IsDBNull(0))
             {
                 companyId = Convert.ToInt32(rdr["CompanyId"]);
+                //certificateRange = Convert.ToInt32(rdr["CertificateRange"]);
                 x = true;
             }
             return x;
@@ -134,6 +135,31 @@ namespace BoardSecretariatSystem.UI
                 while (rdr.Read())
                 {
                     cmbPDivision.Items.Add(rdr[0]);
+                }
+                con.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void FillCertificate()
+        {
+            try
+            {
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct = "SELECT        CertificateNumber FROM Certificate WHERE        (ShareholderId IS NULL) order by CertificateNumber asc";
+                cmd = new SqlCommand(ct);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    certificateStartComboBox.Items.Add(rdr[0]);
+                    CertificateEndComboBox.Items.Add(rdr[0]);
                 }
                 con.Close();
 
@@ -320,6 +346,7 @@ namespace BoardSecretariatSystem.UI
             NationalityLoad();
             groupBox6.Hide();
             button1.Location = new Point(871, 570);
+            FillCertificate();
         }
 
         //private void companyNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1829,6 +1856,440 @@ namespace BoardSecretariatSystem.UI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CountryNamecomboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CountryCodetextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void CountryCodetextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtShareHolderName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtShareHolderName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtCurrentShareHolding.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtCurrentShareHolding_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtFatherName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtFatherName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtMotherName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtMotherName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtDateOfBirth.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtDateOfBirth_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtProfession.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtProfession_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtCellNumber.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtCellNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbNationality.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbNationality_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtNationalId.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtNationalId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtBirthCertificateNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtBirthCertificateNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPassportNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPassportNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtTINNumber.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtTINNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbEmailAddress.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbEmailAddress_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbGender.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbGender_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPFlatName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbEmailAddress_Validating(object sender, CancelEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(cmbEmailAddress.Text))
+            {
+
+
+                string emailId = cmbEmailAddress.Text.Trim();
+                Regex mRegxExpression;
+                mRegxExpression =
+                    new Regex(
+                        @"^([a-zA-Z0-9_\-])([a-zA-Z0-9_\-\.]*)@(\[((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}|((([a-zA-Z0-9\-]+)\.)+))([a-zA-Z]{2,}|(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\])$");
+                if (!mRegxExpression.IsMatch(emailId))
+                {
+
+                    MessageBox.Show("Please type a valid email Address.", "MojoCRM", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    cmbEmailAddress.SelectedIndex = -1;
+                    cmbEmailAddress.ResetText();
+                    cmbEmailAddress.Focus();
+
+                }
+            }
+        }
+
+        private void txtPFlatName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPHouseName.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPHouseName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPRoadNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPRoadNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPBlock.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPBlock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPArea.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPContactNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPContactNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbPDivision.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbPDivision_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbPDistrict.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbPDistrict_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbThana.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbPThana_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbPPost.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbPPost_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPPostCode.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPPostCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtFlatNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtFlatNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtHouseNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtHouseNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtRoadNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtRoadNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtBlock.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtBlock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtArea.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtContactNo.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtContactNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbDivision.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbDivision_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbDistrict.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbDistrict_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbThana.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbThana_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbPost.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void cmbPost_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPostCode.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void txtPostCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                StreettextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void StreettextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                StatetextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void StatetextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                PostalCodetextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void PostalCodetextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                button1.Focus();
+                e.Handled = true;
+            }
+        }
+
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void certificateStartComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (var x in certificateStartComboBox.Items)
+            {
+                if (!CertificateEndComboBox.Items.Contains(x))
+                {
+                    CertificateEndComboBox.Items.Add(x);
+                }
+            }
+            if (CertificateEndComboBox.Items.Contains(certificateStartComboBox.SelectedItem))
+            {
+                CertificateEndComboBox.Items.Remove(certificateStartComboBox.SelectedItem);
+            }
+          
+        }
+
+        private void CertificateEndComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CertificateEndComboBox.SelectedIndex!=-1) 
+            {
+                if (Convert.ToUInt64(CertificateEndComboBox.Text) < Convert.ToUInt64(certificateStartComboBox.Text))
+            {
+                MessageBox.Show(@"You Can not Select Less Than Starting Cerificate");
+                CertificateEndComboBox.SelectedIndex = -1;
+            }
+                else
+                {
+                    Int64 diff = Convert.ToInt64(CertificateEndComboBox.Text) - Convert.ToInt64(certificateStartComboBox.Text);
+
+                    
+                }
             }
         }
     }
