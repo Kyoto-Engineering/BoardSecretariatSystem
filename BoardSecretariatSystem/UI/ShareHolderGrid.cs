@@ -63,10 +63,13 @@ namespace BoardSecretariatSystem.UI
                 frm.fromNametextBox.Text = dr.Cells[1].Value.ToString();
                 frm.fromEmailtextBox.Text = dr.Cells[2].Value.ToString();
                 frm.fromContacttextBox.Text = dr.Cells[3].Value.ToString();
-                frm.FillstartCertificateNo();
-                frm.FillendCertificateNo();
-                frm.startCertificateNoComboBox.Enabled = true;
-                //frm.endCertificateNoComboBox.Enabled = true;
+                frm.groupBox1.Enabled = true;
+                frm.groupBox2.Enabled = true;
+                frm.FillCertificateNo();               
+                //frm.startCertificateNoComboBox.Enabled = true;
+                frm.FillCountry();
+                frm.CountryNamecomboBox.SelectedItem = "Bangladesh";
+                frm.endCertificateNoComboBox.Enabled = false;
 
                 //frm.BrandcomboBox.Enabled = true;
                 //frm.txtOProductId.Enabled = false;

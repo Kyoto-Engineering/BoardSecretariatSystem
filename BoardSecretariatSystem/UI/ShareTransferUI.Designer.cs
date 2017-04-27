@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-
             this.label68 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
             this.label66 = new System.Windows.Forms.Label();
@@ -39,12 +38,13 @@
             this.startCertificateNoComboBox = new System.Windows.Forms.ComboBox();
             this.fromNametextBox = new System.Windows.Forms.TextBox();
             this.label65 = new System.Windows.Forms.Label();
-
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.totalAmountTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.CountryNamecomboBox = new System.Windows.Forms.ComboBox();
+            this.label69 = new System.Windows.Forms.Label();
             this.emailComboBox = new System.Windows.Forms.ComboBox();
             this.personPostComboBox = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -149,12 +149,10 @@
             this.label43 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
-
             this.btnShareHolderGrid = new System.Windows.Forms.Button();
-
-
+            this.label12 = new System.Windows.Forms.Label();
+            this.CountryCodetextBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -177,20 +175,19 @@
             this.groupBox1.Controls.Add(this.totalAmountTextBox);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 39);
+            this.groupBox1.Location = new System.Drawing.Point(8, 61);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(461, 339);
+            this.groupBox1.Size = new System.Drawing.Size(383, 295);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "From";
             // 
-
             // label68
             // 
             this.label68.AutoSize = true;
             this.label68.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label68.ForeColor = System.Drawing.Color.Blue;
-            this.label68.Location = new System.Drawing.Point(8, 133);
+            this.label68.Location = new System.Drawing.Point(7, 133);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(156, 22);
             this.label68.TabIndex = 208;
@@ -201,7 +198,7 @@
             this.label67.AutoSize = true;
             this.label67.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label67.ForeColor = System.Drawing.Color.Blue;
-            this.label67.Location = new System.Drawing.Point(95, 85);
+            this.label67.Location = new System.Drawing.Point(8, 73);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(68, 22);
             this.label67.TabIndex = 207;
@@ -212,7 +209,7 @@
             this.label66.AutoSize = true;
             this.label66.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label66.ForeColor = System.Drawing.Color.Blue;
-            this.label66.Location = new System.Drawing.Point(93, 35);
+            this.label66.Location = new System.Drawing.Point(6, 23);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(68, 22);
             this.label66.TabIndex = 206;
@@ -220,17 +217,17 @@
             // 
             // fromContacttextBox
             // 
-            this.fromContacttextBox.Location = new System.Drawing.Point(168, 130);
+            this.fromContacttextBox.Location = new System.Drawing.Point(165, 130);
             this.fromContacttextBox.Name = "fromContacttextBox";
             this.fromContacttextBox.ReadOnly = true;
-            this.fromContacttextBox.Size = new System.Drawing.Size(284, 26);
+            this.fromContacttextBox.Size = new System.Drawing.Size(195, 26);
             this.fromContacttextBox.TabIndex = 125;
             // 
             // endCertificateNoComboBox
             // 
             this.endCertificateNoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.endCertificateNoComboBox.FormattingEnabled = true;
-            this.endCertificateNoComboBox.Location = new System.Drawing.Point(351, 257);
+            this.endCertificateNoComboBox.Location = new System.Drawing.Point(261, 244);
             this.endCertificateNoComboBox.Name = "endCertificateNoComboBox";
             this.endCertificateNoComboBox.Size = new System.Drawing.Size(101, 28);
             this.endCertificateNoComboBox.TabIndex = 205;
@@ -238,7 +235,7 @@
             // 
             // fromEmailtextBox
             // 
-            this.fromEmailtextBox.Location = new System.Drawing.Point(166, 82);
+            this.fromEmailtextBox.Location = new System.Drawing.Point(77, 70);
             this.fromEmailtextBox.Name = "fromEmailtextBox";
             this.fromEmailtextBox.ReadOnly = true;
             this.fromEmailtextBox.Size = new System.Drawing.Size(286, 26);
@@ -248,7 +245,7 @@
             // 
             this.startCertificateNoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.startCertificateNoComboBox.FormattingEnabled = true;
-            this.startCertificateNoComboBox.Location = new System.Drawing.Point(202, 259);
+            this.startCertificateNoComboBox.Location = new System.Drawing.Point(112, 246);
             this.startCertificateNoComboBox.Name = "startCertificateNoComboBox";
             this.startCertificateNoComboBox.Size = new System.Drawing.Size(101, 28);
             this.startCertificateNoComboBox.TabIndex = 204;
@@ -256,7 +253,7 @@
             // 
             // fromNametextBox
             // 
-            this.fromNametextBox.Location = new System.Drawing.Point(166, 35);
+            this.fromNametextBox.Location = new System.Drawing.Point(77, 23);
             this.fromNametextBox.Name = "fromNametextBox";
             this.fromNametextBox.ReadOnly = true;
             this.fromNametextBox.Size = new System.Drawing.Size(286, 26);
@@ -267,21 +264,18 @@
             this.label65.AutoSize = true;
             this.label65.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label65.ForeColor = System.Drawing.Color.Blue;
-            this.label65.Location = new System.Drawing.Point(319, 261);
+            this.label65.Location = new System.Drawing.Point(229, 248);
             this.label65.Name = "label65";
             this.label65.Size = new System.Drawing.Size(26, 22);
             this.label65.TabIndex = 127;
             this.label65.Text = "to";
             // 
-
-          
-
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Blue;
-            this.label5.Location = new System.Drawing.Point(147, 261);
+            this.label5.Location = new System.Drawing.Point(57, 248);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 22);
             this.label5.TabIndex = 125;
@@ -292,7 +286,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(11, 231);
+            this.label4.Location = new System.Drawing.Point(11, 214);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(178, 22);
             this.label4.TabIndex = 123;
@@ -300,18 +294,17 @@
             // 
             // totalAmountTextBox
             // 
-            this.totalAmountTextBox.Location = new System.Drawing.Point(166, 179);
+            this.totalAmountTextBox.Location = new System.Drawing.Point(164, 179);
             this.totalAmountTextBox.Name = "totalAmountTextBox";
-            this.totalAmountTextBox.Size = new System.Drawing.Size(289, 26);
+            this.totalAmountTextBox.Size = new System.Drawing.Size(199, 26);
             this.totalAmountTextBox.TabIndex = 122;
-            //this.totalAmountTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.totalAmountTextBox_KeyDown);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(32, 181);
+            this.label3.Location = new System.Drawing.Point(7, 181);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(130, 22);
             this.label3.TabIndex = 121;
@@ -319,6 +312,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.CountryCodetextBox);
+            this.groupBox2.Controls.Add(this.CountryNamecomboBox);
+            this.groupBox2.Controls.Add(this.label69);
             this.groupBox2.Controls.Add(this.emailComboBox);
             this.groupBox2.Controls.Add(this.personPostComboBox);
             this.groupBox2.Controls.Add(this.label19);
@@ -360,39 +356,58 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(484, 39);
+            this.groupBox2.Location = new System.Drawing.Point(412, 44);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(707, 339);
+            this.groupBox2.Size = new System.Drawing.Size(779, 346);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "To";
             // 
-
+            // CountryNamecomboBox
+            // 
+            this.CountryNamecomboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CountryNamecomboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CountryNamecomboBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountryNamecomboBox.FormattingEnabled = true;
+            this.CountryNamecomboBox.Location = new System.Drawing.Point(149, 17);
+            this.CountryNamecomboBox.Name = "CountryNamecomboBox";
+            this.CountryNamecomboBox.Size = new System.Drawing.Size(293, 30);
+            this.CountryNamecomboBox.TabIndex = 214;
+            this.CountryNamecomboBox.SelectedIndexChanged += new System.EventHandler(this.CountryNamecomboBox_SelectedIndexChanged);
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.ForeColor = System.Drawing.Color.Blue;
+            this.label69.Location = new System.Drawing.Point(7, 24);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(140, 22);
+            this.label69.TabIndex = 215;
+            this.label69.Text = "Country Name :";
+            // 
             // emailComboBox
             // 
             this.emailComboBox.FormattingEnabled = true;
-            this.emailComboBox.Location = new System.Drawing.Point(494, 57);
+            this.emailComboBox.Location = new System.Drawing.Point(608, 53);
             this.emailComboBox.Name = "emailComboBox";
             this.emailComboBox.Size = new System.Drawing.Size(160, 32);
             this.emailComboBox.TabIndex = 213;
             // 
-
-
             // personPostComboBox
             // 
             this.personPostComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.personPostComboBox.FormattingEnabled = true;
-            this.personPostComboBox.Location = new System.Drawing.Point(495, 247);
+            this.personPostComboBox.Location = new System.Drawing.Point(609, 245);
             this.personPostComboBox.Name = "personPostComboBox";
             this.personPostComboBox.Size = new System.Drawing.Size(160, 32);
             this.personPostComboBox.TabIndex = 212;
-            //this.personPostComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personPostComboBox_KeyDown);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.ForeColor = System.Drawing.Color.Red;
-            this.label19.Location = new System.Drawing.Point(471, 250);
+            this.label19.Location = new System.Drawing.Point(585, 248);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(18, 24);
             this.label19.TabIndex = 211;
@@ -403,7 +418,7 @@
             this.label56.AutoSize = true;
             this.label56.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label56.ForeColor = System.Drawing.Color.Blue;
-            this.label56.Location = new System.Drawing.Point(375, 248);
+            this.label56.Location = new System.Drawing.Point(489, 246);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(99, 19);
             this.label56.TabIndex = 210;
@@ -413,7 +428,7 @@
             // 
             this.label57.AutoSize = true;
             this.label57.ForeColor = System.Drawing.Color.Red;
-            this.label57.Location = new System.Drawing.Point(471, 143);
+            this.label57.Location = new System.Drawing.Point(585, 139);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(18, 24);
             this.label57.TabIndex = 209;
@@ -423,18 +438,17 @@
             // 
             this.personDivisionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.personDivisionComboBox.FormattingEnabled = true;
-            this.personDivisionComboBox.Location = new System.Drawing.Point(495, 135);
+            this.personDivisionComboBox.Location = new System.Drawing.Point(609, 131);
             this.personDivisionComboBox.Name = "personDivisionComboBox";
             this.personDivisionComboBox.Size = new System.Drawing.Size(160, 32);
             this.personDivisionComboBox.TabIndex = 208;
-            //this.personDivisionComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personDivisionComboBox_KeyDown);
             // 
             // label58
             // 
             this.label58.AutoSize = true;
             this.label58.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label58.ForeColor = System.Drawing.Color.Blue;
-            this.label58.Location = new System.Drawing.Point(375, 142);
+            this.label58.Location = new System.Drawing.Point(489, 138);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(101, 19);
             this.label58.TabIndex = 207;
@@ -444,7 +458,7 @@
             // 
             this.label59.AutoSize = true;
             this.label59.ForeColor = System.Drawing.Color.Red;
-            this.label59.Location = new System.Drawing.Point(471, 287);
+            this.label59.Location = new System.Drawing.Point(585, 286);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(18, 24);
             this.label59.TabIndex = 206;
@@ -454,7 +468,7 @@
             // 
             this.label60.AutoSize = true;
             this.label60.ForeColor = System.Drawing.Color.Red;
-            this.label60.Location = new System.Drawing.Point(470, 179);
+            this.label60.Location = new System.Drawing.Point(584, 176);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(18, 24);
             this.label60.TabIndex = 205;
@@ -464,7 +478,7 @@
             // 
             this.label61.AutoSize = true;
             this.label61.ForeColor = System.Drawing.Color.Red;
-            this.label61.Location = new System.Drawing.Point(471, 211);
+            this.label61.Location = new System.Drawing.Point(585, 209);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(18, 24);
             this.label61.TabIndex = 204;
@@ -474,29 +488,27 @@
             // 
             this.personThanaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.personThanaComboBox.FormattingEnabled = true;
-            this.personThanaComboBox.Location = new System.Drawing.Point(495, 208);
+            this.personThanaComboBox.Location = new System.Drawing.Point(609, 206);
             this.personThanaComboBox.Name = "personThanaComboBox";
             this.personThanaComboBox.Size = new System.Drawing.Size(160, 32);
             this.personThanaComboBox.TabIndex = 203;
-            //this.personThanaComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personThanaComboBox_KeyDown);
             // 
             // personDistrictComboBox
             // 
             this.personDistrictComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.personDistrictComboBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.personDistrictComboBox.FormattingEnabled = true;
-            this.personDistrictComboBox.Location = new System.Drawing.Point(495, 174);
+            this.personDistrictComboBox.Location = new System.Drawing.Point(609, 171);
             this.personDistrictComboBox.Name = "personDistrictComboBox";
             this.personDistrictComboBox.Size = new System.Drawing.Size(160, 27);
             this.personDistrictComboBox.TabIndex = 202;
-            //this.personDistrictComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personDistrictComboBox_KeyDown);
             // 
             // label62
             // 
             this.label62.AutoSize = true;
             this.label62.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label62.ForeColor = System.Drawing.Color.Blue;
-            this.label62.Location = new System.Drawing.Point(375, 177);
+            this.label62.Location = new System.Drawing.Point(489, 174);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(100, 19);
             this.label62.TabIndex = 201;
@@ -505,19 +517,18 @@
             // personPostCodeTextBox
             // 
             this.personPostCodeTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.personPostCodeTextBox.Location = new System.Drawing.Point(495, 286);
+            this.personPostCodeTextBox.Location = new System.Drawing.Point(609, 285);
             this.personPostCodeTextBox.Name = "personPostCodeTextBox";
             this.personPostCodeTextBox.ReadOnly = true;
             this.personPostCodeTextBox.Size = new System.Drawing.Size(160, 29);
             this.personPostCodeTextBox.TabIndex = 200;
-            //this.personPostCodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personPostCodeTextBox_KeyDown);
             // 
             // label63
             // 
             this.label63.AutoSize = true;
             this.label63.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label63.ForeColor = System.Drawing.Color.Blue;
-            this.label63.Location = new System.Drawing.Point(375, 286);
+            this.label63.Location = new System.Drawing.Point(489, 285);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(102, 19);
             this.label63.TabIndex = 199;
@@ -528,7 +539,7 @@
             this.label64.AutoSize = true;
             this.label64.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label64.ForeColor = System.Drawing.Color.Blue;
-            this.label64.Location = new System.Drawing.Point(375, 215);
+            this.label64.Location = new System.Drawing.Point(489, 213);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(100, 19);
             this.label64.TabIndex = 198;
@@ -537,97 +548,84 @@
             // genderComboBox
             // 
             this.genderComboBox.FormattingEnabled = true;
-            this.genderComboBox.Location = new System.Drawing.Point(494, 96);
+            this.genderComboBox.Location = new System.Drawing.Point(608, 92);
             this.genderComboBox.Name = "genderComboBox";
             this.genderComboBox.Size = new System.Drawing.Size(160, 32);
             this.genderComboBox.TabIndex = 151;
-            //this.genderComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.genderComboBox_KeyDown);
             // 
             // dateOfBirthTextBox
             // 
             this.dateOfBirthTextBox.CustomFormat = "dd/MM/yyyy";
             this.dateOfBirthTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateOfBirthTextBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateOfBirthTextBox.Location = new System.Drawing.Point(197, 140);
+            this.dateOfBirthTextBox.Location = new System.Drawing.Point(201, 159);
             this.dateOfBirthTextBox.Name = "dateOfBirthTextBox";
-            this.dateOfBirthTextBox.Size = new System.Drawing.Size(161, 26);
+            this.dateOfBirthTextBox.Size = new System.Drawing.Size(211, 26);
             this.dateOfBirthTextBox.TabIndex = 150;
-            //this.dateOfBirthTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateOfBirthTextBox_KeyDown);
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(197, 28);
+            this.nameTextBox.Location = new System.Drawing.Point(201, 51);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(161, 29);
+            this.nameTextBox.Size = new System.Drawing.Size(211, 29);
             this.nameTextBox.TabIndex = 149;
-            //this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
-            //this.nameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nameTextBox_KeyDown);
             // 
             // fatherNameTextBox
             // 
-            this.fatherNameTextBox.Location = new System.Drawing.Point(197, 64);
+            this.fatherNameTextBox.Location = new System.Drawing.Point(201, 86);
             this.fatherNameTextBox.Name = "fatherNameTextBox";
-            this.fatherNameTextBox.Size = new System.Drawing.Size(161, 29);
+            this.fatherNameTextBox.Size = new System.Drawing.Size(211, 29);
             this.fatherNameTextBox.TabIndex = 148;
-            //this.fatherNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fatherNameTextBox_KeyDown);
             // 
             // tinTextBox
             // 
-            this.tinTextBox.Location = new System.Drawing.Point(494, 24);
+            this.tinTextBox.Location = new System.Drawing.Point(608, 18);
             this.tinTextBox.Name = "tinTextBox";
             this.tinTextBox.Size = new System.Drawing.Size(160, 29);
             this.tinTextBox.TabIndex = 146;
-            //this.tinTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tinTextBox_KeyDown);
             // 
             // birthCertificateNoTextBox
             // 
-            this.birthCertificateNoTextBox.Location = new System.Drawing.Point(197, 244);
+            this.birthCertificateNoTextBox.Location = new System.Drawing.Point(201, 267);
             this.birthCertificateNoTextBox.Name = "birthCertificateNoTextBox";
-            this.birthCertificateNoTextBox.Size = new System.Drawing.Size(161, 29);
+            this.birthCertificateNoTextBox.Size = new System.Drawing.Size(211, 29);
             this.birthCertificateNoTextBox.TabIndex = 145;
-            //this.birthCertificateNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.birthCertificateNoTextBox_KeyDown);
             // 
             // cellNumberTextBox
             // 
-            this.cellNumberTextBox.Location = new System.Drawing.Point(197, 172);
+            this.cellNumberTextBox.Location = new System.Drawing.Point(202, 194);
             this.cellNumberTextBox.MaxLength = 11;
             this.cellNumberTextBox.Name = "cellNumberTextBox";
-            this.cellNumberTextBox.Size = new System.Drawing.Size(161, 29);
+            this.cellNumberTextBox.Size = new System.Drawing.Size(211, 29);
             this.cellNumberTextBox.TabIndex = 144;
-            //this.cellNumberTextBox.TextChanged += new System.EventHandler(this.cellNumberTextBox_TextChanged_1);
-            //this.cellNumberTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cellNumberTextBox_KeyDown);
-            //this.cellNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cellNumberTextBox_KeyPress);
             // 
             // passportNoTextBox
             // 
-            this.passportNoTextBox.Location = new System.Drawing.Point(197, 280);
+            this.passportNoTextBox.Location = new System.Drawing.Point(201, 304);
             this.passportNoTextBox.Name = "passportNoTextBox";
-            this.passportNoTextBox.Size = new System.Drawing.Size(161, 29);
+            this.passportNoTextBox.Size = new System.Drawing.Size(211, 29);
             this.passportNoTextBox.TabIndex = 143;
-            //this.passportNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passportNoTextBox_KeyDown);
             // 
             // nationalIdTextBox
             // 
-            this.nationalIdTextBox.Location = new System.Drawing.Point(197, 208);
+            this.nationalIdTextBox.Location = new System.Drawing.Point(201, 229);
             this.nationalIdTextBox.Name = "nationalIdTextBox";
-            this.nationalIdTextBox.Size = new System.Drawing.Size(161, 29);
+            this.nationalIdTextBox.Size = new System.Drawing.Size(211, 29);
             this.nationalIdTextBox.TabIndex = 142;
-            //this.nationalIdTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nationalIdTextBox_KeyDown);
             // 
             // motherNameTextBox
             // 
-            this.motherNameTextBox.Location = new System.Drawing.Point(197, 100);
+            this.motherNameTextBox.Location = new System.Drawing.Point(201, 123);
             this.motherNameTextBox.Name = "motherNameTextBox";
-            this.motherNameTextBox.Size = new System.Drawing.Size(161, 29);
+            this.motherNameTextBox.Size = new System.Drawing.Size(211, 29);
             this.motherNameTextBox.TabIndex = 140;
-            //this.motherNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.motherNameTextBox_KeyDown);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Blue;
-            this.label11.Location = new System.Drawing.Point(375, 101);
+            this.label11.Location = new System.Drawing.Point(489, 97);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(101, 22);
             this.label11.TabIndex = 139;
@@ -648,18 +646,18 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Blue;
-            this.label10.Location = new System.Drawing.Point(9, 176);
+            this.label10.Location = new System.Drawing.Point(12, 195);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(194, 22);
+            this.label10.Size = new System.Drawing.Size(124, 22);
             this.label10.TabIndex = 136;
-            this.label10.Text = "Cell Number               :";
+            this.label10.Text = "Cell Number :";
             // 
             // label25
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.Blue;
-            this.label25.Location = new System.Drawing.Point(375, 28);
+            this.label25.Location = new System.Drawing.Point(489, 22);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(99, 22);
             this.label25.TabIndex = 135;
@@ -670,62 +668,62 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Blue;
-            this.label16.Location = new System.Drawing.Point(9, 285);
+            this.label16.Location = new System.Drawing.Point(69, 306);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(191, 22);
+            this.label16.Size = new System.Drawing.Size(121, 22);
             this.label16.TabIndex = 134;
-            this.label16.Text = "Passport No               :";
+            this.label16.Text = "Passport No :";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Blue;
-            this.label15.Location = new System.Drawing.Point(9, 249);
+            this.label15.Location = new System.Drawing.Point(4, 267);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(191, 22);
+            this.label15.Size = new System.Drawing.Size(186, 22);
             this.label15.TabIndex = 133;
-            this.label15.Text = "Birth Certicicate No  :";
+            this.label15.Text = "Birth Certicicate No :";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Blue;
-            this.label14.Location = new System.Drawing.Point(9, 210);
+            this.label14.Location = new System.Drawing.Point(78, 229);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(192, 22);
+            this.label14.Size = new System.Drawing.Size(112, 22);
             this.label14.TabIndex = 132;
-            this.label14.Text = "National Id                 :";
+            this.label14.Text = "National Id :";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Blue;
-            this.label13.Location = new System.Drawing.Point(9, 140);
+            this.label13.Location = new System.Drawing.Point(57, 161);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(192, 22);
+            this.label13.Size = new System.Drawing.Size(132, 22);
             this.label13.TabIndex = 130;
-            this.label13.Text = "Date Of Birth             :";
+            this.label13.Text = "Date Of Birth :";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Blue;
-            this.label9.Location = new System.Drawing.Point(9, 105);
+            this.label9.Location = new System.Drawing.Point(51, 126);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(194, 22);
+            this.label9.Size = new System.Drawing.Size(139, 22);
             this.label9.TabIndex = 128;
-            this.label9.Text = "Mother  Name            :";
+            this.label9.Text = "Mother  Name :";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Blue;
-            this.label7.Location = new System.Drawing.Point(408, 297);
+            this.label7.Location = new System.Drawing.Point(522, 296);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(0, 22);
             this.label7.TabIndex = 127;
@@ -735,7 +733,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Blue;
-            this.label8.Location = new System.Drawing.Point(375, 62);
+            this.label8.Location = new System.Drawing.Point(489, 58);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(98, 22);
             this.label8.TabIndex = 126;
@@ -756,22 +754,22 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(9, 31);
+            this.label1.Location = new System.Drawing.Point(117, 56);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(193, 22);
+            this.label1.Size = new System.Drawing.Size(73, 22);
             this.label1.TabIndex = 120;
-            this.label1.Text = " Name                         :";
+            this.label1.Text = " Name :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Blue;
-            this.label2.Location = new System.Drawing.Point(9, 67);
+            this.label2.Location = new System.Drawing.Point(57, 91);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(193, 22);
+            this.label2.Size = new System.Drawing.Size(133, 22);
             this.label2.TabIndex = 119;
-            this.label2.Text = "Father  Name             :";
+            this.label2.Text = "Father  Name :";
             // 
             // groupBox3
             // 
@@ -823,7 +821,6 @@
             this.w1PostComboBox.Name = "w1PostComboBox";
             this.w1PostComboBox.Size = new System.Drawing.Size(160, 28);
             this.w1PostComboBox.TabIndex = 164;
-            //this.w1PostComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1PostComboBox_KeyDown);
             // 
             // label35
             // 
@@ -864,7 +861,6 @@
             this.w1DivisionComboBox.Name = "w1DivisionComboBox";
             this.w1DivisionComboBox.Size = new System.Drawing.Size(160, 28);
             this.w1DivisionComboBox.TabIndex = 160;
-            //this.w1DivisionComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1DivisionComboBox_KeyDown);
             // 
             // label38
             // 
@@ -915,7 +911,6 @@
             this.w1ThanaComboBox.Name = "w1ThanaComboBox";
             this.w1ThanaComboBox.Size = new System.Drawing.Size(160, 28);
             this.w1ThanaComboBox.TabIndex = 155;
-            //this.w1ThanaComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1ThanaComboBox_KeyDown);
             // 
             // w1DistrictComboBox
             // 
@@ -926,7 +921,6 @@
             this.w1DistrictComboBox.Name = "w1DistrictComboBox";
             this.w1DistrictComboBox.Size = new System.Drawing.Size(160, 27);
             this.w1DistrictComboBox.TabIndex = 154;
-            //this.w1DistrictComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1DistrictComboBox_KeyDown);
             // 
             // label47
             // 
@@ -947,7 +941,6 @@
             this.w1PostCodeTextBox.ReadOnly = true;
             this.w1PostCodeTextBox.Size = new System.Drawing.Size(160, 29);
             this.w1PostCodeTextBox.TabIndex = 152;
-            //this.w1PostCodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1PostCodeTextBox_KeyDown);
             // 
             // label49
             // 
@@ -978,8 +971,6 @@
             this.w1ContactNoTextBox.Name = "w1ContactNoTextBox";
             this.w1ContactNoTextBox.Size = new System.Drawing.Size(160, 26);
             this.w1ContactNoTextBox.TabIndex = 149;
-            //this.w1ContactNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1ContactNoTextBox_KeyDown);
-            //this.w1ContactNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.w1ContactNoTextBox_KeyPress);
             // 
             // w1AreaTextBox
             // 
@@ -988,7 +979,6 @@
             this.w1AreaTextBox.Name = "w1AreaTextBox";
             this.w1AreaTextBox.Size = new System.Drawing.Size(138, 26);
             this.w1AreaTextBox.TabIndex = 148;
-            //this.w1AreaTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1AreaTextBox_KeyDown);
             // 
             // w1blockTextBox
             // 
@@ -996,7 +986,6 @@
             this.w1blockTextBox.Name = "w1blockTextBox";
             this.w1blockTextBox.Size = new System.Drawing.Size(138, 26);
             this.w1blockTextBox.TabIndex = 147;
-            //this.w1blockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1blockTextBox_KeyDown);
             // 
             // w1roadNoTextBox
             // 
@@ -1004,7 +993,6 @@
             this.w1roadNoTextBox.Name = "w1roadNoTextBox";
             this.w1roadNoTextBox.Size = new System.Drawing.Size(138, 26);
             this.w1roadNoTextBox.TabIndex = 146;
-            //this.w1roadNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1roadNoTextBox_KeyDown);
             // 
             // w1houseNoTextBox
             // 
@@ -1012,7 +1000,6 @@
             this.w1houseNoTextBox.Name = "w1houseNoTextBox";
             this.w1houseNoTextBox.Size = new System.Drawing.Size(138, 26);
             this.w1houseNoTextBox.TabIndex = 145;
-            //this.w1houseNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1houseNoTextBox_KeyDown);
             // 
             // w1flatNoTextBox
             // 
@@ -1020,7 +1007,6 @@
             this.w1flatNoTextBox.Name = "w1flatNoTextBox";
             this.w1flatNoTextBox.Size = new System.Drawing.Size(138, 26);
             this.w1flatNoTextBox.TabIndex = 144;
-            //this.w1flatNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1flatNoTextBox_KeyDown);
             // 
             // w1occupationTextBox
             // 
@@ -1028,7 +1014,6 @@
             this.w1occupationTextBox.Name = "w1occupationTextBox";
             this.w1occupationTextBox.Size = new System.Drawing.Size(138, 26);
             this.w1occupationTextBox.TabIndex = 143;
-            //this.w1occupationTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w1occupationTextBox_KeyDown);
             // 
             // witness1NameTextBox
             // 
@@ -1036,7 +1021,6 @@
             this.witness1NameTextBox.Name = "witness1NameTextBox";
             this.witness1NameTextBox.Size = new System.Drawing.Size(138, 26);
             this.witness1NameTextBox.TabIndex = 141;
-            //this.witness1NameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.witness1NameTextBox_KeyDown);
             // 
             // label46
             // 
@@ -1176,7 +1160,6 @@
             this.w2PostOfficeComboBox.Name = "w2PostOfficeComboBox";
             this.w2PostOfficeComboBox.Size = new System.Drawing.Size(160, 32);
             this.w2PostOfficeComboBox.TabIndex = 197;
-            //this.w2PostOfficeComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2PostOfficeComboBox_KeyDown);
             // 
             // label20
             // 
@@ -1217,7 +1200,6 @@
             this.w2DivisionComboBox.Name = "w2DivisionComboBox";
             this.w2DivisionComboBox.Size = new System.Drawing.Size(160, 32);
             this.w2DivisionComboBox.TabIndex = 193;
-            //this.w2DivisionComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2DivisionComboBox_KeyDown);
             // 
             // label23
             // 
@@ -1268,7 +1250,6 @@
             this.w2ThanaComboBox.Name = "w2ThanaComboBox";
             this.w2ThanaComboBox.Size = new System.Drawing.Size(160, 32);
             this.w2ThanaComboBox.TabIndex = 188;
-            //this.w2ThanaComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2ThanaComboBox_KeyDown);
             // 
             // w2DistrictComboBox
             // 
@@ -1279,7 +1260,6 @@
             this.w2DistrictComboBox.Name = "w2DistrictComboBox";
             this.w2DistrictComboBox.Size = new System.Drawing.Size(160, 27);
             this.w2DistrictComboBox.TabIndex = 187;
-            //this.w2DistrictComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2DistrictComboBox_KeyDown);
             // 
             // label29
             // 
@@ -1300,7 +1280,6 @@
             this.w2PostCodeTextBox.ReadOnly = true;
             this.w2PostCodeTextBox.Size = new System.Drawing.Size(160, 29);
             this.w2PostCodeTextBox.TabIndex = 185;
-            //this.w2PostCodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2PostCodeTextBox_KeyDown);
             // 
             // label30
             // 
@@ -1331,8 +1310,6 @@
             this.w2ContactNoTextBox.Name = "w2ContactNoTextBox";
             this.w2ContactNoTextBox.Size = new System.Drawing.Size(160, 29);
             this.w2ContactNoTextBox.TabIndex = 182;
-            //this.w2ContactNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2ContactNoTextBox_KeyDown);
-            //this.w2ContactNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.w2ContactNoTextBox_KeyPress);
             // 
             // w2AreaTextBox
             // 
@@ -1341,7 +1318,6 @@
             this.w2AreaTextBox.Name = "w2AreaTextBox";
             this.w2AreaTextBox.Size = new System.Drawing.Size(138, 29);
             this.w2AreaTextBox.TabIndex = 181;
-            //this.w2AreaTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2AreaTextBox_KeyDown);
             // 
             // w2BlockTextBox
             // 
@@ -1349,7 +1325,6 @@
             this.w2BlockTextBox.Name = "w2BlockTextBox";
             this.w2BlockTextBox.Size = new System.Drawing.Size(138, 29);
             this.w2BlockTextBox.TabIndex = 180;
-            //this.w2BlockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2BlockTextBox_KeyDown);
             // 
             // w2RoadNoTextBox
             // 
@@ -1357,7 +1332,6 @@
             this.w2RoadNoTextBox.Name = "w2RoadNoTextBox";
             this.w2RoadNoTextBox.Size = new System.Drawing.Size(138, 29);
             this.w2RoadNoTextBox.TabIndex = 179;
-            //this.w2RoadNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2RoadNoTextBox_KeyDown);
             // 
             // w2HouseNoTextBox
             // 
@@ -1365,7 +1339,6 @@
             this.w2HouseNoTextBox.Name = "w2HouseNoTextBox";
             this.w2HouseNoTextBox.Size = new System.Drawing.Size(138, 29);
             this.w2HouseNoTextBox.TabIndex = 178;
-            //this.w2HouseNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2HouseNoTextBox_KeyDown);
             // 
             // w2FlatNoTextBox
             // 
@@ -1373,7 +1346,6 @@
             this.w2FlatNoTextBox.Name = "w2FlatNoTextBox";
             this.w2FlatNoTextBox.Size = new System.Drawing.Size(138, 29);
             this.w2FlatNoTextBox.TabIndex = 177;
-            //this.w2FlatNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2FlatNoTextBox_KeyDown);
             // 
             // w2OccupationTextBox
             // 
@@ -1381,7 +1353,6 @@
             this.w2OccupationTextBox.Name = "w2OccupationTextBox";
             this.w2OccupationTextBox.Size = new System.Drawing.Size(138, 29);
             this.w2OccupationTextBox.TabIndex = 176;
-            //this.w2OccupationTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.w2OccupationTextBox_KeyDown);
             // 
             // witness2NameTextBox
             // 
@@ -1389,7 +1360,6 @@
             this.witness2NameTextBox.Name = "witness2NameTextBox";
             this.witness2NameTextBox.Size = new System.Drawing.Size(138, 29);
             this.witness2NameTextBox.TabIndex = 174;
-            //this.witness2NameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.witness2NameTextBox_KeyDown);
             // 
             // label32
             // 
@@ -1479,16 +1449,6 @@
             this.label55.TabIndex = 166;
             this.label55.Text = "Witness Name        :";
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(479, -2);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(169, 25);
-            this.label12.TabIndex = 4;
-            this.label12.Text = "Share Transfer";
-            // 
             // saveButton
             // 
             this.saveButton.BackColor = System.Drawing.Color.Aquamarine;
@@ -1500,21 +1460,36 @@
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-
             // 
             // btnShareHolderGrid
             // 
             this.btnShareHolderGrid.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShareHolderGrid.Location = new System.Drawing.Point(178, 2);
+            this.btnShareHolderGrid.Location = new System.Drawing.Point(88, 8);
             this.btnShareHolderGrid.Name = "btnShareHolderGrid";
-            this.btnShareHolderGrid.Size = new System.Drawing.Size(89, 31);
+            this.btnShareHolderGrid.Size = new System.Drawing.Size(133, 46);
             this.btnShareHolderGrid.TabIndex = 6;
-            this.btnShareHolderGrid.Text = ">>";
+            this.btnShareHolderGrid.Text = "Select Share Holder";
             this.btnShareHolderGrid.UseVisualStyleBackColor = true;
             this.btnShareHolderGrid.Click += new System.EventHandler(this.btnShareHolderGrid_Click);
-
-            //this.saveButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.saveButton_KeyDown);
-
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(479, -2);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(169, 25);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Share Transfer";
+            // 
+            // CountryCodetextBox
+            // 
+            this.CountryCodetextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountryCodetextBox.Location = new System.Drawing.Point(142, 194);
+            this.CountryCodetextBox.Name = "CountryCodetextBox";
+            this.CountryCodetextBox.ReadOnly = true;
+            this.CountryCodetextBox.Size = new System.Drawing.Size(57, 29);
+            this.CountryCodetextBox.TabIndex = 216;
             // 
             // ShareTransferUI
             // 
@@ -1531,11 +1506,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ShareTransferUI";
             this.Text = "ShareTransferUI";
-
             this.Load += new System.EventHandler(this.ShareTransferUI_Load);
-
-            //this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ShareTransferUI_KeyPress);
-
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1551,8 +1522,8 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label11;
@@ -1645,7 +1616,6 @@
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.ComboBox personPostComboBox;
         private System.Windows.Forms.Label label19;
@@ -1673,5 +1643,9 @@
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.Button btnShareHolderGrid;
+        public System.Windows.Forms.ComboBox CountryNamecomboBox;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox CountryCodetextBox;
     }
 }

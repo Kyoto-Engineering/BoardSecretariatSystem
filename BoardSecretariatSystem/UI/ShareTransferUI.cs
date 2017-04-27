@@ -19,7 +19,7 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         ConnectionString cs = new ConnectionString();
-        public string startCertificateid, endCertificateid;
+        public string startCertificateid, endCertificateid, countryid;
         public int shid;
 
         public ShareTransferUI()
@@ -32,56 +32,17 @@ namespace BoardSecretariatSystem.UI
 
         }
 
-
         private void ShareTransferUI_Load(object sender, EventArgs e)
         {
-            startCertificateNoComboBox.Enabled = false;
-            endCertificateNoComboBox.Enabled = false;
+            groupBox1.Enabled = false;
+            groupBox2.Enabled = false;
+            
+            //startCertificateNoComboBox.Enabled = false;
+           //endCertificateNoComboBox.Enabled = false;
+
         }
 
-        public void FillstartCertificateNo()
-        {
-            try
-            {
-
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "SELECT CertificateNumber FROM Certificate where ShareholderId='"+shid+"'";
-                
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-
-                while (rdr.Read())
-                {
-                    startCertificateNoComboBox.Items.Add(rdr[0]);
-                }
-                //    con = new SqlConnection(cs.DBConn);
-                //    con.Open();
-                //    string ctt = "select RTRIM(CountryId) from Countries  where  Countries.CountryName='" +
-                //                 CountrycomboBox.Text + "' ";
-                //    cmd = new SqlCommand(ctt);
-                //    cmd.Connection = con;
-                //    rdr = cmd.ExecuteReader();
-
-                //    if (rdr.Read())
-                //    {
-                //        countryid = (rdr.GetString(0));
-                //        //countryid = rdr.GetInt32(0);
-
-                //    }
-
-                //    //CountrycomboBox.Items.Add("Not In The List");
-                //    con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        public void FillendCertificateNo()
+        public void FillCertificateNo()
         {
             try
             {
@@ -89,12 +50,14 @@ namespace BoardSecretariatSystem.UI
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 string ct = "SELECT CertificateNumber FROM Certificate where ShareholderId='" + shid + "'";
+
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
 
                 while (rdr.Read())
                 {
+                    startCertificateNoComboBox.Items.Add(rdr[0]);
                     endCertificateNoComboBox.Items.Add(rdr[0]);
                 }
 
@@ -105,13 +68,54 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
+        public void FillCountry()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctx = "select RTRIM(Countries.CountryName) from Countries  order by Countries.CountryId";
+                cmd = new SqlCommand(ctx);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    CountryNamecomboBox.Items.Add(rdr[0]);
+                }
+
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctt = "select RTRIM(CountryId) from Countries  where  Countries.CountryName='" +
+                             CountryNamecomboBox.Text + "' ";
+                cmd = new SqlCommand(ctt);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+
+                if (rdr.Read())
+                {
+                    countryid = (rdr.GetString(0));
+
+
+                }
+
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+
 
         private void cellNumberTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
-      
+
 
         private void cellNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -119,7 +123,7 @@ namespace BoardSecretariatSystem.UI
                 e.Handled = true;
         }
 
-        
+
 
         private void w1ContactNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -143,80 +147,127 @@ namespace BoardSecretariatSystem.UI
         private void startCertificateNoComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             endCertificateNoComboBox.Enabled = true;
-            //int x = startCertificateNoComboBox.SelectedIndex;
-            //int y = endCertificateNoComboBox.SelectedIndex;
-            //if (x > y)
-            //{
-            //    startCertificateNoComboBox.SelectedIndex = -1;
-             
-            //}
-            //else
-            //{
-
-
-                try
+            foreach (var x in startCertificateNoComboBox.Items)
+            {
+                if (!endCertificateNoComboBox.Items.Contains(x))
                 {
-
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    string ct = "select RTRIM(CertificateId) from Certificate  where  Certificate.CertificateNumber='" +
-                                startCertificateNoComboBox.Text + "' ";
-                    cmd = new SqlCommand(ct);
-                    cmd.Connection = con;
-                    rdr = cmd.ExecuteReader();
-
-                    if (rdr.Read())
-                    {
-                        startCertificateid = (rdr.GetString(0));
-
-                    }
-                    con.Close();
+                    endCertificateNoComboBox.Items.Add(x);
                 }
-                catch (Exception ex)
+            }
+            if (startCertificateNoComboBox.SelectedIndex != -1 && startCertificateNoComboBox.SelectedItem != endCertificateNoComboBox.SelectedItem && endCertificateNoComboBox.Items.Contains(startCertificateNoComboBox.SelectedItem))
+            {
+                endCertificateNoComboBox.Items.Remove(startCertificateNoComboBox.SelectedItem);
+            }
+            if (endCertificateNoComboBox.SelectedIndex != -1 && startCertificateNoComboBox.SelectedIndex != -1)
+            {
+                if (Convert.ToUInt64(endCertificateNoComboBox.Text) < Convert.ToUInt64(startCertificateNoComboBox.Text))
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(@"You Can not Select More Than Ending Certificate");
+                    startCertificateNoComboBox.SelectedIndex = -1;
                 }
-            //}
+                //else
+                //{
+                //    diff = Convert.ToInt32(CertificateEndComboBox.Text) - Convert.ToInt32(certificateStartComboBox.Text) + 1;
+                //    txtCurrentShareHolding.Text = (diff * certificateRange).ToString();
+
+                //}
+            }
+
+
+
+
+            //endCertificateNoComboBox.Enabled = true;
+            ////int x = startCertificateNoComboBox.SelectedIndex;
+            ////int y = endCertificateNoComboBox.SelectedIndex;
+            ////if (x > y)
+            ////{
+            ////    startCertificateNoComboBox.SelectedIndex = -1;
+
+            ////}
+            ////else
+            ////{
+
+
+            //    try
+            //    {
+
+            //        con = new SqlConnection(cs.DBConn);
+            //        con.Open();
+            //        string ct = "select RTRIM(CertificateId) from Certificate  where  Certificate.CertificateNumber='" +
+            //                    startCertificateNoComboBox.Text + "' ";
+            //        cmd = new SqlCommand(ct);
+            //        cmd.Connection = con;
+            //        rdr = cmd.ExecuteReader();
+
+            //        if (rdr.Read())
+            //        {
+            //            startCertificateid = (rdr.GetString(0));
+
+            //        }
+            //        con.Close();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            ////}
         }
 
         private void endCertificateNoComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int a = startCertificateNoComboBox.SelectedIndex;
-            int b = endCertificateNoComboBox.SelectedIndex;
-            if (a > b)
-            {              
-                //MessageBox.Show("Please select greater than or equal", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                endCertificateNoComboBox.SelectedIndex = -1;
-                //endCertificateNoComboBox.Focus();
-                
-            }  
-            
-            else
+            if (endCertificateNoComboBox.SelectedIndex != -1 && startCertificateNoComboBox.SelectedIndex != -1)
             {
-                try
+                if (Convert.ToUInt64(endCertificateNoComboBox.Text) < Convert.ToUInt64(startCertificateNoComboBox.Text))
                 {
-
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    string ct = "select RTRIM(CertificateId) from Certificate  where  Certificate.CertificateNumber='" +
-                                endCertificateNoComboBox.Text + "' ";
-                    cmd = new SqlCommand(ct);
-                    cmd.Connection = con;
-                    rdr = cmd.ExecuteReader();
-
-                    if (rdr.Read())
-                    {
-                        endCertificateid = (rdr.GetString(0));
-
-                    }
-                    con.Close();
+                    MessageBox.Show(@"You Can not Select Less Than Starting Cerificate");
+                    endCertificateNoComboBox.SelectedIndex = -1;
                 }
+                //else
+                //{
+                //    Int64 diff = Convert.ToInt64(endCertificateNoComboBox.Text) - Convert.ToInt64(startCertificateNoComboBox.Text);
 
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+
+                //}
             }
+
+
+
+            //int a = startCertificateNoComboBox.SelectedIndex;
+            //int b = endCertificateNoComboBox.SelectedIndex;
+            //if (a > b)
+            //{              
+            //    //MessageBox.Show("Please select greater than or equal", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    endCertificateNoComboBox.SelectedIndex = -1;
+            //    //endCertificateNoComboBox.Focus();
+
+            //}  
+
+            //else
+            //{
+            //    try
+            //    {
+
+            //        con = new SqlConnection(cs.DBConn);
+            //        con.Open();
+            //        string ct = "select RTRIM(CertificateId) from Certificate  where  Certificate.CertificateNumber='" +
+            //                    endCertificateNoComboBox.Text + "' ";
+            //        cmd = new SqlCommand(ct);
+            //        cmd.Connection = con;
+            //        rdr = cmd.ExecuteReader();
+
+            //        if (rdr.Read())
+            //        {
+            //            endCertificateid = (rdr.GetString(0));
+
+            //        }
+            //        con.Close();
+            //    }
+
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
         }
 
         private void emailComboBox_Validating(object sender, CancelEventArgs e)
@@ -243,7 +294,7 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
-       
+
         private void nameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -329,7 +380,7 @@ namespace BoardSecretariatSystem.UI
         {
             if (e.KeyCode == Keys.Enter)
             {
-               genderComboBox.Focus();
+                genderComboBox.Focus();
                 e.Handled = true;
             }
         }
@@ -388,23 +439,23 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
-        private void totalAmountTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                startFolioNoComboBox.Focus();
-                e.Handled = true;
-            }
-        }
+        //private void totalAmountTextBox_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.KeyCode == Keys.Enter)
+        //    {
+        //        startFolioNoComboBox.Focus();
+        //        e.Handled = true;
+        //    }
+        //}
 
-        private void startFolioNoComboBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                endFolioNoComboBox.Focus();
-                e.Handled = true;
-            }
-        }
+        //private void startFolioNoComboBox_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.KeyCode == Keys.Enter)
+        //    {
+        //        endFolioNoComboBox.Focus();
+        //        e.Handled = true;
+        //    }
+        //}
 
         private void endFolioNoComboBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -532,7 +583,7 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
-      
+
         private void witness2NameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -650,8 +701,38 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
-       
+        private void CountryNamecomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ctk = "SELECT  RTRIM(Countries.CountryId),RTRIM(Countries.CountryCode) from Countries WHERE Countries.CountryName=@find";
+                cmd = new SqlCommand(ctk);
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "CountryName"));
+                cmd.Parameters["@find"].Value = CountryNamecomboBox.Text;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    countryid = (rdr.GetString(0));
+                    CountryCodetextBox.Text = (rdr.GetString(1));
+                }
+                if ((rdr != null))
+                {
+                    rdr.Close();
+                }
 
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
 
