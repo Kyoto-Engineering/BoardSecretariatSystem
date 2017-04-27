@@ -446,8 +446,8 @@ namespace BoardSecretariatSystem.LoginUI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                userButton.Focus();
-                e.Handled = true;
+                userButton_Click(this, new EventArgs());
+                
             }
         }
 

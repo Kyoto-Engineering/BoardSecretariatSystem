@@ -1414,7 +1414,7 @@ namespace BoardSecretariatSystem
 
         private void txtValueOfEachShare_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void companyNameTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -1966,6 +1966,12 @@ namespace BoardSecretariatSystem
                 saveButton_Click(this, new EventArgs());
                 
             }
+        }
+
+        private void txtValueOfEachShare_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char) Keys.Back)))
+                e.Handled = true;
         }
 
         

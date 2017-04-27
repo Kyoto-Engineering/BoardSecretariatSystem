@@ -55,6 +55,7 @@
             // 
             this.contactNoTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contactNoTextBox.Location = new System.Drawing.Point(187, 283);
+            this.contactNoTextBox.MaxLength = 11;
             this.contactNoTextBox.Name = "contactNoTextBox";
             this.contactNoTextBox.Size = new System.Drawing.Size(328, 29);
             this.contactNoTextBox.TabIndex = 7;

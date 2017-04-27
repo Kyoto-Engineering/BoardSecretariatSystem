@@ -575,17 +575,17 @@ namespace BoardSecretariatSystem.UI
 
                             }
                         //}
-                        else
-                        {
+                        //else
+                        //{
                             
                        
                         SaveParticipant();
                         ForeignAddresses("ForeignAddress");
-                        MessageBox.Show("Saved successfully", "Record", MessageBoxButtons.OK,
+                        MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
                         Reset2();
                         CountryNamecomboBox.SelectedItem = "Bangladesh";
-                        }
+                        //}
                     }
                 }
                 catch (Exception ex)
@@ -2033,6 +2033,21 @@ namespace BoardSecretariatSystem.UI
                 button1.Focus();
                 e.Handled = true;
             }
+        }
+
+        private void label23_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label26_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

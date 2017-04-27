@@ -64,11 +64,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(96, 113);
+            this.label1.Location = new System.Drawing.Point(69, 113);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 26);
+            this.label1.Size = new System.Drawing.Size(198, 26);
             this.label1.TabIndex = 43;
-            this.label1.Text = "Joining Date :";
+            this.label1.Text = "Joining Date        :";
             // 
             // txtDirectorName
             // 
@@ -85,9 +85,9 @@
             this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(69, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(183, 26);
+            this.label2.Size = new System.Drawing.Size(195, 26);
             this.label2.TabIndex = 41;
-            this.label2.Text = "Derector Name :";
+            this.label2.Text = "Derector Name   :";
             // 
             // label3
             // 
