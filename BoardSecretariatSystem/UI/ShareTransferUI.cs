@@ -108,23 +108,6 @@ namespace BoardSecretariatSystem.UI
 
         }
 
-
-
-        private void cellNumberTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void cellNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
-                e.Handled = true;
-        }
-
-
-
         private void w1ContactNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
@@ -731,6 +714,38 @@ namespace BoardSecretariatSystem.UI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cellNumberTextBox_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
+                e.Handled = true;
+
+            if (!string.IsNullOrEmpty(cellNumberTextBox.Text))
+            {
+                decimal sum = 0;
+                decimal num;
+                num = Convert.ToDecimal(cellNumberTextBox.Text);
+                while (num > 0)
+                {
+                    sum = sum + (num / 10);
+                    num = num / 10;
+                }
+
+                if (sum == 0)
+                {
+                    cellNumberTextBox.Clear();
+                }
+            }
+        }
+
+        private void cellNumberTextBox_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                nationalIdTextBox.Focus();
+                e.Handled = true;
             }
         }
     }

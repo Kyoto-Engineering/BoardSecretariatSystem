@@ -43,6 +43,7 @@
             this.totalAmountTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.CountryCodetextBox = new System.Windows.Forms.TextBox();
             this.CountryNamecomboBox = new System.Windows.Forms.ComboBox();
             this.label69 = new System.Windows.Forms.Label();
             this.emailComboBox = new System.Windows.Forms.ComboBox();
@@ -152,7 +153,6 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.btnShareHolderGrid = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.CountryCodetextBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -362,6 +362,15 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "To";
+            // 
+            // CountryCodetextBox
+            // 
+            this.CountryCodetextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountryCodetextBox.Location = new System.Drawing.Point(142, 194);
+            this.CountryCodetextBox.Name = "CountryCodetextBox";
+            this.CountryCodetextBox.ReadOnly = true;
+            this.CountryCodetextBox.Size = new System.Drawing.Size(57, 29);
+            this.CountryCodetextBox.TabIndex = 216;
             // 
             // CountryNamecomboBox
             // 
@@ -598,6 +607,8 @@
             this.cellNumberTextBox.Name = "cellNumberTextBox";
             this.cellNumberTextBox.Size = new System.Drawing.Size(211, 29);
             this.cellNumberTextBox.TabIndex = 144;
+            this.cellNumberTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cellNumberTextBox_KeyDown_1);
+            this.cellNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cellNumberTextBox_KeyPress_1);
             // 
             // passportNoTextBox
             // 
@@ -681,9 +692,9 @@
             this.label15.ForeColor = System.Drawing.Color.Blue;
             this.label15.Location = new System.Drawing.Point(4, 267);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(186, 22);
+            this.label15.Size = new System.Drawing.Size(183, 22);
             this.label15.TabIndex = 133;
-            this.label15.Text = "Birth Certicicate No :";
+            this.label15.Text = "Birth Certificate No :";
             // 
             // label14
             // 
@@ -1481,15 +1492,6 @@
             this.label12.Size = new System.Drawing.Size(169, 25);
             this.label12.TabIndex = 4;
             this.label12.Text = "Share Transfer";
-            // 
-            // CountryCodetextBox
-            // 
-            this.CountryCodetextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountryCodetextBox.Location = new System.Drawing.Point(142, 194);
-            this.CountryCodetextBox.Name = "CountryCodetextBox";
-            this.CountryCodetextBox.ReadOnly = true;
-            this.CountryCodetextBox.Size = new System.Drawing.Size(57, 29);
-            this.CountryCodetextBox.TabIndex = 216;
             // 
             // ShareTransferUI
             // 
