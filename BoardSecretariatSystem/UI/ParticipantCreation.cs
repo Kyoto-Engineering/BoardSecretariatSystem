@@ -387,7 +387,8 @@ namespace BoardSecretariatSystem.UI
             txtProfession.Clear();
             cmbGender.SelectedIndex = -1;
             txtBirthCertificateNo.Clear();
-            txtDateOfBirth.Value = DateTime.Today;
+            //txtDateOfBirth.Value = DateTime.Today;
+            txtDateOfBirth.ResetText();
             txtCurrentShareHolding.Clear();
             txtPassportNo.Clear();
             txtTINNumber.Clear();
@@ -498,10 +499,10 @@ namespace BoardSecretariatSystem.UI
                 UpdateAvailableIssuedShare();
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 = "insert into Shareholder(ParticipantId,ShareHolderName,NumberOfCurrentShareHolding) values (@d1,@d2,@d3)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 = "insert into Shareholder(ParticipantId,NumberOfCurrentShareHolding) values (@d1,@d3)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", currentPerticipantId);
-                cmd.Parameters.AddWithValue("@d2", txtShareHolderName.Text);
+                //cmd.Parameters.AddWithValue("@d2", txtShareHolderName.Text);
                 cmd.Parameters.AddWithValue("@d3", txtCurrentShareHolding.Text);
                 currentShareHolderId = (int)cmd.ExecuteScalar();
                 con.Close();
@@ -524,10 +525,21 @@ namespace BoardSecretariatSystem.UI
                 cmd.Parameters.AddWithValue("@d1", txtShareHolderName.Text);
                 cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(txtMotherName.Text) ? (object)DBNull.Value : txtMotherName.Text));
                 cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(txtFatherName.Text) ? (object)DBNull.Value : txtFatherName.Text));
-                cmd.Parameters.AddWithValue("@d4", Convert.ToDateTime(txtDateOfBirth.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
+
+                cmd.Parameters.Add(new SqlParameter("@d4",
+                    !txtDateOfBirth.Checked ? (object)DBNull.Value : txtDateOfBirth.Value));
+                //cmd.Parameters.AddWithValue("@d4", Convert.ToDateTime(txtDateOfBirth.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
                 cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtProfession.Text) ? (object)DBNull.Value : txtProfession.Text));
                 //cmd.Parameters.Add(new SqlParameter("@d6",string.IsNullOrEmpty(boardMemberId.ToString()) ? (object) DBNull.Value : boardMemberId.ToString()));
-                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(CountryCodetextBox.Text) && string.IsNullOrEmpty(txtCellNumber.Text) ? (object)DBNull.Value : CountryCodetextBox.Text + ' ' + txtCellNumber.Text));
+                if (!string.IsNullOrEmpty(txtCellNumber.Text))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(CountryCodetextBox.Text) && string.IsNullOrEmpty(txtCellNumber.Text) ? (object)DBNull.Value : CountryCodetextBox.Text + txtCellNumber.Text));
+                }
+                else
+                {
+                    cmd.Parameters.Add(new SqlParameter("@d7", (object)DBNull.Value));
+                }
+                
                 cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(txtNationalId.Text) ? (object)DBNull.Value : txtNationalId.Text));
                 cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtBirthCertificateNo.Text) ? (object)DBNull.Value : txtBirthCertificateNo.Text));
                 cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtPassportNo.Text) ? (object)DBNull.Value : txtPassportNo.Text));
@@ -599,57 +611,100 @@ namespace BoardSecretariatSystem.UI
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            AvailableIssuedShare();
-            if (availableIssuedShare == 0)
-            {
-                MessageBox.Show("There is no Available Issued Share", "error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return;
-            }
 
+        private bool ValidateControlls()
+        {
+            bool validate = true;
 
             if (string.IsNullOrEmpty(txtShareHolderName.Text))
             {
-                MessageBox.Show("Please enter Share Holder  name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show(@"Please Enter Share Holder Name", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                validate = false;
+                txtShareHolderName.Focus();
             }
 
-            if (CountryNamecomboBox.Text == "Bangladesh")
+            else if (string.IsNullOrEmpty(certificateStartComboBox.Text))
             {
+                MessageBox.Show(@"Please select Start Certificate", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                validate = false;
+                certificateStartComboBox.Focus();
+            }
+
+            else if (string.IsNullOrEmpty(CertificateEndComboBox.Text))
+            {
+                MessageBox.Show(@"Please select End Certificate", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                validate = false;
+                CertificateEndComboBox.Focus();
+            }
+
+            else if (string.IsNullOrEmpty(txtFatherName.Text))
+            {
+                MessageBox.Show(@"Please Enter Father Name", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                validate = false;
+                txtFatherName.Focus();
+            }
+
+            else if (string.IsNullOrEmpty(txtMotherName.Text))
+            {
+                MessageBox.Show(@"Please Enter Mother Name", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                validate = false;
+                txtMotherName.Focus();
+            }
+
+            else if (string.IsNullOrEmpty(cmbGender.Text))
+            {
+                MessageBox.Show(@"Please Select Gender", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                validate = false;
+                cmbGender.Focus();
+            }
+
+            else if (CountryNamecomboBox.Text == "Bangladesh")
+            {
+                if (string.IsNullOrWhiteSpace(txtNationalId.Text))
+                {
+                    MessageBox.Show(@"Please Enter National ID Number", @"Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    validate = false;
+                    txtNationalId.Focus();
+                }
+
                 if (unKnownRA.Checked == false)
                 {
                     if (string.IsNullOrWhiteSpace(cmbPDivision.Text))
                     {
                         MessageBox.Show("Please select Present Address division", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                        return;
+                        validate = false;
+                        cmbPDivision.Focus();
                     }
-                    if (string.IsNullOrWhiteSpace(cmbPDistrict.Text))
+                    else if (string.IsNullOrWhiteSpace(cmbPDistrict.Text))
                     {
                         MessageBox.Show("Please Select Present Address district", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                        return;
+                        validate = false;
+                        cmbPDistrict.Focus();
                     }
-                    if (string.IsNullOrWhiteSpace(cmbPThana.Text))
+                    else if (string.IsNullOrWhiteSpace(cmbPThana.Text))
                     {
                         MessageBox.Show("Please select Present Address Thana", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                        return;
+                        validate = false;
+                        cmbPThana.Focus();
                     }
-                    if (string.IsNullOrWhiteSpace(cmbPPost.Text))
+                    else  if (string.IsNullOrWhiteSpace(cmbPPost.Text))
                     {
                         MessageBox.Show("Please Select Present Address Post Name", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                        return;
+                        validate = false;
+                        cmbPPost.Focus();
                     }
-                    if (string.IsNullOrWhiteSpace(txtPPostCode.Text))
-                    {
-                        MessageBox.Show("Please select Present Address Post Code", "Error", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                        return;
-                    }
+                    
                 }
                 if (unKnownCheckBox.Checked == false && sameAsRACheckBox.Checked == false)
                 {
@@ -657,121 +712,294 @@ namespace BoardSecretariatSystem.UI
                     {
                         MessageBox.Show("Please select Permanant Address division", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                        return;
+                        validate = false;
+                        cmbDivision.Focus();
                     }
-                    if (string.IsNullOrWhiteSpace(cmbDistrict.Text))
+                    else if (string.IsNullOrWhiteSpace(cmbDistrict.Text))
                     {
                         MessageBox.Show("Please Select Permanant Address district", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                        return;
+                        validate = false;
+                        cmbDistrict.Focus();
                     }
-                    if (string.IsNullOrWhiteSpace(cmbThana.Text))
+                    else if (string.IsNullOrWhiteSpace(cmbThana.Text))
                     {
                         MessageBox.Show("Please select Permanant Address Thana", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                        return;
+                        validate = false;
+                        cmbThana.Focus();
                     }
-                    if (string.IsNullOrWhiteSpace(cmbPost.Text))
+                    else if (string.IsNullOrWhiteSpace(cmbPost.Text))
                     {
                         MessageBox.Show("Please Select Permanant Address Post Name", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                        return;
+                        validate = false;
+                        cmbPost.Focus();
                     }
-                    if (string.IsNullOrWhiteSpace(txtPostCode.Text))
-                    {
-                        MessageBox.Show("Please select Permanant Address Post Code", "Error", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-
-                try
-                {
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    string ct3 =
-                        "select Participant.ParticipantName from Participant where  Participant.ParticipantName='" +
-                        txtShareHolderName.Text + "'";
-                    cmd = new SqlCommand(ct3, con);
-                    rdr = cmd.ExecuteReader();
-                    if (rdr.Read() && !rdr.IsDBNull(0))
-                    {
-                        MessageBox.Show("This Share Holder Already Exists,Please Input another one", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        con.Close();
-                        return;
-
-                    }
-                    //1. Both Not Applicable
-                    if (unKnownRA.Checked && unKnownCheckBox.Checked)
-                    {
-                        SaveParticipant();
-                    }
-                    //2.Present Address  Applicable & Permanant Address not  Applicable
-                    if (unKnownRA.Checked == false & unKnownCheckBox.Checked)
-                    {
-                        SaveParticipant();
-                        SaveParticipantAddress("PPresentAddresses");
-                    }
-                    //3.Permanant Address Applicable  & Present Address  Applicable
-                    if (sameAsRACheckBox.Checked == false && unKnownCheckBox.Checked == false)
-                    {
-                        SaveParticipant();
-                        SaveParticipantAddress("PPermanantAddresses");
-                        SaveParticipantAddress("PPresentAddresses");
-                    }
-                    //4.Permanant Address Applicable  & Present Address Same as Permanant Address                                        
-                    if (sameAsRACheckBox.Checked & unKnownRA.Checked == false & unKnownCheckBox.Checked == false)
-                    {
-                        SaveParticipant();
-                        SaveParticipantAddress("PPermanantAddresses");
-                        PermanantSameAsPresent("PPresentAddresses");
-                    }
-                    //5.Present Address not  Applicable  & Permanant Address  Applicable
-                    if (unKnownRA.Checked & sameAsRACheckBox.Checked == false & unKnownCheckBox.Checked == false)
-                    {
-                        SaveParticipant();
-                        SaveParticipantAddress("PPermanantAddresses");
-                    }
-                    MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Reset();
-                    CountryNamecomboBox.SelectedItem = "Bangladesh";
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
-
-            else
+            else if (CountryNamecomboBox.Text != "Bangladesh")
             {
-                try
+
+                if (string.IsNullOrWhiteSpace(txtPassportNo.Text))
                 {
-                    if (CountryNamecomboBox.Text != "Bangladesh")
-                    {
-                        if (string.IsNullOrWhiteSpace(StreettextBox.Text) &&
-                            string.IsNullOrWhiteSpace(StatetextBox.Text) &&
-                            string.IsNullOrWhiteSpace(PostalCodetextBox.Text))
-                        {
-                            MessageBox.Show("Please enter Addresses!", "Error", MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                            return;
-
-                        }
-                    }
-
-                    SaveParticipant();
-                    ForeignAddresses("ForeignAddress");
-                    MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Reset2();
-                    CountryNamecomboBox.SelectedItem = "Bangladesh";
-
+                    MessageBox.Show(@"Please enter Passport Number!", @"Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    validate = false;
+                    txtPassportNo.Focus();
                 }
 
-                catch (Exception ex)
+                else if (string.IsNullOrWhiteSpace(StreettextBox.Text) && string.IsNullOrWhiteSpace(StatetextBox.Text) && string.IsNullOrWhiteSpace(PostalCodetextBox.Text))
                 {
-                    MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(@"Please enter Addresses!", @"Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    validate = false;
+                    StreettextBox.Focus();
+
+                }
+            }
+
+            else if (ValidateShareHolder())
+            {
+                validate = false;
+            }
+
+            return validate;
+        }
+
+
+        private bool ValidateShareHolder()
+        {
+            List<Participant> participants = new List<Participant>();
+
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string ct3 =
+                "SELECT ParticipantName, MotherName, FatherName FROM Participant where  Participant.ParticipantName='" + txtShareHolderName.Text + "'";
+            cmd = new SqlCommand(ct3, con);
+            rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                if (rdr.HasRows)
+                {
+                    Participant x = new Participant();
+                    x.Name = rdr.GetString(0);
+
+                    if (!DBNull.Value.Equals(rdr["MotherName"]))
+                    {
+                        x.MotherName = rdr.GetString(1);
+                    }
+                    else
+                    {
+                        x.MotherName = null;
+                    }
+
+                    if (!DBNull.Value.Equals(rdr["FatherName"]))
+                    {
+                        x.FatherName = rdr.GetString(2);
+                    }
+                    else
+                    {
+                        x.FatherName = null;
+                    }
+
+                    //if (!DBNull.Value.Equals(rdr["DateOfBirth"]))
+                    //{
+                    //    x.DateofBirth = rdr.GetDateTime(3);
+                    //}
+                    //else
+                    //{
+                    //    x.DateofBirth = DateTime.Parse(null);
+                    //}
+
+                    //if (!DBNull.Value.Equals(rdr["Email"]))
+                    //{
+                    //    x.Email = rdr.GetString(4);
+                    //}
+                    //else
+                    //{
+                    //    x.Email = null;
+                    //}
+
+                    participants.Add(x);
+                }
+            }
+            foreach (Participant p in participants)
+            {
+                if (p.Name == txtShareHolderName.Text && p.FatherName == txtFatherName.Text && p.MotherName == txtMotherName.Text)
+                {
+                    MessageBox.Show(@"This Share Holder Name Or Father Name Or Mother Name Exists,Please Input another one",
+                        "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtShareHolderName.Clear();
+                    txtFatherName.Clear();
+                    txtMotherName.Clear();
+                    con.Close();
+                    return true;
+                }
+
+                //if (p.Name == txtShareHolderName.Text && p.MotherName == txtMotherName.Text)
+                //{
+                //    MessageBox.Show(@"This Share Holder Name Or Mother Name Exists,Please Input another one",
+                //        "Error",
+                //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    txtShareHolderName.Clear();
+                //    txtMotherName.Clear();
+                //    con.Close();
+                //    return true;
+                //}
+
+               
+
+                //if (p.Name == txtShareHolderName.Text && p.DateofBirth == DateTime.Parse(txtDateOfBirth.ToString()))
+                //{
+                //    MessageBox.Show(@"This Share Holder Name Or Date Of Birth Exists,Please Input another one",
+                //        "Error",
+                //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    txtShareHolderName.Clear();
+                //    txtDateOfBirth.ResetText();
+                //    con.Close();
+                //    return true;
+                //}
+
+                //if (p.Name == txtShareHolderName.Text && p.Email == txtEmailAd.Text)
+                //{
+                //    MessageBox.Show(
+                //        @"This Share Holder Name Or Email Exists,Please Input another one",
+                //        "Error",
+                //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    txtShareHolderName.Clear();
+                //    txtEmailAd.Clear();
+                //    con.Close();
+                //    return true;
+                //}
+            }
+            return false;
+        }
+
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AvailableIssuedShare();
+            if (availableIssuedShare == 0)
+            {
+                MessageBox.Show(@"There is no Available Issued Share", @"error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                
+            }
+
+
+
+            //else if (!string.IsNullOrEmpty(txtShareHolderName.Text) && string.IsNullOrEmpty(txtFatherName.Text) &&
+            //         string.IsNullOrEmpty(txtMotherName.Text))
+
+            //{
+            //    MessageBox.Show(@"Please insert Father Name OR Mother Name", @"Error",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    txtFatherName.Focus();
+            //}
+
+
+            else if (ValidateControlls())
+            {
+
+
+                if (CountryNamecomboBox.Text == "Bangladesh")
+                {
+
+                    try
+                    {
+                        //    con = new SqlConnection(cs.DBConn);
+                        //    con.Open();
+                        //    string ct3 =
+                        //        "select Participant.ParticipantName from Participant where  Participant.ParticipantName='" +
+                        //        txtShareHolderName.Text + "'";
+                        //    cmd = new SqlCommand(ct3, con);
+                        //    rdr = cmd.ExecuteReader();
+                        //    if (rdr.Read() && !rdr.IsDBNull(0))
+                        //    {
+                        //        MessageBox.Show("This Share Holder Already Exists,Please Input another one", "Error",
+                        //            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //        con.Close();
+                        //        return;
+
+                        //    }
+                        //1. Both Not Applicable
+                        if (unKnownRA.Checked && unKnownCheckBox.Checked)
+                        {
+                            SaveParticipant();
+                        }
+                        //2.Present Address  Applicable & Permanant Address not  Applicable
+                        if (unKnownRA.Checked == false && unKnownCheckBox.Checked)
+                        {
+                            SaveParticipant();
+                            SaveParticipantAddress("PPresentAddresses");
+                        }
+                        //3.Permanant Address Applicable  & Present Address  Applicable
+                        if (sameAsRACheckBox.Checked == false && unKnownCheckBox.Checked == false)
+                        {
+                            SaveParticipant();
+                            SaveParticipantAddress("PPermanantAddresses");
+                            SaveParticipantAddress("PPresentAddresses");
+                        }
+                        //4.Permanant Address Applicable  & Present Address Same as Permanant Address                                        
+                        if (sameAsRACheckBox.Checked && unKnownRA.Checked == false && unKnownCheckBox.Checked == false)
+                        {
+                            SaveParticipant();
+                            SaveParticipantAddress("PPermanantAddresses");
+                            PermanantSameAsPresent("PPresentAddresses");
+                        }
+                        //5.Present Address not  Applicable  & Permanant Address  Applicable
+                        if (unKnownRA.Checked && sameAsRACheckBox.Checked == false && unKnownCheckBox.Checked == false)
+                        {
+                            SaveParticipant();
+                            SaveParticipantAddress("PPermanantAddresses");
+                        }
+                        MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                        Reset();
+                        CountryNamecomboBox.SelectedItem = "Bangladesh";
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+
+                else 
+                {
+                    try
+                    {
+                        //if (CountryNamecomboBox.Text != "Bangladesh")
+                        //{
+                        //    if (string.IsNullOrWhiteSpace(StreettextBox.Text) &&
+                        //        string.IsNullOrWhiteSpace(StatetextBox.Text) &&
+                        //        string.IsNullOrWhiteSpace(PostalCodetextBox.Text))
+                        //    {
+                        //        MessageBox.Show("Please enter Addresses!", "Error", MessageBoxButtons.OK,
+                        //            MessageBoxIcon.Error);
+                        //        return;
+
+                        //    }
+                        //}
+
+                        SaveParticipant();
+                        ForeignAddresses("ForeignAddress");
+                        MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                        Reset2();
+                        CountryNamecomboBox.SelectedItem = "Bangladesh";
+
+                    }
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -2059,6 +2287,54 @@ namespace BoardSecretariatSystem.UI
             {
                 cmbGender.Focus();
                 e.Handled = true;
+            }
+        }
+
+        private void txtNationalId_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct2 = "select NationalId from Participant where NationalId='" + txtNationalId.Text + "'";
+                cmd = new SqlCommand(ct2, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read() && !rdr.IsDBNull(0))
+                {
+                    MessageBox.Show(@"This National ID Already Exists, Please Enter Another One", @"Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    con.Close();
+                    txtNationalId.Clear();
+                    txtNationalId.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtPassportNo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string ct2 = "select PassportNumber from Participant where PassportNumber='" + txtPassportNo.Text + "'";
+                cmd = new SqlCommand(ct2, con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read() && !rdr.IsDBNull(0))
+                {
+                    MessageBox.Show(@"This Passport Number Already Exists, Please input Another One", @"Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    con.Close();
+                    txtPassportNo.Clear();
+                    txtPassportNo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

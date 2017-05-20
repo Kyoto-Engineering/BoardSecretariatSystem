@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.txtEmailAd = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -70,7 +73,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbPost = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
@@ -101,7 +103,6 @@
             this.unKnownCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txtPBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbPPost = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
@@ -135,7 +136,8 @@
             this.txtShareHolderName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.txtBlock = new wmgCMS.WaterMarkTextBox();
+            this.txtPBlock = new wmgCMS.WaterMarkTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -147,6 +149,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LimeGreen;
+            this.groupBox1.Controls.Add(this.label58);
+            this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.txtEmailAd);
             this.groupBox1.Controls.Add(this.label28);
@@ -193,6 +197,39 @@
             this.groupBox1.Size = new System.Drawing.Size(1254, 679);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.ForeColor = System.Drawing.Color.Red;
+            this.label58.Location = new System.Drawing.Point(218, 201);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(21, 24);
+            this.label58.TabIndex = 154;
+            this.label58.Text = "*";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ForeColor = System.Drawing.Color.Red;
+            this.label30.Location = new System.Drawing.Point(218, 165);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(21, 24);
+            this.label30.TabIndex = 153;
+            this.label30.Text = "*";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Blue;
+            this.label12.Location = new System.Drawing.Point(8, 46);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(237, 22);
+            this.label12.TabIndex = 152;
+            this.label12.Text = "Share Holder Name            :";
             // 
             // txtEmailAd
             // 
@@ -477,6 +514,7 @@
             this.txtPassportNo.Size = new System.Drawing.Size(279, 29);
             this.txtPassportNo.TabIndex = 13;
             this.txtPassportNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassportNo_KeyDown);
+            this.txtPassportNo.Leave += new System.EventHandler(this.txtPassportNo_Leave);
             // 
             // label16
             // 
@@ -517,6 +555,7 @@
             this.txtNationalId.Size = new System.Drawing.Size(279, 29);
             this.txtNationalId.TabIndex = 11;
             this.txtNationalId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNationalId_KeyDown);
+            this.txtNationalId.Leave += new System.EventHandler(this.txtNationalId_Leave);
             // 
             // label14
             // 
@@ -531,10 +570,12 @@
             // 
             // txtDateOfBirth
             // 
+            this.txtDateOfBirth.Checked = false;
             this.txtDateOfBirth.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDateOfBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.txtDateOfBirth.Location = new System.Drawing.Point(242, 235);
             this.txtDateOfBirth.Name = "txtDateOfBirth";
+            this.txtDateOfBirth.ShowCheckBox = true;
             this.txtDateOfBirth.Size = new System.Drawing.Size(278, 26);
             this.txtDateOfBirth.TabIndex = 7;
             this.txtDateOfBirth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDateOfBirth_KeyDown);
@@ -586,9 +627,9 @@
             this.label9.ForeColor = System.Drawing.Color.Blue;
             this.label9.Location = new System.Drawing.Point(6, 201);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(239, 22);
+            this.label9.Size = new System.Drawing.Size(214, 22);
             this.label9.TabIndex = 98;
-            this.label9.Text = "Mother  Name                     :";
+            this.label9.Text = "Mother  Name                :";
             // 
             // txtFatherName
             // 
@@ -606,9 +647,9 @@
             this.label2.ForeColor = System.Drawing.Color.Blue;
             this.label2.Location = new System.Drawing.Point(6, 164);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(238, 22);
+            this.label2.Size = new System.Drawing.Size(213, 22);
             this.label2.TabIndex = 96;
-            this.label2.Text = "Father  Name                      :";
+            this.label2.Text = "Father  Name                 :";
             // 
             // groupBox3
             // 
@@ -661,17 +702,6 @@
             this.groupBox4.Size = new System.Drawing.Size(668, 209);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
-            // 
-            // txtBlock
-            // 
-            this.txtBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBlock.Location = new System.Drawing.Point(158, 108);
-            this.txtBlock.Name = "txtBlock";
-            this.txtBlock.Size = new System.Drawing.Size(172, 26);
-            this.txtBlock.TabIndex = 4;
-            this.txtBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtBlock.WaterMarkText = "if Any";
-            this.txtBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBlock_KeyDown);
             // 
             // cmbPost
             // 
@@ -1006,17 +1036,6 @@
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
-            // 
-            // txtPBlock
-            // 
-            this.txtPBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPBlock.Location = new System.Drawing.Point(158, 108);
-            this.txtPBlock.Name = "txtPBlock";
-            this.txtPBlock.Size = new System.Drawing.Size(172, 26);
-            this.txtPBlock.TabIndex = 4;
-            this.txtPBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtPBlock.WaterMarkText = "if Any";
-            this.txtPBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPBlock_KeyDown);
             // 
             // cmbPPost
             // 
@@ -1353,16 +1372,27 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Share Holder Creation";
             // 
-            // label12
+            // txtBlock
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Blue;
-            this.label12.Location = new System.Drawing.Point(8, 46);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(237, 22);
-            this.label12.TabIndex = 152;
-            this.label12.Text = "Share Holder Name            :";
+            this.txtBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBlock.Location = new System.Drawing.Point(158, 108);
+            this.txtBlock.Name = "txtBlock";
+            this.txtBlock.Size = new System.Drawing.Size(172, 26);
+            this.txtBlock.TabIndex = 4;
+            this.txtBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtBlock.WaterMarkText = "if Any";
+            this.txtBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBlock_KeyDown);
+            // 
+            // txtPBlock
+            // 
+            this.txtPBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPBlock.Location = new System.Drawing.Point(158, 108);
+            this.txtPBlock.Name = "txtPBlock";
+            this.txtPBlock.Size = new System.Drawing.Size(172, 26);
+            this.txtPBlock.TabIndex = 4;
+            this.txtPBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtPBlock.WaterMarkText = "if Any";
+            this.txtPBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPBlock_KeyDown);
             // 
             // ParticipantCreation
             // 
@@ -1504,5 +1534,7 @@
         private System.Windows.Forms.TextBox txtShareHolderName;
         private System.Windows.Forms.TextBox txtEmailAd;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label label30;
     }
 }
