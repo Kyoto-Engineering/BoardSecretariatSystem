@@ -135,6 +135,7 @@
             this.txtShareHolderName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -146,6 +147,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LimeGreen;
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.txtEmailAd);
             this.groupBox1.Controls.Add(this.label28);
             this.groupBox1.Controls.Add(this.label1);
@@ -1351,6 +1353,17 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Share Holder Creation";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Blue;
+            this.label12.Location = new System.Drawing.Point(8, 46);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(237, 22);
+            this.label12.TabIndex = 152;
+            this.label12.Text = "Share Holder Name            :";
+            // 
             // ParticipantCreation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1490,5 +1503,6 @@
         private System.Windows.Forms.ComboBox certificateStartComboBox;
         private System.Windows.Forms.TextBox txtShareHolderName;
         private System.Windows.Forms.TextBox txtEmailAd;
+        private System.Windows.Forms.Label label12;
     }
 }

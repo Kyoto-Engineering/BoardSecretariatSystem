@@ -24,7 +24,7 @@ namespace BoardSecretariatSystem
             //Application.Run(new ParticipantCreation2());
 
             //Application.Run(new MailSend());
-            Application.Run(new ShareTransferUI());
+            Application.Run(new frmLogin());
 
 
         }

@@ -67,7 +67,7 @@ namespace BoardSecretariatSystem.UI
             if (rdr.Read() && !rdr.IsDBNull(0))
             {
                 companyId = Convert.ToInt32(rdr["CompanyId"]);
-                //certificateRange = Convert.ToInt32(rdr["CertificateRange"]);
+                certificateRange = Convert.ToInt32(rdr["CertificateRange"]);
                 x = true;
             }
             return x;
@@ -392,7 +392,13 @@ namespace BoardSecretariatSystem.UI
             txtPassportNo.Clear();
             txtTINNumber.Clear();
             txtNationalId.Clear();
-
+            CountryNamecomboBox.SelectedIndex = -1;
+            txtEmailAd.Clear();
+            certificateStartComboBox.SelectedIndex = -1;
+            certificateStartComboBox.Items.Clear();
+            CertificateEndComboBox.SelectedIndex = -1;
+            CertificateEndComboBox.Items.Clear();
+            FillCertificate();
             if (unKnownRA.Checked)
             {
                 unKnownRA.CheckedChanged -= unKnownRA_CheckedChanged;
@@ -1982,6 +1988,7 @@ namespace BoardSecretariatSystem.UI
                     MessageBox.Show(@"You Can Not Select Distinct Shares");
                     CertificateEndComboBox.SelectedIndex = -1;
                     certificateStartComboBox.SelectedIndex = -1;
+                    break;
                 }
             }
             return validate;
