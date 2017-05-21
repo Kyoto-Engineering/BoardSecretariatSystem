@@ -1330,7 +1330,6 @@
             this.Name = "SecretaryCreation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SecretaryCreation";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SecretaryCreation_FormClosed);
             this.Load += new System.EventHandler(this.SecretaryCreation_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

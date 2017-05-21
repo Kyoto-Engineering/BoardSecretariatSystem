@@ -135,13 +135,25 @@ namespace BoardSecretariatSystem.UI
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
 
-                while (rdr.Read())
+
+                if (rdr.HasRows)
                 {
-                    int cert = Convert.ToInt32(rdr[0]);
-                    certificateStartComboBox.Items.Add(cert);
-                    CertificateEndComboBox.Items.Add(cert);
-                    availableShares.Add(cert);
+                    while (rdr.Read())
+                    {
+
+                        int cert = Convert.ToInt32(rdr[0]);
+                        certificateStartComboBox.Items.Add(cert);
+                        CertificateEndComboBox.Items.Add(cert);
+                        availableShares.Add(cert);
+                    }
                 }
+                else
+                {
+                    MessageBox.Show(@"No Share Certificate Available");
+                    this.Close();
+                }
+
+            
                 con.Close();
 
             }
@@ -582,9 +594,9 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
-        private void CheckAvailableIssuedShare()
+        private bool CheckAvailableIssuedShare()
         {
-
+            bool validate =false;
             try
             {
                 con = new SqlConnection(cs.DBConn);
@@ -597,18 +609,22 @@ namespace BoardSecretariatSystem.UI
                     availableIssuedShare = (rdr.GetInt32(0));
                 }
                 con.Close();
-                if (availableIssuedShare == 0)
+                if (availableIssuedShare <=0)
                 {
-                    MessageBox.Show("There is no Available Issued Share", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    MessageBox.Show(@"There is no Available Issued Share", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    validate = true;
                 }
-
+                else if (availableIssuedShare <Convert.ToInt32(txtCurrentShareHolding.Text))
+                {
+                    MessageBox.Show(@"There are not  enough Available Issued Share", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    validate = true;
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            return validate;
         }
 
 
@@ -664,9 +680,7 @@ namespace BoardSecretariatSystem.UI
                 cmbGender.Focus();
             }
 
-            else if (CountryNamecomboBox.Text == "Bangladesh")
-            {
-                if (string.IsNullOrWhiteSpace(txtNationalId.Text))
+            else if (CountryNamecomboBox.Text == "Bangladesh" && string.IsNullOrWhiteSpace(txtNationalId.Text))
                 {
                     MessageBox.Show(@"Please Enter National ID Number", @"Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -674,30 +688,28 @@ namespace BoardSecretariatSystem.UI
                     txtNationalId.Focus();
                 }
 
-                if (unKnownRA.Checked == false)
-                {
-                    if (string.IsNullOrWhiteSpace(cmbPDivision.Text))
+            else if (CountryNamecomboBox.Text == "Bangladesh" && !unKnownRA.Checked && string.IsNullOrWhiteSpace(cmbPDivision.Text))
                     {
                         MessageBox.Show("Please select Present Address division", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                         validate = false;
                         cmbPDivision.Focus();
                     }
-                    else if (string.IsNullOrWhiteSpace(cmbPDistrict.Text))
+            else if (CountryNamecomboBox.Text == "Bangladesh" && !unKnownRA.Checked && string.IsNullOrWhiteSpace(cmbPDistrict.Text))
                     {
                         MessageBox.Show("Please Select Present Address district", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                         validate = false;
                         cmbPDistrict.Focus();
                     }
-                    else if (string.IsNullOrWhiteSpace(cmbPThana.Text))
+            else if (CountryNamecomboBox.Text == "Bangladesh" && !unKnownRA.Checked &&string.IsNullOrWhiteSpace(cmbPThana.Text))
                     {
                         MessageBox.Show("Please select Present Address Thana", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                         validate = false;
                         cmbPThana.Focus();
                     }
-                    else  if (string.IsNullOrWhiteSpace(cmbPPost.Text))
+            else if (CountryNamecomboBox.Text == "Bangladesh" && !unKnownRA.Checked &&string.IsNullOrWhiteSpace(cmbPPost.Text))
                     {
                         MessageBox.Show("Please Select Present Address Post Name", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
@@ -705,44 +717,39 @@ namespace BoardSecretariatSystem.UI
                         cmbPPost.Focus();
                     }
                     
-                }
-                if (unKnownCheckBox.Checked == false && sameAsRACheckBox.Checked == false)
-                {
-                    if (string.IsNullOrWhiteSpace(cmbDivision.Text))
+                
+            else if (CountryNamecomboBox.Text == "Bangladesh" && !unKnownCheckBox.Checked  && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbDivision.Text))
                     {
                         MessageBox.Show("Please select Permanant Address division", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                         validate = false;
                         cmbDivision.Focus();
                     }
-                    else if (string.IsNullOrWhiteSpace(cmbDistrict.Text))
+            else if (CountryNamecomboBox.Text == "Bangladesh" && !unKnownCheckBox.Checked  && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbDistrict.Text))
                     {
                         MessageBox.Show("Please Select Permanant Address district", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                         validate = false;
                         cmbDistrict.Focus();
                     }
-                    else if (string.IsNullOrWhiteSpace(cmbThana.Text))
+            else if (CountryNamecomboBox.Text == "Bangladesh" && !unKnownCheckBox.Checked  && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbThana.Text))
                     {
                         MessageBox.Show("Please select Permanant Address Thana", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                         validate = false;
                         cmbThana.Focus();
                     }
-                    else if (string.IsNullOrWhiteSpace(cmbPost.Text))
+            else if (CountryNamecomboBox.Text == "Bangladesh" && !unKnownCheckBox.Checked  && !sameAsRACheckBox.Checked && string.IsNullOrWhiteSpace(cmbPost.Text))
                     {
                         MessageBox.Show("Please Select Permanant Address Post Name", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                         validate = false;
                         cmbPost.Focus();
                     }
-                }
-            }
+                
+            
 
-            else if (CountryNamecomboBox.Text != "Bangladesh")
-            {
-
-                if (string.IsNullOrWhiteSpace(txtPassportNo.Text))
+            else if (CountryNamecomboBox.Text != "Bangladesh"&& string.IsNullOrWhiteSpace(txtPassportNo.Text))
                 {
                     MessageBox.Show(@"Please enter Passport Number!", @"Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -750,7 +757,7 @@ namespace BoardSecretariatSystem.UI
                     txtPassportNo.Focus();
                 }
 
-                else if (string.IsNullOrWhiteSpace(StreettextBox.Text) && string.IsNullOrWhiteSpace(StatetextBox.Text) && string.IsNullOrWhiteSpace(PostalCodetextBox.Text))
+            else if (CountryNamecomboBox.Text != "Bangladesh"&& string.IsNullOrWhiteSpace(StreettextBox.Text) && string.IsNullOrWhiteSpace(StatetextBox.Text) && string.IsNullOrWhiteSpace(PostalCodetextBox.Text))
                 {
                     MessageBox.Show(@"Please enter Addresses!", @"Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -758,17 +765,20 @@ namespace BoardSecretariatSystem.UI
                     StreettextBox.Focus();
 
                 }
-            }
+            
 
             else if (ValidateShareHolder())
             {
                 validate = false;
             }
-
+            else if (CheckAvailableIssuedShare())
+            {
+                validate = false;
+            }
             return validate;
         }
 
-
+  
         private bool ValidateShareHolder()
         {
             List<Participant> participants = new List<Participant>();
@@ -883,50 +893,13 @@ namespace BoardSecretariatSystem.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AvailableIssuedShare();
-            if (availableIssuedShare == 0)
+        if (ValidateControlls())
             {
-                MessageBox.Show(@"There is no Available Issued Share", @"error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                
-            }
-
-
-
-            //else if (!string.IsNullOrEmpty(txtShareHolderName.Text) && string.IsNullOrEmpty(txtFatherName.Text) &&
-            //         string.IsNullOrEmpty(txtMotherName.Text))
-
-            //{
-            //    MessageBox.Show(@"Please insert Father Name OR Mother Name", @"Error",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    txtFatherName.Focus();
-            //}
-
-
-            else if (ValidateControlls())
-            {
-
-
                 if (CountryNamecomboBox.Text == "Bangladesh")
                 {
 
                     try
                     {
-                        //    con = new SqlConnection(cs.DBConn);
-                        //    con.Open();
-                        //    string ct3 =
-                        //        "select Participant.ParticipantName from Participant where  Participant.ParticipantName='" +
-                        //        txtShareHolderName.Text + "'";
-                        //    cmd = new SqlCommand(ct3, con);
-                        //    rdr = cmd.ExecuteReader();
-                        //    if (rdr.Read() && !rdr.IsDBNull(0))
-                        //    {
-                        //        MessageBox.Show("This Share Holder Already Exists,Please Input another one", "Error",
-                        //            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //        con.Close();
-                        //        return;
-
-                        //    }
                         //1. Both Not Applicable
                         if (unKnownRA.Checked && unKnownCheckBox.Checked)
                         {
@@ -974,19 +947,6 @@ namespace BoardSecretariatSystem.UI
                 {
                     try
                     {
-                        //if (CountryNamecomboBox.Text != "Bangladesh")
-                        //{
-                        //    if (string.IsNullOrWhiteSpace(StreettextBox.Text) &&
-                        //        string.IsNullOrWhiteSpace(StatetextBox.Text) &&
-                        //        string.IsNullOrWhiteSpace(PostalCodetextBox.Text))
-                        //    {
-                        //        MessageBox.Show("Please enter Addresses!", "Error", MessageBoxButtons.OK,
-                        //            MessageBoxIcon.Error);
-                        //        return;
-
-                        //    }
-                        //}
-
                         SaveParticipant();
                         ForeignAddresses("ForeignAddress");
                         MessageBox.Show("Successfully Created", "Record", MessageBoxButtons.OK,
