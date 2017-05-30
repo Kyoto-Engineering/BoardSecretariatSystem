@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DirectorCreation));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtJoiningDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -123,6 +124,7 @@
             this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "DirectorCreation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

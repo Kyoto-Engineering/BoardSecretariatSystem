@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChairmanResignation));
             this.buttonDone = new System.Windows.Forms.Button();
             this.txtResignationCause = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -143,6 +144,7 @@
             this.Controls.Add(this.txtDateOfRetirement);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChairmanResignation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChairmanResignation";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reset));
             this.buttonCreate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbUserName = new System.Windows.Forms.ComboBox();
@@ -124,6 +125,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Reset";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

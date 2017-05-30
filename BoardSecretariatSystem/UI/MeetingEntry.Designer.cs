@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeetingEntry));
             this.saveButton = new System.Windows.Forms.Button();
             this.meetingListGroupBox = new System.Windows.Forms.GroupBox();
             this.txtMeetingTitle = new System.Windows.Forms.TextBox();
@@ -293,6 +294,7 @@
             this.ClientSize = new System.Drawing.Size(1358, 612);
             this.Controls.Add(this.meetingListGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MeetingEntry";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MeetingEntryUI";
