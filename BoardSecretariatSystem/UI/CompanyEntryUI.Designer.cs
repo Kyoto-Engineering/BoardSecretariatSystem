@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompanyEntryUI));
             this.label1 = new System.Windows.Forms.Label();
             this.companyNameTextBox = new System.Windows.Forms.TextBox();
             this.regNoTextBox = new System.Windows.Forms.TextBox();
@@ -1623,6 +1624,7 @@
             this.Controls.Add(this.label61);
             this.Controls.Add(this.label62);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CompanyEntryUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CompanyEntryUI";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeetingCreation));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtMeetingName = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -610,6 +611,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MeetingCreation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

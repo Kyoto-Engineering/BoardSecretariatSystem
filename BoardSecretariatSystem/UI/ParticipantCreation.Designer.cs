@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ParticipantCreation));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label58 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
@@ -73,6 +74,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbPost = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
@@ -103,6 +105,7 @@
             this.unKnownCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtPBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbPPost = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
@@ -136,8 +139,6 @@
             this.txtShareHolderName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtBlock = new wmgCMS.WaterMarkTextBox();
-            this.txtPBlock = new wmgCMS.WaterMarkTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -703,6 +704,17 @@
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             // 
+            // txtBlock
+            // 
+            this.txtBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBlock.Location = new System.Drawing.Point(158, 108);
+            this.txtBlock.Name = "txtBlock";
+            this.txtBlock.Size = new System.Drawing.Size(172, 26);
+            this.txtBlock.TabIndex = 4;
+            this.txtBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtBlock.WaterMarkText = "if Any";
+            this.txtBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBlock_KeyDown);
+            // 
             // cmbPost
             // 
             this.cmbPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1036,6 +1048,17 @@
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
+            // 
+            // txtPBlock
+            // 
+            this.txtPBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPBlock.Location = new System.Drawing.Point(158, 108);
+            this.txtPBlock.Name = "txtPBlock";
+            this.txtPBlock.Size = new System.Drawing.Size(172, 26);
+            this.txtPBlock.TabIndex = 4;
+            this.txtPBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtPBlock.WaterMarkText = "if Any";
+            this.txtPBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPBlock_KeyDown);
             // 
             // cmbPPost
             // 
@@ -1372,28 +1395,6 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Share Holder Creation";
             // 
-            // txtBlock
-            // 
-            this.txtBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBlock.Location = new System.Drawing.Point(158, 108);
-            this.txtBlock.Name = "txtBlock";
-            this.txtBlock.Size = new System.Drawing.Size(172, 26);
-            this.txtBlock.TabIndex = 4;
-            this.txtBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtBlock.WaterMarkText = "if Any";
-            this.txtBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBlock_KeyDown);
-            // 
-            // txtPBlock
-            // 
-            this.txtPBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPBlock.Location = new System.Drawing.Point(158, 108);
-            this.txtPBlock.Name = "txtPBlock";
-            this.txtPBlock.Size = new System.Drawing.Size(172, 26);
-            this.txtPBlock.TabIndex = 4;
-            this.txtPBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtPBlock.WaterMarkText = "if Any";
-            this.txtPBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPBlock_KeyDown);
-            // 
             // ParticipantCreation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1401,6 +1402,7 @@
             this.ClientSize = new System.Drawing.Size(1275, 719);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ParticipantCreation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

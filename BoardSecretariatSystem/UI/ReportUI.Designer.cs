@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportUI));
             this.attendenceSlipButton = new System.Windows.Forms.Button();
             this.noticeOfAMeetingButton = new System.Windows.Forms.Button();
             this.meetingPostponedButton = new System.Windows.Forms.Button();
@@ -124,6 +125,7 @@
             this.Controls.Add(this.meetingPostponedButton);
             this.Controls.Add(this.noticeOfAMeetingButton);
             this.Controls.Add(this.attendenceSlipButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ReportUI";
             this.Text = "ReportUI";
             this.ResumeLayout(false);
