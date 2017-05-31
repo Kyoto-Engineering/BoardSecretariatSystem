@@ -102,27 +102,7 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void NationalityLoad()
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctt = "select Nationality from Nationalitys";
-                cmd = new SqlCommand(ctt);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    cmbNationality.Items.Add(rdr.GetValue(0).ToString());
-                }
-                cmbNationality.Items.Add("Not In The List");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+       
 
 
         private void GetGender()
@@ -196,7 +176,6 @@ namespace BoardSecretariatSystem.UI
             GetGender();
             FillPresentDivisionCombo();
             FillPermanantDivisionCombo();
-            NationalityLoad();
             secretaryExist = LoadSecretary();
             groupBox6.Hide();
             button1.Location = new Point(871, 570);
@@ -369,7 +348,6 @@ namespace BoardSecretariatSystem.UI
             txtPassportNo.Clear();
             txtTINNumber.Clear();
             txtNationalId.Clear();
-            cmbNationality.SelectedIndex = -1;
             cmbEmailAddress.Clear();
 
             if (unKnownRA.Checked)
@@ -422,7 +400,6 @@ namespace BoardSecretariatSystem.UI
             txtPassportNo.Clear();
             txtTINNumber.Clear();
             txtNationalId.Clear();
-            cmbNationality.SelectedIndex = -1;
             cmbEmailAddress.Clear();
             ResetForeignAddress();
         }
@@ -476,14 +453,13 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query1 = "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,BoardMemberTypeId,ContactNumber,NationalityId,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,GenderId,CountryId,UserId,DateTime) values (@d1,@d2,@d3,@d4,2,@d7,@d8,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16,@d17,@d18)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query1 = "insert into Participant(ParticipantName,MotherName,FatherName,DateOfBirth,BoardMemberTypeId,ContactNumber,NationalId,BirthCertificateNumber,PassportNumber,TIN,EmailBankId,CompanyId,GenderId,CountryId,UserId,DateTime) values (@d1,@d2,@d3,@d4,2,@d7,@d9,@d10,@d11,@d12,@d13,@d14,@d15,@d16,@d17,@d18)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query1, con);
                 cmd.Parameters.AddWithValue("@d1", txtShareHolderName.Text);
                 cmd.Parameters.Add(new SqlParameter("@d2", string.IsNullOrEmpty(txtMotherName.Text) ? (object)DBNull.Value : txtMotherName.Text));
                 cmd.Parameters.Add(new SqlParameter("@d3", string.IsNullOrEmpty(txtFatherName.Text) ? (object)DBNull.Value : txtFatherName.Text));
                 cmd.Parameters.AddWithValue("@d4", Convert.ToDateTime(txtDateOfBirth.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
                 cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtCellNumber.Text) ? (object)DBNull.Value : txtCellNumber.Text));
-                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(nationalityId.ToString()) ? (object)DBNull.Value : nationalityId));
                 cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtNationalId.Text) ? (object)DBNull.Value : txtNationalId.Text));
                 cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtBirthCertificateNo.Text) ? (object)DBNull.Value : txtBirthCertificateNo.Text));
                 cmd.Parameters.Add(new SqlParameter("@d11", string.IsNullOrEmpty(txtPassportNo.Text) ? (object)DBNull.Value : txtPassportNo.Text));
@@ -1484,80 +1460,7 @@ namespace BoardSecretariatSystem.UI
 
         }
 
-        private void cmbNationality_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbNationality.Text == "Not In The List")
-            {
-                string input = Microsoft.VisualBasic.Interaction.InputBox("Please Input Nationality Here", "Input Here", "", -1, -1);
-                if (string.IsNullOrWhiteSpace(input))
-                {
-                    cmbNationality.SelectedIndex = -1;
-                }
-
-                else
-                {
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    string ct2 = "select Nationality from Nationalitys where Nationality='" + input + "'";
-                    cmd = new SqlCommand(ct2, con);
-                    rdr = cmd.ExecuteReader();
-                    if (rdr.Read() && !rdr.IsDBNull(0))
-                    {
-                        MessageBox.Show("This Nationality  Already Exists,Please Select From List", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        con.Close();
-                        cmbNationality.SelectedIndex = -1;
-                    }
-                    else
-                    {
-                        try
-                        {
-                            con = new SqlConnection(cs.DBConn);
-                            con.Open();
-                            string query1 = "insert into Nationalitys(Nationality) values (@d1)";
-                            cmd = new SqlCommand(query1, con);
-                            cmd.Parameters.AddWithValue("@d1", input);
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                            cmbNationality.Items.Clear();
-                            NationalityLoad();
-                            cmbNationality.SelectedText = input;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT NationalityId from Nationalitys WHERE Nationality= '" + cmbNationality.Text + "'";
-
-                    rdr = cmd.ExecuteReader();
-                    if (rdr.Read())
-                    {
-                        nationalityId = rdr.GetInt32(0);
-                    }
-                    if ((rdr != null))
-                    {
-                        rdr.Close();
-                    }
-                    if (con.State == ConnectionState.Open)
-                    {
-                        con.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
+      
 
         private void cmbEmailAddress_TextChanged(object sender, EventArgs e)
         {
@@ -1728,7 +1631,7 @@ namespace BoardSecretariatSystem.UI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                cmbNationality.Focus();
+                txtNationalId.Focus();
                 e.Handled = true;
             }
         }

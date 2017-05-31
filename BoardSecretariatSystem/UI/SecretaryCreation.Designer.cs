@@ -43,7 +43,6 @@
             this.joinDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbEmailAddress = new System.Windows.Forms.TextBox();
-            this.cmbNationality = new System.Windows.Forms.ComboBox();
             this.cmbGender = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -59,7 +58,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtDateOfBirth = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.txtMotherName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtFatherName = new System.Windows.Forms.TextBox();
@@ -151,7 +149,6 @@
             this.groupBox1.Controls.Add(this.joinDateTimePicker);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cmbEmailAddress);
-            this.groupBox1.Controls.Add(this.cmbNationality);
             this.groupBox1.Controls.Add(this.cmbGender);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label29);
@@ -167,7 +164,6 @@
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.txtDateOfBirth);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.txtMotherName);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtFatherName);
@@ -311,7 +307,7 @@
             this.joinDateTimePicker.CustomFormat = "dd/MM/yyyy";
             this.joinDateTimePicker.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.joinDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.joinDateTimePicker.Location = new System.Drawing.Point(243, 509);
+            this.joinDateTimePicker.Location = new System.Drawing.Point(243, 474);
             this.joinDateTimePicker.Name = "joinDateTimePicker";
             this.joinDateTimePicker.Size = new System.Drawing.Size(278, 26);
             this.joinDateTimePicker.TabIndex = 15;
@@ -322,7 +318,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(132, 513);
+            this.label1.Location = new System.Drawing.Point(132, 478);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 22);
             this.label1.TabIndex = 131;
@@ -331,7 +327,7 @@
             // cmbEmailAddress
             // 
             this.cmbEmailAddress.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbEmailAddress.Location = new System.Drawing.Point(241, 435);
+            this.cmbEmailAddress.Location = new System.Drawing.Point(241, 400);
             this.cmbEmailAddress.Name = "cmbEmailAddress";
             this.cmbEmailAddress.Size = new System.Drawing.Size(279, 29);
             this.cmbEmailAddress.TabIndex = 13;
@@ -339,26 +335,13 @@
             this.cmbEmailAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbEmailAddress_KeyDown);
             this.cmbEmailAddress.Validating += new System.ComponentModel.CancelEventHandler(this.cmbEmailAddress_Validating);
             // 
-            // cmbNationality
-            // 
-            this.cmbNationality.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbNationality.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbNationality.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbNationality.FormattingEnabled = true;
-            this.cmbNationality.Location = new System.Drawing.Point(243, 259);
-            this.cmbNationality.Name = "cmbNationality";
-            this.cmbNationality.Size = new System.Drawing.Size(278, 30);
-            this.cmbNationality.TabIndex = 8;
-            this.cmbNationality.SelectedIndexChanged += new System.EventHandler(this.cmbNationality_SelectedIndexChanged);
-            this.cmbNationality.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbNationality_KeyDown);
-            // 
             // cmbGender
             // 
             this.cmbGender.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbGender.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbGender.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGender.FormattingEnabled = true;
-            this.cmbGender.Location = new System.Drawing.Point(242, 470);
+            this.cmbGender.Location = new System.Drawing.Point(242, 435);
             this.cmbGender.Name = "cmbGender";
             this.cmbGender.Size = new System.Drawing.Size(278, 30);
             this.cmbGender.TabIndex = 14;
@@ -370,7 +353,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(147, 474);
+            this.label4.Location = new System.Drawing.Point(147, 439);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 22);
             this.label4.TabIndex = 127;
@@ -381,7 +364,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.Color.Blue;
-            this.label29.Location = new System.Drawing.Point(157, 478);
+            this.label29.Location = new System.Drawing.Point(157, 443);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(0, 22);
             this.label29.TabIndex = 126;
@@ -411,7 +394,7 @@
             // txtTINNumber
             // 
             this.txtTINNumber.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTINNumber.Location = new System.Drawing.Point(242, 398);
+            this.txtTINNumber.Location = new System.Drawing.Point(242, 363);
             this.txtTINNumber.Name = "txtTINNumber";
             this.txtTINNumber.Size = new System.Drawing.Size(279, 29);
             this.txtTINNumber.TabIndex = 12;
@@ -422,7 +405,7 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.Blue;
-            this.label25.Location = new System.Drawing.Point(11, 404);
+            this.label25.Location = new System.Drawing.Point(11, 369);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(234, 22);
             this.label25.TabIndex = 114;
@@ -431,7 +414,7 @@
             // txtPassportNo
             // 
             this.txtPassportNo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassportNo.Location = new System.Drawing.Point(242, 364);
+            this.txtPassportNo.Location = new System.Drawing.Point(242, 329);
             this.txtPassportNo.Name = "txtPassportNo";
             this.txtPassportNo.Size = new System.Drawing.Size(279, 29);
             this.txtPassportNo.TabIndex = 11;
@@ -442,7 +425,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Blue;
-            this.label16.Location = new System.Drawing.Point(8, 366);
+            this.label16.Location = new System.Drawing.Point(8, 331);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(236, 22);
             this.label16.TabIndex = 112;
@@ -451,7 +434,7 @@
             // txtBirthCertificateNo
             // 
             this.txtBirthCertificateNo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBirthCertificateNo.Location = new System.Drawing.Point(243, 329);
+            this.txtBirthCertificateNo.Location = new System.Drawing.Point(243, 294);
             this.txtBirthCertificateNo.Name = "txtBirthCertificateNo";
             this.txtBirthCertificateNo.Size = new System.Drawing.Size(278, 29);
             this.txtBirthCertificateNo.TabIndex = 10;
@@ -462,7 +445,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Blue;
-            this.label15.Location = new System.Drawing.Point(9, 332);
+            this.label15.Location = new System.Drawing.Point(9, 297);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(238, 22);
             this.label15.TabIndex = 110;
@@ -471,7 +454,7 @@
             // txtNationalId
             // 
             this.txtNationalId.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNationalId.Location = new System.Drawing.Point(242, 295);
+            this.txtNationalId.Location = new System.Drawing.Point(242, 260);
             this.txtNationalId.Name = "txtNationalId";
             this.txtNationalId.Size = new System.Drawing.Size(279, 29);
             this.txtNationalId.TabIndex = 9;
@@ -482,7 +465,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Blue;
-            this.label14.Location = new System.Drawing.Point(11, 298);
+            this.label14.Location = new System.Drawing.Point(11, 263);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(237, 22);
             this.label14.TabIndex = 108;
@@ -509,17 +492,6 @@
             this.label13.Size = new System.Drawing.Size(237, 22);
             this.label13.TabIndex = 104;
             this.label13.Text = "Date Of Birth                      :";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Blue;
-            this.label12.Location = new System.Drawing.Point(11, 262);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(235, 22);
-            this.label12.TabIndex = 102;
-            this.label12.Text = "Nationality                          :";
             // 
             // txtMotherName
             // 
@@ -1262,7 +1234,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Blue;
-            this.label7.Location = new System.Drawing.Point(154, 414);
+            this.label7.Location = new System.Drawing.Point(154, 379);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(0, 22);
             this.label7.TabIndex = 59;
@@ -1272,7 +1244,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Blue;
-            this.label8.Location = new System.Drawing.Point(156, 439);
+            this.label8.Location = new System.Drawing.Point(156, 404);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(73, 22);
             this.label8.TabIndex = 57;
@@ -1283,7 +1255,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Blue;
-            this.label6.Location = new System.Drawing.Point(154, 442);
+            this.label6.Location = new System.Drawing.Point(154, 407);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 22);
             this.label6.TabIndex = 56;
@@ -1429,7 +1401,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DateTimePicker txtDateOfBirth;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtMotherName;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtFatherName;
@@ -1439,7 +1410,6 @@
         private System.Windows.Forms.ComboBox cmbGender;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.ComboBox cmbNationality;
         private System.Windows.Forms.TextBox cmbEmailAddress;
         private System.Windows.Forms.DateTimePicker joinDateTimePicker;
         private System.Windows.Forms.Label label1;
