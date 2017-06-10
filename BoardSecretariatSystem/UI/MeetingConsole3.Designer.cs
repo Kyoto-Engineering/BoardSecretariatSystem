@@ -209,11 +209,11 @@
             this.buttonAdditionalParticipant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.buttonAdditionalParticipant.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAdditionalParticipant.ForeColor = System.Drawing.Color.Fuchsia;
-            this.buttonAdditionalParticipant.Location = new System.Drawing.Point(279, 201);
+            this.buttonAdditionalParticipant.Location = new System.Drawing.Point(700, 87);
             this.buttonAdditionalParticipant.Name = "buttonAdditionalParticipant";
             this.buttonAdditionalParticipant.Size = new System.Drawing.Size(316, 41);
             this.buttonAdditionalParticipant.TabIndex = 17;
-            this.buttonAdditionalParticipant.Text = "Additional Participant";
+            this.buttonAdditionalParticipant.Text = "Create Additional Participant";
             this.buttonAdditionalParticipant.UseVisualStyleBackColor = false;
             this.buttonAdditionalParticipant.Click += new System.EventHandler(this.buttonAdditionalParticipant_Click);
             this.buttonAdditionalParticipant.KeyDown += new System.Windows.Forms.KeyEventHandler(this.buttonAdditionalParticipant_KeyDown);
@@ -223,11 +223,11 @@
             this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.addButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addButton.ForeColor = System.Drawing.Color.Blue;
-            this.addButton.Location = new System.Drawing.Point(279, 249);
+            this.addButton.Location = new System.Drawing.Point(279, 212);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(316, 45);
             this.addButton.TabIndex = 18;
-            this.addButton.Text = "Add";
+            this.addButton.Text = "Select As Participent For This Meeting";
             this.addButton.UseVisualStyleBackColor = false;
             this.addButton.Click += new System.EventHandler(this.button1_Click);
             this.addButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.addButton_KeyDown);
@@ -239,7 +239,7 @@
             this.buttonComplete.Name = "buttonComplete";
             this.buttonComplete.Size = new System.Drawing.Size(316, 41);
             this.buttonComplete.TabIndex = 19;
-            this.buttonComplete.Text = "Complete";
+            this.buttonComplete.Text = "Complete Selection";
             this.buttonComplete.UseVisualStyleBackColor = true;
             this.buttonComplete.Click += new System.EventHandler(this.buttonComplete_Click);
             this.buttonComplete.KeyDown += new System.Windows.Forms.KeyEventHandler(this.buttonComplete_KeyDown);

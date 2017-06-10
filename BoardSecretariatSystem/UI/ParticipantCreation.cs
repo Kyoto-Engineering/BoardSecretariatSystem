@@ -130,7 +130,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "SELECT        CertificateNumber FROM Certificate WHERE        (ShareholderId IS NULL) order by CertificateNumber asc";
+                string ct = "SELECT        CertificateNumber FROM Certificate WHERE        (ShareholderId IS NULL) order by CertificateId asc";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();

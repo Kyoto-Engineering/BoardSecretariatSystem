@@ -212,16 +212,52 @@ namespace BoardSecretariatSystem.UI
 
         private void buttonMinutesManagement_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query = "SELECT        MeetingId FROM            Meeting where  MeetingTypeId=1 and  Statuss='Open'";
+            cmd = new SqlCommand(query, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                this.Hide();
             MeetingConsole6UI frm = new MeetingConsole6UI();
             frm.Show();
+            }
+
+
+            else
+            {
+
+                MessageBox.Show("Theere is no opened meeting", "Report",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+            }
         }
 
         private void buttonResolutionManagement_Click(object sender, EventArgs e)
         {
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query = "SELECT        MeetingId FROM            Meeting where  MeetingTypeId=1 and  Statuss='Open'";
+            cmd = new SqlCommand(query, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
             this.Hide();
             MeetingConsole7UI frm = new MeetingConsole7UI();
             frm.Show();
+        }
+
+
+        else
+        {
+
+            MessageBox.Show("Theere is no opened meeting", "Report",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+        }
         }
 
         private void frm2_FormClosed(object sender, FormClosedEventArgs e)

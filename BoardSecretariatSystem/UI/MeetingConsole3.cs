@@ -8,10 +8,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using BoardSecretariatSystem.DBGateway;
+using BoardSecretariatSystem.Models;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace BoardSecretariatSystem.UI
@@ -24,8 +26,15 @@ namespace BoardSecretariatSystem.UI
         ConnectionString cs=new ConnectionString();
         private SqlDataAdapter ada;
         private DataTable dt;
-        public int participantId, metingTypeId,meetingId;
+        public int participantId, metingTypeId,meetingId,psid;
         public int meetingNum, meetingNum1;
+        public List<string> emails=new List<string>();
+        public string MailSubject,addHeader, hNo, rNo, area, thana, dist, division, dateValue, timeValue, meetingTitle,EmailBody,status;
+        public DateTime dateTimeYears;
+        private bool attendanceTaken;
+        private bool agendaSelected;
+        private bool invitationSend;
+        private string _input=null;
 
         public MeetingConsole3()
         {
@@ -137,12 +146,13 @@ namespace BoardSecretariatSystem.UI
                         meetingId = (rdr.GetInt32(0));
                         meetingNum = (rdr.GetInt32(1));
                         txtMeetingNumber.Text = meetingNum.ToString();
-                        txtMeetingTitle.Text = Ordinal(meetingNum) + " Board Meeting";
+                       meetingTitle= txtMeetingTitle.Text = Ordinal(meetingNum) + " Board Meeting";
+                        MailSubject = "Notice for" + meetingTitle;
                     }
                     else
                     {
                         MessageBox.Show("Please Create  or Shedule a meeting First.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        this.Close();
 
                     }
                 }
@@ -151,20 +161,56 @@ namespace BoardSecretariatSystem.UI
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }      
+        }
+        private void MeetingInfo()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query = "Select InvitationSend,Statuss, AttendenceTaken,AllAgendaSelected FROM Meeting where MeetingId=@d1";
+                cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@d1", meetingId);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                   
+                    invitationSend = rdr.GetBoolean(0);
+                    status = rdr.GetString(1);
+                    attendanceTaken = rdr.GetBoolean(2);
+                    agendaSelected = rdr.GetBoolean(3);
+
+
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
         private void MeetingConsole3_Load(object sender, EventArgs e)
         {
             buttonInvitation.Visible = false;
             SetExistingMeetingMemberInList();
             GetAdditionalParticipant();
             GetMeetingTitle();
+            MeetingInfo();
         }
 
         private void buttonAdditionalParticipant_Click(object sender, EventArgs e)
         {
-                           this.Hide();
+                           
             ParticipantCreation2 frm=new ParticipantCreation2();
-                            frm.Show();
+            this.Visible = false;
+            frm.ShowDialog();
+            dataGridView1.Rows.Clear();
+            GetAdditionalParticipant();
+            this.Visible = true;
 
         }
 
@@ -244,8 +290,198 @@ namespace BoardSecretariatSystem.UI
 
         private void buttonComplete_Click(object sender, EventArgs e)
         {
-            buttonInvitation.Visible = true;
+            if (status!="Open")
+            {
+                MessageBox.Show("MEETING IS COMPLETED SORRY");
+            }
+            else if(attendanceTaken)
+            {
+                MessageBox.Show("attendance is Taken already");
+            }
+            else if (invitationSend)
+            {
+                MessageBox.Show("invitatio send already");
+            }
+            else if (agendaSelected)
+            {
+                MessageBox.Show("All Agenda Not Selected wait");
+            }
+            else
+            {
+
+
+                InputBoxValidation validation = delegate(string val)
+                {
+                    if (val == "")
+                        return "Password cannot be empty.";
+
+                    return "";
+                };
+              
+                if (InputBox.Show("Give Password of Secretary Email", "Give Password", ref _input, validation) == DialogResult.OK)
+                {
+                    if (CheckForInternetConnection())
+                    {
+                        NewMailMessage();
+                    }
+                }
+            }
         }
+        private void SetRecepientMailAddress()
+        {
+            listView1.View = View.Details;
+            con = new SqlConnection(cs.DBConn);
+            string qry =
+                "SELECT Distinct EmailBank.Email FROM  Participant INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId  INNER JOIN MeetingParticipant ON Participant.ParticipantId = MeetingParticipant.ParticipantId where MeetingParticipant.MeetingId="+meetingId;
+            //ada = new SqlDataAdapter(qry, con);
+            //dt = new DataTable();
+            //ada.Fill(dt);
+            con.Open();
+            SqlCommand sql=new SqlCommand(qry,con);
+            rdr = sql.ExecuteReader();
+            while (rdr.Read())
+            {
+                emails.Add(rdr.GetString(0));
+            }
+
+        }
+        private void GetBody()
+        {
+            
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query = "Select MeetingDate From Meeting where Meeting.MeetingId=@d1";
+            cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@d1", meetingId);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                dateTimeYears = (rdr.GetDateTime(0));
+            }
+
+            dateValue = dateTimeYears.ToString("yyyy-MMMM-dd");
+            timeValue = dateTimeYears.ToString("HH:mm");
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query2 =
+                "SELECT  AddressHeader.AHeaderName, CompanyAddresses.HouseNo, CompanyAddresses.RoadNo, CompanyAddresses.Area, Thanas.Thana, Districts.District, Divisions.Division,CompanyAddresses.PostOfficeId FROM   Meeting INNER JOIN AddressHeader ON Meeting.AHeaderId = AddressHeader.AHeaderId INNER JOIN CompanyAddresses ON AddressHeader.AHeaderId = CompanyAddresses.AHeaderId INNER JOIN PostOffice ON CompanyAddresses.PostOfficeId = PostOffice.PostOfficeId INNER JOIN Thanas ON PostOffice.T_ID = Thanas.T_ID INNER JOIN  Districts ON Thanas.D_ID = Districts.D_ID INNER JOIN  Divisions ON Districts.Division_ID = Divisions.Division_ID where Meeting.MeetingId='" +
+                meetingId + "' ";
+            cmd = new SqlCommand(query2, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                addHeader = (rdr.GetString(0));
+                hNo = (rdr.GetString(1));
+                rNo = (rdr.GetString(2));
+                area = (rdr.GetString(3));
+                thana = (rdr.GetString(4));
+                dist = (rdr.GetString(5));
+                division = (rdr.GetString(6));
+                psid = (rdr.GetInt32(7));
+            }
+
+           EmailBody = "Notice is hereby given to you that the " + meetingTitle + " of the Company will be held on " +
+                           dateValue + " at " + timeValue + " am in " + addHeader + ",House-" + hNo + ",Road-" + rNo +
+                           ", " + area + ", " + thana + "," + division + ":" + psid + " ";
+
+        }
+        private void NewMailMessage()
+        {
+           
+            GetBody();
+            SetRecepientMailAddress();
+            if (MailSendAndValidate())
+            {
+                UpdateMeeting();
+                MessageBox.Show("Participant Saving Complete");
+            }
+
+        }
+
+        private bool MailSendAndValidate()
+        {
+            bool validate;
+            try
+            {
+                for (int i = 0; i <= emails.Count - 1; i++)
+                {
+                    MailMessage msg = new MailMessage();
+                    msg.From = new MailAddress("secretary@keal.com.bd", "Kyoto Engineering & Automation Ltd");
+                    msg.To.Add(new MailAddress(emails[i]));
+                    msg.Subject = MailSubject;
+                    msg.Body = EmailBody;
+                    msg.IsBodyHtml = true;
+                    if ((EmailBody.Length) > 0)
+                    {
+                        if (System.IO.File.Exists(EmailBody))
+                        {
+                            msg.Attachments.Add(new Attachment(EmailBody));
+                        }
+                        SmtpClient smtp = new SmtpClient();
+
+                        smtp.Host = "smtp.yandex.com";
+                        smtp.Credentials = new NetworkCredential("secretary@keal.com.bd", _input);
+                        smtp.EnableSsl = true;
+                        smtp.Send(msg);
+                    }
+                }
+                MessageBox.Show("Mail Sending Successfully");
+                validate = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                validate = false;
+            }
+            return validate;
+        }
+
+        private void UpdateMeeting()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                string query = "UPDATE Meeting SET InvitationSend =1 where MeetingId=@mid";
+                cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@mid", meetingId);
+                cmd.ExecuteNonQuery();
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static bool CheckForInternetConnection()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                {
+                    using (var stream = client.OpenRead("http://www.google.com"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show(@"There Is  No Internet Connectivity Now." + "\n" + @"Please Try Later", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        private void sendButton_Click(object sender, EventArgs e)
+        {
+           
+
+
+        }
+
         protected void SendEmail(string _subject, MailAddress _from, MailAddress _to, List<MailAddress> _cc, List<MailAddress> _bcc = null)
              {
         string Text = "";

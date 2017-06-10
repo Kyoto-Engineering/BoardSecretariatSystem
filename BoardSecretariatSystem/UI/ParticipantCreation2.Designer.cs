@@ -1323,7 +1323,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ParticipantCreation2";
             this.Text = "ParticipantCreation2";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ParticipantCreation2_FormClosed);
             this.Load += new System.EventHandler(this.ParticipantCreation2_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

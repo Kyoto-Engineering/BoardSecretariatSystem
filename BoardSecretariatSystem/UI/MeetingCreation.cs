@@ -90,23 +90,24 @@ namespace BoardSecretariatSystem.UI
                     string qr2 = "SELECT      MeetingId, MeetingNo, Statuss FROM   Meeting WHERE MeetingId=(SELECT      Max(MeetingId)  FROM   Meeting WHERE MeetingTypeId=1)";                  
                     cmd = new SqlCommand(qr2, con);
                     rdr = cmd.ExecuteReader();
-                    if (rdr.Read())
+                if (rdr.Read())
+                {
+                    if (rdr.HasRows)
                     {
-                        if (!(rdr.IsDBNull(0)))
-                        {
-                            meetingId = (rdr.GetInt32(0));
-                            meetingNum = (rdr.GetInt32(1));
-                            meetingStatus = rdr.GetString(2);
-                            meetingNum = meetingNum + 1;
-                            txtMeetingName.Text = Ordinal(meetingNum) + " Board Meeting";
-                        }
-                        else
-                        {
-                            meetingId = 1;
-                            meetingNum = 1;
-                            txtMeetingName.Text = Ordinal(meetingNum) + " Board Meeting";
-                        }                                                                  
-                   }               
+                        meetingId = (rdr.GetInt32(0));
+                        meetingNum = (rdr.GetInt32(1));
+                        meetingStatus = rdr.GetString(2);
+                        meetingNum = meetingNum + 1;
+                        txtMeetingName.Text = Ordinal(meetingNum) + " Board Meeting";
+                    }
+                }
+                else
+                {
+                    meetingId = 1;
+                    meetingNum = 1;
+                    txtMeetingName.Text = Ordinal(meetingNum) + " Board Meeting";
+                }
+
             }
             catch (Exception ex)
             {
@@ -232,23 +233,38 @@ namespace BoardSecretariatSystem.UI
             String yy = datevalue.Year.ToString();
            con=new SqlConnection(cs.DBConn);
            con.Open();
-           string qry = "Select Count(MeetingId) from Meeting";
+           string qry = "Select Count(MeetingId) from Meeting where MeetingTypeId=1";
            cmd=new SqlCommand(qry,con);
            rdr=cmd.ExecuteReader();
             if (rdr.Read())
             {
                 count = (rdr.GetInt32(0));
             }
-            if (count == 0)
+            con.Close();
+            con.Open();
+            string qry2 = "Select Max(MeetingId) from Meeting";
+            cmd = new SqlCommand(qry, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read()&&!rdr.IsDBNull(0))
+            {
+                currentMeetingId = (rdr.GetInt32(0));
+            }
+            else
             {
                 currentMeetingId = 1;
+            }
+            if (count == 0)
+            {
+                
                 count = 1;
                 serialNo = yy + "-" + boardId + "-" + count + "-" + currentMeetingId;
             }
             else
             {
+                count++;
                 serialNo = yy + "-" + boardId + "-" + count + "-" + currentMeetingId;
-            }            
+            }  
+            con.Close();
         }
 
         private void SaveAddressHeader()
@@ -405,12 +421,17 @@ namespace BoardSecretariatSystem.UI
                     SaveMeetingParticipant();
                     MessageBox.Show("Meeting Created Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Reset();
+                    this.Close();
 
                 }
                 catch (Exception exception)
                 {
                     MessageBox.Show(exception.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            else
+            {
+                this.Close();
             }
             
             
@@ -435,7 +456,7 @@ namespace BoardSecretariatSystem.UI
                 label9.Visible = true;
                 validate = false;
             }
-            else if (MeetingCreation.ActiveForm.Width == 1327)
+            else if (MeetingCreation.ActiveForm!=null && MeetingCreation.ActiveForm.Width == 1327)
             {
                 MeetingCreation.ActiveForm.Width -= 627;
                 groupBox2.Visible = false;

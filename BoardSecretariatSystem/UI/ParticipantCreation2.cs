@@ -1098,9 +1098,7 @@ namespace BoardSecretariatSystem.UI
 
         private void ParticipantCreation2_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Hide();
-            MeetingConsole3 frm = new MeetingConsole3();
-            frm.Show();
+           
         }
 
         private void txtPContactNo_KeyPress(object sender, KeyPressEventArgs e)
