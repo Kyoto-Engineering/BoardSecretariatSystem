@@ -1974,6 +1974,42 @@ namespace BoardSecretariatSystem
                 e.Handled = true;
         }
 
+        private void txtMeetingAlowance_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+                e.Handled = true;
+         }
+
+        private void txtTotalIssuedShare_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char) Keys.Back)))
+                e.Handled = true;
+        }
+
+        private void txtCorum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char) Keys.Back)))
+                e.Handled = true;
+        }
+
+        private void txtTotalAuthorizedShare_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char) Keys.Back)))
+                e.Handled = true;
+        }
+
+        private void txtNumberOfDirector_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char) Keys.Back)))
+                e.Handled = true;
+        }
+
+        private void certificateNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char) Keys.Back)))
+                e.Handled = true;
+        }
+
         
 
     }

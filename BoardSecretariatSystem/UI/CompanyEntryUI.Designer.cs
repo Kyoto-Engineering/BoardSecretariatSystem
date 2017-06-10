@@ -36,7 +36,6 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.blockTextBox = new wmgCMS.WaterMarkTextBox();
             this.postOfficeCombo = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
@@ -70,7 +69,6 @@
             this.txtTotalAuthorizedShare = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtHQBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbHQPost = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -102,7 +100,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbAddressHeader = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txtOBlock = new wmgCMS.WaterMarkTextBox();
             this.cmbOPost = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -158,6 +155,9 @@
             this.label61 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtOBlock = new wmgCMS.WaterMarkTextBox();
+            this.txtHQBlock = new wmgCMS.WaterMarkTextBox();
+            this.blockTextBox = new wmgCMS.WaterMarkTextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -269,17 +269,6 @@
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registered Address";
-            // 
-            // blockTextBox
-            // 
-            this.blockTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blockTextBox.Location = new System.Drawing.Point(151, 109);
-            this.blockTextBox.Name = "blockTextBox";
-            this.blockTextBox.Size = new System.Drawing.Size(146, 26);
-            this.blockTextBox.TabIndex = 4;
-            this.blockTextBox.WaterMarkColor = System.Drawing.Color.Gray;
-            this.blockTextBox.WaterMarkText = "if any";
-            this.blockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.blockTextBox_KeyDown);
             // 
             // postOfficeCombo
             // 
@@ -592,6 +581,7 @@
             this.txtTotalIssuedShare.Size = new System.Drawing.Size(216, 29);
             this.txtTotalIssuedShare.TabIndex = 4;
             this.txtTotalIssuedShare.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTotalIssuedShare_KeyDown);
+            this.txtTotalIssuedShare.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalIssuedShare_KeyPress);
             // 
             // label8
             // 
@@ -612,6 +602,7 @@
             this.txtTotalAuthorizedShare.Size = new System.Drawing.Size(424, 29);
             this.txtTotalAuthorizedShare.TabIndex = 6;
             this.txtTotalAuthorizedShare.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTotalAuthorizedShare_KeyDown);
+            this.txtTotalAuthorizedShare.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalAuthorizedShare_KeyPress);
             // 
             // label9
             // 
@@ -662,17 +653,6 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Corporate HQ Address";
-            // 
-            // txtHQBlock
-            // 
-            this.txtHQBlock.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHQBlock.Location = new System.Drawing.Point(151, 105);
-            this.txtHQBlock.Name = "txtHQBlock";
-            this.txtHQBlock.Size = new System.Drawing.Size(146, 25);
-            this.txtHQBlock.TabIndex = 4;
-            this.txtHQBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtHQBlock.WaterMarkText = "if any";
-            this.txtHQBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHQBlock_KeyDown);
             // 
             // cmbHQPost
             // 
@@ -1040,17 +1020,6 @@
             this.groupBox5.Size = new System.Drawing.Size(651, 206);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
-            // 
-            // txtOBlock
-            // 
-            this.txtOBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOBlock.Location = new System.Drawing.Point(158, 113);
-            this.txtOBlock.Name = "txtOBlock";
-            this.txtOBlock.Size = new System.Drawing.Size(146, 26);
-            this.txtOBlock.TabIndex = 4;
-            this.txtOBlock.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtOBlock.WaterMarkText = "if any";
-            this.txtOBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOBlock_KeyDown);
             // 
             // cmbOPost
             // 
@@ -1454,6 +1423,7 @@
             this.txtCorum.Size = new System.Drawing.Size(74, 29);
             this.txtCorum.TabIndex = 5;
             this.txtCorum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCorum_KeyDown);
+            this.txtCorum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCorum_KeyPress);
             // 
             // label56
             // 
@@ -1485,6 +1455,7 @@
             this.txtNumberOfDirector.Size = new System.Drawing.Size(100, 29);
             this.txtNumberOfDirector.TabIndex = 9;
             this.txtNumberOfDirector.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumberOfDirector_KeyDown);
+            this.txtNumberOfDirector.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumberOfDirector_KeyPress);
             // 
             // label58
             // 
@@ -1505,6 +1476,7 @@
             this.txtMeetingAlowance.Size = new System.Drawing.Size(139, 29);
             this.txtMeetingAlowance.TabIndex = 3;
             this.txtMeetingAlowance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMeetingAlowance_KeyDown);
+            this.txtMeetingAlowance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMeetingAlowance_KeyPress);
             // 
             // certificateNoTextBox
             // 
@@ -1514,6 +1486,7 @@
             this.certificateNoTextBox.Size = new System.Drawing.Size(241, 29);
             this.certificateNoTextBox.TabIndex = 10;
             this.certificateNoTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.certificateNoTextBox_KeyDown);
+            this.certificateNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.certificateNoTextBox_KeyPress);
             this.certificateNoTextBox.Leave += new System.EventHandler(this.certificateNoTextBox_Leave);
             // 
             // label59
@@ -1605,6 +1578,39 @@
             this.groupBox6.Size = new System.Drawing.Size(635, 300);
             this.groupBox6.TabIndex = 21;
             this.groupBox6.TabStop = false;
+            // 
+            // txtOBlock
+            // 
+            this.txtOBlock.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOBlock.Location = new System.Drawing.Point(158, 113);
+            this.txtOBlock.Name = "txtOBlock";
+            this.txtOBlock.Size = new System.Drawing.Size(146, 26);
+            this.txtOBlock.TabIndex = 4;
+            this.txtOBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtOBlock.WaterMarkText = "if any";
+            this.txtOBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOBlock_KeyDown);
+            // 
+            // txtHQBlock
+            // 
+            this.txtHQBlock.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHQBlock.Location = new System.Drawing.Point(151, 105);
+            this.txtHQBlock.Name = "txtHQBlock";
+            this.txtHQBlock.Size = new System.Drawing.Size(146, 25);
+            this.txtHQBlock.TabIndex = 4;
+            this.txtHQBlock.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txtHQBlock.WaterMarkText = "if any";
+            this.txtHQBlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHQBlock_KeyDown);
+            // 
+            // blockTextBox
+            // 
+            this.blockTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blockTextBox.Location = new System.Drawing.Point(151, 109);
+            this.blockTextBox.Name = "blockTextBox";
+            this.blockTextBox.Size = new System.Drawing.Size(146, 26);
+            this.blockTextBox.TabIndex = 4;
+            this.blockTextBox.WaterMarkColor = System.Drawing.Color.Gray;
+            this.blockTextBox.WaterMarkText = "if any";
+            this.blockTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.blockTextBox_KeyDown);
             // 
             // CompanyEntryUI
             // 
