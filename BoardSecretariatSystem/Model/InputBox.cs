@@ -34,6 +34,8 @@ namespace BoardSecretariatSystem.Models
             label.Text = promptText;
             label2.Text = "Confirm Password";
             textBox.Text = value;
+            textBox.ShortcutsEnabled = false;
+            textBox1.ShortcutsEnabled = false;
             //textBox.PasswordChar = '*';
             textBox.UseSystemPasswordChar = true;
             textBox1.UseSystemPasswordChar = true;
@@ -130,16 +132,52 @@ namespace BoardSecretariatSystem.Models
                         
                     }
                 };
+                textBox.KeyDown += delegate(object sender, KeyEventArgs e)
+                {
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        textBox1.Focus();
+                        e.Handled = true;
+                    }
+                };
+                textBox1.KeyDown += delegate(object sender, KeyEventArgs e)
+                {
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        form.Close();
+                    }
+                };
+
                 form.FormClosing += delegate(object sender, FormClosingEventArgs e)
                 {
                     if (form.DialogResult == DialogResult.OK)
                     {
-                        string errorText = validation(textBox1.Text);
-                        if (e.Cancel = (errorText != ""))
+                        if (!string.IsNullOrWhiteSpace(textBox.Text) && !string.IsNullOrWhiteSpace(textBox1.Text))
                         {
-                            MessageBox.Show(form, errorText, "Validation Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            textBox.Focus();
+                            if (textBox1.Text != textBox.Text)
+                            {
+                                string errorText = @"Password Not Matched Please check";
+                                if (e.Cancel = (errorText != ""))
+                                {
+                                    MessageBox.Show(form, errorText, "Error",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    textBox1.Clear();
+                                    textBox.Focus();
+                                }
+                              
+                                
+                            }
+
+                        }
+                        else
+                        {
+                            string errorText = validation(textBox1.Text);
+                            if (e.Cancel = (errorText != ""))
+                            {
+                                MessageBox.Show(form, errorText, "Validation Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                textBox.Focus();
+                            }
                         }
                     }
                 };

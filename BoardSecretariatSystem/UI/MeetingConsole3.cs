@@ -302,7 +302,7 @@ namespace BoardSecretariatSystem.UI
             {
                 MessageBox.Show("invitatio send already");
             }
-            else if (agendaSelected)
+            else if (!agendaSelected)
             {
                 MessageBox.Show("All Agenda Not Selected wait");
             }
@@ -329,7 +329,6 @@ namespace BoardSecretariatSystem.UI
         }
         private void SetRecepientMailAddress()
         {
-            listView1.View = View.Details;
             con = new SqlConnection(cs.DBConn);
             string qry =
                 "SELECT Distinct EmailBank.Email FROM  Participant INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId  INNER JOIN MeetingParticipant ON Participant.ParticipantId = MeetingParticipant.ParticipantId where MeetingParticipant.MeetingId="+meetingId;

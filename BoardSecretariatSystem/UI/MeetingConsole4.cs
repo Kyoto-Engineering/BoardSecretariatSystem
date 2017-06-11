@@ -5,11 +5,14 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BoardSecretariatSystem.DBGateway;
+using BoardSecretariatSystem.Models;
 using BoardSecretariatSystem.Reports;
 
 namespace BoardSecretariatSystem.UI
@@ -21,8 +24,11 @@ namespace BoardSecretariatSystem.UI
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
         private int meetingId, meetingNo, agendaId = 0;
-        private int postponeid ;
+        private int postponeid,psid ;
+        public DateTime dateTimeYears;
+        public List<string> emails = new List<string>();
         private bool invitationSend, attendanceTaken,agendaSelected;
+        public string MailSubject, addHeader, hNo, rNo, area, thana, dist, division, dateValue, timeValue, meetingTitle, EmailBody, status, _input=null;
         public MeetingConsole4()
         {
             InitializeComponent();
@@ -76,11 +82,14 @@ namespace BoardSecretariatSystem.UI
                     attendanceTaken = rdr.GetBoolean(3);
                     agendaSelected = rdr.GetBoolean(4);
 
-
-                }
-                if (con.State == ConnectionState.Open)
-                {
                     con.Close();
+                }
+
+                else
+                {
+                    MessageBox.Show("No Meeting Is Available For This Perpose");
+                    con.Close();
+                    this.Close();
                 }
             }
             catch (Exception ex)
@@ -148,12 +157,121 @@ namespace BoardSecretariatSystem.UI
         {
             if (ValidationChecking())
             {
+                InputBoxValidation validation = delegate(string val)
+                {
+                    if (val == "")
+                        return "Password cannot be empty.";
+
+                    return "";
+                };
+
+                if (InputBox.Show("Give Password of Secretary Email", "Give Password", ref _input, validation) == DialogResult.OK)
+                {
+                    if (CheckForInternetConnection())
+                    {
+                        NewMailMessage();
+                    }
+                    else
+                    {
+                        _input = null;
+                    }
+                }
+               
+            }
+        }
+        public static bool CheckForInternetConnection()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                {
+                    using (var stream = client.OpenRead("http://www.google.com"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show(@"There Is  No Internet Connectivity Now." + "\n" + @"Please Try Later", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        private void SetRecepientMailAddress()
+        {
+           
+            con = new SqlConnection(cs.DBConn);
+            string qry =
+                "SELECT distinct EmailBank.Email, MeetingParticipant.MeetingId FROM MeetingParticipant INNER JOIN Participant ON MeetingParticipant.ParticipantId = Participant.ParticipantId INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId WHERE MeetingParticipant.MeetingId =" + meetingId;
+            con.Open();
+            SqlCommand sql = new SqlCommand(qry, con);
+            rdr = sql.ExecuteReader();
+            while (rdr.Read())
+            {
+                emails.Add(rdr.GetString(0));
+            }
+
+        }
+        private void NewMailMessage()
+        {
+            
+            GetBody();
+            SetRecepientMailAddress();
+            if (MailSendAndValidate())
+            {
                 SavePostPone();
                 Notice();
                 DeleteXtraParticipants();
                 UpdateMeeting();
                 MessageBox.Show("Posteponed Succesfully");
             }
+
+        }
+        private bool MailSendAndValidate()
+        {
+            bool validate;
+            try
+            {
+                for (int i = 0; i <= emails.Count - 1; i++)
+                {
+                    MailMessage msg = new MailMessage();
+                    msg.From = new MailAddress("secretary@keal.com.bd", "Kyoto Engineering & Automation Ltd");
+                    msg.To.Add(new MailAddress(emails[i]));
+                    msg.Subject = MailSubject;
+                    msg.Body = EmailBody;
+                    msg.IsBodyHtml = true;
+                    if ((EmailBody.Length) > 0)
+                    {
+                        if (System.IO.File.Exists(EmailBody))
+                        {
+                            msg.Attachments.Add(new Attachment(EmailBody));
+                        }
+                        SmtpClient smtp = new SmtpClient();
+
+                        smtp.Host = "smtp.yandex.com";
+                        smtp.Credentials = new NetworkCredential("secretary@keal.com.bd", _input);
+                        smtp.EnableSsl = true;
+                        smtp.Send(msg);
+                    }
+                }
+                MessageBox.Show("Mail Sending Successfully");
+                validate = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                validate = false;
+                _input = null;
+            }
+            return validate;
+        }
+        private void GetBody()
+        {
+            EmailBody = "Dear<br>Notice is hereby given to you that the " + meetingNumIDTextBox.Text +
+                        " of the Company is Postponed for \"" + reasonForCancelRichTextBox.Text +
+                        "\". <br> Probable Meeting Time is is " + probableNextMeetingDateTimePicker.Text+"<br>Ordered By<br>"+comboBoxWithGrid_WinformsHost1.SelectedItem.Name+"<br>"+comboBoxWithGrid_WinformsHost1.SelectedItem.Title;
+            MailSubject = "Postpone Notice for" + meetingNumIDTextBox.Text;
         }
 
         private void SavePostPone()
