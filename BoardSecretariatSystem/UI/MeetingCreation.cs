@@ -120,26 +120,23 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query = "SELECT CompanyName FROM Company ";
+                string query = "SELECT CompanyName,CompanyId FROM Company ";
                 cmd = new SqlCommand(query, con);
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
                     txtCompanyName.Text = (rdr.GetString(0));
+                    companyId = (rdr.GetInt32(1));
+                    con.Close();
                 }
-
-                con.Close();
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string query2 = "SELECT CompanyId FROM Company where  Company.CompanyName='" + txtCompanyName.Text + "' ";
-                cmd = new SqlCommand(query2, con);
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
+                else
                 {
-                    companyId = (rdr.GetInt32(0));
+                    MessageBox.Show("Create A comany First");
+                    con.Close();
+                    this.Close();
                 }
-
-                con.Close();
+               
+               
             }
             catch (Exception ex)
             {
@@ -188,27 +185,7 @@ namespace BoardSecretariatSystem.UI
             }
             return String.Format("{0}{1}", number, suffix);
         }
-        public void FillHQDivisionCombo()
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "select RTRIM(Divisions.Division) from Divisions  order by Divisions.Division_ID desc";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    cmbDivision.Items.Add(rdr[0]);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+
         private void MeetingCreation_Load(object sender, EventArgs e)
         {
             userId = frmLogin.uId.ToString();
@@ -219,7 +196,6 @@ namespace BoardSecretariatSystem.UI
             BoardNameLoad();
             CompanyNameLoad();
             MeetingVanueLoad();
-            FillHQDivisionCombo();
             GetMeetingTitle();
            
             GenerateSerialNumberForMeeting();
@@ -289,17 +265,11 @@ namespace BoardSecretariatSystem.UI
                
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string insertQ = "insert into CompanyAddresses(AHeaderId,PostOfficeId,FlatNo,HouseNo,RoadNo,Block,Area,ContactNo,CompanyId) Values(@d1,@d4,@d5,@d6,@d7,@d8,@d9,@d10,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string insertQ = "insert into CompanyAddresses(AHeaderId,Address,CompanyId) Values(@d1,@d4,@d11)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(insertQ);
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@d1", string.IsNullOrEmpty(addHId.ToString()) ? (object)DBNull.Value : addHId.ToString()));
-                cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(postofficeId) ? (object)DBNull.Value : postofficeId));
-                cmd.Parameters.Add(new SqlParameter("@d5", string.IsNullOrEmpty(txtFlatNo.Text) ? (object)DBNull.Value : txtFlatNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d6", string.IsNullOrEmpty(txtHouseNo.Text) ? (object)DBNull.Value : txtHouseNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d7", string.IsNullOrEmpty(txtRoadNo.Text) ? (object)DBNull.Value : txtRoadNo.Text));
-                cmd.Parameters.Add(new SqlParameter("@d8", string.IsNullOrEmpty(txtBlock.Text) ? (object)DBNull.Value : txtBlock.Text));
-                cmd.Parameters.Add(new SqlParameter("@d9", string.IsNullOrEmpty(txtArea.Text) ? (object)DBNull.Value : txtArea.Text));
-                cmd.Parameters.Add(new SqlParameter("@d10", string.IsNullOrEmpty(txtContactNo.Text) ? (object)DBNull.Value : txtContactNo.Text));
+                cmd.Parameters.Add(new SqlParameter("@d4", string.IsNullOrEmpty(corporateRichTextBox.Text) ? (object)DBNull.Value : corporateRichTextBox.Text));
                 cmd.Parameters.AddWithValue("@d11", companyId);
                 affectedRows1 = (int)cmd.ExecuteScalar();
                 con.Close();
@@ -307,17 +277,7 @@ namespace BoardSecretariatSystem.UI
 
         private void ResetAddress()
         {
-            txtFlatNo.Clear();
-            txtHouseNo.Clear();
-            txtRoadNo.Clear();
-            txtBlock.Clear();
-            txtArea.Clear();
-            txtContactNo.Clear();
-            txtPostCode.Clear();
-            cmbPost.SelectedIndex = -1;
-            cmbThana.SelectedIndex = -1;
-            cmbDistrict.SelectedIndex = -1;
-            cmbDivision.SelectedIndex = -1;
+          corporateRichTextBox.Clear();
         }
         private void Reset()
         {
@@ -373,24 +333,9 @@ namespace BoardSecretariatSystem.UI
 
                     }
 
-                    if (string.IsNullOrEmpty(cmbDivision.Text))
+                    if (string.IsNullOrEmpty(corporateRichTextBox.Text))
                     {
-                        MessageBox.Show("Please Select division of Address", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (string.IsNullOrEmpty(cmbDistrict.Text))
-                    {
-                        MessageBox.Show("Please Select district of Address", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (string.IsNullOrEmpty(cmbThana.Text))
-                    {
-                        MessageBox.Show("Please Select thana of Address", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (string.IsNullOrEmpty(cmbPost.Text))
-                    {
-                        MessageBox.Show("Please Select Post Office of Address", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Please insert Address", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -527,201 +472,6 @@ namespace BoardSecretariatSystem.UI
             }           
         }
 
-        private void cmbDivision_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctk = "SELECT  RTRIM(Divisions.Division_ID)  from Divisions WHERE Divisions.Division=@find";
-
-                cmd = new SqlCommand(ctk);
-                cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Division"));
-                cmd.Parameters["@find"].Value = cmbDivision.Text;
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    divisionId = (rdr.GetString(0));
-
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-                cmbDivision.Text = cmbDivision.Text.Trim();
-                cmbDistrict.SelectedIndex = -1;
-                cmbDistrict.Items.Clear();
-                cmbThana.SelectedIndex = -1;
-                cmbThana.Items.Clear();
-                cmbPost.SelectedIndex = -1;
-                cmbPost.Items.Clear();
-                txtPostCode.Clear();
-                cmbDistrict.Enabled = true;
-                cmbDistrict.Focus();
-
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "select RTRIM(Districts.District) from Districts  Where Districts.Division_ID = '" + divisionId + "' order by Districts.Division_ID desc";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-
-                while (rdr.Read())
-                {
-                    cmbDistrict.Items.Add(rdr[0]);
-                }
-                con.Close();
-
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cmbDistrict_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctk = "SELECT  RTRIM(Districts.D_ID)  from Districts WHERE Districts.District=@find";
-                cmd = new SqlCommand(ctk);
-                cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "District"));
-                cmd.Parameters["@find"].Value = cmbDistrict.Text;
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    districtId = (rdr.GetString(0));
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-                cmbDistrict.Text = cmbDistrict.Text.Trim();
-                cmbThana.SelectedIndex = -1;
-                cmbThana.Items.Clear();
-                cmbPost.SelectedIndex = -1;
-                cmbPost.Items.Clear();
-                txtPostCode.Clear();
-                cmbThana.Enabled = true;
-                cmbThana.Focus();
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "select RTRIM(Thanas.Thana) from Thanas  Where Thanas.D_ID = '" + districtId + "' order by Thanas.D_ID desc";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    cmbThana.Items.Add(rdr[0]);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cmbThana_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctk = "SELECT  RTRIM(Thanas.T_ID)  from Thanas WHERE Thanas.Thana=@find";
-                cmd = new SqlCommand(ctk);
-                cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "Thana"));
-                cmd.Parameters["@find"].Value = cmbThana.Text;
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    thanaId = (rdr.GetString(0));
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-                cmbThana.Text = cmbThana.Text.Trim();
-                cmbPost.SelectedIndex = -1;
-                cmbPost.Items.Clear();
-                txtPostCode.Clear();
-                cmbPost.Enabled = true;
-                cmbPost.Focus();
-
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "select RTRIM(PostOffice.PostOfficeName) from PostOffice  Where PostOffice.T_ID = '" + thanaId + "' order by PostOffice.T_ID desc";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    cmbPost.Items.Add(rdr[0]);
-                }
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cmbPost_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ctk = "SELECT  RTRIM(PostOffice.PostOfficeId),RTRIM(PostOffice.PostCode) from PostOffice WHERE PostOffice.PostOfficeName=@find";
-                cmd = new SqlCommand(ctk);
-                cmd.Connection = con;
-                cmd.Parameters.Add(new SqlParameter("@find", System.Data.SqlDbType.NVarChar, 50, "PostOfficeName"));
-                cmd.Parameters["@find"].Value = cmbPost.Text;
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    postofficeId = (rdr.GetString(0));
-                    txtPostCode.Text = (rdr.GetString(1));
-                }
-                if ((rdr != null))
-                {
-                    rdr.Close();
-                }
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void txtContactNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
-                e.Handled = true;
-        }
         private bool ValidateCreateMeeting()
         {
             bool validate = true;
@@ -782,106 +532,7 @@ namespace BoardSecretariatSystem.UI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txtFlatNo.Focus();
-                e.Handled = true;
-            }
-        }
-
-        private void txtFlatNo_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                txtHouseNo.Focus();
-                e.Handled = true;
-            }
-        }
-
-        private void txtHouseNo_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                txtRoadNo.Focus();
-                e.Handled = true;
-            }
-        }
-
-        private void txtRoadNo_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                txtBlock.Focus();
-                e.Handled = true;
-            }
-        }
-
-        private void txtBlock_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                txtArea.Focus();
-                e.Handled = true;
-            }
-        }
-
-        private void txtArea_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                txtContactNo.Focus();
-                e.Handled = true;
-            }
-        }
-
-        private void txtContactNo_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                cmbDivision.Focus();
-                e.Handled = true;
-            }
-        }
-
-        private void cmbDivision_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                cmbDistrict.Focus();
-                e.Handled = true;
-            }
-        }
-
-        private void cmbDistrict_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                cmbThana.Focus();
-                e.Handled = true;
-            }
-        }
-
-        private void cmbThana_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                cmbPost.Focus();
-                e.Handled = true;
-            }
-        }
-
-        private void cmbPost_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                txtPostCode.Focus();
-                e.Handled = true;
-            }
-        }
-
-        private void txtPostCode_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                buttonMeetingCreation.Focus();
+                corporateRichTextBox.Focus();
                 e.Handled = true;
             }
         }
