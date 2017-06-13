@@ -300,7 +300,7 @@ namespace BoardSecretariatSystem.UI
             }
             else if (invitationSend)
             {
-                MessageBox.Show("invitatio send already");
+                MessageBox.Show("invitation send already");
             }
             else if (!agendaSelected)
             {
@@ -358,12 +358,12 @@ namespace BoardSecretariatSystem.UI
                 dateTimeYears = (rdr.GetDateTime(0));
             }
 
-            dateValue = dateTimeYears.ToString("yyyy-MMMM-dd");
-            timeValue = dateTimeYears.ToString("HH:mm");
+            dateValue = dateTimeYears.ToString("dddd, MMMMM yyyy");
+            timeValue = dateTimeYears.ToString("hh:mm tt");
             con = new SqlConnection(cs.DBConn);
             con.Open();
             string query2 =
-                "SELECT  AddressHeader.AHeaderName, CompanyAddresses.HouseNo, CompanyAddresses.RoadNo, CompanyAddresses.Area, Thanas.Thana, Districts.District, Divisions.Division,CompanyAddresses.PostOfficeId FROM   Meeting INNER JOIN AddressHeader ON Meeting.AHeaderId = AddressHeader.AHeaderId INNER JOIN CompanyAddresses ON AddressHeader.AHeaderId = CompanyAddresses.AHeaderId INNER JOIN PostOffice ON CompanyAddresses.PostOfficeId = PostOffice.PostOfficeId INNER JOIN Thanas ON PostOffice.T_ID = Thanas.T_ID INNER JOIN  Districts ON Thanas.D_ID = Districts.D_ID INNER JOIN  Divisions ON Districts.Division_ID = Divisions.Division_ID where Meeting.MeetingId='" +
+                "SELECT  AddressHeader.AHeaderName, CompanyAddresses.Address  FROM   Meeting INNER JOIN AddressHeader ON Meeting.AHeaderId = AddressHeader.AHeaderId INNER JOIN CompanyAddresses ON AddressHeader.AHeaderId = CompanyAddresses.AHeaderId where Meeting.MeetingId='" +
                 meetingId + "' ";
             cmd = new SqlCommand(query2, con);
             rdr = cmd.ExecuteReader();
@@ -371,17 +371,10 @@ namespace BoardSecretariatSystem.UI
             {
                 addHeader = (rdr.GetString(0));
                 hNo = (rdr.GetString(1));
-                rNo = (rdr.GetString(2));
-                area = (rdr.GetString(3));
-                thana = (rdr.GetString(4));
-                dist = (rdr.GetString(5));
-                division = (rdr.GetString(6));
-                psid = (rdr.GetInt32(7));
             }
 
            EmailBody = "Notice is hereby given to you that the " + meetingTitle + " of the Company will be held on " +
-                           dateValue + " at " + timeValue + " am in " + addHeader + ",House-" + hNo + ",Road-" + rNo +
-                           ", " + area + ", " + thana + "," + division + ":" + psid + " ";
+                           dateValue + " at " + timeValue + " in " + addHeader + ", " + hNo + " ";
 
         }
         private void NewMailMessage()
