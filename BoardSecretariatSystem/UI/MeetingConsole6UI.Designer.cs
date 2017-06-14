@@ -65,7 +65,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Magenta;
-            this.label1.Location = new System.Drawing.Point(90, 118);
+            this.label1.Location = new System.Drawing.Point(90, 75);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(144, 26);
             this.label1.TabIndex = 0;
@@ -78,9 +78,9 @@
             this.label5.ForeColor = System.Drawing.Color.Blue;
             this.label5.Location = new System.Drawing.Point(350, -4);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(476, 62);
+            this.label5.Size = new System.Drawing.Size(476, 31);
             this.label5.TabIndex = 4;
-            this.label5.Text = "                 Meeting Console 6  \r\nMinutes Management (During Meeting)";
+            this.label5.Text = "Minutes Management (During Meeting)";
             // 
             // label6
             // 
@@ -98,7 +98,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Magenta;
-            this.label7.Location = new System.Drawing.Point(2, 76);
+            this.label7.Location = new System.Drawing.Point(2, 33);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(240, 26);
             this.label7.TabIndex = 6;
@@ -109,7 +109,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Magenta;
-            this.label8.Location = new System.Drawing.Point(105, 155);
+            this.label8.Location = new System.Drawing.Point(105, 112);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(133, 26);
             this.label8.TabIndex = 7;
@@ -203,7 +203,7 @@
             // txtAgendaTitle
             // 
             this.txtAgendaTitle.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAgendaTitle.Location = new System.Drawing.Point(246, 114);
+            this.txtAgendaTitle.Location = new System.Drawing.Point(246, 71);
             this.txtAgendaTitle.Name = "txtAgendaTitle";
             this.txtAgendaTitle.Size = new System.Drawing.Size(328, 35);
             this.txtAgendaTitle.TabIndex = 16;
@@ -212,7 +212,7 @@
             // txtMeetingNumber
             // 
             this.txtMeetingNumber.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeetingNumber.Location = new System.Drawing.Point(246, 72);
+            this.txtMeetingNumber.Location = new System.Drawing.Point(246, 29);
             this.txtMeetingNumber.Name = "txtMeetingNumber";
             this.txtMeetingNumber.ReadOnly = true;
             this.txtMeetingNumber.Size = new System.Drawing.Size(328, 35);
@@ -223,9 +223,9 @@
             // 
             this.addToListButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addToListButton.ForeColor = System.Drawing.Color.Magenta;
-            this.addToListButton.Location = new System.Drawing.Point(582, 434);
+            this.addToListButton.Location = new System.Drawing.Point(699, 446);
             this.addToListButton.Name = "addToListButton";
-            this.addToListButton.Size = new System.Drawing.Size(111, 46);
+            this.addToListButton.Size = new System.Drawing.Size(111, 34);
             this.addToListButton.TabIndex = 18;
             this.addToListButton.Text = "Add to List";
             this.addToListButton.UseVisualStyleBackColor = true;
@@ -290,18 +290,18 @@
             // 
             // elementHost1
             // 
-            this.elementHost1.Location = new System.Drawing.Point(244, 155);
+            this.elementHost1.Location = new System.Drawing.Point(244, 112);
             this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(328, 142);
+            this.elementHost1.Size = new System.Drawing.Size(449, 159);
             this.elementHost1.TabIndex = 21;
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.txtDiscussion;
             // 
             // elementHost2
             // 
-            this.elementHost2.Location = new System.Drawing.Point(246, 303);
+            this.elementHost2.Location = new System.Drawing.Point(246, 277);
             this.elementHost2.Name = "elementHost2";
-            this.elementHost2.Size = new System.Drawing.Size(328, 151);
+            this.elementHost2.Size = new System.Drawing.Size(447, 177);
             this.elementHost2.TabIndex = 22;
             this.elementHost2.Text = "elementHost2";
             this.elementHost2.Child = this.txtDraftResolution;

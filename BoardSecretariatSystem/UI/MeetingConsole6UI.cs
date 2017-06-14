@@ -352,6 +352,7 @@ namespace BoardSecretariatSystem.UI
                 cmd = new SqlCommand(query2, con);
                 cmd.Parameters.AddWithValue("@d1", 1);
                 cmd.ExecuteReader();
+                MessageBox.Show(@"Successfully Saved");
                 con.Close();
             }
             catch (Exception ex)
