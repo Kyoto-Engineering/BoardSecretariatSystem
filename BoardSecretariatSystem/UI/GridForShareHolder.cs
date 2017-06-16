@@ -29,7 +29,7 @@ namespace BoardSecretariatSystem.UI
             try
             {
                 con = new SqlConnection(cs.DBConn);
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT Participant.ParticipantName, Participant.FatherName, EmailBank.Email, Participant.ContactNumber FROM  Participant INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId INNER JOIN  Shareholder ON Participant.ParticipantId = Shareholder.ParticipantId", con);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT Participant.ParticipantName, Participant.FatherName, EmailBank.Email, Participant.ContactNumber FROM  Participant LEFT JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId INNER JOIN  Shareholder ON Participant.ParticipantId = Shareholder.ParticipantId", con);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 dataGridView1.Rows.Clear();
