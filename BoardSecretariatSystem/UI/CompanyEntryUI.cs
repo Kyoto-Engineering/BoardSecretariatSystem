@@ -203,12 +203,14 @@ namespace BoardSecretariatSystem
         {
             companyNameTextBox.Clear();
             txtValueOfEachShare.Clear();
+            txtMeetingAlowance.Clear();
             txtTotalIssuedShare.Clear();
             txtTotalAuthorizedShare.Clear();
             regNoTextBox.Clear();
             txtCorum.Clear();
             txtNumberOfDirector.Clear();
             creatingDateTimePicker.Value = DateTime.Today.ToLocalTime();
+            certificateNoTextBox.Clear();
             otherAddress.CheckedChanged -= checkBox1_CheckedChanged;
             otherAddress.Checked = false;
             otherAddress.CheckedChanged += checkBox1_CheckedChanged;
