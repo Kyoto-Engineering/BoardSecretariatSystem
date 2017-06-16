@@ -31,7 +31,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                cmd = new SqlCommand("SELECT  Derector.DerectorId, Participant.ParticipantName, 'Director' as Title, EmailBank.Email, Participant.ContactNumber FROM  Participant INNER JOIN Shareholder ON Participant.ParticipantId = Shareholder.ParticipantId  INNER JOIN Derector ON Shareholder.ShareholderId = Derector.ShareholderId  INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId where Derector.DateofRetirement is  null", con);
+                cmd = new SqlCommand("SELECT  Derector.DerectorId, Participant.ParticipantName, 'Director' as Title, EmailBank.Email, Participant.ContactNumber FROM  Participant LEFT JOIN Shareholder ON Participant.ParticipantId = Shareholder.ParticipantId  LEFT JOIN Derector ON Shareholder.ShareholderId = Derector.ShareholderId  LEFT JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId where Derector.DateofRetirement is  null", con);
 
                 rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 dataGridView1.Rows.Clear();
@@ -52,7 +52,7 @@ namespace BoardSecretariatSystem.UI
             try
             {
                 con = new SqlConnection(cs.DBConn);
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT Derector.DerectorId, Participant.ParticipantName, Participant.FatherName, EmailBank.Email, Participant.ContactNumber FROM   Participant  INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId  INNER JOIN Shareholder ON Participant.ParticipantId = Shareholder.ParticipantId  INNER JOIN Derector ON Shareholder.ShareholderId = Derector.ShareholderId", con);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT Derector.DerectorId, Participant.ParticipantName, Participant.FatherName, EmailBank.Email, Participant.ContactNumber FROM   Participant  LEFT JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId  LEFT JOIN Shareholder ON Participant.ParticipantId = Shareholder.ParticipantId  LEFT JOIN Derector ON Shareholder.ShareholderId = Derector.ShareholderId", con);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 dataGridView1.Rows.Clear();
