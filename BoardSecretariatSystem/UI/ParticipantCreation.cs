@@ -392,6 +392,8 @@ namespace BoardSecretariatSystem.UI
             CountryNamecomboBox.SelectedIndex = -1;
             CountryCodetextBox.Clear();
             txtShareHolderName.Clear();
+            certificateStartComboBox.SelectedIndex = -1;
+            CertificateEndComboBox.SelectedIndex = -1;
             txtCurrentShareHolding.Clear();
             txtFatherName.Clear();
             txtMotherName.Clear();
@@ -446,6 +448,8 @@ namespace BoardSecretariatSystem.UI
             CountryNamecomboBox.SelectedIndex = -1;
             CountryCodetextBox.Clear();
             txtShareHolderName.Clear();
+            certificateStartComboBox.SelectedIndex = -1;
+            CertificateEndComboBox.SelectedIndex = -1;
             txtCurrentShareHolding.Clear();
             txtFatherName.Clear();
             txtMotherName.Clear();
