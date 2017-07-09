@@ -16,14 +16,14 @@ namespace BoardSecretariatSystem.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class MemoOfAgendaReport : ReportClass {
+    public class ScheduleX_Part1 : ReportClass {
         
-        public MemoOfAgendaReport() {
+        public ScheduleX_Part1() {
         }
         
         public override string ResourceName {
             get {
-                return "MemoOfAgendaReport.rpt";
+                return "ScheduleX-Part1.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace BoardSecretariatSystem.Reports {
         
         public override string FullResourceName {
             get {
-                return "BoardSecretariatSystem.Reports.MemoOfAgendaReport.rpt";
+                return "BoardSecretariatSystem.Reports.ScheduleX-Part1.rpt";
             }
             set {
                 // Do nothing
@@ -87,28 +87,12 @@ namespace BoardSecretariatSystem.Reports {
                 return this.ReportDefinition.Sections[4];
             }
         }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_AgendaName {
-            get {
-                return this.DataDefinition.ParameterFields[0];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_meetingNo {
-            get {
-                return this.DataDefinition.ParameterFields[1];
-            }
-        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedMemoOfAgendaReport : Component, ICachedReport {
+    public class CachedScheduleX_Part1 : Component, ICachedReport {
         
-        public CachedMemoOfAgendaReport() {
+        public CachedScheduleX_Part1() {
         }
         
         [Browsable(false)]
@@ -145,7 +129,7 @@ namespace BoardSecretariatSystem.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            MemoOfAgendaReport rpt = new MemoOfAgendaReport();
+            ScheduleX_Part1 rpt = new ScheduleX_Part1();
             rpt.Site = this.Site;
             return rpt;
         }
