@@ -42,6 +42,7 @@
             this.buttonMultiCombo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonLogOut = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -218,6 +219,19 @@
             this.buttonLogOut.UseVisualStyleBackColor = false;
             this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.button3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Blue;
+            this.button3.Location = new System.Drawing.Point(218, 288);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(96, 53);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Extract";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,6 +240,7 @@
             this.BackgroundImage = global::BoardSecretariatSystem.Properties.Resources.background_2withlogo6999;
             this.ClientSize = new System.Drawing.Size(1097, 686);
             this.ControlBox = false;
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.buttonLogOut);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -256,5 +271,6 @@
         private System.Windows.Forms.Button reportButton;
         private System.Windows.Forms.Button agendaAmendmentButton;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
