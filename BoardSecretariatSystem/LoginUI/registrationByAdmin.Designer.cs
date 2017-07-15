@@ -77,6 +77,7 @@
             // 
             this.departmentTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.departmentTextBox.Location = new System.Drawing.Point(187, 237);
+            this.departmentTextBox.MaxLength = 50;
             this.departmentTextBox.Name = "departmentTextBox";
             this.departmentTextBox.Size = new System.Drawing.Size(328, 29);
             this.departmentTextBox.TabIndex = 6;
@@ -96,6 +97,7 @@
             // 
             this.designationTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.designationTextBox.Location = new System.Drawing.Point(187, 198);
+            this.designationTextBox.MaxLength = 50;
             this.designationTextBox.Name = "designationTextBox";
             this.designationTextBox.Size = new System.Drawing.Size(328, 29);
             this.designationTextBox.TabIndex = 5;
@@ -115,6 +117,7 @@
             // 
             this.userNameTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userNameTextBox.Location = new System.Drawing.Point(187, 32);
+            this.userNameTextBox.MaxLength = 50;
             this.userNameTextBox.Name = "userNameTextBox";
             this.userNameTextBox.Size = new System.Drawing.Size(328, 29);
             this.userNameTextBox.TabIndex = 1;
@@ -124,6 +127,7 @@
             // 
             this.passwordTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordTextBox.Location = new System.Drawing.Point(187, 71);
+            this.passwordTextBox.MaxLength = 50;
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(328, 29);
@@ -147,6 +151,7 @@
             // 
             this.nameTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nameTextBox.Location = new System.Drawing.Point(187, 150);
+            this.nameTextBox.MaxLength = 50;
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(328, 29);
             this.nameTextBox.TabIndex = 4;

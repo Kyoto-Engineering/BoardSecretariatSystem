@@ -64,6 +64,7 @@
             // 
             this.txtCauseOfResignation.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCauseOfResignation.Location = new System.Drawing.Point(321, 163);
+            this.txtCauseOfResignation.MaxLength = 500;
             this.txtCauseOfResignation.Name = "txtCauseOfResignation";
             this.txtCauseOfResignation.Size = new System.Drawing.Size(371, 32);
             this.txtCauseOfResignation.TabIndex = 5;

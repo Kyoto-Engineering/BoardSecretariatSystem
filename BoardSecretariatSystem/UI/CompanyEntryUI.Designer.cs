@@ -36,6 +36,7 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.registrationrichTextBox = new System.Windows.Forms.TextBox();
             this.txtValueOfEachShare = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtTotalIssuedShare = new System.Windows.Forms.TextBox();
@@ -43,11 +44,13 @@
             this.txtTotalAuthorizedShare = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.corporateRichTextBox = new System.Windows.Forms.TextBox();
             this.creatingDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbAddressHeader = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.oherRichTextBox = new System.Windows.Forms.TextBox();
             this.otherAddress = new System.Windows.Forms.CheckBox();
             this.addButton = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -71,9 +74,6 @@
             this.label61 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.registrationrichTextBox = new System.Windows.Forms.TextBox();
-            this.oherRichTextBox = new System.Windows.Forms.TextBox();
-            this.corporateRichTextBox = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -97,6 +97,7 @@
             // 
             this.companyNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.companyNameTextBox.Location = new System.Drawing.Point(210, 18);
+            this.companyNameTextBox.MaxLength = 50;
             this.companyNameTextBox.Name = "companyNameTextBox";
             this.companyNameTextBox.Size = new System.Drawing.Size(424, 29);
             this.companyNameTextBox.TabIndex = 1;
@@ -106,6 +107,7 @@
             // 
             this.regNoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.regNoTextBox.Location = new System.Drawing.Point(210, 159);
+            this.regNoTextBox.MaxLength = 50;
             this.regNoTextBox.Name = "regNoTextBox";
             this.regNoTextBox.Size = new System.Drawing.Size(424, 29);
             this.regNoTextBox.TabIndex = 7;
@@ -159,6 +161,14 @@
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registered Address";
+            // 
+            // registrationrichTextBox
+            // 
+            this.registrationrichTextBox.Location = new System.Drawing.Point(6, 28);
+            this.registrationrichTextBox.Multiline = true;
+            this.registrationrichTextBox.Name = "registrationrichTextBox";
+            this.registrationrichTextBox.Size = new System.Drawing.Size(599, 166);
+            this.registrationrichTextBox.TabIndex = 1;
             // 
             // txtValueOfEachShare
             // 
@@ -237,6 +247,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Corporate HQ Address";
             // 
+            // corporateRichTextBox
+            // 
+            this.corporateRichTextBox.Location = new System.Drawing.Point(12, 28);
+            this.corporateRichTextBox.Multiline = true;
+            this.corporateRichTextBox.Name = "corporateRichTextBox";
+            this.corporateRichTextBox.Size = new System.Drawing.Size(660, 158);
+            this.corporateRichTextBox.TabIndex = 3;
+            // 
             // creatingDateTimePicker
             // 
             this.creatingDateTimePicker.CustomFormat = "dd/MM/yyyy";
@@ -296,6 +314,14 @@
             this.groupBox5.Size = new System.Drawing.Size(651, 206);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
+            // 
+            // oherRichTextBox
+            // 
+            this.oherRichTextBox.Location = new System.Drawing.Point(6, 20);
+            this.oherRichTextBox.Multiline = true;
+            this.oherRichTextBox.Name = "oherRichTextBox";
+            this.oherRichTextBox.Size = new System.Drawing.Size(639, 180);
+            this.oherRichTextBox.TabIndex = 2;
             // 
             // otherAddress
             // 
@@ -545,39 +571,15 @@
             this.groupBox6.TabIndex = 21;
             this.groupBox6.TabStop = false;
             // 
-            // registrationrichTextBox
-            // 
-            this.registrationrichTextBox.Location = new System.Drawing.Point(6, 28);
-            this.registrationrichTextBox.Multiline = true;
-            this.registrationrichTextBox.Name = "registrationrichTextBox";
-            this.registrationrichTextBox.Size = new System.Drawing.Size(599, 166);
-            this.registrationrichTextBox.TabIndex = 1;
-            // 
-            // oherRichTextBox
-            // 
-            this.oherRichTextBox.Location = new System.Drawing.Point(6, 20);
-            this.oherRichTextBox.Multiline = true;
-            this.oherRichTextBox.Name = "oherRichTextBox";
-            this.oherRichTextBox.Size = new System.Drawing.Size(639, 180);
-            this.oherRichTextBox.TabIndex = 2;
-            // 
-            // corporateRichTextBox
-            // 
-            this.corporateRichTextBox.Location = new System.Drawing.Point(12, 28);
-            this.corporateRichTextBox.Multiline = true;
-            this.corporateRichTextBox.Name = "corporateRichTextBox";
-            this.corporateRichTextBox.Size = new System.Drawing.Size(660, 158);
-            this.corporateRichTextBox.TabIndex = 3;
-            // 
             // CompanyEntryUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1325, 649);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.removeButton);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label4);
