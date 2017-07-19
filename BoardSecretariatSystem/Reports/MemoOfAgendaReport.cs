@@ -90,7 +90,7 @@ namespace BoardSecretariatSystem.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_AgendaName {
+        public CrystalDecisions.Shared.IParameterField Parameter_meetingid {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -98,7 +98,7 @@ namespace BoardSecretariatSystem.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_meetingNo {
+        public CrystalDecisions.Shared.IParameterField Parameter_Agendaid {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }

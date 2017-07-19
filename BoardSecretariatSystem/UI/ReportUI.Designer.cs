@@ -36,12 +36,15 @@
             this.boardMeetingFeeButton = new System.Windows.Forms.Button();
             this.participantAttendenceReportButton = new System.Windows.Forms.Button();
             this.meetingMinutesButton = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // attendenceSlipButton
             // 
             this.attendenceSlipButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.attendenceSlipButton.Location = new System.Drawing.Point(84, 57);
+            this.attendenceSlipButton.Location = new System.Drawing.Point(84, 152);
             this.attendenceSlipButton.Name = "attendenceSlipButton";
             this.attendenceSlipButton.Size = new System.Drawing.Size(223, 82);
             this.attendenceSlipButton.TabIndex = 0;
@@ -52,7 +55,7 @@
             // noticeOfAMeetingButton
             // 
             this.noticeOfAMeetingButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noticeOfAMeetingButton.Location = new System.Drawing.Point(84, 145);
+            this.noticeOfAMeetingButton.Location = new System.Drawing.Point(84, 240);
             this.noticeOfAMeetingButton.Name = "noticeOfAMeetingButton";
             this.noticeOfAMeetingButton.Size = new System.Drawing.Size(223, 82);
             this.noticeOfAMeetingButton.TabIndex = 1;
@@ -63,7 +66,7 @@
             // meetingPostponedButton
             // 
             this.meetingPostponedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.meetingPostponedButton.Location = new System.Drawing.Point(316, 145);
+            this.meetingPostponedButton.Location = new System.Drawing.Point(316, 240);
             this.meetingPostponedButton.Name = "meetingPostponedButton";
             this.meetingPostponedButton.Size = new System.Drawing.Size(223, 82);
             this.meetingPostponedButton.TabIndex = 2;
@@ -74,17 +77,18 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(84, 245);
+            this.button4.Location = new System.Drawing.Point(84, 340);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(223, 82);
             this.button4.TabIndex = 3;
             this.button4.Text = "Memo of Agenda";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // boardMeetingFeeButton
             // 
             this.boardMeetingFeeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boardMeetingFeeButton.Location = new System.Drawing.Point(316, 57);
+            this.boardMeetingFeeButton.Location = new System.Drawing.Point(316, 152);
             this.boardMeetingFeeButton.Name = "boardMeetingFeeButton";
             this.boardMeetingFeeButton.Size = new System.Drawing.Size(223, 82);
             this.boardMeetingFeeButton.TabIndex = 4;
@@ -95,7 +99,7 @@
             // participantAttendenceReportButton
             // 
             this.participantAttendenceReportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.participantAttendenceReportButton.Location = new System.Drawing.Point(545, 57);
+            this.participantAttendenceReportButton.Location = new System.Drawing.Point(545, 152);
             this.participantAttendenceReportButton.Name = "participantAttendenceReportButton";
             this.participantAttendenceReportButton.Size = new System.Drawing.Size(223, 82);
             this.participantAttendenceReportButton.TabIndex = 5;
@@ -106,18 +110,39 @@
             // meetingMinutesButton
             // 
             this.meetingMinutesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.meetingMinutesButton.Location = new System.Drawing.Point(545, 145);
+            this.meetingMinutesButton.Location = new System.Drawing.Point(545, 240);
             this.meetingMinutesButton.Name = "meetingMinutesButton";
             this.meetingMinutesButton.Size = new System.Drawing.Size(223, 82);
             this.meetingMinutesButton.TabIndex = 6;
             this.meetingMinutesButton.Text = "Meeting Minutes";
             this.meetingMinutesButton.UseVisualStyleBackColor = true;
+            this.meetingMinutesButton.Click += new System.EventHandler(this.meetingMinutesButton_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Location = new System.Drawing.Point(84, 30);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(223, 82);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Meeting No";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(16, 32);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(185, 21);
+            this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // ReportUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(859, 493);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.meetingMinutesButton);
             this.Controls.Add(this.participantAttendenceReportButton);
             this.Controls.Add(this.boardMeetingFeeButton);
@@ -128,6 +153,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ReportUI";
             this.Text = "ReportUI";
+            this.Load += new System.EventHandler(this.ReportUI_Load);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -141,5 +168,7 @@
         private System.Windows.Forms.Button boardMeetingFeeButton;
         private System.Windows.Forms.Button participantAttendenceReportButton;
         private System.Windows.Forms.Button meetingMinutesButton;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
