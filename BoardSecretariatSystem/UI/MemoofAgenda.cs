@@ -139,7 +139,7 @@ namespace BoardSecretariatSystem.UI
         {
             //creating an object of ParameterField class
             ParameterField paramField = new ParameterField();
-      ParameterField paramField1 = new ParameterField();
+            ParameterField paramField1 = new ParameterField();
             //creating an object of ParameterFields class
             ParameterFields paramFields = new ParameterFields();
             //ParameterFields paramFields1 = new ParameterFields();
@@ -158,14 +158,14 @@ namespace BoardSecretariatSystem.UI
             //paramField1.CurrentValues.Add(paramDiscreteValue1);
             //add the parameter in the ParameterFields object
             paramFields.Add(paramField);
-            paramField1.Name = "Agendaid";
-            paramDiscreteValue.Value = y;
-            //paramDiscreteValue1.Value = y;
-            //add the parameter value in the ParameterField object
-            paramField1.CurrentValues.Add(paramDiscreteValue);
-            //paramFields1.Add(paramField1);
-            //set the parameterfield information in the crystal report
-            paramFields.Add(paramField1);
+            //paramField1.Name = "Agendaid";
+            //paramDiscreteValue.Value = y;
+            ////paramDiscreteValue1.Value = y;
+            ////add the parameter value in the ParameterField object
+            //paramField1.CurrentValues.Add(paramDiscreteValue);
+            ////paramFields1.Add(paramField1);
+            ////set the parameterfield information in the crystal report
+            //paramFields.Add(paramField1);
 
 
             ReportViewer f2 = new ReportViewer();
