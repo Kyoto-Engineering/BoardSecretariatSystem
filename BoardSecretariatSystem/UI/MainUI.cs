@@ -108,9 +108,12 @@ namespace BoardSecretariatSystem
 
         private void reportButton_Click(object sender, EventArgs e)
         {
-            this.Dispose();
-            ReportUI frm = new ReportUI();
-            frm.Show();
+            this.Visible = false;
+            
+            ReportMainUI frm = new ReportMainUI();
+            frm.ShowDialog();
+
+            this.Visible = true;
         }
 
         private void agendaAmendmentButton_Click(object sender, EventArgs e)

@@ -31,6 +31,9 @@ namespace BoardSecretariatSystem.UI
         private void MemoofAgenda_Load(object sender, EventArgs e)
         {
             meetingidLoad();
+           // comboBox2.Enabled = false;
+           // button1.Enabled = false;
+
         }
 
         private void meetingidLoad()
@@ -137,63 +140,89 @@ namespace BoardSecretariatSystem.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //creating an object of ParameterField class
-            ParameterField paramField = new ParameterField();
-            ParameterField paramField1 = new ParameterField();
-            //creating an object of ParameterFields class
-            ParameterFields paramFields = new ParameterFields();
-            //ParameterFields paramFields1 = new ParameterFields();
-            //creating an object of ParameterDiscreteValue class
-            ParameterDiscreteValue paramDiscreteValue = new ParameterDiscreteValue();
-            ParameterDiscreteValue paramDiscreteValue1 = new ParameterDiscreteValue();
-
-            //set the parameter field name
-            paramField.Name = "meetingid";
-            
-            //set the parameter value
-            paramDiscreteValue.Value = x;
-            //paramDiscreteValue1.Value = y;
-            //add the parameter value in the ParameterField object
-            paramField.CurrentValues.Add(paramDiscreteValue);
-            //paramField1.CurrentValues.Add(paramDiscreteValue1);
-            //add the parameter in the ParameterFields object
-            paramFields.Add(paramField);
-            paramField1.Name = "Agendaid";
-            paramDiscreteValue1.Value = y;
-            ////paramDiscreteValue1.Value = y;
-            ////add the parameter value in the ParameterField object
-            paramField1.CurrentValues.Add(paramDiscreteValue1);
-            ////paramFields1.Add(paramField1);
-            ////set the parameterfield information in the crystal report
-            paramFields.Add(paramField1);
-
-
-            ReportViewer f2 = new ReportViewer();
-            TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
-            TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
-            ConnectionInfo reportConInfo = new ConnectionInfo();
-            Tables tables = default(Tables);
-            //	Table table = default(Table);
-            var with1 = reportConInfo;
-            with1.ServerName = "tcp:KyotoServer,49172";
-            with1.DatabaseName = "BoardSecretariatDBKD";
-            with1.UserID = "sa";
-            with1.Password = "SystemAdministrator";
-            MemoOfAgendaReport cr = new MemoOfAgendaReport();
-            tables = cr.Database.Tables;
-            foreach (Table table in tables)
+            if (!string.IsNullOrEmpty(comboBox1.Text))
             {
-                reportLogonInfo = table.LogOnInfo;
-                reportLogonInfo.ConnectionInfo = reportConInfo;
-                table.ApplyLogOnInfo(reportLogonInfo);
-            }
-            f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
-            //set the parameterfield information in the crystal report
-            f2.crystalReportViewer1.ReportSource = cr;
-            this.Visible = false;
 
-            f2.ShowDialog();
-            this.Visible = true;
+
+
+                if (string.IsNullOrEmpty(comboBox2.Text))
+                {
+                    MessageBox.Show("Select Agenda No");
+
+                }
+
+                else
+                {
+                    //button1.Enabled = true;
+                    //creating an object of ParameterField class
+                    ParameterField paramField = new ParameterField();
+                    ParameterField paramField1 = new ParameterField();
+                    //creating an object of ParameterFields class
+                    ParameterFields paramFields = new ParameterFields();
+                    //ParameterFields paramFields1 = new ParameterFields();
+                    //creating an object of ParameterDiscreteValue class
+                    ParameterDiscreteValue paramDiscreteValue = new ParameterDiscreteValue();
+                    ParameterDiscreteValue paramDiscreteValue1 = new ParameterDiscreteValue();
+
+                    //set the parameter field name
+                    paramField.Name = "meetingid";
+
+                    //set the parameter value
+                    paramDiscreteValue.Value = x;
+                    //paramDiscreteValue1.Value = y;
+                    //add the parameter value in the ParameterField object
+                    paramField.CurrentValues.Add(paramDiscreteValue);
+                    //paramField1.CurrentValues.Add(paramDiscreteValue1);
+                    //add the parameter in the ParameterFields object
+                    paramFields.Add(paramField);
+                    paramField1.Name = "Agendaid";
+                    paramDiscreteValue1.Value = y;
+                    ////paramDiscreteValue1.Value = y;
+                    ////add the parameter value in the ParameterField object
+                    paramField1.CurrentValues.Add(paramDiscreteValue1);
+                    ////paramFields1.Add(paramField1);
+                    ////set the parameterfield information in the crystal report
+                    paramFields.Add(paramField1);
+
+
+                    ReportViewer f2 = new ReportViewer();
+                    TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
+                    TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
+                    ConnectionInfo reportConInfo = new ConnectionInfo();
+                    Tables tables = default(Tables);
+                    //	Table table = default(Table);
+                    var with1 = reportConInfo;
+                    with1.ServerName = "tcp:KyotoServer,49172";
+                    with1.DatabaseName = "BoardSecretariatDBKD";
+                    with1.UserID = "sa";
+                    with1.Password = "SystemAdministrator";
+                    MemoOfAgendaReport cr = new MemoOfAgendaReport();
+                    tables = cr.Database.Tables;
+                    foreach (Table table in tables)
+                    {
+                        reportLogonInfo = table.LogOnInfo;
+                        reportLogonInfo.ConnectionInfo = reportConInfo;
+                        table.ApplyLogOnInfo(reportLogonInfo);
+                    }
+                    f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
+                    //set the parameterfield information in the crystal report
+                    f2.crystalReportViewer1.ReportSource = cr;
+                    this.Visible = false;
+
+                    f2.ShowDialog();
+                    this.Visible = true;
+
+                }
+
+
+            }
+
+            else
+            {
+                MessageBox.Show("Select Meeting No");
+            
+            }
+           
         }
     }
 }

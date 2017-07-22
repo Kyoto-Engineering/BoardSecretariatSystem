@@ -659,6 +659,16 @@ namespace BoardSecretariatSystem.UI
             f2.ShowDialog();
             this.Visible = true;
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            ScheduleX S = new ScheduleX();
+
+            S.ShowDialog();
+            this.Visible = true;
+
+        }
        
     }
 }
