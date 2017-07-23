@@ -22,36 +22,36 @@ namespace BoardSecretariatSystem.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ReportViewer f2 = new ReportViewer();
-            TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
-            TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
-            ConnectionInfo reportConInfo = new ConnectionInfo();
-            Tables tables = default(Tables);
-            //	Table table = default(Table);
+            //ReportViewer f2 = new ReportViewer();
+            //TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
+            //TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
+            //ConnectionInfo reportConInfo = new ConnectionInfo();
+            //Tables tables = default(Tables);
+            ////	Table table = default(Table);
 
-            var with1 = reportConInfo;
-            with1.ServerName = "tcp:KyotoServer,49172";
-            with1.DatabaseName = "BoardSecretariatDBKD";
-            with1.UserID = "sa";
-            with1.Password = "SystemAdministrator";
+            //var with1 = reportConInfo;
+            //with1.ServerName = "tcp:KyotoServer,49172";
+            //with1.DatabaseName = "BoardSecretariatDBKD";
+            //with1.UserID = "sa";
+            //with1.Password = "SystemAdministrator";
 
-            ScheduleX_Part1 cr = new ScheduleX_Part1();
+            //ScheduleX_Part1 cr = new ScheduleX_Part1();
 
-            tables = cr.Database.Tables;
-            foreach (Table table in tables)
-            {
-                reportLogonInfo = table.LogOnInfo;
-                reportLogonInfo.ConnectionInfo = reportConInfo;
-                table.ApplyLogOnInfo(reportLogonInfo);
-            }
+            //tables = cr.Database.Tables;
+            //foreach (Table table in tables)
+            //{
+            //    reportLogonInfo = table.LogOnInfo;
+            //    reportLogonInfo.ConnectionInfo = reportConInfo;
+            //    table.ApplyLogOnInfo(reportLogonInfo);
+            //}
 
-            //f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
-            //set the parameterfield information in the crystal report
-            f2.crystalReportViewer1.ReportSource = cr;
+            ////f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
+            ////set the parameterfield information in the crystal report
+            //f2.crystalReportViewer1.ReportSource = cr;
 
-            this.Visible = false;
-            f2.ShowDialog();
-            this.Visible = true;
+            //this.Visible = false;
+            //f2.ShowDialog();
+            //this.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
