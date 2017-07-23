@@ -74,6 +74,7 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.groupBox1);
             this.Name = "postpondReportUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "postpondReportUI";
             this.Load += new System.EventHandler(this.postpondReportUI_Load);
             this.groupBox1.ResumeLayout(false);
