@@ -418,5 +418,13 @@ namespace BoardSecretariatSystem.UI
             f2.ShowDialog();
             this.Visible = true;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Extract f2 = new Extract();
+            this.Visible = false;
+            f2.ShowDialog();
+            this.Visible = true;
+        }
     }
 }
