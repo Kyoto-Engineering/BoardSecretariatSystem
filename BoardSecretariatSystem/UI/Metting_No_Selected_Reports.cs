@@ -415,7 +415,6 @@ namespace BoardSecretariatSystem.UI
         {
             MemoofAgenda f2 = new MemoofAgenda();
             this.Visible = false;
-
             f2.ShowDialog();
             this.Visible = true;
         }

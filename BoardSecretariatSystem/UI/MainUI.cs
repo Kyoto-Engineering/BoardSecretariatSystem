@@ -108,11 +108,9 @@ namespace BoardSecretariatSystem
 
         private void reportButton_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
-            
+            this.Visible = false;            
             ReportMainUI frm = new ReportMainUI();
             frm.ShowDialog();
-
             this.Visible = true;
         }
 

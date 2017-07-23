@@ -81,6 +81,7 @@
             this.button2.TabIndex = 3;
             this.button2.Text = "SheduleX";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -90,8 +91,9 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(213, 58);
             this.button3.TabIndex = 4;
-            this.button3.Text = "Posponed No Selected Reports";
+            this.button3.Text = "Posponed Reports";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // ReportMainUI
             // 
@@ -104,6 +106,7 @@
             this.Controls.Add(this.attendenceSlipButton);
             this.Controls.Add(this.Report_Label);
             this.Name = "ReportMainUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReportMainUI";
             this.ResumeLayout(false);
 

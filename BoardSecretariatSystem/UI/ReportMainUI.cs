@@ -33,5 +33,21 @@ namespace BoardSecretariatSystem.UI
             ri.ShowDialog();
             this.Visible = true;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            ScheduleX ri = new ScheduleX();
+            ri.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            postpondReportUI ri = new postpondReportUI();
+            ri.ShowDialog();
+            this.Visible = true;
+        }
     }
 }
