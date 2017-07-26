@@ -21,7 +21,10 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
+        List<Tuple<int, string, int>> agendaloist=new List<Tuple<int, string, int>>();
+        private Tuple<int, string, int> agendadetail;
         public int x, y;
+        public int MeetingId { get; set; }
 
         public MemoofAgenda()
         {
@@ -42,31 +45,7 @@ namespace BoardSecretariatSystem.UI
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "SELECT  MeetingId FROM Meeting";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-
-                while (rdr.Read())
-                {
-                    comboBox1.Items.Add(rdr[0]);
-                }
-                con.Close();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "select MeetingId FROM Meeting  where Meeting.MeetingId='" + comboBox1.Text +"'";
+                string ct = "select MeetingId FROM Meeting  where Meeting.MeetingId='" + MeetingId + "'";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -86,24 +65,36 @@ namespace BoardSecretariatSystem.UI
                     con.Close();
                 }
 
-                comboBox1.Text = comboBox1.Text.Trim();
+                
                 comboBox2.Items.Clear();
                 comboBox2.Text = "";
 
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 string ctt =
-                    "SELECT Agenda.AgendaId FROM Meeting INNER JOIN SelectedAgenda ON Meeting.MeetingId = SelectedAgenda.MeetingId INNER JOIN Agenda ON SelectedAgenda.AgendaId = Agenda.AgendaId where Meeting.MeetingId= '" +
-                    x + "' order by Agenda.AgendaId asc";
+                    "SELECT MeetingMinutes.AgendaSerialForMeeting,Agenda.AgendaTitle,Agenda.AgendaId  FROM Meeting INNER JOIN SelectedAgenda ON Meeting.MeetingId = SelectedAgenda.MeetingId INNER JOIN Agenda ON SelectedAgenda.AgendaId = Agenda.AgendaId join MeetingMinutes on SelectedAgenda.MeetingAgendaId=MeetingMinutes.MeetingAgendaId where Meeting.MeetingId='" +
+                    x + "' order by MeetingMinutes.AgendaSerialForMeeting asc";
                 cmd = new SqlCommand(ctt);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
-
+                
                 while (rdr.Read())
                 {
-                    comboBox2.Items.Add(rdr[0]);
+                    int a = rdr.GetInt32(0);
+                    string b = rdr.GetString(1);
+                    int c = rdr.GetInt32(2);
+                    agendadetail=new Tuple<int, string, int>(a,b,c);
+                    agendaloist.Add(agendadetail);
                 }
                 con.Close();
+                foreach (Tuple<int, string, int> agendum in agendaloist)
+                {
+                    string text =
+                        "Agenda " + agendum.Item1 + " -" + agendum.Item2;
+                    comboBox2.Items.Add(text);
+                }
+                 
+                
 
             }
             catch (Exception ex)
@@ -112,36 +103,49 @@ namespace BoardSecretariatSystem.UI
             }
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            if(!string.IsNullOrWhiteSpace(comboBox2.Text))
             {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "select Agenda.AgendaId FROM Agenda  where Agenda.AgendaId='" + comboBox2.Text + "'";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
+                try
+            {
+                string output = new string(comboBox2.Text.ToCharArray().Where(c => char.IsDigit(c)).ToArray());
+                var z = from entry in agendaloist
+                    where entry.Item1 == Convert.ToInt32(output)
+                    select entry.Item3;
+                y = z.FirstOrDefault();
+                
+                //con = new SqlConnection(cs.DBConn);
+                //con.Open();
+                //string ct = "select Agenda.AgendaId FROM Agenda  where Agenda.AgendaId='" + comboBox2.Text + "'";
+                //cmd = new SqlCommand(ct);
+                //cmd.Connection = con;
+                //rdr = cmd.ExecuteReader();
 
-                if (rdr.Read())
-                {
+                //if (rdr.Read())
+                //{
 
-                    y = (rdr.GetInt32(0));
+                //    y = (rdr.GetInt32(0));
 
-                }
+                //}
 
-                con.Close();
+                //con.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(comboBox1.Text))
-            {
+            
 
 
 
@@ -214,14 +218,7 @@ namespace BoardSecretariatSystem.UI
 
                 }
 
-
-            }
-
-            else
-            {
-                MessageBox.Show("Select Meeting No");
             
-            }
            
         }
     }

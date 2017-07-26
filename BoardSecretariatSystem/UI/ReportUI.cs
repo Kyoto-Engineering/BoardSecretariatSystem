@@ -31,33 +31,33 @@ namespace BoardSecretariatSystem.UI
         private void ReportUI_Load(object sender, EventArgs e)
         {
           
-            CompanyNameLoad();
+            //CompanyNameLoad();
         }
 
        
-        private void CompanyNameLoad()
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "SELECT  CompanyName FROM Company order by CompanyName asc";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
+        //private void CompanyNameLoad()
+        //{
+        //    try
+        //    {
+        //        con = new SqlConnection(cs.DBConn);
+        //        con.Open();
+        //        string ct = "SELECT  CompanyName FROM Company order by CompanyName asc";
+        //        cmd = new SqlCommand(ct);
+        //        cmd.Connection = con;
+        //        rdr = cmd.ExecuteReader();
 
-                while (rdr.Read())
-                {
-                    comboBox2.Items.Add(rdr[0]);  //comboBox2.Items.Add(rdr.GetValue(0).ToString());
-                }
-                con.Close();
+        //        while (rdr.Read())
+        //        {
+        //            comboBox2.Items.Add(rdr[0]);  //comboBox2.Items.Add(rdr.GetValue(0).ToString());
+        //        }
+        //        con.Close();
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
 
 
@@ -193,64 +193,64 @@ namespace BoardSecretariatSystem.UI
             this.Visible = true;
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "select CompanyName FROM Company where CompanyName='" + comboBox2.Text + "'";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
+        //private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        con = new SqlConnection(cs.DBConn);
+        //        con.Open();
+        //        string ct = "select CompanyName FROM Company where CompanyName='" + comboBox2.Text + "'";
+        //        cmd = new SqlCommand(ct);
+        //        cmd.Connection = con;
+        //        rdr = cmd.ExecuteReader();
 
-                if (rdr.Read())
-                {
+        //        if (rdr.Read())
+        //        {
 
-                    y = (rdr.GetString(0));
+        //            y = (rdr.GetString(0));
 
-                }
-                con.Close();
+        //        }
+        //        con.Close();
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(comboBox2.Text))
-            {
-                MessageBox.Show("Please Select Company Name");
+            //if (string.IsNullOrEmpty(comboBox2.Text))
+            //{
+            //    MessageBox.Show("Please Select Company Name");
 
-            }
+            //}
 
-            else
-            {
+            //else
+            //{
 
 
                 //creating an object of ParameterField class
-                ParameterField paramField = new ParameterField();
+                //ParameterField paramField = new ParameterField();
 
-                //creating an object of ParameterFields class
-                ParameterFields paramFields = new ParameterFields();
+                ////creating an object of ParameterFields class
+                //ParameterFields paramFields = new ParameterFields();
 
-                //creating an object of ParameterDiscreteValue class
-                ParameterDiscreteValue paramDiscreteValue = new ParameterDiscreteValue();
+                ////creating an object of ParameterDiscreteValue class
+                //ParameterDiscreteValue paramDiscreteValue = new ParameterDiscreteValue();
 
                 //set the parameter field name
-                paramField.Name = "Company_Name";
+                //paramField.Name = "Company_Name";
 
-                //set the parameter value
-                paramDiscreteValue.Value = y;
+                ////set the parameter value
+                //paramDiscreteValue.Value = y;
 
                 //add the parameter value in the ParameterField object
-                paramField.CurrentValues.Add(paramDiscreteValue);
+                //paramField.CurrentValues.Add(paramDiscreteValue);
 
-                //add the parameter in the ParameterFields object
-                paramFields.Add(paramField);
+                ////add the parameter in the ParameterFields object
+                //paramFields.Add(paramField);
 
                 //set the parameterfield information in the crystal report
 
@@ -279,7 +279,7 @@ namespace BoardSecretariatSystem.UI
                     table.ApplyLogOnInfo(reportLogonInfo);
                 }
 
-                f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
+                //f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
                 //set the parameterfield information in the crystal report
                 f2.crystalReportViewer1.ReportSource = cr;
 
@@ -288,5 +288,5 @@ namespace BoardSecretariatSystem.UI
                 this.Visible = true;
             }
         }       
-    }
+    //}
 }

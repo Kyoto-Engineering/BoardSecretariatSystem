@@ -49,7 +49,8 @@ namespace BoardSecretariatSystem.UI
 
                 while (rdr.Read())
                 {
-                    comboBox1.Items.Add(rdr[0]);
+                    string mt = Ordinal(Convert.ToInt32(rdr[0]))+ " Board Meeting";
+                    comboBox1.Items.Add(mt);
                 }
                 con.Close();
 
@@ -59,14 +60,35 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+        public static string Ordinal(int number)
+        {
+            string suffix = String.Empty;
+            if (number == 1 || number == 21 || number == 31 || number % 100 == 21 || number % 100 == 31)
+            {
+                suffix = "st";
+            }
+            else if (number == 2 || number == 22 || number % 100 == 22)
+            {
+                suffix = "nd";
+            }
+            else if (number == 3 || number == 23 || number % 100 == 23)
+            {
+                suffix = "rd";
+            }
+            else
+            {
+                suffix = "th";
+            }
+            return String.Format("{0}{1}", number, suffix);
+        }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
+                string output = new string(comboBox1.Text.ToCharArray().Where(c => char.IsDigit(c)).ToArray());
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "select MeetingId FROM Meeting  where Meeting.MeetingId='" + comboBox1.Text + "'";
+                string ct = "select MeetingId FROM Meeting  where Meeting.MeetingId='" + output+ "'";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -413,10 +435,21 @@ namespace BoardSecretariatSystem.UI
 
         private void button6_Click(object sender, EventArgs e)
         {
-            MemoofAgenda f2 = new MemoofAgenda();
-            this.Visible = false;
-            f2.ShowDialog();
-            this.Visible = true;
+            if (!string.IsNullOrEmpty(comboBox1.Text))
+            {
+                MemoofAgenda f2 = new MemoofAgenda();
+                f2.MeetingId = x;
+                this.Visible = false;
+                f2.ShowDialog();
+                this.Visible = true;
+            }
+
+            else
+            {
+                MessageBox.Show("Select Meeting No");
+
+            }
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
