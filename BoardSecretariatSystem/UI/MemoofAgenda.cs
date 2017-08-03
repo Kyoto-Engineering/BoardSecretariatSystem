@@ -72,15 +72,15 @@ namespace BoardSecretariatSystem.UI
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 string ctt =
-                    "SELECT MeetingMinutes.AgendaSerialForMeeting,Agenda.AgendaTitle,Agenda.AgendaId  FROM Meeting INNER JOIN SelectedAgenda ON Meeting.MeetingId = SelectedAgenda.MeetingId INNER JOIN Agenda ON SelectedAgenda.AgendaId = Agenda.AgendaId join MeetingMinutes on SelectedAgenda.MeetingAgendaId=MeetingMinutes.MeetingAgendaId where Meeting.MeetingId='" +
-                    x + "' order by MeetingMinutes.AgendaSerialForMeeting asc";
+                    "SELECT row_number() OVER (ORDER BY MeetingAgendaId) n ,Agenda.AgendaTitle,Agenda.AgendaId  FROM Meeting INNER JOIN SelectedAgenda ON Meeting.MeetingId = SelectedAgenda.MeetingId INNER JOIN Agenda ON SelectedAgenda.AgendaId = Agenda.AgendaId  where Meeting.MeetingId='" +
+                    x + "' order by MeetingAgendaId asc";
                 cmd = new SqlCommand(ctt);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
                 
                 while (rdr.Read())
                 {
-                    int a = rdr.GetInt32(0);
+                    int a = Convert.ToInt32( rdr[0]);
                     string b = rdr.GetString(1);
                     int c = rdr.GetInt32(2);
                     agendadetail=new Tuple<int, string, int>(a,b,c);

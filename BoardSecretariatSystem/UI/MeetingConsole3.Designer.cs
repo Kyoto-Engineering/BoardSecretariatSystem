@@ -227,7 +227,7 @@
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(316, 45);
             this.addButton.TabIndex = 18;
-            this.addButton.Text = "Select As Participent For This Meeting";
+            this.addButton.Text = "Select As Participant For This Meeting";
             this.addButton.UseVisualStyleBackColor = false;
             this.addButton.Click += new System.EventHandler(this.button1_Click);
             this.addButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.addButton_KeyDown);
