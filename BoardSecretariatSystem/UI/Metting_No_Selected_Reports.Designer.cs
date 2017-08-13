@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Metting_No_Selected_Reports));
             this.Report_Label = new System.Windows.Forms.Label();
             this.attendenceSlipButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -172,6 +173,7 @@
             this.Controls.Add(this.attendenceSlipButton);
             this.Controls.Add(this.Report_Label);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Metting_No_Selected_Reports";
             this.Text = "Metting_No_Selected_Reports";
             this.Load += new System.EventHandler(this.Metting_No_Selected_Reports_Load);

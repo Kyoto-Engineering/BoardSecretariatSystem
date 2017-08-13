@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ParticipantCreation2));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.addButton = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -1321,6 +1322,7 @@
             this.ClientSize = new System.Drawing.Size(1288, 728);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ParticipantCreation2";
             this.Text = "ParticipantCreation2";
             this.Load += new System.EventHandler(this.ParticipantCreation2_Load);
