@@ -391,5 +391,15 @@ namespace BoardSecretariatSystem.UI
                 e.Handled = true;
             }
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
