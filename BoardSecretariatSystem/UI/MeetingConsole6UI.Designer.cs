@@ -53,10 +53,15 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.txtDiscussion = new BoardSecretariatSystem.TextWithSpellCheck();
+            this.txtAgendaNo = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.elementHost3 = new System.Windows.Forms.Integration.ElementHost();
+            this.txtMemo = new BoardSecretariatSystem.TextWithSpellCheck();
             this.elementHost2 = new System.Windows.Forms.Integration.ElementHost();
             this.txtDraftResolution = new BoardSecretariatSystem.TextWithSpellCheck();
+            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+            this.txtDiscussion = new BoardSecretariatSystem.TextWithSpellCheck();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,11 +70,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Magenta;
-            this.label1.Location = new System.Drawing.Point(90, 75);
+            this.label1.Location = new System.Drawing.Point(7, 61);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 26);
+            this.label1.Size = new System.Drawing.Size(241, 26);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Agenda Title\r\n";
+            this.label1.Text = "Agenda No And Title :";
             // 
             // label5
             // 
@@ -87,7 +92,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Magenta;
-            this.label6.Location = new System.Drawing.Point(44, 312);
+            this.label6.Location = new System.Drawing.Point(7, 376);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(196, 26);
             this.label6.TabIndex = 5;
@@ -98,7 +103,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Magenta;
-            this.label7.Location = new System.Drawing.Point(2, 33);
+            this.label7.Location = new System.Drawing.Point(7, 9);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(240, 26);
             this.label7.TabIndex = 6;
@@ -109,11 +114,12 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Magenta;
-            this.label8.Location = new System.Drawing.Point(105, 112);
+            this.label8.Location = new System.Drawing.Point(7, 271);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(133, 26);
             this.label8.TabIndex = 7;
             this.label8.Text = "Discussion :\r\n";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // dataGridView1
             // 
@@ -196,14 +202,14 @@
             this.label3.ForeColor = System.Drawing.Color.Blue;
             this.label3.Location = new System.Drawing.Point(319, 457);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(183, 26);
+            this.label3.Size = new System.Drawing.Size(278, 26);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Minuted Agenda";
+            this.label3.Text = "Previous Minuted Agenda";
             // 
             // txtAgendaTitle
             // 
             this.txtAgendaTitle.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAgendaTitle.Location = new System.Drawing.Point(246, 71);
+            this.txtAgendaTitle.Location = new System.Drawing.Point(315, 58);
             this.txtAgendaTitle.Name = "txtAgendaTitle";
             this.txtAgendaTitle.Size = new System.Drawing.Size(328, 35);
             this.txtAgendaTitle.TabIndex = 16;
@@ -212,10 +218,10 @@
             // txtMeetingNumber
             // 
             this.txtMeetingNumber.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeetingNumber.Location = new System.Drawing.Point(246, 29);
+            this.txtMeetingNumber.Location = new System.Drawing.Point(246, 12);
             this.txtMeetingNumber.Name = "txtMeetingNumber";
             this.txtMeetingNumber.ReadOnly = true;
-            this.txtMeetingNumber.Size = new System.Drawing.Size(328, 35);
+            this.txtMeetingNumber.Size = new System.Drawing.Size(63, 35);
             this.txtMeetingNumber.TabIndex = 17;
             this.txtMeetingNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMeetingNumber_KeyDown);
             // 
@@ -237,7 +243,7 @@
             this.saveAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.saveAllButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveAllButton.ForeColor = System.Drawing.Color.Blue;
-            this.saveAllButton.Location = new System.Drawing.Point(1041, 507);
+            this.saveAllButton.Location = new System.Drawing.Point(1084, 599);
             this.saveAllButton.Name = "saveAllButton";
             this.saveAllButton.Size = new System.Drawing.Size(124, 63);
             this.saveAllButton.TabIndex = 19;
@@ -253,13 +259,14 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.columnHeader6});
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(12, 486);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(955, 207);
+            this.listView1.Size = new System.Drawing.Size(1051, 207);
             this.listView1.TabIndex = 20;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -281,36 +288,74 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "Discussion";
-            this.columnHeader4.Width = 327;
+            this.columnHeader4.Width = 263;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Draft Resolution";
-            this.columnHeader5.Width = 294;
+            this.columnHeader5.Width = 234;
+            // 
+            // txtAgendaNo
+            // 
+            this.txtAgendaNo.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAgendaNo.Location = new System.Drawing.Point(246, 58);
+            this.txtAgendaNo.Name = "txtAgendaNo";
+            this.txtAgendaNo.ReadOnly = true;
+            this.txtAgendaNo.Size = new System.Drawing.Size(63, 35);
+            this.txtAgendaNo.TabIndex = 23;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Magenta;
+            this.label4.Location = new System.Drawing.Point(7, 151);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(91, 26);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Memo :\r\n";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // elementHost3
+            // 
+            this.elementHost3.Location = new System.Drawing.Point(244, 117);
+            this.elementHost3.Name = "elementHost3";
+            this.elementHost3.Size = new System.Drawing.Size(449, 104);
+            this.elementHost3.TabIndex = 25;
+            this.elementHost3.Text = "elementHost3";
+            this.elementHost3.Child = this.txtMemo;
+            // 
+            // elementHost2
+            // 
+            this.elementHost2.Location = new System.Drawing.Point(246, 351);
+            this.elementHost2.Name = "elementHost2";
+            this.elementHost2.Size = new System.Drawing.Size(447, 103);
+            this.elementHost2.TabIndex = 22;
+            this.elementHost2.Text = "elementHost2";
+            this.elementHost2.Child = this.txtDraftResolution;
             // 
             // elementHost1
             // 
-            this.elementHost1.Location = new System.Drawing.Point(244, 112);
+            this.elementHost1.Location = new System.Drawing.Point(246, 239);
             this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(449, 159);
+            this.elementHost1.Size = new System.Drawing.Size(449, 97);
             this.elementHost1.TabIndex = 21;
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.txtDiscussion;
             // 
-            // elementHost2
+            // columnHeader6
             // 
-            this.elementHost2.Location = new System.Drawing.Point(246, 277);
-            this.elementHost2.Name = "elementHost2";
-            this.elementHost2.Size = new System.Drawing.Size(447, 177);
-            this.elementHost2.TabIndex = 22;
-            this.elementHost2.Text = "elementHost2";
-            this.elementHost2.Child = this.txtDraftResolution;
+            this.columnHeader6.Text = "Memo";
+            this.columnHeader6.Width = 223;
             // 
             // MeetingConsole6UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1231, 705);
+            this.Controls.Add(this.elementHost3);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtAgendaNo);
             this.Controls.Add(this.elementHost2);
             this.Controls.Add(this.elementHost1);
             this.Controls.Add(this.listView1);
@@ -367,5 +412,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.TextBox txtAgendaNo;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Integration.ElementHost elementHost3;
+        private TextWithSpellCheck txtMemo;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }

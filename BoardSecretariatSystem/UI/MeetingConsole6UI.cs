@@ -278,12 +278,14 @@ namespace BoardSecretariatSystem.UI
                     lst.SubItems.Add(agendaSerialForMeeting.ToString());
                     lst.SubItems.Add(txtAgendaTitle.Text);                   
                     lst.SubItems.Add(txtDiscussion.Text);
-                    lst.SubItems.Add(txtDraftResolution.Text); 
+                    lst.SubItems.Add(txtDraftResolution.Text);
+                    lst.SubItems.Add(txtMemo.Text); 
                                      
                     listView1.Items.Add(lst);                    
                     txtAgendaTitle.Clear();
                     txtDiscussion.Text=string.Empty;
                     txtDraftResolution.Text=String.Empty;
+                    txtMemo.Text = String.Empty;
                     dataGridView1.Rows.Remove(dr);
                     return;
                 }
@@ -295,11 +297,13 @@ namespace BoardSecretariatSystem.UI
                 lst1.SubItems.Add(txtAgendaTitle.Text);
                 lst1.SubItems.Add(txtDiscussion.Text);
                 lst1.SubItems.Add(txtDraftResolution.Text);
+                lst1.SubItems.Add(txtMemo.Text);
 
                 listView1.Items.Add(lst1);                
                 txtAgendaTitle.Clear();
                 txtDiscussion.Text=String.Empty;
                 txtDraftResolution.Text=String.Empty;
+                txtMemo.Text = String.Empty;
                 dataGridView1.Rows.Remove(dr);
                 return;
             }
@@ -328,10 +332,12 @@ namespace BoardSecretariatSystem.UI
             try
             {
                dr = dataGridView1.CurrentRow;
-                 agendaSl = dr.Cells[0].Value.ToString();             
+                 agendaSl = dr.Cells[0].Value.ToString();
                  txtAgendaTitle.Text = dr.Cells[1].Value.ToString();
                  meetingAgendaId = dr.Cells[2].Value.ToString();
                  memo = dr.Cells[3].Value.ToString();
+                 txtAgendaNo.Text = agendaSl;
+                 txtMemo.Text = memo;
                  labelg = labelk;
                  //ClearDiscussedAgenda();
             }
@@ -390,6 +396,16 @@ namespace BoardSecretariatSystem.UI
                 saveAllButton.Focus();
                 e.Handled = true;
             }
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
