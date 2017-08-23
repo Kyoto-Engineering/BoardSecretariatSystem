@@ -35,6 +35,7 @@ namespace BoardSecretariatSystem.UI
         private bool agendaSelected;
         private bool invitationSend;
         private string _input=null;
+        private DataGridViewRow _dataGridViewRow;
 
         public MeetingConsole3()
         {
@@ -234,6 +235,18 @@ namespace BoardSecretariatSystem.UI
             }
             dataGridView1.Refresh();
         }
+        private void SaveMeetingParticipant()
+        {
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string qry = "insert into MeetingParticipant(MeetingId,ParticipantId,Title)";
+            cmd = new SqlCommand(qry, con);
+            cmd.Parameters.AddWithValue("@d1",meetingId);
+            cmd.Parameters.AddWithValue("@d2",participantId);
+            cmd.Parameters.AddWithValue("@d3",_dataGridViewRow.Cells[2].Value.ToString());
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -241,7 +254,7 @@ namespace BoardSecretariatSystem.UI
 
                 if (dataGridView1.SelectedRows.Count > 0)
                 {
-                    DataGridViewRow dr = dataGridView1.SelectedRows[0];
+                    _dataGridViewRow = dataGridView1.SelectedRows[0];
                     participantId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
 
                     if (listView1.Items.Count > 0)
@@ -258,22 +271,26 @@ namespace BoardSecretariatSystem.UI
 
                         }
                         ListViewItem lst1 = new ListViewItem();
-                        lst1.Text = dr.Cells[0].Value.ToString();
-                        lst1.SubItems.Add(dr.Cells[1].Value.ToString());
-                        lst1.SubItems.Add(dr.Cells[2].Value.ToString());                       
-                        listView1.Items.Add(lst1);                       
+                        lst1.Text = _dataGridViewRow.Cells[0].Value.ToString();
+                        lst1.SubItems.Add(_dataGridViewRow.Cells[1].Value.ToString());
+                        lst1.SubItems.Add(_dataGridViewRow.Cells[2].Value.ToString());                       
+                        listView1.Items.Add(lst1);
+                        SaveMeetingParticipant();
                         ClearApprovedRequisition();
                     }
 
                     if (listView1.Items.Count == 0)
                     {
                         ListViewItem lst = new ListViewItem();
-                        lst.Text = dr.Cells[0].Value.ToString();
-                        lst.SubItems.Add(dr.Cells[1].Value.ToString());
-                        lst.SubItems.Add(dr.Cells[2].Value.ToString());                       
-                        listView1.Items.Add(lst);                      
+                        lst.Text = _dataGridViewRow.Cells[0].Value.ToString();
+                        lst.SubItems.Add(_dataGridViewRow.Cells[1].Value.ToString());
+                        lst.SubItems.Add(_dataGridViewRow.Cells[2].Value.ToString());                       
+                        listView1.Items.Add(lst);
+                        SaveMeetingParticipant();
                         ClearApprovedRequisition();
                     }
+
+                    
                 }
                 else
                 {

@@ -21,8 +21,8 @@ namespace BoardSecretariatSystem.UI
         private SqlCommand cmd;
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
-        List<Tuple<int, string, int>> agendaloist=new List<Tuple<int, string, int>>();
-        private Tuple<int, string, int> agendadetail;
+        List<Tuple< string, int>> agendaloist=new List<Tuple< string, int>>();
+        private Tuple<string, int> agendadetail;
         public int x, y;
         public int MeetingId { get; set; }
 
@@ -72,26 +72,24 @@ namespace BoardSecretariatSystem.UI
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 string ctt =
-                    "SELECT MeetingMinutes.AgendaSerialForMeeting,Agenda.AgendaTitle,Agenda.AgendaId  FROM Meeting INNER JOIN SelectedAgenda ON Meeting.MeetingId = SelectedAgenda.MeetingId INNER JOIN Agenda ON SelectedAgenda.AgendaId = Agenda.AgendaId join MeetingMinutes on SelectedAgenda.MeetingAgendaId=MeetingMinutes.MeetingAgendaId where Meeting.MeetingId='" +
-                    x + "' order by MeetingMinutes.AgendaSerialForMeeting asc";
+                    "SELECT 'Agenda '+Convert(varchar(12),row_number() OVER (ORDER BY MeetingAgendaId) )+' -'+Agenda.AgendaTitle, Agenda.AgendaId  FROM Meeting INNER JOIN SelectedAgenda ON Meeting.MeetingId = SelectedAgenda.MeetingId INNER JOIN Agenda ON SelectedAgenda.AgendaId = Agenda.AgendaId  where Meeting.MeetingId='" +
+                    x + "' order by MeetingAgendaId asc";
                 cmd = new SqlCommand(ctt);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
                 
                 while (rdr.Read())
                 {
-                    int a = rdr.GetInt32(0);
-                    string b = rdr.GetString(1);
-                    int c = rdr.GetInt32(2);
-                    agendadetail=new Tuple<int, string, int>(a,b,c);
+                    
+                    string b = rdr.GetString(0);
+                    int c = rdr.GetInt32(1);
+                    agendadetail=new Tuple<string, int>(b,c);
                     agendaloist.Add(agendadetail);
                 }
                 con.Close();
-                foreach (Tuple<int, string, int> agendum in agendaloist)
+                foreach (Tuple< string, int> agendum in agendaloist)
                 {
-                    string text =
-                        "Agenda " + agendum.Item1 + " -" + agendum.Item2;
-                    comboBox2.Items.Add(text);
+                    comboBox2.Items.Add(agendum.Item1);
                 }
                  
                 
@@ -114,10 +112,10 @@ namespace BoardSecretariatSystem.UI
             {
                 try
             {
-                string output = new string(comboBox2.Text.ToCharArray().Where(c => char.IsDigit(c)).ToArray());
+                //string output = new string(comboBox2.Text.ToCharArray().Where(c => char.IsDigit(c)).ToArray());
                 var z = from entry in agendaloist
-                    where entry.Item1 == Convert.ToInt32(output)
-                    select entry.Item3;
+                        where entry.Item1 == comboBox2.Text
+                    select entry.Item2;
                 y = z.FirstOrDefault();
                 
                 //con = new SqlConnection(cs.DBConn);
@@ -208,6 +206,9 @@ namespace BoardSecretariatSystem.UI
                         reportLogonInfo.ConnectionInfo = reportConInfo;
                         table.ApplyLogOnInfo(reportLogonInfo);
                     }
+                    string output = new string(comboBox2.Text.ToCharArray().Where(c => char.IsDigit(c)).ToArray());
+                    TextObject text1 = (TextObject)cr.ReportDefinition.Sections["PageHeaderSection3"].ReportObjects["Text1"];
+                    text1.Text = "Agendum No. " +output + " Id. "+y;
                     f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
                     //set the parameterfield information in the crystal report
                     f2.crystalReportViewer1.ReportSource = cr;
