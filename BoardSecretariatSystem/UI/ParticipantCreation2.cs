@@ -1393,6 +1393,11 @@ namespace BoardSecretariatSystem.UI
                 MessageBox.Show("Please enter Participant  name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (string.IsNullOrEmpty(cmbParticipantType.Text))
+            {
+                MessageBox.Show("Please enter Participant  Type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (CountryNamecomboBox.Text == "Bangladesh")
             {
                 if (unKnownRA.Checked == false)
