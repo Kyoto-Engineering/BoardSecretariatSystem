@@ -293,6 +293,7 @@ namespace BoardSecretariatSystem.UI
                 ListViewItem lst1 = new ListViewItem();
                 GetSerialNumber();
                 SaveMeetingMinutes();
+                UpdateMeetingStarted();
                 lst1.SubItems.Add(agendaSerialForMeeting.ToString());
                 lst1.SubItems.Add(txtAgendaTitle.Text);
                 lst1.SubItems.Add(txtDiscussion.Text);
