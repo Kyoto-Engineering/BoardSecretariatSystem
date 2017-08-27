@@ -156,7 +156,7 @@ namespace BoardSecretariatSystem.UI
                 //	Table table = default(Table);
                 var with1 = reportConInfo;
                 with1.ServerName = "tcp:KyotoServer,49172";
-                with1.DatabaseName = "BoardSecretariatDBKD";
+                with1.DatabaseName = "BoardSecretariatDBKD_CopyMain";
                 with1.UserID = "sa";
                 with1.Password = "SystemAdministrator";
                 AttendenceSlipReport cr = new AttendenceSlipReport();
@@ -220,7 +220,7 @@ namespace BoardSecretariatSystem.UI
                 //	Table table = default(Table);
                 var with1 = reportConInfo;
                 with1.ServerName = "tcp:KyotoServer,49172";
-                with1.DatabaseName = "BoardSecretariatDBKD";
+                with1.DatabaseName = "BoardSecretariatDBKD_CopyMain";
                 with1.UserID = "sa";
                 with1.Password = "SystemAdministrator";
                 BMFeeReport cr = new BMFeeReport();
@@ -283,7 +283,7 @@ namespace BoardSecretariatSystem.UI
                 //	Table table = default(Table);
                 var with1 = reportConInfo;
                 with1.ServerName = "tcp:KyotoServer,49172";
-                with1.DatabaseName = "BoardSecretariatDBKD";
+                with1.DatabaseName = "BoardSecretariatDBKD_CopyMain";
                 with1.UserID = "sa";
                 with1.Password = "SystemAdministrator";
                 ParticipantAttendenceReport cr = new ParticipantAttendenceReport();
@@ -348,7 +348,7 @@ namespace BoardSecretariatSystem.UI
                 //	Table table = default(Table);
                 var with1 = reportConInfo;
                 with1.ServerName = "tcp:KyotoServer,49172";
-                with1.DatabaseName = "BoardSecretariatDBKD";
+                with1.DatabaseName = "BoardSecretariatDBKD_CopyMain";
                 with1.UserID = "sa";
                 with1.Password = "SystemAdministrator";
                 NoticeOfaMeetingReport cr = new NoticeOfaMeetingReport();
@@ -412,7 +412,7 @@ namespace BoardSecretariatSystem.UI
                 //	Table table = default(Table);
                 var with1 = reportConInfo;
                 with1.ServerName = "tcp:KyotoServer,49172";
-                with1.DatabaseName = "BoardSecretariatDBKD";
+                with1.DatabaseName = "BoardSecretariatDBKD_CopyMain";
                 with1.UserID = "sa";
                 with1.Password = "SystemAdministrator";
                 MeetingMinutesReport cr = new MeetingMinutesReport();

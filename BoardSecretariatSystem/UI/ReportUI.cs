@@ -102,7 +102,7 @@ namespace BoardSecretariatSystem.UI
             
             var with1 = reportConInfo;
             with1.ServerName = "tcp:KyotoServer,49172";
-            with1.DatabaseName = "BoardSecretariatDBKD";
+            with1.DatabaseName = "BoardSecretariatDBKD_CopyMain";
             with1.UserID = "sa";
             with1.Password = "SystemAdministrator";
 
@@ -136,7 +136,7 @@ namespace BoardSecretariatSystem.UI
 
             var with1 = reportConInfo;
             with1.ServerName = "tcp:KyotoServer,49172";
-            with1.DatabaseName = "BoardSecretariatDBKD";
+            with1.DatabaseName = "BoardSecretariatDBKD_CopyMain";
             with1.UserID = "sa";
             with1.Password = "SystemAdministrator";
 
@@ -170,7 +170,7 @@ namespace BoardSecretariatSystem.UI
 
             var with1 = reportConInfo;
             with1.ServerName = "tcp:KyotoServer,49172";
-            with1.DatabaseName = "BoardSecretariatDBKD";
+            with1.DatabaseName = "BoardSecretariatDBKD_CopyMain";
             with1.UserID = "sa";
             with1.Password = "SystemAdministrator";
 
@@ -265,7 +265,7 @@ namespace BoardSecretariatSystem.UI
 
                 var with1 = reportConInfo;
                 with1.ServerName = "tcp:KyotoServer,49172";
-                with1.DatabaseName = "BoardSecretariatDBKD";
+                with1.DatabaseName = "BoardSecretariatDBKD_CopyMain";
                 with1.UserID = "sa";
                 with1.Password = "SystemAdministrator";
 
