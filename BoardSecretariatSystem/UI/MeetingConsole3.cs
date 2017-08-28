@@ -28,7 +28,8 @@ namespace BoardSecretariatSystem.UI
         private DataTable dt;
         public int participantId, metingTypeId,meetingId,psid;
         public int meetingNum, meetingNum1;
-        public List<string> emails=new List<string>();
+        public List<string> emails=new List<string>(); 
+        //public string emails;
         public string MailSubject,addHeader, hNo, rNo, area, thana, dist, division, dateValue, timeValue, meetingTitle,EmailBody,status;
         public DateTime dateTimeYears;
         private bool attendanceTaken;
@@ -36,7 +37,7 @@ namespace BoardSecretariatSystem.UI
         private bool invitationSend;
         private string _input=null;
         private DataGridViewRow _dataGridViewRow;
-
+        private string username, designation, contact;
         public MeetingConsole3()
         {
             InitializeComponent();
@@ -148,7 +149,7 @@ namespace BoardSecretariatSystem.UI
                         meetingNum = (rdr.GetInt32(1));
                         txtMeetingNumber.Text = meetingNum.ToString();
                        meetingTitle= txtMeetingTitle.Text = Ordinal(meetingNum) + " Board Meeting";
-                        MailSubject = "Notice for" + meetingTitle;
+                        MailSubject = "Notice for " + meetingTitle;
                     }
                     else
                     {
@@ -348,18 +349,23 @@ namespace BoardSecretariatSystem.UI
         private void SetRecepientMailAddress()
         {
             con = new SqlConnection(cs.DBConn);
-            string qry =
-                "SELECT Distinct EmailBank.Email FROM  Participant INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId  INNER JOIN MeetingParticipant ON Participant.ParticipantId = MeetingParticipant.ParticipantId where MeetingParticipant.MeetingId="+meetingId;
+            //string qry =
+            //    "SELECT Distinct EmailBank.Email FROM  Participant INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId  INNER JOIN MeetingParticipant ON Participant.ParticipantId = MeetingParticipant.ParticipantId where MeetingParticipant.MeetingId=" + meetingId;
+
+            string qry = "SELECT email FROM testmail";
+
             //ada = new SqlDataAdapter(qry, con);
             //dt = new DataTable();
             //ada.Fill(dt);
             con.Open();
-            SqlCommand sql=new SqlCommand(qry,con);
+            SqlCommand sql = new SqlCommand(qry, con);
             rdr = sql.ExecuteReader();
             while (rdr.Read())
             {
                 emails.Add(rdr.GetString(0));
             }
+
+            //emails = "iqbalbdrocky@gmail.com";
 
         }
         private void GetBody()
@@ -376,7 +382,8 @@ namespace BoardSecretariatSystem.UI
                 dateTimeYears = (rdr.GetDateTime(0));
             }
 
-            dateValue = dateTimeYears.ToString("dddd, MMMMM yyyy");
+            //dateValue = dateTimeYears.ToString("dddd, MMMMM, yyyy");
+            dateValue = dateTimeYears.ToString("dddd, MMMM-dd, yyyy ");
             timeValue = dateTimeYears.ToString("hh:mm tt");
             con = new SqlConnection(cs.DBConn);
             con.Open();
@@ -391,8 +398,24 @@ namespace BoardSecretariatSystem.UI
                 hNo = (rdr.GetString(1));
             }
 
-           EmailBody = "Notice is hereby given to you that the " + meetingTitle + " of the Company will be held on " +
-                           dateValue + " at " + timeValue + " in " + addHeader + ", " + hNo + " ";
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string Qqry = "SELECT Registration.Name, Registration.Designation, Registration.ContactNo FROM Registration INNER JOIN Meeting ON Meeting.UserId = Registration.UserId  where Meeting.MeetingId='" +
+                meetingId + "' "; 
+            cmd = new SqlCommand(Qqry, con);
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+
+                username =(rdr.GetString(0));  
+                designation = (rdr.GetString(1));
+                contact = (rdr.GetString(2));
+            }
+
+
+
+            EmailBody = "Dear Patron,<br/><br/>Notice is hereby given to you that the " + meetingTitle + " of the Company will be held on " +
+                           dateValue + " at " + timeValue + " in " + addHeader + ", " + hNo + ".<br/><br/>Best Regards<br/>" + username + "<br/>" + designation + "<br/>" + contact + " ";
 
         }
         private void NewMailMessage()
