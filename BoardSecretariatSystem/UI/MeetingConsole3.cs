@@ -28,7 +28,8 @@ namespace BoardSecretariatSystem.UI
         private DataTable dt;
         public int participantId, metingTypeId,meetingId,psid;
         public int meetingNum, meetingNum1;
-        public List<string> emails=new List<string>(); 
+        public List<string> emails=new List<string>();
+        public List<string> agendas = new List<string>();
         //public string emails;
         public string MailSubject,addHeader, hNo, rNo, area, thana, dist, division, dateValue, timeValue, meetingTitle,EmailBody,status;
         public DateTime dateTimeYears;
@@ -349,10 +350,10 @@ namespace BoardSecretariatSystem.UI
         private void SetRecepientMailAddress()
         {
             con = new SqlConnection(cs.DBConn);
-            //string qry =
-            //    "SELECT Distinct EmailBank.Email FROM  Participant INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId  INNER JOIN MeetingParticipant ON Participant.ParticipantId = MeetingParticipant.ParticipantId where MeetingParticipant.MeetingId=" + meetingId;
+            string qry =
+                "SELECT Distinct EmailBank.Email FROM  Participant INNER JOIN EmailBank ON Participant.EmailBankId = EmailBank.EmailBankId  INNER JOIN MeetingParticipant ON Participant.ParticipantId = MeetingParticipant.ParticipantId where MeetingParticipant.MeetingId=" + meetingId;
 
-            string qry = "SELECT email FROM testmail";
+           // string qry = "SELECT email FROM testmail";
 
             //ada = new SqlDataAdapter(qry, con);
             //dt = new DataTable();
@@ -412,10 +413,22 @@ namespace BoardSecretariatSystem.UI
                 contact = (rdr.GetString(2));
             }
 
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string Qqry12 = "select Agenda.AgendaNo, Agenda.AgendaTitle, Agenda.AgendaId, SelectedAgenda.MeetingId  From Agenda inner join SelectedAgenda On Agenda.AgendaId = SelectedAgenda.AgendaId where MeetingId = '" +
+                            meetingId + "'";
+            cmd = new SqlCommand(Qqry12, con);
+            rdr = cmd.ExecuteReader();
+           while(rdr.Read())
+            {
+                agendas.Add(rdr.GetString(1));
+               
+            }
 
 
+            //int j;
             EmailBody = "Dear Patron,<br/><br/>Notice is hereby given to you that the " + meetingTitle + " of the Company will be held on " +
-                           dateValue + " at " + timeValue + " in " + addHeader + ", " + hNo + ".<br/><br/>Best Regards<br/>" + username + "<br/>" + designation + "<br/>" + contact + " ";
+                           dateValue + " at " + timeValue + " in " + addHeader + ", " + hNo + ".<br/><br/> <b>Meeting Date and Time:</b><font color = blue>  " + dateValue + ", " + timeValue + ".</font> <br/> <b>Meeting Venue:</b><font color = blue> " + addHeader + ", " + hNo + ".</font><br/><br/><b>Agenda List:</b><br/> " + agendalist(agendas) + "<br/><br/>Your active participation shall be appreciated. <br/><br/>Best Regards<br/>" + username + "<br/> " + designation + " <br/>" + contact + " ";
 
         }
         private void NewMailMessage()
@@ -428,6 +441,20 @@ namespace BoardSecretariatSystem.UI
                 UpdateMeeting();
                 MessageBox.Show("Participant Saving Complete");
             }
+
+        }
+
+        private string agendalist(List<string> agendas)
+        {
+            string ul1 = "<ul>";
+            string ul2 = "</ul>";
+            string vallll="";
+            for (int i = 0; i <= agendas.Count - 1; i++)
+            {
+                vallll +="<li> " + agendas[i] + "</li>";
+            }
+
+            return ul1+vallll+ul2;
 
         }
 
