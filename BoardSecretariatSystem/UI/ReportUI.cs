@@ -287,6 +287,8 @@ namespace BoardSecretariatSystem.UI
                 f2.ShowDialog();
                 this.Visible = true;
             }
-        }       
+
+       
+      }       
     //}
 }
