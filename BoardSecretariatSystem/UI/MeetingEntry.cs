@@ -28,11 +28,11 @@ namespace BoardSecretariatSystem
         private DataTable dt;
         public string userId, agendaTypeId, labelk, labelg;
         public int companyId, addHId, metingTypeId;
-        public int boardId,currentMeetingId,  tAgendaId;
+        public int boardId,currentMeetingId,  tAgendaId, serialno ;
         public string v,serialNo,agendaType;       
         public int meetingNum, meetingNum1, meetingId;
         private bool invitationSend, attendanceTaken, agendaSelected;
-
+       
         public MeetingEntry()
         {            
             InitializeComponent();
@@ -164,7 +164,7 @@ namespace BoardSecretariatSystem
             ada.Fill(dt);
 
             for (int b = 0; b < dt.Rows.Count; b++)
-            {
+            {   
                 DataRow dr = dt.Rows[b];
                 ListViewItem listitem1 = new ListViewItem(dr[0].ToString());
                 listitem1.SubItems.Add(dr[1].ToString());
@@ -181,10 +181,11 @@ namespace BoardSecretariatSystem
             {
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string query2 = "insert into SelectedAgenda(MeetingId,AgendaId) values (@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                string query2 = "insert into SelectedAgenda(MeetingId,AgendaId,ASerial) values (@d1,@d2,@d3)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                 cmd = new SqlCommand(query2, con);
                 cmd.Parameters.AddWithValue("@d1", txtMeetingNumber.Text);
                 cmd.Parameters.AddWithValue("@d2", tAgendaId);
+                cmd.Parameters.AddWithValue("@d3", serialno);
                 currentMeetingId = (int)cmd.ExecuteScalar();
                 con.Close();  
             }
@@ -215,6 +216,9 @@ namespace BoardSecretariatSystem
         private void saveButton_Click(object sender, EventArgs e)
         {
             UpdateMeetingStarted();
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+            ClearApprovedRequisition();
         }       
         private void MeetingEntry_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -259,12 +263,12 @@ namespace BoardSecretariatSystem
                 }
                 try
                 {
-
+                    
                     if (dataGridView1.SelectedRows.Count > 0)
                     {
-                        DataGridViewRow dr = dataGridView1.SelectedRows[0];
-                        tAgendaId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
-
+                        DataGridViewRow dr = dataGridView1.CurrentRow;
+                        tAgendaId = Convert.ToInt32(dr.Cells[0].Value.ToString());
+                        serialno = Convert.ToInt32(dr.Cells[5].Value.ToString());
                         if (listView1.Items.Count > 0)
                         {
                             int x = listView1.Items.Count - 1;
@@ -279,15 +283,24 @@ namespace BoardSecretariatSystem
 
 
                             }
+
+                           // DataGridViewRow dt = dataGridView1.CurrentRow;
+                           
+                           
+                            
+
                             ListViewItem lst1 = new ListViewItem();
+                                
                             lst1.Text = dr.Cells[0].Value.ToString();
                             lst1.SubItems.Add(dr.Cells[1].Value.ToString());
                             lst1.SubItems.Add(dr.Cells[2].Value.ToString());
                             lst1.SubItems.Add(dr.Cells[3].Value.ToString());
                             lst1.SubItems.Add(dr.Cells[4].Value.ToString());
+                            lst1.SubItems.Add(dr.Cells[5].Value.ToString());
+                            
                             listView1.Items.Add(lst1);
                             SaveSelectedAgenda();
-                            ClearApprovedRequisition();
+                            //ClearApprovedRequisition();
                         }
 
                         if (listView1.Items.Count == 0)
@@ -298,9 +311,10 @@ namespace BoardSecretariatSystem
                             lst.SubItems.Add(dr.Cells[2].Value.ToString());
                             lst.SubItems.Add(dr.Cells[3].Value.ToString());
                             lst.SubItems.Add(dr.Cells[4].Value.ToString());
+                            lst.SubItems.Add(dr.Cells[5].Value.ToString());
                             listView1.Items.Add(lst);
                             SaveSelectedAgenda();
-                            ClearApprovedRequisition();
+                            //ClearApprovedRequisition();
                         }
                     }
                     else
@@ -356,8 +370,8 @@ namespace BoardSecretariatSystem
                             cmd.Parameters.AddWithValue("@d2", listView1.SelectedItems[0].Text);
                             cmd.ExecuteNonQuery();
                             con.Close();
-                            dataGridView1.Rows.Clear();
-                            GetAgendaDetails();
+                            //dataGridView1.Rows.Clear();
+                           // GetAgendaDetails();
                         }
                         catch (Exception ex)
                         {
@@ -411,6 +425,20 @@ namespace BoardSecretariatSystem
         private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             this.dataGridView1.Rows[e.RowIndex].Cells[5].Value = (e.RowIndex + 1).ToString();
+        }
+
+        //private void LoadSerial()
+        //{
+        //    int i = 1;
+        //    foreach (DataGridViewRow row in dataGridView1.Rows)
+        //    {
+        //        row.Cells[5].Value = i; i++; }
+        //}
+    
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+           // LoadSerial();
+
         }
 
       
