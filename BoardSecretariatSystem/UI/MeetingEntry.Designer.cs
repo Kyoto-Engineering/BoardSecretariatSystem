@@ -48,9 +48,11 @@
             this.addButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.meetingListGroupBox.SuspendLayout();
@@ -186,20 +188,21 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader4});
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(12, 21);
+            this.listView1.Location = new System.Drawing.Point(2, 21);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(650, 331);
+            this.listView1.Size = new System.Drawing.Size(668, 331);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Width = 6;
+            this.columnHeader1.Width = 115;
             // 
             // columnHeader2
             // 
@@ -250,48 +253,51 @@
             this.Column1,
             this.Column2,
             this.Column3,
+            this.Column4,
             this.Column5,
             this.Column6});
             this.dataGridView1.Location = new System.Drawing.Point(19, 28);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(574, 369);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "Agenda SL";
+            this.Column1.HeaderText = "Column1";
             this.Column1.Name = "Column1";
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "Agenda Header";
+            this.Column2.HeaderText = "Column2";
             this.Column2.Name = "Column2";
-            this.Column2.Width = 5;
             // 
             // Column3
             // 
-            this.Column3.HeaderText = "AgendaTitle";
+            this.Column3.HeaderText = "Column3";
             this.Column3.Name = "Column3";
-            this.Column3.Width = 220;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Column4";
+            this.Column4.Name = "Column4";
             // 
             // Column5
             // 
-            this.Column5.HeaderText = "AgendaType";
+            this.Column5.HeaderText = "Column5";
             this.Column5.Name = "Column5";
-            this.Column5.Width = 200;
             // 
             // Column6
             // 
-            this.Column6.HeaderText = "AgendaTypeId";
+            this.Column6.HeaderText = "Column6";
             this.Column6.Name = "Column6";
-            this.Column6.Width = 5;
             // 
             // MeetingEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(1358, 612);
+            this.ClientSize = new System.Drawing.Size(1350, 612);
             this.Controls.Add(this.meetingListGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -330,9 +336,11 @@
         private System.Windows.Forms.TextBox txtMeetingNumber;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
     }

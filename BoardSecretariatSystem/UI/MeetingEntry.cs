@@ -50,7 +50,7 @@ namespace BoardSecretariatSystem
                 dataGridView1.Rows.Clear();
                 while (rdr.Read() == true)
                 {
-                    dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2],rdr[3],rdr[4]);
+                    dataGridView1.Rows.Add( rdr[0], rdr[1], rdr[2], rdr[3],rdr[4]);
                 }
                 con.Close();
             }
@@ -406,6 +406,11 @@ namespace BoardSecretariatSystem
                 saveButton.Focus();
                 e.Handled = true;
             }
+        }
+
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            this.dataGridView1.Rows[e.RowIndex].Cells[5].Value = (e.RowIndex + 1).ToString();
         }
 
       
