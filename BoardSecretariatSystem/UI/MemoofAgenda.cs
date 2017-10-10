@@ -206,9 +206,9 @@ namespace BoardSecretariatSystem.UI
                         reportLogonInfo.ConnectionInfo = reportConInfo;
                         table.ApplyLogOnInfo(reportLogonInfo);
                     }
-                    string output = new string(comboBox2.Text.ToCharArray().Where(c => char.IsDigit(c)).ToArray());
-                    TextObject text1 = (TextObject)cr.ReportDefinition.Sections["PageHeaderSection3"].ReportObjects["Text1"];
-                    text1.Text = "Agendum No. " +output + " Id. "+y;
+                    //string output = new string(comboBox2.Text.ToCharArray().Where(c => char.IsDigit(c)).ToArray());
+                    //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["PageHeaderSection3"].ReportObjects["Text1"];
+                    //text1.Text = "Agendum No. " +output + " Id. "+y;
                     f2.crystalReportViewer1.ParameterFieldInfo = paramFields;
                     //set the parameterfield information in the crystal report
                     f2.crystalReportViewer1.ReportSource = cr;

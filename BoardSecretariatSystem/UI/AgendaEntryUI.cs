@@ -5,6 +5,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -21,7 +23,7 @@ namespace BoardSecretariatSystem
         private SqlDataReader rdr;
         private ConnectionString cs = new ConnectionString();
         private delegate void ChangeFocusDelegate(Control ctl);
-        public string userId, boardId, companyId, labelv, labelg, nParticipantId, nUserId;
+        public string userId, boardId, companyId, labelv, labelg, nParticipantId, nUserId,dragtid;
         public int agendaId,  meetingId, participantId, agendaId1;
         public Nullable<decimal> aId, aId1,agendaTypeId1,agendaTypeId,aIdK;
         public AgendaEntryUI()
@@ -228,6 +230,7 @@ namespace BoardSecretariatSystem
                         con.Close();
                     }                  
                     MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   dataGridView1.Rows.Clear();
                     GetAgendaDetails();
                    listView1.Items.Clear();
                 }
@@ -380,6 +383,21 @@ namespace BoardSecretariatSystem
                 agendaSaveButton.Focus();
                 e.Handled = true;
             }
+        }
+
+        
+        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewRow drs = dataGridView1.CurrentRow;
+            dragtid = drs.Cells[3].Value.ToString();
+
+            if (dragtid == "1")
+            {
+                txtAgendaTitle.Text = drs.Cells[1].Value.ToString();
+
+            }
+
+
         }
 
         }

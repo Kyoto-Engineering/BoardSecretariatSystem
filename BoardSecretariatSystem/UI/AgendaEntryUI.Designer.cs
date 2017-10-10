@@ -48,11 +48,12 @@
             this.txtAgendaTitle = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -74,9 +75,9 @@
             this.agendaSaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.agendaSaveButton.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agendaSaveButton.ForeColor = System.Drawing.Color.Blue;
-            this.agendaSaveButton.Location = new System.Drawing.Point(880, 486);
+            this.agendaSaveButton.Location = new System.Drawing.Point(877, 551);
             this.agendaSaveButton.Name = "agendaSaveButton";
-            this.agendaSaveButton.Size = new System.Drawing.Size(160, 91);
+            this.agendaSaveButton.Size = new System.Drawing.Size(160, 63);
             this.agendaSaveButton.TabIndex = 30;
             this.agendaSaveButton.Text = "Save";
             this.agendaSaveButton.UseVisualStyleBackColor = false;
@@ -221,7 +222,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView1);
-            this.groupBox2.Location = new System.Drawing.Point(775, 70);
+            this.groupBox2.Location = new System.Drawing.Point(775, 131);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(556, 410);
             this.groupBox2.TabIndex = 53;
@@ -239,6 +240,18 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(523, 373);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.Location = new System.Drawing.Point(769, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(171, 31);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "Agenda Bank";
             // 
             // Column1
             // 
@@ -263,16 +276,18 @@
             this.Column4.Name = "Column4";
             this.Column4.Width = 5;
             // 
-            // label1
+            // label6
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(769, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(171, 31);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "Agenda Bank";
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.SystemColors.Control;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Blue;
+            this.label6.Location = new System.Drawing.Point(999, 52);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(244, 80);
+            this.label6.TabIndex = 55;
+            this.label6.Text = "NB: If you wanna create \r\n       new agenda using these \r\n       generic type tit" +
+    "le \r\n       Just Click in the header ";
             // 
             // AgendaEntryUI
             // 
@@ -281,6 +296,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1334, 626);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.txtAgendaTitle);
@@ -330,10 +346,11 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Label label6;
     }
 }
