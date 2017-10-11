@@ -87,7 +87,7 @@ namespace BoardSecretariatSystem
             }
 
         }
-        private void GetAgendaDetails()
+        private void GetAgendaDetails2()
         {
             try
             {
@@ -107,6 +107,49 @@ namespace BoardSecretariatSystem
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void GetAgendaDetails()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                cmd = new SqlCommand("SELECT  Agenda.AgendaId, Agenda.AgendaTitle,AgendaTypes.AgendaType,Agenda.AgendaTypeId FROM   Agenda inner  join AgendaTypes on Agenda.AgendaTypeId=AgendaTypes.AgendaTypeId Where Agenda.AgendaTypeId<> 1 and AgendaId not in( Select Agenda.AgendaId from SelectedAgenda inner join Agenda on Agenda.AgendaId=SelectedAgenda.AgendaId) order by Agenda.AgendaId", con);
+                rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                dataGridView1.Rows.Clear();
+                while (rdr.Read() == true)
+                {
+                    dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2], rdr[3]);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void GetAgendaDetails3()
+        {
+            try
+            {
+                con = new SqlConnection(cs.DBConn);
+                con.Open();
+                cmd = new SqlCommand("SELECT Agenda.AgendaId,Agenda.AgendaTitle,AgendaTypes.AgendaType,AgendaTypes.AgendaTypeId FROM  Agenda inner join AgendaTypes on Agenda.AgendaTypeId=AgendaTypes.AgendaTypeId Where AgendaTypes.AgendaTypeId= 1 order by Agenda.AgendaId", con);
+                rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                dataGridView2.Rows.Clear();
+                while (rdr.Read() == true)
+                {
+                    dataGridView2.Rows.Add(rdr[0], rdr[1], rdr[2], rdr[3]);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void GetAgendaHeader()
         {
             try
@@ -200,6 +243,7 @@ namespace BoardSecretariatSystem
             GetAgendaHeader();
             CompanyNameLoad();
             GetAgendaDetails();
+            GetAgendaDetails3();
             LoadAgendaType();
         }      
        
@@ -232,6 +276,7 @@ namespace BoardSecretariatSystem
                     MessageBox.Show("Saved Sucessfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                    dataGridView1.Rows.Clear();
                     GetAgendaDetails();
+                    GetAgendaDetails3();
                    listView1.Items.Clear();
                 }
                 catch (Exception ex)
@@ -388,7 +433,13 @@ namespace BoardSecretariatSystem
         
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewRow drs = dataGridView1.CurrentRow;
+
+        }
+
+        private void dataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            DataGridViewRow drs = dataGridView2.CurrentRow;
             dragtid = drs.Cells[3].Value.ToString();
 
             if (dragtid == "1")
@@ -396,7 +447,6 @@ namespace BoardSecretariatSystem
                 txtAgendaTitle.Text = drs.Cells[1].Value.ToString();
 
             }
-
 
         }
 
